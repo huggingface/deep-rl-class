@@ -15,9 +15,9 @@ The best way to keep in touch is to **join our discord server to exchange with t
 And don't forget to share with your friends who want to learn 🤗!
 
 ## The Syllabus 🏗️
-
-| May, the 4th  | An Introduction to Deep Reinforcement Learning           | Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3 |
+| 📆  | 📘 Unit           | 👩‍💻 Hands-on |
 |---------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| May, the 4th  | An Introduction to Deep Reinforcement Learning           | Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3 |
 | May, the 11th | Bonus                                                    | Train Huggy the Doggo to catch the stick                                                                 |
 | May, the 18th | Q-Learning                                               | Train an agent to cross a Frozen lake in this new version of the environment.                                                                                                        |
 | June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
