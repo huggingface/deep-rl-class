@@ -47,23 +47,25 @@ And don't forget to share with your friends who want to learn 🤗!
 👉 Play it here: https://huggingface.co/spaces/ThomasSimonini/SnowballFight
 
 
-- More to come
+- More to come 🚧
 
 
 ### Gym classic controls environments 🕹️
 - Lunar-Lander v2 🚀🌙
+
 ![lunarlander.gif](./assets/img/lunarlander.gif)
 
 
 ### PyBullet 🤖
-
+- More to come 🚧
 
 ### Gym Atari environments 👾
 - Space Invaders 👾
+
 ![spaceinvaders.gif](./assets/img/spaceinvaders.gif)
 
 ### MLAgents environments 🖌️
-
+- More to come 🚧
 
 
 
