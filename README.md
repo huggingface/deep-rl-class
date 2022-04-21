@@ -50,18 +50,19 @@ And don't forget to share with your friends who want to learn 🤗!
 - More to come
 
 
-# Gym classic controls environments
-- Lunar-Lander v2:
+### Gym classic controls environments 🕹️
+- Lunar-Lander v2 🚀🌙
+[lunarlander.gif](./assets/img/lunarlander.gif)
 
 
-
-# PyBullet
-
-
-# Gym Atari environments
+### PyBullet 🤖
 
 
-# MLAgents environments
+### Gym Atari environments 👾
+- Space Invaders 👾
+[spaceinvaders.gif](./assets/img/spaceinvaders.gif)
+
+### MLAgents environments 🖌️
 
 
 
