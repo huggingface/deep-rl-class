@@ -7,6 +7,7 @@ In this free course, you will:
 - 🤖 Train agents in **unique environments** such as SnowballFight, Huggy the Doggo 🐶, and classical ones such as Space Invaders and PyBullet.
 - 💾 **Publish your trained agents in one line of code to the Hugging Face Hub**. But also **download powerful agents from the community**.
 - 🏆 **Participate in challenges** where you will evaluate your agents against other teams.
+- 🖌️🎨 **Learn to share your own environments made with Unity and Godot**.
 
 ➡️➡️➡️ Don't forget to sign up here: https://forms.gle/4bbgzs3oVZMjgDed7
 
@@ -15,10 +16,10 @@ The best way to keep in touch is to **join our discord server to exchange with t
 And don't forget to share with your friends who want to learn 🤗!
 
 ## The Syllabus 🏗️
-| 📆  | 📘 Unit           | 👩‍💻 Hands-on |
+| 📆 Publishing date  | 📘 Unit           | 👩‍💻 Hands-on |
 |---------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | May, the 4th  | An Introduction to Deep Reinforcement Learning           | Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3 |
-| May, the 11th | Bonus                                                    | Train Huggy the Doggo to catch the stick                                                                 |
+| May, the 11th | Bonus                                                    | 🎁 it's a suprise 🎁                                                               |
 | May, the 18th | Q-Learning                                               | Train an agent to cross a Frozen lake in this new version of the environment.                                                                                                        |
 | June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
 |               | Policy-based methods                                     | 🏗️                                                                                                        |
