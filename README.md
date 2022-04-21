@@ -6,7 +6,7 @@ In this free course, you will:
 - 🧑‍💻 Learn to **use famous Deep RL libraries** such as Stable Baselines3, RL Baselines3 Zoo, and RLlib.
 - 🤖 Train agents in **unique environments** such as SnowballFight, Huggy the Doggo 🐶, and classical ones such as Space Invaders and PyBullet.
 - 💾 **Publish your trained agents in one line of code to the Hugging Face Hub**. But also **download powerful agents from the community**.
-- 🏆 **Participate in challenges** where you going to evaluate your agents against other teams.
+- 🏆 **Participate in challenges** where you will evaluate your agents against other teams.
 
 ➡️➡️➡️ Don't forget to sign up here: https://forms.gle/4bbgzs3oVZMjgDed7
 
@@ -21,8 +21,8 @@ And don't forget to share with your friends who want to learn 🤗!
 | May, the 11th | Bonus                                                    | Train Huggy the Doggo to catch the stick                                                                 |
 | May, the 18th | Q-Learning                                               | Train an agent to cross a Frozen lake in this new version of the environment.                                                                                                        |
 | June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
-|               | Policy based methods                                     | 🏗️                                                                                                        |
-|               | Actor Critic Methods                                     | 🏗️                                                                                                        |
+|               | Policy-based methods                                     | 🏗️                                                                                                        |
+|               | Actor-Critic Methods                                     | 🏗️                                                                                                        |
 |               | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
 |               | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
 |               | Towards better explorations methods                      | 🏗️                                                                                                        |
@@ -36,15 +36,15 @@ And don't forget to share with your friends who want to learn 🤗!
 - More to come 🏗️
 
 ## The Environments you'll use
-### Custom environments made by Hugging Face Team using Unity and Godot
+### Custom environments made by the Hugging Face Team using Unity and Godot
 - Huggy the Doggo 🐶
-(Huggy the Doggo is based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit))
+(Based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit))
 
 
 
 - SnowballFight ☃️
 [snowballfight.gif](./assets/img/snowballfight.gif)
-👉 Play it here : https://huggingface.co/spaces/ThomasSimonini/SnowballFight
+👉 Play it here: https://huggingface.co/spaces/ThomasSimonini/SnowballFight
 
 
 - More to come
