@@ -39,11 +39,11 @@ And don't forget to share with your friends who want to learn 🤗!
 ### Custom environments made by the Hugging Face Team using Unity and Godot
 - Huggy the Doggo 🐶
 (Based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit))
-
+![huggy.jpg](./assets/img/huggy.jpg)
 
 
 - SnowballFight ☃️
-[snowballfight.gif](./assets/img/snowballfight.gif)
+![snowballfight.gif](./assets/img/snowballfight.gif)
 👉 Play it here: https://huggingface.co/spaces/ThomasSimonini/SnowballFight
 
 
@@ -52,7 +52,7 @@ And don't forget to share with your friends who want to learn 🤗!
 
 ### Gym classic controls environments 🕹️
 - Lunar-Lander v2 🚀🌙
-[lunarlander.gif](./assets/img/lunarlander.gif)
+![lunarlander.gif](./assets/img/lunarlander.gif)
 
 
 ### PyBullet 🤖
@@ -60,7 +60,7 @@ And don't forget to share with your friends who want to learn 🤗!
 
 ### Gym Atari environments 👾
 - Space Invaders 👾
-[spaceinvaders.gif](./assets/img/spaceinvaders.gif)
+![spaceinvaders.gif](./assets/img/spaceinvaders.gif)
 
 ### MLAgents environments 🖌️
 
