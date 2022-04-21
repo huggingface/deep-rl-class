@@ -1,54 +1,68 @@
-# The Hugging Face Deep Reinforcement Learning Bootcamp 🤗
+# The Hugging Face Deep Reinforcement Learning Class 🤗
 
-In this free bootcamp, you will:
+In this free course, you will:
 
 - 📖 Study Deep Reinforcement Learning in **theory and practice**.
 - 🧑‍💻 Learn to **use famous Deep RL libraries** such as Stable Baselines3, RL Baselines3 Zoo, and RLlib.
 - 🤖 Train agents in **unique environments** such as SnowballFight, Huggy the Doggo 🐶, and classical ones such as Space Invaders and PyBullet.
-- 💾 **Publish your trained agents in one line of code to the Hub**. But also **download powerful agents from the community**.
+- 💾 **Publish your trained agents in one line of code to the Hugging Face Hub**. But also **download powerful agents from the community**.
+- 🏆 **Participate in challenges** where you going to evaluate your agents against other teams.
 
 ➡️➡️➡️ Don't forget to sign up here: https://forms.gle/4bbgzs3oVZMjgDed7
 
 The best way to keep in touch is to **join our discord server to exchange with the community and with us** 👉🏻 https://discord.gg/aYka4Yhff9
 
-And don't forget to share with your friends who want to learn 🤗 !
+And don't forget to share with your friends who want to learn 🤗!
 
-## The Syllabus
+## The Syllabus 🏗️
 
-# Unit 1: An Introduction to Deep Reinforcement Learning
-  - Theory: An Introduction to Deep Reinforcement Learning
-  - Hands-on: Train your first agent with SB3
-
-# Bonus: Train Huggy the Doggo
-
-# Unit 2: Q-Learning
-
-# Unit 3: Deep Q-Learning and improvements
-
-
-# Unit 4: Policy based methods
+| May, the 4th  | An Introduction to Deep Reinforcement Learning           | Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3 |
+|---------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| May, the 11th | Bonus                                                    | Train Huggy the Doggo to catch the stick                                                                 |
+| May, the 18th | Q-Learning                                               | Train an agent to cross a Frozen lake in this new version of the environment.                                                                                                        |
+| June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
+|               | Policy based methods                                     | 🏗️                                                                                                        |
+|               | Actor Critic Methods                                     | 🏗️                                                                                                        |
+|               | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
+|               | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
+|               | Towards better explorations methods                      | 🏗️                                                                                                        |
 
 
-# Unit 5: Actor Critic Methods
+## The library you'll learn during this course
+- [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3)
+- [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)
+- [RLlib](https://docs.ray.io/en/latest/rllib/index.html)
+- [CleanRL](https://github.com/vwxyzjn/cleanrl)
+- More to come 🏗️
+
+## The Environments you'll use
+### Custom environments made by Hugging Face Team using Unity and Godot
+- Huggy the Doggo 🐶
+(Huggy the Doggo is based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit))
 
 
-# Unit 6: Proximal Policy Optimization (PPO)
+
+- SnowballFight ☃️
+[snowballfight.gif](./assets/img/snowballfight.gif)
+👉 Play it here : https://huggingface.co/spaces/ThomasSimonini/SnowballFight
 
 
-# Unit 7: Decision Transformers 
+- More to come
 
 
-- Introduction to Deep Reinforcement Learning
-    - Theory: C1 DRLC Introduction to Deep RL
-    - Practice: Lunar Lander
-    - Library: SB3
-    - Bonus: Huggy
+# Gym classic controls environments
+- Lunar-Lander v2:
 
-- Value based methods: Q-Learning
-    - Theory: Q-Learning
-    - Practice: Frozen lake updated version
 
-- Deep Q-Learning and improvements
-    - Theory: Deep Q-Learning and DDQN
-    - Practice:
+
+# PyBullet
+
+
+# Gym Atari environments
+
+
+# MLAgents environments
+
+
+
 
