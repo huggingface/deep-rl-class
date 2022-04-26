@@ -69,4 +69,11 @@ And don't forget to share with your friends who want to learn 🤗!
 - More to come 🚧
 
 
+## Prerequisites
+- Good skills in Python 🐍
+- Basics in Deep Learning and Pytorch
 
+If it's not the case yet, you can check these free resources:
+- Python: https://www.udacity.com/course/introduction-to-python--ud1110
+- Intro to Deep Learning with PyTorch: https://www.udacity.com/course/deep-learning-pytorch--ud188
+- PyTorch in 60min: https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
