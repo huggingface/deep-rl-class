@@ -77,3 +77,80 @@ If it's not the case yet, you can check these free resources:
 - Python: https://www.udacity.com/course/introduction-to-python--ud1110
 - Intro to Deep Learning with PyTorch: https://www.udacity.com/course/deep-learning-pytorch--ud188
 - PyTorch in 60min: https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
+
+## FAQ
+**Is this class free?**
+
+Yes, totally free 🥳.
+
+
+**Do I need to have a Hugging Face account to follow the course?**
+
+Yes, to push your trained agents during the hands-on, you need an account (it's free) 🤗.
+
+You can create one here 👉 [https://huggingface.co/join](https://huggingface.co/join)
+
+
+**What’s the format of the class?**
+
+The course consists of **8 Units.** In each of the Units, we'll have:
+
+- **A theory explained part**: an article and a video (based on Deep Reinforcement Learning Course)
+- **A hands-on Google Colab** where you'll learn to use famous Deep RL libraries such as Stable Baselines3, RL Baselines3 Zoo, and RLlib to train your agents in unique environments such as SnowballFight, Huggy the Doggo 🐶, and classical ones such as Space Invaders and PyBullet.
+- **Some optional challenges**: train an agent in another environment, and try to beat the results.
+
+It's not a live course video, so you can watch and read each unit when you want 🤗
+You can check the syllabus here 👉 https://github.com/huggingface/deep-rl-class
+
+
+**What I will do during this course?**
+
+In this free course, you will:
+
+- 📖 Study Deep Reinforcement Learning in theory and practice.
+- 🧑‍💻 Learn to use famous Deep RL libraries such as Stable Baselines3, RL Baselines3 Zoo, and RLlib.
+- 🤖 Train agents in unique environments such as SnowballFight, Huggy the Doggo 🐶, and classical ones such as Space Invaders and PyBullet.
+- 💾 Publish your trained agents in one line of code to the Hub. But also download powerful agents from the community.
+- 🏆 Participate in challenges where you will evaluate your agents against other teams.
+- 🖌️🎨 Learn to share your own environments made with Unity and Godot.
+
+
+**Where do I sign up?**
+
+Here 👉 https://forms.gle/tfa2nUDKxxg8DJAX8
+
+
+**Where can I find the course?**
+
+**On this repository**, we'll publish every week the links (chapters, hands-ons, videos).
+
+
+**Where can I exchange with my classmates and with you?**
+
+We have a discord server where you **can exchange with the community and with us** 👉🏻 [https://discord.gg/aYka4Yhff9](https://discord.gg/aYka4Yhff9)
+
+Don’t forget to **introduce yourself when you sign up 🤗**
+
+
+**I have some feedback**
+
+We want to improve and update the course iteratively with your feedback. If you have some, please send a mail to thomas.simonini@huggingface.co
+
+
+**How much background knowledge is needed?**
+
+Some prerequisites:
+
+Good skills in **Python** 🐍
+Basics in **Deep Learning and Pytorch**
+
+If it's not the case yet, you can check these free resources:
+
+- Python: [https://www.udacity.com/course/introduction-to-python--ud1110](https://www.udacity.com/course/introduction-to-python--ud1110)
+- Intro to Deep Learning with PyTorch: [https://www.udacity.com/course/deep-learning-pytorch--ud188](https://www.udacity.com/course/deep-learning-pytorch--ud188)
+- PyTorch in 60min: [https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
+
+
+**Is there a certificate?**
+
+Yes 🎉. You'll **need to upload the eight models with the eight hands-on.**
