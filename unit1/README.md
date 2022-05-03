@@ -50,9 +50,10 @@ You can work directly **with the colab notebook, which allows you not to have to
 
 To make the most of the course, my advice is to:
 
-- Participate in Discord channel and join a study group.
-- Read multiple time the theory part and takes some notes
-- Don’t just do the colab. When you learn something try to change the environment, change the parameters and read the libraries documentations. Have fun 🥳
+- **Participate in Discord** and join a study group.
+- **Read multiple times** the theory part and takes some notes
+- Don’t just do the colab. When you learn something, try to change the environment, change the parameters and read the libraries' documentation. Have fun 🥳
+- Struggling is **a good thing in learning**. It means that you start to build new skills. Deep RL is a complex topic and it takes time to understand. Try different approaches, use our additional readings, and exchange with classmates on discord.
 
 ## This is a course built with you 👷🏿‍♀️
 
