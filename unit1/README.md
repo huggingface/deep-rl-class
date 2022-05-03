@@ -2,6 +2,8 @@
 
 In this Unit, you'll learn the foundations of Deep RL. And **you’ll train your first lander agent 🚀 to land correctly on the Moon 🌕** using Stable-Baselines3 and share it with the community.
 
+<img src="assets/img/lunarlander.gif" alt="LunarLander"/>
+
 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥.
 
 This course is **self-paced**, you can start whenever you want.
