@@ -25,7 +25,7 @@ Here are the steps for this Unit:
 - #unity-ml-agents is to exchange about everything related to this library.
 - #study-groups, to create study groups with your classmates.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/38b00ee8-2139-476f-b27c-dd62cf8240fc/Untitled.png)
+<img src="assets/img/discord_channels.jpg" alt="Discord Channels"/>
 
 3️⃣ 📖 Read An [Introduction to Deep Reinforcement Learning](), where you’ll learn the foundations of Deep RL. You can also watch the video version attached to the article. 👉 [ARTICLE LINK]
 
