@@ -13,6 +13,8 @@ In this free course, you will:
 
 The best way to keep in touch is to **join our discord server to exchange with the community and with us** 👉🏻 https://discord.gg/aYka4Yhff9
 
+Are you new to Discord? Check our **discord 101 to get the best practices** 👉 https://github.com/huggingface/deep-rl-class/blob/main/DISCORD.Md
+
 And don't forget to share with your friends who want to learn 🤗!
 
 ## The Syllabus 🏗️
