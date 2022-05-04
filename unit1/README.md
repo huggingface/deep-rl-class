@@ -31,13 +31,13 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 <img src="assets/img/discord_channels.jpg" alt="Discord Channels"/>
 
-3️⃣ 📖 Read An [Introduction to Deep Reinforcement Learning](), where you’ll learn the foundations of Deep RL. You can also watch the video version attached to the article. 👉 [ARTICLE LINK]
+3️⃣ 📖 **Read An [Introduction to Deep Reinforcement Learning](https://huggingface.co/blog/deep-rl-intro)**, where you’ll learn the foundations of Deep RL. You can also watch the video version attached to the article. 👉 https://huggingface.co/blog/deep-rl-intro
 
 4️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll train your first lander agent 🚀 to land correctly on the Moon 🌕 using Stable-Baselines3 and share it with the community.** Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 1 🏆?
 
 The hands-on 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb
 
-The leaderboard 👉
+The leaderboard 👉 https://huggingface.co/spaces/ThomasSimonini/Lunar-Lander-Leaderboard
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
