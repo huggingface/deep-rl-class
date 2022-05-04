@@ -46,6 +46,8 @@ You can work directly **with the colab notebook, which allows you not to have to
 - [Foundations of Deep RL Series, L1 MDPs, Exact Solution Methods, Max-ent RL by Pieter Abbeel](https://youtu.be/2GwBez0D20A)
 - [Spinning Up RL by OpenAI Part 1: Key concepts of RL](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)
 
+- [Getting Started With OpenAI Gym: The Basic Building Blocks](https://blog.paperspace.com/getting-started-with-openai-gym/)
+
 ## How to make the most of this course
 
 To make the most of the course, my advice is to:
