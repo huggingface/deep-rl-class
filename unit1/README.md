@@ -20,6 +20,8 @@ Here are the steps for this Unit:
 
 👉🏻 [https://discord.gg/aYka4Yhff9](https://discord.gg/aYka4Yhff9).
 
+Are you new to Discord? Check our **discord 101 to get the best practices** 👉 https://github.com/huggingface/deep-rl-class/blob/main/DISCORD.Md
+
 2️⃣ **Introduce yourself on Discord in #introduce-yourself Discord channel 🤗 and check on the left the Reinforcement Learning section.**
 
 - In #rl-announcements we give the last information about the course.
