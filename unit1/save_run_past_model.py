@@ -4,8 +4,10 @@ import os
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.env_util import make_vec_env
 
-#if there is no any saved model, directly begin traning.
-#if there is a saved model ask which model you want to use make further tranining.
+# if there is no any saved model, directly begin traning.
+# if there is a saved model, ask the user which model you want to use make further training.
+# train_model function parameters can be changed.
+# if you want to use another model change: models_dir, model, variables
 
 models_dir = "models/PPO"
 logdir = "logs"
@@ -39,6 +41,7 @@ if not os.path.exists(models_dir):
     train_model(timesteps=1000,iter=30)
 
 prefer = input("Do you want to use past model?(y/n): ").strip()
+
 if prefer == "n":
     train_model(timesteps=1000,iter=30)
 else:
