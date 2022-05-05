@@ -18,6 +18,8 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 And don't forget to share with your friends who want to learn 🤗!
 
 ## The Syllabus 🏗️
+This course is **self-paced** you can start when you want 🥳.
+
 | 📆 Publishing date  | 📘 Unit           | 👩‍💻 Hands-on |
 |---------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | Published 🥳  | [An Introduction to Deep Reinforcement Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit1)           | [Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3](https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb) |
