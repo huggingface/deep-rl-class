@@ -35,7 +35,7 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 4️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll train your first lander agent 🚀 to land correctly on the Moon 🌕 using Stable-Baselines3 and share it with the community.** Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 1 🏆?
 
-The hands-on 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb
+The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb)
 
 The leaderboard 👉 https://huggingface.co/spaces/ThomasSimonini/Lunar-Lander-Leaderboard
 
