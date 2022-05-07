@@ -9,7 +9,7 @@ In this free course, you will:
 - 🏆 **Participate in challenges** where you will evaluate your agents against other teams.
 - 🖌️🎨 **Learn to share your own environments made with Unity and Godot**.
 
-➡️➡️➡️ Don't forget to sign up here: https://forms.gle/4bbgzs3oVZMjgDed7
+➡️➡️➡️ Don't forget to sign up here: http://eepurl.com/h1pElX
 
 The best way to keep in touch is to **join our discord server to exchange with the community and with us** 👉🏻 https://discord.gg/aYka4Yhff9
 
@@ -121,7 +121,7 @@ In this free course, you will:
 
 **Where do I sign up?**
 
-Here 👉 https://forms.gle/tfa2nUDKxxg8DJAX8
+Here 👉 http://eepurl.com/h1pElX
 
 
 **Where can I find the course?**
