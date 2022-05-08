@@ -22,7 +22,7 @@ This course is **self-paced** you can start when you want 🥳.
 
 | 📆 Publishing date  | 📘 Unit           | 👩‍💻 Hands-on |
 |---------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Published 🥳  | [An Introduction to Deep Reinforcement Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit1)           | [Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3](https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb) |
+| [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit1#unit-1-introduction-to-deep-reinforcement-learning)  | [An Introduction to Deep Reinforcement Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit1)           | [Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3](https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb) |
 | May, the 11th | Bonus                                                    | 🎁 it's a surprise 🎁                                                               |
 | May, the 18th | Q-Learning                                               | Train an agent to cross a Frozen lake in this new version of the environment.                                                                                                        |
 | June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
