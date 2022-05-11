@@ -37,7 +37,7 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb)
 
-The leaderboard 👉 https://huggingface.co/spaces/ThomasSimonini/Lunar-Lander-Leaderboard
+The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
