@@ -1,5 +1,8 @@
 # Unit 2: Introduction to Q-Learning
 
+- [Part 1 is published](https://huggingface.co/blog/deep-rl-q-part1)
+- Part 2 **will be published on Friday 📅**
+
 In this Unit, we're going to dive deeper into one of the Reinforcement Learning methods: value-based methods and **study our first RL algorithm: Q-Learning**.
 
 We'll also implement our **first RL agent from scratch**: a Q-Learning agent and will train it in two environments:
