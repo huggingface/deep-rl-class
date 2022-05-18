@@ -12,7 +12,7 @@ We'll also implement our **first RL agent from scratch**: a Q-Learning agent and
 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥.
 
 This Unit is divided into 2 parts:
-- Part 1 is published
+- [Part 1 is published](https://huggingface.co/blog/deep-rl-q-part1)
 - Part 2 will be published on Friday 📅
 
 <img src="assets/img/two_parts.jpg" alt="Two parts"/>
