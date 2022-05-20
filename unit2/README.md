@@ -49,13 +49,6 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 3️⃣ 📖 **Read An [Introduction to Q-Learning Part 1](https://huggingface.co/blog/deep-rl-q-part1)**.
 
-## Additional readings 📚
-- [Reinforcement Learning: An Introduction, Richard Sutton and Andrew G. Barto Chapter 5, 6 and 7](http://incompleteideas.net/book/RLbook2020.pdf)
-- [Foundations of Deep RL Series, L2 Deep Q-Learning by Pieter Abbeel](https://youtu.be/Psrhxy88zww)
-- To divde deeper on Monte Carlo and Temporal Difference Learning:
-  - [Why do temporal difference (TD) methods have lower variance than Monte Carlo methods?](https://stats.stackexchange.com/questions/355820/why-do-temporal-difference-td-methods-have-lower-variance-than-monte-carlo-met)
-  - [When are Monte Carlo methods preferred over temporal difference ones?](https://stats.stackexchange.com/questions/336974/when-are-monte-carlo-methods-preferred-over-temporal-difference-ones)
-
 4️⃣ 📖 **Read An [Introduction to Q-Learning Part 2](https://huggingface.co/blog/deep-rl-q-part2)**.
 
 5️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll implement our first RL agent from scratch**, a Q-Learning agent, and will train it in two environments:
@@ -72,6 +65,13 @@ You can work directly **with the colab notebook, which allows you not to have to
 
 6️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
 
+## Additional readings 📚
+- [Reinforcement Learning: An Introduction, Richard Sutton and Andrew G. Barto Chapter 5, 6 and 7](http://incompleteideas.net/book/RLbook2020.pdf)
+- [Foundations of Deep RL Series, L2 Deep Q-Learning by Pieter Abbeel](https://youtu.be/Psrhxy88zww)
+- To divde deeper on Monte Carlo and Temporal Difference Learning:
+  - [Why do temporal difference (TD) methods have lower variance than Monte Carlo methods?](https://stats.stackexchange.com/questions/355820/why-do-temporal-difference-td-methods-have-lower-variance-than-monte-carlo-met)
+  - [When are Monte Carlo methods preferred over temporal difference ones?](https://stats.stackexchange.com/questions/336974/when-are-monte-carlo-methods-preferred-over-temporal-difference-ones)
+ 
 ## How to make the most of this course
 
 To make the most of the course, my advice is to:
