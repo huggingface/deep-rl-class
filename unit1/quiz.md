@@ -4,7 +4,6 @@ The best way to learn and [to avoid the illusion of competence](https://fr.cours
 
 📝 Take a piece of paper and try to answer by writing, **then check the solutions**.
 
-
 ### Q1: What is Reinforcement Learning?
 
 <details>
@@ -30,7 +29,7 @@ At every step:
 <details>
 <summary>Solution</summary>
 
-<img src="assets/img/rl-loop-solution" alt="Exercise RL Solution"/>
+<img src="assets/img/rl-loop-solution.jpg" alt="Exercise RL Solution"/>
   
 
 At every step:
