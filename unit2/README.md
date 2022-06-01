@@ -48,7 +48,7 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 5️⃣ 📖 **Read An [Introduction to Q-Learning Part 2](https://huggingface.co/blog/deep-rl-q-part2)**.
 
-6️⃣ 📝 Take a piece of paper and **check your knowledge with this series of questions** ❔ 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit2/quiz1.md
+6️⃣ 📝 Take a piece of paper and **check your knowledge with this series of questions** ❔ 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit2/quiz2.md
 
 7️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll implement our first RL agent from scratch**, a Q-Learning agent, and will train it in two environments:
 1. Frozen Lake v1 ❄️: where our agent will need to **go from the starting state (S) to the goal state (G)** by walking only on frozen tiles (F) and avoiding holes (H).
