@@ -91,9 +91,8 @@ There are two types of methods to learn a policy or a value function:
 📖 If you don't remember, check 👉 https://huggingface.co/blog/deep-rl-q-part1#monte-carlo-learning-at-the-end-of-the-episode
 </details>
 
-
 ---
 
-Congrats on **finishing this Quiz** 🥳, if you missed some elements, take time to [read again the chapter](https://huggingface.co/blog/deep-rl-q-part1) to reinforce (😏) your knowledge.
+Congrats on **finishing this Quiz** 🥳, if you missed some elements, take time to [read the chapter again](https://huggingface.co/blog/deep-rl-q-part1) to reinforce (😏) your knowledge.
 
 **Keep Learning, Stay Awesome**
