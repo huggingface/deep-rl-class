@@ -48,7 +48,9 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 5️⃣ 📖 **Read An [Introduction to Q-Learning Part 2](https://huggingface.co/blog/deep-rl-q-part2)**.
 
-6️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll implement our first RL agent from scratch**, a Q-Learning agent, and will train it in two environments:
+6️⃣ 📝 Take a piece of paper and **check your knowledge with this series of questions** ❔ 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit2/quiz1.md
+
+7️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll implement our first RL agent from scratch**, a Q-Learning agent, and will train it in two environments:
 1. Frozen Lake v1 ❄️: where our agent will need to **go from the starting state (S) to the goal state (G)** by walking only on frozen tiles (F) and avoiding holes (H).
 2. An autonomous taxi 🚕: where the agent will need **to learn to navigate** a city to **transport its passengers from point A to point B.**
 
@@ -60,7 +62,7 @@ The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-L
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
-7️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
+8️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
 
 ## Additional readings 📚
 - [Reinforcement Learning: An Introduction, Richard Sutton and Andrew G. Barto Chapter 5, 6 and 7](http://incompleteideas.net/book/RLbook2020.pdf)
