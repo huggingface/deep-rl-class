@@ -55,11 +55,11 @@ The idea is that we define epsilon ɛ = 1.0:
 </details>
 
 ### Q5: How do we update the Q value of a state, action pair?
-<img src="assets/img/q-update-ex.jpg" alt="Q Update exercise"/>
+<img src="assets/img/q-update-ex.jpg.jpg" alt="Q Update exercise"/>
 
 <details>
 <summary>Solution</summary>
-  <img src="assets/img/q-update-solution.jpg" alt="Q Update exercise"/>
+  <img src="assets/img/q-update-solution.jpg.jpg" alt="Q Update exercise"/>
   📖 If you don't remember, check 👉 https://huggingface.co/blog/deep-rl-q-part2#the-q-learning-algorithm
 </details>
 
