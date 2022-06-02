@@ -25,12 +25,12 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit1#unit-1-introduction-to-deep-reinforcement-learning)  | [An Introduction to Deep Reinforcement Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit1)           | [Train a Deep Reinforcement Learning lander agent to land correctly on the Moon 🌕 using Stable-Baselines3](https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1.ipynb) |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit1/unit1-bonus) | [Bonus](https://github.com/huggingface/deep-rl-class/tree/main/unit1/unit1-bonus)                                                    |                                                               |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/blob/main/unit2/README.md)| [Q-Learning](https://github.com/huggingface/deep-rl-class/blob/main/unit2/README.md)                                               | [Train an agent to cross a Frozen lake ⛄ and train an autonomous taxi 🚖](https://github.com/huggingface/deep-rl-class/blob/main/unit2/unit2.ipynb).                                                                                                        |
-| June, the 1st | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
-|               | Policy-based methods                                     | 🏗️                                                                                                        |
-|               | Actor-Critic Methods                                     | 🏗️                                                                                                        |
-|               | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
-|               | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
-|               | Towards better explorations methods                      | 🏗️                                                                                                        |
+| June, the 6th | Deep Q-Learning and improvements                         | Train a Deep Q-Learning agent to play Space Invaders                                                     |
+| June the 14th | Policy-based methods                                     | 🏗️                                                                                                        |
+|  June the 21th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
+| June the 28th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
+| July the 5th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
+| July the 12th | Towards better explorations methods                      | 🏗️                                                                                                        |
 
 
 ## The library you'll learn during this course
