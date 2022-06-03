@@ -63,7 +63,7 @@ To make the most of the course, my advice is to:
 
 ## This is a course built with you 👷🏿‍♀️
 
-We want to improve and update the course iteratively with your feedback. If you have some, please open an issue on the Github Repo: [https://github.com/huggingface/deep-rl-class/issues](https://github.com/huggingface/deep-rl-class/issues)
+We want to improve and update the course iteratively with your feedback. **If you have some, please fill this form** 👉 https://forms.gle/3HgA7bEHwAmmLfwh9
 
 ## Don’t forget to join the Community 📢
 
