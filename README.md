@@ -138,7 +138,7 @@ Don’t forget to **introduce yourself when you sign up 🤗**
 
 **I have some feedback**
 
-We want to improve and update the course iteratively with your feedback. If you have some, please send a mail to thomas.simonini@huggingface.co
+We want to improve and update the course iteratively with your feedback. If you have some, please fill this form 👉 https://forms.gle/3HgA7bEHwAmmLfwh9
 
 
 **How much background knowledge is needed?**
