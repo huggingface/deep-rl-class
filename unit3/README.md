@@ -4,7 +4,7 @@ In this Unit, **we'll study our first Deep Reinforcement Learning agent**: Deep 
 
 And **we'll train it to play Space Invaders and other Atari environments using [RL-Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)**, a training framework for RL using Stable-Baselines that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results, and recording videos.
 
-<img src="assets/img/envs.gif" alt="unit 3 environments"/>
+<img src="assets/img/atari-envs.gif" alt="unit 3 environments"/>
 
 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
