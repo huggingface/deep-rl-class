@@ -33,7 +33,7 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 <img src="https://raw.githubusercontent.com/huggingface/deep-rl-class/unit3/unit2/assets/img/discord_channels.jpg" alt="Discord Channels"/>
 
-3️⃣ 📖 **Read [Deep Q-Learning with Atari] chapter (https://huggingface.co/blog/deep-rl-dqn)**.
+3️⃣ 📖 **Read [Deep Q-Learning with Atari chapter](https://huggingface.co/blog/deep-rl-dqn)**.
 
 4️⃣ 👩‍💻 Then dive on the hands-on, where **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 
