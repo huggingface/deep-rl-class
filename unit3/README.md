@@ -1,4 +1,4 @@
-# Unit 2: Deep Q-Learning with Atari Games 👾
+# Unit 3: Deep Q-Learning with Atari Games 👾
 
 In this Unit, **we'll study our first Deep Reinforcement Learning agent**: Deep Q-Learning. 
 
@@ -31,7 +31,7 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 - #unity-ml-agents is to exchange about everything related to this library.
 - #study-groups, to create study groups with your classmates.
 
-<img src="assets/img/discord_channels.jpg" alt="Discord Channels"/>
+<img src="https://raw.githubusercontent.com/huggingface/deep-rl-class/unit3/unit2/assets/img/discord_channels.jpg" alt="Discord Channels"/>
 
 3️⃣ 📖 **Read [Deep Q-Learning with Atari] chapter (https://huggingface.co/blog/deep-rl-dqn)**.
 
