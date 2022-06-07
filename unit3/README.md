@@ -75,4 +75,4 @@ Don’t forget to **introduce yourself when you sign up 🤗**
 
 ❓If you have other questions, [please check our FAQ](https://github.com/huggingface/deep-rl-class#faq)
 
-Keep learning, stay awesome,
+### Keep learning, stay awesome,
