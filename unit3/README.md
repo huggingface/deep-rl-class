@@ -18,23 +18,9 @@ The required time for this unit is, approximately:
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
-1️⃣  If it's not already done, sign up to our Discord Server. This is the place where you **can exchange with the community and with us, create study groups to grow each other and more** 
+1️⃣ 📖 **Read [Deep Q-Learning with Atari chapter](https://huggingface.co/blog/deep-rl-dqn)**.
 
-👉🏻 [https://discord.gg/aYka4Yhff9](https://discord.gg/aYka4Yhff9).
-
-Are you new to Discord? Check our **discord 101 to get the best practices** 👉 https://github.com/huggingface/deep-rl-class/blob/main/DISCORD.Md
-
-2️⃣ **Introduce yourself on Discord in #introduce-yourself Discord channel 🤗 and check on the left the Reinforcement Learning section.**
-
-- In #rl-announcements we give the last information about the course.
-- #discussions is a place to exchange.
-- #unity-ml-agents is to exchange about everything related to this library.
-- #study-groups, to create study groups with your classmates.
-
-3️⃣ 📖 **Read [Deep Q-Learning with Atari chapter](https://huggingface.co/blog/deep-rl-dqn)**.
-
-4️⃣ 👩‍💻 Then dive on the hands-on, where **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
-
+2️⃣ 👩‍💻 Then dive on the hands-on, where **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 
 Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 2 🏆?
 
@@ -44,7 +30,7 @@ The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-L
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
-5️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
+3️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
 
 ## Additional readings 📚
 - [Foundations of Deep RL Series, L2 Deep Q-Learning by Pieter Abbeel](https://youtu.be/Psrhxy88zww)
