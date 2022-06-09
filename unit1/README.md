@@ -45,6 +45,8 @@ You can work directly **with the colab notebook, which allows you not to have to
 
 6️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
 
+7️⃣ In order to find the best training parameters you can try this hands-on made by [Sambit Mukherjee](https://github.com/sambitmukherjee) 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit1/unit1_optuna_guide.ipynb
+
 ## Additional readings 📚
 - [Reinforcement Learning: An Introduction, Richard Sutton and Andrew G. Barto Chapter 1, 2 and 3](http://incompleteideas.net/book/RLbook2020.pdf)
 - [Foundations of Deep RL Series, L1 MDPs, Exact Solution Methods, Max-ent RL by Pieter Abbeel](https://youtu.be/2GwBez0D20A)
