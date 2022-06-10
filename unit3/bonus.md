@@ -13,4 +13,4 @@ The content below comes from [Antonin's Raffin ICRA 2022 presentations](https://
 
 2️⃣👩‍💻 Then let's dive on the [hands-on, where we'll then try to optimize the parameters manually and then see how to automate the search using Optuna](https://youtu.be/ihP7E76KGOI).
 
-3️⃣ Now that you've learned to use Optuna, why not going back to our **Deep Q-Learning hands-on and implement Optuna to find the best training hyperparameters** 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit3/unit3.ipynb)
+3️⃣ Now that you've learned to use Optuna, why not going back to our **Deep Q-Learning hands-on and implement Optuna to find the best training hyperparameters** 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/araffin/tools-for-robotic-rl-icra2022/blob/main/notebooks/optuna_lab.ipynb)
