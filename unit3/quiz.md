@@ -88,6 +88,6 @@ But with experience replay, **we create a replay buffer that saves experience sa
 
 ---
 
-Congrats on **finishing this Quiz** 🥳, if you missed some elements, take time to [read the chapter again](https://huggingface.co/blog/deep-rl-q-part1) to reinforce (😏) your knowledge.
+Congrats on **finishing this Quiz** 🥳, if you missed some elements, take time to [read the chapter again](https://huggingface.co/blog/deep-rl-dqn) to reinforce (😏) your knowledge.
 
 **Keep Learning, Stay Awesome**
