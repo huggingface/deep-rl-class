@@ -20,7 +20,9 @@ Here are the steps for this Unit:
 
 1️⃣ 📖 **Read [Deep Q-Learning with Atari chapter](https://huggingface.co/blog/deep-rl-dqn)**.
 
-2️⃣ 👩‍💻 Then dive on the hands-on, where **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
+2️⃣ 📝 Take a piece of paper and check your knowledge with this series of questions ❔ 👉 https://github.com/huggingface/deep-rl-class/blob/main/unit3/quiz.md
+
+3️⃣ 👩‍💻 Then dive on the hands-on, where **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
 
 Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 2 🏆?
 
@@ -30,7 +32,7 @@ The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-L
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
-3️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
+4️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we give you some ideas on how you can go further: using another environment, using another model etc.
 
 ## Additional readings 📚
 - [Foundations of Deep RL Series, L2 Deep Q-Learning by Pieter Abbeel](https://youtu.be/Psrhxy88zww)
