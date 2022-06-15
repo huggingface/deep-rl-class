@@ -16,7 +16,7 @@ The best way to learn and [avoid the illusion of competence](https://fr.coursera
 </details>
 
 
-### Q2: Why we can use a classical Q-Learning to solve an Atari Game?
+### Q2: Why we can't use a classical Q-Learning to solve an Atari Game?
 <details>
 <summary>Solution</summary>
   
