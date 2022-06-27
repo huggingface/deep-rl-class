@@ -28,11 +28,11 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit3#unit-3-deep-q-learning-with-atari-games-) | [Deep Q-Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit3#unit-3-deep-q-learning-with-atari-games-)                      | Train a Deep Q-Learning agent to play Space Invaders using [RL-Baselines3-Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)                                                    |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| [Bonus: Automatic Hyperparameter Tuning using Optuna](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| |                         |                                                    |
 | [Published 🥳](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) | [🎁 Learn to train your first Unity MLAgent](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) |  |
-| June the 23th | Policy-based methods                                     | 🏗️                                                                                                        |
-|  June the 30th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
-| July the 7th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
-| July the 14th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
-| July the 21th | Towards better explorations methods                      | 🏗️                                                                                                        |
+| June the 30th | Policy-based methods                                     | 🏗️                                                                                                        |
+|  July the 7th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
+| July the 14th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
+| July the 21th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
+| July the 28th | Towards better explorations methods                      | 🏗️                                                                                                        |
 
 
 ## The library you'll learn during this course
