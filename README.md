@@ -28,11 +28,12 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit3#unit-3-deep-q-learning-with-atari-games-) | [Deep Q-Learning](https://github.com/huggingface/deep-rl-class/tree/main/unit3#unit-3-deep-q-learning-with-atari-games-)                      | Train a Deep Q-Learning agent to play Space Invaders using [RL-Baselines3-Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)                                                    |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| [Bonus: Automatic Hyperparameter Tuning using Optuna](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| |                         |                                                    |
 | [Published 🥳](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) | [🎁 Learn to train your first Unity MLAgent](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) |  |
-| June the 30th | Policy-based methods                                     | 🏗️                                                                                                        |
-|  July the 7th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
-| July the 14th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
-| July the 21th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
-| July the 28th | Towards better explorations methods                      | 🏗️                                                                                                        |
+| [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit5#unit-5-policy-gradient-with-pytorch) | [Policy Gradient with PyTorch](https://huggingface.co/blog/deep-rl-pg)                                     | [Code a Reinforce agent from scratch using PyTorch and train it to play Pong 🎾, CartPole and Pixelcopter 🚁](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit5/unit5.ipynb)                                       |
+| July the 7th | 🎁 A new library integration |      🏗️                                  |
+|  July the 14th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
+| July the 21th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
+| July the 28th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
+| August the 5th | Towards better explorations methods                      | 🏗️                                                                                                        |
 
 
 ## The library you'll learn during this course
