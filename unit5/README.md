@@ -18,7 +18,7 @@ The required time for this unit is, approximately:
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
-1️⃣ 📖 **Read [Policy Gradient with PyTorch] Chapter (https://huggingface.co/blog/deep-rl-pg)**.
+1️⃣ 📖 **Read [Policy Gradient with PyTorch Chapter](https://huggingface.co/blog/deep-rl-pg)**.
 
 2️⃣ 👩‍💻 Then dive on the hands-on where you'll **code your first Deep Reinforcement Learning algorithm from scratch: Reinforce**.
 
