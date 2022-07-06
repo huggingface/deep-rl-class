@@ -1,11 +1,9 @@
 import gym
 
-from stable_baselines3.common.env_util import make_vec_env
+
 from stable_baselines3.common.monitor import Monitor
-from stable_baselines3 import PPO
 from stable_baselines3 import DQN
 from stable_baselines3.common.evaluation import evaluate_policy
-from stable_baselines3.common.vec_env import DummyVecEnv
 
 import optuna
 from optuna.samplers import TPESampler
@@ -14,19 +12,6 @@ env = gym.make("ALE/SpaceInvaders-v5")
 eval_env = Monitor(gym.make("ALE/SpaceInvaders-v5"))
 
 def run_training(params, verbose=0, save_model=False):
-    """
-    model = DQN(
-        policy='CnnPolicy', 
-        env=env, 
-        n_steps=1024,
-        batch_size=64, 
-        n_epochs=params['n_epochs'], # We're tuning this.
-        gamma=params['gamma'], # We're tuning this.
-        gae_lambda=0.98, 
-        ent_coef=0.01, 
-        verbose=verbose
-    )
-    """
     model = DQN(
         policy='CnnPolicy', 
         env=env, 
