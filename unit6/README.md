@@ -29,7 +29,7 @@ The required time for this unit is, approximately:
 
 3️⃣ 📖 Read [Random Network Distillation: a new take on Curiosity-Driven Learning](https://medium.com/data-from-the-trenches/curiosity-driven-learning-through-random-network-distillation-488ffd8e5938)
 
-4️⃣ In addition, you should read the paper 👉 https://arxiv.org/abs/1810.12894
+4️⃣ In addition, you should read the paper 👉 https://arxiv.org/pdf/1808.04355.pdf
 
 ## Additional readings 📚
 - [Curiosity and Procrastination in Reinforcement Learning, Google Brain](https://ai.googleblog.com/2018/10/curiosity-and-procrastination-in.html)
