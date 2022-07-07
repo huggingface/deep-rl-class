@@ -33,7 +33,7 @@ The required time for this unit is, approximately:
 
 ## Additional readings 📚
 - [Curiosity and Procrastination in Reinforcement Learning, Google Brain](https://ai.googleblog.com/2018/10/curiosity-and-procrastination-in.html)
-- [ML-Agents, Curiosity for Sparse-reward Environments](https://ai.googleblog.com/2018/10/curiosity-and-procrastination-in.html)
+- [ML-Agents, Curiosity for Sparse-reward Environments](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/ML-Agents-Overview.md#curiosity-for-sparse-reward-environments)
 
 ## How to make the most of this course
 
