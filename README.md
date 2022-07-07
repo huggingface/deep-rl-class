@@ -29,11 +29,11 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| [Bonus: Automatic Hyperparameter Tuning using Optuna](https://github.com/huggingface/deep-rl-class/blob/main/unit3/bonus.md)| |                         |                                                    |
 | [Published 🥳](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) | [🎁 Learn to train your first Unity MLAgent](https://medium.com/@thomassimonini/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80) |  |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit5#unit-5-policy-gradient-with-pytorch) | [Policy Gradient with PyTorch](https://huggingface.co/blog/deep-rl-pg)                                     | [Code a Reinforce agent from scratch using PyTorch and train it to play Pong 🎾, CartPole and Pixelcopter 🚁](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit5/unit5.ipynb)                                       |
-| July the 7th | 🎁 A new library integration |      🏗️                                  |
-|  July the 14th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
+| [Published 🥳] | [Towards better explorations methods with Curiosity](https://github.com/huggingface/deep-rl-class/tree/main/unit6#towards-better-explorations-methods-with-curiosity)|                                                                                                         |
+|  July the 15th | Actor-Critic Methods                                     | 🏗️                                                                                                        |
 | July the 21th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
 | July the 28th | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
-| August the 5th | Towards better explorations methods                      | 🏗️                                                                                                        |
+
 
 
 ## The library you'll learn during this course
