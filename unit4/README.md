@@ -7,7 +7,7 @@ To do that, **it will need to explore its environment, and we will use a techniq
 
 Then, after training we’ll push the **trained agent to the Hugging Face Hub and you’ll be able to visualize it playing directly on your browser without having to use the Unity Editor. You’ll be also be able to visualize and download others trained agents from the community**.
 
-<img href="./img/agents.gif" alt="MLAgents"/>
+<img href="img/agents.gif" alt="MLAgents"/>
 
 ## Required time ⏱️
 The required time for this unit is, approximately:
