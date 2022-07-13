@@ -4,8 +4,8 @@ In this Unit, we're going to dive deeper into one of the Reinforcement Learning 
 
 We'll also implement our **first RL agent from scratch**: a Q-Learning agent and will train it in two environments:
 
-- Frozen-Lake-v1 ⛄ (non-slippery version): where our agent will need to go from the starting state (S) to the goal state (G) by walking only on frozen tiles (F) and avoiding holes (H).
-- An autonomous taxi 🚕 will need to learn to navigate a city to transport its passengers from point A to point B.
+- [Frozen-Lake-v1 ⛄ (non-slippery version)](https://www.gymlibrary.ml/environments/toy_text/frozen_lake/): where our agent will need to go from the starting state (S) to the goal state (G) by walking only on frozen tiles (F) and avoiding holes (H).
+- [An autonomous taxi 🚕](https://www.gymlibrary.ml/environments/toy_text/taxi/?highlight=taxi) will need to learn to navigate a city to transport its passengers from point A to point B.
 
 <img src="assets/img/envs.gif" alt="unit 2 environments"/>
 
@@ -21,19 +21,19 @@ This course is **self-paced**, you can start whenever you want.
 
 ## Required time ⏱️
 The required time for this unit is, approximately:
-- 2-3 hours for the theory
-- 1 hour for the hands-on.
+- **2-3 hours** for the theory
+- **1 hour** for the hands-on.
 
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
-1️⃣  If it's not already done, sign up to our Discord Server. This is the place where you **can exchange with the community and with us, create study groups to grow each other and more** 
+1️⃣ 📝 If it's not already done, sign up to our Discord Server. This is the place where you **can exchange with the community and with us, create study groups to grow each other and more** 
 
 👉🏻 [https://discord.gg/aYka4Yhff9](https://discord.gg/aYka4Yhff9).
 
 Are you new to Discord? Check our **discord 101 to get the best practices** 👉 https://github.com/huggingface/deep-rl-class/blob/main/DISCORD.Md
 
-2️⃣ **Introduce yourself on Discord in #introduce-yourself Discord channel 🤗 and check on the left the Reinforcement Learning section.**
+2️⃣ 👋 **Introduce yourself on Discord in #introduce-yourself Discord channel 🤗 and check on the left the Reinforcement Learning section.**
 
 - In #rl-announcements we give the last information about the course.
 - #discussions is a place to exchange.
@@ -56,9 +56,9 @@ Are you new to Discord? Check our **discord 101 to get the best practices** 👉
 
 Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 2 🏆?
 
-The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit2/unit2.ipynb)
+👩‍💻 The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit2/unit2.ipynb)
 
-The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
+🏆 The leaderboard 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
@@ -94,4 +94,4 @@ Don’t forget to **introduce yourself when you sign up 🤗**
 
 ❓If you have other questions, [please check our FAQ](https://github.com/huggingface/deep-rl-class#faq)
 
-Keep learning, stay awesome,
+## Keep learning, stay awesome 🤗,
