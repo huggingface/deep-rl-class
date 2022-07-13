@@ -1,4 +1,6 @@
-# Unit 1: Introduction to Deep Reinforcement Learning
+# Unit 1: Introduction to Deep Reinforcement Learning 🚀
+
+![cover](assets/img/thumbnail.png)
 
 In this Unit, you'll learn the foundations of Deep Reinforcement Learning. And **you’ll train your first lander agent 🚀 to land correctly on the Moon 🌕** using Stable-Baselines3 and share it with the community.
 
