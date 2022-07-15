@@ -1,5 +1,6 @@
 # Unit 7: Robotics Simulations with PyBullet 🤖
-One of the major industries that use Reinforcement Learning is robotics. Unfortunately, having access to robot equipment is very expensive. Fortunately, some simulations exist to train Robots:
+
+One of the major industries that use Reinforcement Learning is robotics. Unfortunately, **having access to robot equipment is very expensive**. Fortunately, some simulations exist to train Robots:
 1. PyBullet
 2. MuJoco
 3. Unity Simulations
@@ -8,9 +9,9 @@ We're going to use PyBullet today. And train two agents to walk:
 - A bipedal walker 🦿
 - A spider 🕸️
 
-You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
+🏆 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
-IMAGE
+![cover](https://github.com/huggingface/deep-rl-class/blob/main/unit7/assets/img/pybullet-envs.gif?raw=true)
 
 We'll learn to use PyBullet environments and why we normalize input features.
 
@@ -23,7 +24,7 @@ The required time for this unit is, approximately:
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
-The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit3/unit3.ipynb)
+The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit7/unit7.ipynb)
 
 The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
