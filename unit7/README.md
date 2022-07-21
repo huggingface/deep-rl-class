@@ -5,9 +5,7 @@ One of the major industries that use Reinforcement Learning is robotics. Unfortu
 2. MuJoco
 3. Unity Simulations
 
-We're going to learn about Advantage Actor Critic (A2C) and how to use PyBullet. And train two agents to walk:
-- A bipedal walker 🦿
-- A spider 🕸️
+We're going to learn about Advantage Actor Critic (A2C) and how to use PyBullet. And train a spider agents to walk.
 
 🏆 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
