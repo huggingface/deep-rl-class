@@ -31,7 +31,7 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit5#unit-5-policy-gradient-with-pytorch) | [Policy Gradient with PyTorch](https://huggingface.co/blog/deep-rl-pg)                                     | [Code a Reinforce agent from scratch using PyTorch and train it to play Pong 🎾, CartPole and Pixelcopter 🚁](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit5/unit5.ipynb)                                       |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit6#towards-better-explorations-methods-with-curiosity) | [Towards better explorations methods with Curiosity](https://github.com/huggingface/deep-rl-class/tree/main/unit6#towards-better-explorations-methods-with-curiosity)|                                                                                                         |
 | [Published 🥳]() | Advantage Actor Critic (A2C) | [Train a bipedal walker and a spider to learn to walk using A2C]()                                                                                                        |
-| July the 29th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
+| August the 5th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
 | August | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
 
 
