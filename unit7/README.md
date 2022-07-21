@@ -36,7 +36,7 @@ The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-L
 ## Additional readings 📚
 - [Making Sense of the Bias / Variance Trade-off in (Deep) Reinforcement Learning](https://blog.mlreview.com/making-sense-of-the-bias-variance-trade-off-in-deep-reinforcement-learning-79cf1e83d565) 
 - [Bias-variance Tradeoff in Reinforcement Learning](https://www.endtoend.ai/blog/bias-variance-tradeoff-in-reinforcement-learning/)
-- [Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel](Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel)
+- [Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel](https://youtu.be/AKbX1Zvo7r8)
 
 ## How to make the most of this course
 
