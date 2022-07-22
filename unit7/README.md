@@ -1,32 +1,40 @@
-# Unit 7: Robotics Simulations with PyBullet 🤖
+# Unit 7: Advantage Actor Critic (A2C) using Robotics Simulations with PyBullet 🤖
 
 One of the major industries that use Reinforcement Learning is robotics. Unfortunately, **having access to robot equipment is very expensive**. Fortunately, some simulations exist to train Robots:
 1. PyBullet
 2. MuJoco
 3. Unity Simulations
 
-We're going to use PyBullet today. And train two agents to walk:
-- A bipedal walker 🦿
-- A spider 🕸️
+We're going to learn about Advantage Actor Critic (A2C) and how to use PyBullet. And train a spider agents to walk.
 
 🏆 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
 ![cover](https://github.com/huggingface/deep-rl-class/blob/main/unit7/assets/img/pybullet-envs.gif?raw=true)
 
-We'll learn to use PyBullet environments and why we normalize input features.
-
 Let's get started 🥳
 
 ## Required time ⏱️
 The required time for this unit is, approximately:
+- 1 hour for the theory.
 - 1 hour for the hands-on.
 
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
+1️⃣ 📖 [Read Advantage Actor Critic Chapter](https://huggingface.co/blog/deep-rl-a2c).
+
+2️⃣ 👩‍💻 Then dive on the hands-on where you'll train two robots to walk.
+
 The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit7/unit7.ipynb)
 
+Thanks to a leaderboard, you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 7 🏆?
+
 The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
+
+## Additional readings 📚
+- [Making Sense of the Bias / Variance Trade-off in (Deep) Reinforcement Learning](https://blog.mlreview.com/making-sense-of-the-bias-variance-trade-off-in-deep-reinforcement-learning-79cf1e83d565) 
+- [Bias-variance Tradeoff in Reinforcement Learning](https://www.endtoend.ai/blog/bias-variance-tradeoff-in-reinforcement-learning/)
+- [Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel](https://youtu.be/AKbX1Zvo7r8)
 
 ## How to make the most of this course
 
