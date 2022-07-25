@@ -45,17 +45,11 @@ This course is **self-paced** you can start when you want 🥳.
 
 ## The Environments you'll use
 ### Custom environments made by the Hugging Face Team using Unity and Godot
-- Huggy the Doggo 🐶
-(Based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit))
-![huggy.jpg](./assets/img/huggy.jpg)
 
-
-- SnowballFight ☃️
-![snowballfight.gif](./assets/img/snowballfight.gif)
-👉 Play it here: https://huggingface.co/spaces/ThomasSimonini/SnowballFight
-
-
-- More to come 🚧
+| Environment     | Screenshot                                       |
+|-----------------|--------------------------------------------------|
+| Huggy the Doggo 🐶 (Based on [Unity's Puppo the Corgi work](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)) | ![lunarlander.gif](./assets/img/huggy.jpg) |
+| SnowballFight ☃️ 👉 Play it here: https://huggingface.co/spaces/ThomasSimonini/SnowballFight | ![snowballfight.gif](./assets/img/snowballfight.gif) |
 
 
 ### Gym classic and controls environments 🕹️
@@ -65,6 +59,11 @@ This course is **self-paced** you can start when you want 🥳.
 | Lunar Lander 🚀🌙 | ![lunarlander.gif](./assets/img/lunarlander.gif) |
 | Frozen Lake ⛄   | ![frozenlake.gif](./assets/img/frozenlake.gif) |
 | Taxi 🚖          | ![taxi.gif](./assets/img/taxi.gif) |
+| Cartpole          | ![cartpole.jpg](./assets/img/cartpole.jpg) |
+| Pong 🎾         | ![pong.jpg](./assets/img/pong.jpg) |
+| Pixelcopter 🚁       | ![pong.jpg](./assets/img/pixelcopter.jpg) |
+
+
 
 ### Gym Atari environments 👾
 
@@ -86,6 +85,9 @@ This course is **self-paced** you can start when you want 🥳.
 
 
 ### MLAgents environments 🖌️
+- More to come 🚧
+
+
 - More to come 🚧
 
 
