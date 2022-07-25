@@ -58,19 +58,32 @@ This course is **self-paced** you can start when you want 🥳.
 - More to come 🚧
 
 
-### Gym classic controls environments 🕹️
-- Lunar-Lander v2 🚀🌙
+### Gym classic and controls environments 🕹️
 
-![lunarlander.gif](./assets/img/lunarlander.gif)
+| Environment     | Screenshot                                       |
+|-----------------|--------------------------------------------------|
+| Lunar Lander 🚀🌙 | ![lunarlander.gif](./assets/img/lunarlander.gif) |
+| Frozen Lake ⛄   | ![frozenlake.gif](./assets/img/frozenlake.gif) |
+| Taxi 🚖          | ![taxi.gif](./assets/img/taxi.gif) |
+
+### Gym Atari environments 👾
+
+| Environment     | Screenshot                                       |
+|-----------------|--------------------------------------------------|
+| Space Invaders 👾 | ![spaceinvaders.gif](./assets/img/spaceinvaders.gif) |
+| Breakout  | ![breakout.gif](./assets/img/breakout.gif) |
+| Qbert         | ![qbert.gif](./assets/img/qbert.gif) |
+| Seaquest        | ![seaquest.gif](./assets/img/seaquest.gif) |
 
 
 ### PyBullet 🤖
-- More to come 🚧
 
-### Gym Atari environments 👾
-- Space Invaders 👾
+| Environment     | Screenshot                                       |
+|-----------------|--------------------------------------------------|
+| Ant Bullet | ![antbullet.gif](./assets/img/antbullet.gif) |
+| Walker 2D Bullet         | ![walker2d.gif](./assets/img/walker2d.gif) |
 
-![spaceinvaders.gif](./assets/img/spaceinvaders.gif)
+
 
 ### MLAgents environments 🖌️
 - More to come 🚧
