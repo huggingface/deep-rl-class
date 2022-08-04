@@ -1,15 +1,12 @@
-# Unit 8: Proximal Policy Optimization (PPO) using Robotics Simulations with PyBullet 🤖
+# Unit 8: Proximal Policy Optimization (PPO) with PyTorch
 
-One of the major industries that use Reinforcement Learning is robotics. Unfortunately, **having access to robot equipment is very expensive**. Fortunately, some simulations exist to train Robots:
-1. PyBullet
-2. MuJoco
-3. Unity Simulations
+Today we'll learn about Proximal Policy Optimization (PPO), an architecture that improves our agent's training stability by avoiding too large policy updates. To do that, we use a ratio that will indicates the difference between our current and old policy and clip this ratio from a specific range  $[1 - \epsilon, 1 + \epsilon]$. Doing this will ensure that our policy update will not be too large and that the training is more stable.
 
-We're going to learn about Advantage Actor Critic (A2C) and how to use PyBullet. And train a spider agent to walk.
+And then, after the theory, we'll code a PPO architecture from scratch using PyTorch and bulletproof our implementation with CartPole-v1 and LunarLander-v2.
 
 🏆 You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
-![cover](https://github.com/huggingface/deep-rl-class/blob/main/unit7/assets/img/pybullet-envs.gif?raw=true)
+<img src="assets/img/LunarLander.gif" alt="LunarLander"/>
 
 Let's get started 🥳
 
@@ -23,9 +20,9 @@ Here are the steps for this Unit:
 
 1️⃣ 📖 [Read Proximal Policy Optimization Chapter](https://huggingface.co/blog/deep-rl-ppo).
 
-2️⃣ 👩‍💻 Then dive on the hands-on where you'll train two robots to walk.
+2️⃣ 👩‍💻 Then dive on the hands-on:
 
-The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit7/unit7.ipynb)
+The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit8/unit8.ipynb)
 
 Thanks to a leaderboard, you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 7 🏆?
 
