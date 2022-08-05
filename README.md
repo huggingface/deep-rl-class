@@ -41,10 +41,11 @@ Version 1.0 (current):
 - [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3)
 - [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)
 - [CleanRL](https://github.com/vwxyzjn/cleanrl)
-Version 2.0:
-- + [RLlib](https://docs.ray.io/en/latest/rllib/index.html)
-- + [Sample Factory](https://github.com/alex-petrenko/sample-factory)
-- + [Hugging Face Decision Transformers](https://huggingface.co/blog/decision-transformers)
+
+Version 2.0 (in addition to SB3, RL-Baselines3-Zoo and CleanRL):
+- [RLlib](https://docs.ray.io/en/latest/rllib/index.html)
+- [Sample Factory](https://github.com/alex-petrenko/sample-factory)
+- [Hugging Face Decision Transformers](https://huggingface.co/blog/decision-transformers)
 - More to come 🏗️
 
 ## The Environments you'll use
