@@ -36,6 +36,7 @@ The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-L
 - [Spinning Up RL PPO](https://spinningup.openai.com/en/latest/algorithms/ppo.html)
 - [Paper Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
 - [The 37 Implementation Details of Proximal Policy Optimization](https://ppo-details.cleanrl.dev//2021/11/05/ppo-implementation-details/)
+- [Importance Sampling Explained](https://youtu.be/C3p2wI4RAi8)
 
 ## How to make the most of this course
 
