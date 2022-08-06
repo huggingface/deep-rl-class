@@ -31,16 +31,21 @@ This course is **self-paced** you can start when you want 🥳.
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit5#unit-5-policy-gradient-with-pytorch) | [Policy Gradient with PyTorch](https://huggingface.co/blog/deep-rl-pg)                                     | [Code a Reinforce agent from scratch using PyTorch and train it to play Pong 🎾, CartPole and Pixelcopter 🚁](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit5/unit5.ipynb)                                       |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit6#towards-better-explorations-methods-with-curiosity) | [Towards better explorations methods with Curiosity](https://github.com/huggingface/deep-rl-class/tree/main/unit6#towards-better-explorations-methods-with-curiosity)|                                                                                                         |
 | [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit7#unit-7-advantage-actor-critic-a2c-using-robotics-simulations-with-pybullet-) | [Advantage Actor Critic (A2C)](https://github.com/huggingface/deep-rl-class/tree/main/unit7#unit-7-advantage-actor-critic-a2c-using-robotics-simulations-with-pybullet-) | [Train a bipedal walker and a spider to learn to walk using A2C](https://github.com/huggingface/deep-rl-class/tree/main/unit7#unit-7-advantage-actor-critic-a2c-using-robotics-simulations-with-pybullet-)                                                                                                        |
-| August the 5th | Proximal Policy Optimization (PPO)                       | 🏗️                                                                                                        |
-| August | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
+| [Published 🥳](https://github.com/huggingface/deep-rl-class/tree/main/unit8#unit-8-proximal-policy-optimization-ppo-with-pytorch) | [Proximal Policy Optimization (PPO)](https://github.com/huggingface/deep-rl-class/tree/main/unit8#unit-8-proximal-policy-optimization-ppo-with-pytorch)                       | [Code a PPO agent from scratch using PyTorch and bulletproof it with Classical Control Environments](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit8/unit8.ipynb)                                                                                                           |
+| TBA | Decision Transformers and offline Reinforcement Learning | 🏗️                                                                                                        |
 
 
 
 ## The library you'll learn during this course
+Version 1.0 (current):
 - [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3)
 - [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)
-- [RLlib](https://docs.ray.io/en/latest/rllib/index.html)
 - [CleanRL](https://github.com/vwxyzjn/cleanrl)
+
+Version 2.0 (in addition to SB3, RL-Baselines3-Zoo and CleanRL):
+- [RLlib](https://docs.ray.io/en/latest/rllib/index.html)
+- [Sample Factory](https://github.com/alex-petrenko/sample-factory)
+- [Hugging Face Decision Transformers](https://huggingface.co/blog/decision-transformers)
 - More to come 🏗️
 
 ## The Environments you'll use
