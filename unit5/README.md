@@ -42,6 +42,7 @@ You can work directly **with the colab notebook, which allows you not to have to
 ## Additional readings 📚
 - [Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel](https://youtu.be/AKbX1Zvo7r8)
 - [Policy Gradient Algorithms](https://lilianweng.github.io/posts/2018-04-08-policy-gradient/)
+- [An Intuitive Explanation of Policy Gradient](https://towardsdatascience.com/an-intuitive-explanation-of-policy-gradient-part-1-reinforce-aa4392cbfd3c)
 
 ## How to make the most of this course
 
