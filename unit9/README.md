@@ -1,6 +1,6 @@
 # Unit 9: Decision Transformers and offline Reinforcement Learning 🤖
 
-![cover](assets/img/thumbnail.png)
+![cover](assets/img/thumbnail.gif)
 
 In this Unit, you'll learn what is Decision Transformer and Offline Reinforcement Learning. And then, you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run. 
 
