@@ -19,7 +19,7 @@ Here are the steps for this Unit:
 2️⃣ 👩‍💻 Then dive on the first hands-on.
  👩‍💻 The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1K3UuajwoPY1MzRKNkONNRS3gS5DxZ-qF?usp=sharing)
  
-3️⃣ 📖 Read [Train your first Decision Transformer](https://huggingface.co/blog/train-decisions-transformers)
+3️⃣ 📖 Read [Train your first Decision Transformer](https://huggingface.co/blog/train-decision-transformers)
 
 4️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run**. 
  👩‍💻 The hands-on 👉 https://github.com/huggingface/blog/blob/main/notebooks/101_train-decision-transformers.ipynb
