@@ -4,8 +4,8 @@ In this Unit, we're going to dive deeper into one of the Reinforcement Learning 
 
 We'll also implement our **first RL agent from scratch**: a Q-Learning agent and will train it in two environments:
 
-- [Frozen-Lake-v1 ⛄ (non-slippery version)](https://www.gymlibrary.ml/environments/toy_text/frozen_lake/): where our agent will need to go from the starting state (S) to the goal state (G) by walking only on frozen tiles (F) and avoiding holes (H).
-- [An autonomous taxi 🚕](https://www.gymlibrary.ml/environments/toy_text/taxi/?highlight=taxi) will need to learn to navigate a city to transport its passengers from point A to point B.
+- [Frozen-Lake-v1 ⛄ (non-slippery version)](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/): where our agent will need to go from the starting state (S) to the goal state (G) by walking only on frozen tiles (F) and avoiding holes (H).
+- [An autonomous taxi 🚕](https://www.gymlibrary.dev/environments/toy_text/taxi/?highlight=taxi) will need to learn to navigate a city to transport its passengers from point A to point B.
 
 <img src="assets/img/envs.gif" alt="unit 2 environments"/>
 
