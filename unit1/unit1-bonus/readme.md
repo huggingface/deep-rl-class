@@ -3,9 +3,9 @@
 
 ## Try new environments 🎮
 Now that you've played with LunarLander-v2 Why not try these environments? 🔥:
-- 🗻 MountainCar-v0  https://www.gymlibrary.ml/environments/classic_control/mountain_car/
-- 🏎️ CarRacing-v1 https://www.gymlibrary.ml/environments/box2d/car_racing/
-- 🥶 FrozenLake-v1 https://www.gymlibrary.ml/environments/toy_text/frozen_lake/
+- 🗻 MountainCar-v0  https://www.gymlibrary.dev/environments/classic_control/mountain_car/
+- 🏎️ CarRacing-v1 https://www.gymlibrary.dev/environments/box2d/car_racing/
+- 🥶 FrozenLake-v1 https://www.gymlibrary.dev/environments/toy_text/frozen_lake/
  
 ## A piece of advice 🧐
 The first Unit, is a very interesting one but also **a very complex one  because it's where you learn the fundamentals.**
