@@ -1,4 +1,6 @@
 - title: 0. Setup
   sections:
+  - local: index
+    title: Index Page
   - local: unit1/1
     title: Introduction
