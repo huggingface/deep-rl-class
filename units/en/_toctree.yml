@@ -30,6 +30,8 @@
     title: Quiz
   - local: unit1/conclusion
     title: Conclusion
+  - local: unit1/additional-readings
+    title: Additional Readings
 - title: Bonus Unit 1. Introduction to Deep Reinforcement Learning with Huggy
   sections:
   - local: unitbonus1/introduction
@@ -60,8 +62,8 @@
     title: Second Quiz
   - local: unit2/conclusion
     title: Conclusion
-  - local: unit2/additional-reading
-    title: Additional Reading
+  - local: unit2/additional-readings
+    title: Additional Readings
 - title: Unit 3. Deep Q-Learning with Atari Games
   sections:
   - local: unit3/introduction
@@ -78,8 +80,8 @@
     title: Quiz
   - local: unit3/conclusion
     title: Conclusion
-  - local: unit3/additional-reading
-    title: Additional Reading
+  - local: unit3/additional-readings
+    title: Additional Readings
 - title: Unit Bonus 2. Automatic Hyperparameter Tuning with Optuna
   sections:
   - local: unitbonus2/introduction

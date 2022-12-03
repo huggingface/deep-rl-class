@@ -5,9 +5,9 @@ The Bellman equation **simplifies our state value or state-action value calcula
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman.jpg" alt="Bellman equation"/>
 
-With what we learned from now, we know that if we calculate the \\(V(S_t)\\) (value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(Our policy that we defined in the following example is a Greedy Policy, and for simplification, we don't discount the reward).**
+With what we learned so far, we know that if we calculate the \\(V(S_t)\\) (value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(Our policy that we defined in the following example is a Greedy Policy, and for simplification, we don't discount the reward).**
 
-So to calculate \\(V(S_t)\\), we need to make the sum of the expected rewards. Hence:
+So to calculate \\(V(S_t)\\), we need to calculate the sum of the expected rewards. Hence:
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman2.jpg" alt="Bellman equation"/>
@@ -35,7 +35,7 @@ The Bellman equation is a recursive equation that works like this: instead of st
 </figure>
 
 
-If we go back to our example, the value of State 1= expected cumulative return if we start at that state.
+If we go back to our example, we can say that the value of State 1 is equal to the expected cumulative return if we start at that state.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman2.jpg" alt="Bellman equation"/>
 
