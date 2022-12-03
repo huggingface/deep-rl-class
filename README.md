@@ -1,10 +1,15 @@
 # The Hugging Face Deep Reinforcement Learning Class 🤗
 
-We're launching a new version (v2.0) of the course starting December the 5th,
+We're launching a **new version (v2.0) of the course starting December the 5th,**
 
-**Sign up here** ➡️➡️➡️ http://eepurl.com/ic5ZUD
+The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
 
+## **Sign up here** ➡️➡️➡️ http://eepurl.com/ic5ZUD
 
+<br>
+<br>
+<br>
+<br>
 
 # The documentation below is for v1.0 (depreciated)
 
