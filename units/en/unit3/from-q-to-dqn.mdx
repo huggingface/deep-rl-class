@@ -11,14 +11,13 @@ The **Q comes from "the Quality" of that action at that state.**
 
 Internally, our Q-function has **a Q-table, a table where each cell corresponds to a state-action pair value.** Think of this Q-table as **the memory or cheat sheet of our Q-function.**
 
-The problem is that Q-Learning is a *tabular method*. Aka, a problem in which the state and actions spaces **are small enough to approximate value functions to be represented as arrays and tables**. And this is **not scalable**.
-
-Q-Learning was working well with small state space environments like:
+The problem is that Q-Learning is a *tabular method*. This raises a problem in which the states and actions spaces **are small enough to approximate value functions to be represented as arrays and tables**. Also, this is **not scalable**.
+Q-Learning worked well with small state space environments like:
 
 - FrozenLake, we had 14 states.
 - Taxi-v3, we had 500 states.
 
-But think of what we're going to do today: we will train an agent to learn to play Space Invaders using the frames as input.
+But think of what we're going to do today: we will train an agent to learn to play Space Invaders a more complex game, using the frames as input.
 
 As **[Nikita Melkozerov mentioned](https://twitter.com/meln1k), Atari environments** have an observation space with a shape of (210, 160, 3), containing values ranging from 0 to 255 so that gives us 256^(210x160x3) = 256^100800 (for comparison, we have approximately 10^80 atoms in the observable universe).
 
