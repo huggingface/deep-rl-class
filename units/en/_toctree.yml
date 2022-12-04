@@ -36,6 +36,12 @@
   sections:
   - local: unitbonus1/introduction
     title: Introduction
+  - local: unitbonus1/how-huggy-works
+    title: How Huggy works?
+  - local: unitbonus1/train-play
+    title: Train and play with Huggy
+  - local: unitbonus1/conclusion
+    title: Conclusion
 - title: Unit 2. Introduction to Q-Learning
   sections:
   - local: unit2/introduction
