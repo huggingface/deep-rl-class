@@ -150,6 +150,15 @@ Hence the following cell will install virtual screen libraries and create and ru
 !pip3 install pyvirtualdisplay
 ```
 
+To make sure the new installed libraries are used, **sometimes it's required to restart the notebook runtime**. The next cell will force the **runtime to crash, so you'll need to connect again and run the code starting from here**. Thanks for this trick, **we will be able to run our virtual screen.**
+
+
+```python
+import os
+os.kill(os.getpid(), 9)
+```
+
+
 ```python
 # Virtual display
 from pyvirtualdisplay import Display
