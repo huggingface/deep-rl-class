@@ -15,6 +15,19 @@ We're launching a **new version (v2.0) of the course starting December the 5th,*
 
 # The documentation below is for v1.0 (depreciated)
 
+We're launching a **new version (v2.0) of the course starting December the 5th,**
+
+The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
+
+## **Sign up here** ➡️➡️➡️ http://eepurl.com/ic5ZUD
+
+<br>
+<br>
+<br>
+<br>
+
+# The documentation below is for v1.0 (depreciated)
+
 In this free course, you will:
 
 - 📖 Study Deep Reinforcement Learning in **theory and practice**.
@@ -24,7 +37,6 @@ In this free course, you will:
 - 🏆 **Participate in challenges** where you will evaluate your agents against other teams.
 - 🖌️🎨 **Learn to share your own environments made with Unity and Godot**.
 
-➡️➡️➡️ Don't forget to sign up here: http://eepurl.com/h1pElX
 
 The best way to keep in touch is to **join our discord server to exchange with the community and with us** 👉🏻 https://discord.gg/aYka4Yhff9
 
