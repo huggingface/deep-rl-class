@@ -7,17 +7,15 @@ This environment was created using the [Unity game engine](https://unity.com/) a
 
 In this environment we aim to train Huggy to **fetch the stick we throw at him. It means he needs to move correctly toward the stick**.
 
-## The State Space: what Huggy "perceives." [[state-space]]
+## The State Space, what Huggy "perceives." [[state-space]]
 Huggy doesn't "see" his environment. Instead, we provide him information about the environment:
 * The target (stick) position
 * The relative position between himself and the target
 * The orientation of his legs.
 
-Given all this information, Huggy can use his policy to determine which action to take next to fulfill his goal.
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%">
+Given all this information, Huggy can **use his policy to determine which action to take next to fulfill his goal**.
 
-
-## The Action Space: what moves Huggy can perform [[action-space]]
+## The Action Space, what moves Huggy can perform [[action-space]]
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%">
 
 **Joint motors drive Huggy legs**. It means that to get the target, Huggy needs to **learn to rotate the joint motors of each of his legs correctly so he can move**.
@@ -52,7 +50,8 @@ The training loop looks like this:
 
 The training environment looks like this:
 
-ADD IMAGE TRAINING ENVIRONMENT
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/training-env.jpg" alt="Huggy training env" width="100%">
+
 
 It's a place where a **stick is spawned randomly**. When Huggy reaches it, the stick get spawned somewhere else.
 We built **multiple copies of the environment for the training**. This helps speed up the training by providing more diverse experiences.
