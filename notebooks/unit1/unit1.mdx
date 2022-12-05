@@ -1,22 +1,3 @@
-# Hands on [[hands-on]]
-
-Now that you've studied the bases of Reinforcement Learning, you’re ready to train your first agent and share it with the community through the Hub 🔥:
-
-A Lunar Lander agent that will learn to land correctly on the Moon 🌕
-
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/lunarLander.gif" alt="LunarLander">
-
-And finally, you'll **upload this trained agent to the Hugging Face Hub 🤗, a free, open platform where people can share ML models, datasets, and demos.**
-
-Thanks to our <a href="https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard">leaderboard</a>, you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores. Who will win the challenge for Unit 1 🏆?
-
-So let's get started! 🚀
-
-**To start the hands-on click on Open In Colab button** 👇 :
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
-
-
 # Unit 1: Train your first Deep Reinforcement Learning Agent 🤖
 ![Cover](https://github.com/huggingface/deep-rl-class/blob/main/unit1/assets/img/thumbnail.png?raw=true)
 
@@ -33,19 +14,15 @@ In this notebook, you'll train your **first Deep Reinforcement Learning agent** 
 ```
 
 ### The environment 🎮
-
 - [LunarLander-v2](https://www.gymlibrary.dev/environments/box2d/lunar_lander/)
 
 ### The library used 📚
-
 - [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/)
 
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the Github Repo](https://github.com/huggingface/deep-rl-class/issues).
 
 ## Objectives of this notebook 🏆
-
 At the end of the notebook, you will:
-
 - Be able to use **Gym**, the environment library.
 - Be able to use **Stable-Baselines3**, the deep reinforcement learning library.
 - Be able to **push your trained agent to the Hub** with a nice video replay and an evaluation score 🔥.
@@ -60,7 +37,7 @@ In this free course, you will:
 
 - 📖 Study Deep Reinforcement Learning in **theory and practice**.
 - 🧑‍💻 Learn to **use famous Deep RL libraries** such as Stable Baselines3, RL Baselines3 Zoo, CleanRL and Sample Factory 2.0.
-- 🤖 Train **agents in unique environments**
+- 🤖 Train **agents in unique environments** 
 
 And more check 📚 the syllabus 👉 https://simoninithomas.github.io/deep-rl-course
 
@@ -72,7 +49,7 @@ The best way to keep in touch and ask questions is to join our discord server to
 ## Prerequisites 🏗️
 Before diving into the notebook, you need to:
 
-🔲 📝 **Done Unit 0** that gives you all the **information about the course and help you to onboard** 🤗 ADD LINK
+🔲 📝 **Done Unit 0** that gives you all the **information about the course and help you to onboard** 🤗 ADD LINK 
 
 🔲 📚 **Develop an understanding of the foundations of Reinforcement learning** (MC, TD, Rewards hypothesis...) by doing Unit 1 👉 ADD LINK
 
@@ -128,7 +105,7 @@ TODO CHANGE LINK OF THE REQUIREMENTS
 !pip install -r https://huggingface.co/spaces/ThomasSimonini/temp-space-requirements/raw/main/requirements/requirements-unit1.txt
 ```
 
-During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames).
+During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames). 
 
 Hence the following cell will install virtual screen libraries and create and run a virtual screen 🖥
 
@@ -240,16 +217,14 @@ for _ in range(20):
 ```
 
 ## Create the LunarLander environment 🌛 and understand how it works
-
-### The environment 🎮
-
+### [The environment 🎮](https://www.gymlibrary.dev/environments/box2d/lunar_lander/)
 In this first tutorial, we’re going to train our agent, a [Lunar Lander](https://www.gymlibrary.dev/environments/box2d/lunar_lander/), **to land correctly on the moon**. To do that, the agent needs to learn **to adapt its speed and position(horizontal, vertical, and angular) to land correctly.**
 
 
 ---
 
 
-💡 A good habit when you start to use an environment is to check its documentation
+💡 A good habit when you start to use an environment is to check its documentation 
 
 👉 https://www.gymlibrary.dev/environments/box2d/lunar_lander/
 
@@ -285,7 +260,7 @@ print("Action Space Shape", env.action_space.n)
 print("Action Space Sample", env.action_space.sample())  # Take a random action
 ```
 
-The action space (the set of possible actions the agent can take) is discrete with 4 actions available 🎮:
+The action space (the set of possible actions the agent can take) is discrete with 4 actions available 🎮: 
 
 - Do nothing,
 - Fire left orientation engine,
@@ -300,7 +275,6 @@ Reward function (the function that will gives a reward at each timestep) 💰:
 - Episode finishes if the lander crashes (additional - 100 points) or come to rest (+100 points)
 
 #### Vectorized Environment
-
 - We create a vectorized environment (method for stacking multiple independent environments into a single environment) of 16 environments, this way, **we'll have more diverse experiences during the training.**
 
 ```python
@@ -309,7 +283,6 @@ env = make_vec_env("LunarLander-v2", n_envs=16)
 ```
 
 ## Create the Model 🤖
-
 - Now that we studied our environment and we understood the problem: **being able to land correctly the Lunar Lander to the Landing Pad by controlling left, right and main orientation engine**. Let's build the algorithm we're going to use to solve this Problem 🚀.
 
 - To do so, we're going to use our first Deep RL library, [Stable Baselines3 (SB3)](https://stable-baselines3.readthedocs.io/en/master/).
@@ -327,7 +300,6 @@ env = make_vec_env("LunarLander-v2", n_envs=16)
 To solve this problem, we're going to use SB3 **PPO**. [PPO (aka Proximal Policy Optimization) is one of the of the SOTA (state of the art) Deep Reinforcement Learning algorithms that you'll study during this course](https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#example%5D).
 
 PPO is a combination of:
-
 - *Value-based reinforcement learning method*: learning an action-value function that will tell us what's the **most valuable action to take given a state and action**.
 - *Policy-based reinforcement learning method*: learning a policy that will **gives us a probability distribution over actions**.
 
@@ -342,7 +314,6 @@ Stable-Baselines3 is easy to set up:
 
 ```
 # Create environment
-
 env = gym.make('LunarLander-v2')
 
 # Instantiate the agent
@@ -379,7 +350,6 @@ model = PPO(
 ```
 
 ## Train the PPO agent 🏃
-
 - Let's train our agent for 1,000,000 timesteps, don't forget to use GPU on Colab. It will take approximately ~20min, but you can use less timesteps if you just want to try it out.
 - During the training, take a ☕ break you deserved it 🤗
 
@@ -402,7 +372,6 @@ model.save(model_name)
 ```
 
 ## Evaluate the agent 📈
-
 - Now that our Lunar Lander agent is trained 🚀, we need to **check its performance**.
 - Stable-Baselines3 provides a method to do that: `evaluate_policy`.
 - To fill that part you need to [check the documentation](https://stable-baselines3.readthedocs.io/en/master/guide/examples.html#basic-usage-training-saving-loading)
@@ -417,7 +386,7 @@ model.save(model_name)
 eval_env =
 
 # Evaluate the model with 10 evaluation episodes and deterministic=True
-mean_reward, std_reward =
+mean_reward, std_reward = 
 
 # Print the results
 ```
@@ -458,7 +427,7 @@ To be able to share your model with the community there are three more steps to 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
 
-- Copy the token
+- Copy the token 
 - Run the cell below and paste the token
 
 ```python
@@ -491,10 +460,10 @@ from huggingface_sb3 import package_to_hub
 
 ## TODO: Define a repo_id
 ## repo_id is the id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v2
-repo_id =
+repo_id = 
 
 # TODO: Define the name of the environment
-env_id =
+env_id = 
 
 # Create the evaluation env
 eval_env = DummyVecEnv([lambda: gym.make(env_id)])
@@ -508,7 +477,7 @@ commit_message = ""
 
 # method save, evaluate, generate a model card and record a replay video of your agent before pushing the repo to the hub
 package_to_hub(model=model, # Our trained model
-               model_name=model_name, # The name of our trained model
+               model_name=model_name, # The name of our trained model 
                model_architecture=model_architecture, # The model architecture we used: in our case PPO
                env_id=env_id, # Name of the environment
                eval_env=eval_env, # Evaluation Environment
@@ -516,7 +485,7 @@ package_to_hub(model=model, # Our trained model
                commit_message=commit_message)
 
 # Note: if after running the package_to_hub function and it gives an issue of rebasing, please run the following code
-# cd <path_to_repo> && git add . && git commit -m "Add message" && git pull
+# cd <path_to_repo> && git add . && git commit -m "Add message" && git pull 
 # And don't forget to do a "git push" at the end to push the change to the hub.
 ```
 
@@ -563,7 +532,7 @@ package_to_hub(
 ```
 
 Congrats 🥳 you've just trained and uploaded your first Deep Reinforcement Learning agent. The script above should have displayed a link to a model repository such as https://huggingface.co/osanseviero/test_sb3. When you go to this link, you can:
-* see a video preview of your agent at the right.
+* see a video preview of your agent at the right. 
 * click "Files and versions" to see all the files in the repository.
 * click "Use in stable-baselines3" to get a code snippet that shows how to load the model.
 * a model card (`README.md` file) which gives a description of the model
@@ -575,7 +544,7 @@ Compare the results of your LunarLander-v2 with your classmates using the leader
 ## Load a saved LunarLander model from the Hub 🤗
 Thanks to [ironbar](https://github.com/ironbar) for the contribution.
 
-Loading a saved model from the Hub is really easy.
+Loading a saved model from the Hub is really easy. 
 
 You go https://huggingface.co/models?library=stable-baselines3 to see the list of all the Stable-baselines3 saved models.
 1. You select one and copy its repo_id
@@ -617,13 +586,13 @@ print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
 
 ## Some additional challenges 🏆
-The best way to learn **is to try things by your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results!
+The best way to learn **is to try things by your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results! 
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
 Here are some ideas to achieve so:
 * Train more steps
-* Try different hyperparameters of `PPO`. You can see them at https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#parameters.
+* Try different hyperparameters of `PPO`. You can see them at https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html#parameters. 
 * Check the [Stable-Baselines3 documentation](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) and try another models such as DQN.
 * **Push your new trained model** on the Hub 🔥
 
