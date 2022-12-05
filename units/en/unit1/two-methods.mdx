@@ -1,4 +1,4 @@
-# The two main approaches for solving RL problems [[two-methods]]
+# Two main approaches for solving RL problems [[two-methods]]
 
 <Tip>
 Now that we learned the RL framework, how do we solve the RL problem?
@@ -8,11 +8,12 @@ In other terms, how to build an RL agent that can **select the actions that ma
 
 ## The Policy π: the agent’s brain [[policy]]
 
-The Policy **π** is the **brain of our Agent**, it’s the function that tell us what **action to take given the state we are.** So it **defines the agent’s behavior** at a given time.
+The Policy **π** is the **brain of our Agent**, it’s the function that tells us what **action to take given the state we are.** So it **defines the agent’s behavior** at a given time.
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy">
-<figcaption>Think of policy as the brain of our agent, the function that will tells us the action to take given a state
+<figcaption>Think of policy as the brain of our agent, the function that will tell us the action to take given a state
+
 </figcaption>
 </figure>
 
@@ -22,14 +23,14 @@ This Policy **is the function we want to learn**, our goal is to find the optim
 
 There are two approaches to train our agent to find this optimal policy π*:
 
-- **Directly,** by teaching the agent to learn which **action to take,** given the state is in: **Policy-Based Methods.**
+- **Directly,** by teaching the agent to learn which **action to take,** given the current state: **Policy-Based Methods.**
 - Indirectly, **teach the agent to learn which state is more valuable** and then take the action that **leads to the more valuable states**: Value-Based Methods.
 
 ## Policy-Based Methods [[policy-based]]
 
-In Policy-Based Methods, **we learn a policy function directly.**
+In Policy-Based methods, **we learn a policy function directly.**
 
-This function will map from each state to the best corresponding action at that state. **Or a probability distribution over the set of possible actions at that state.**
+This function will define a mapping between each state and the best corresponding action. We can also say that it'll define **a probability distribution over the set of possible actions at that state.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_2.jpg" alt="Policy">
@@ -38,7 +39,8 @@ This function will map from each state to the best corresponding action at that 
 </figure>
 
 
-We have two types of policy:
+We have two types of policies:
+
 
 - *Deterministic*: a policy at a given state **will always return the same action.**
 
@@ -50,7 +52,7 @@ We have two types of policy:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_4.jpg" alt="Policy" width="100%"/>
 
-- *Stochastic*: output **a probability distribution over actions.**
+- *Stochastic*: outputs **a probability distribution over actions.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_5.jpg" alt="Policy"/>
