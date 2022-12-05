@@ -31,7 +31,7 @@ The Bellman equation is a recursive equation that works like this: instead of st
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman4.jpg" alt="Bellman equation"/>
-  <figcaption>For simplification here we don’t discount so gamma = 1.</figcaption>
+  <figcaption>For simplification, here we don’t discount so gamma = 1.</figcaption>
 </figure>
 
 
@@ -53,3 +53,5 @@ In the interest of simplicity, here we don't discount, so gamma = 1.
 - And so on.
 
 To recap, the idea of the Bellman equation is that instead of calculating each value as the sum of the expected return, **which is a long process.** This is equivalent **to the sum of immediate reward + the discounted value of the state that follows.**
+
+Before going to the next section, think about the role of gamma in the Bellman equation. What happens if the value of gamma is very low (e.g. 0.1 or even 0)? What happens if the value is 1? What happens if the value is very high, such as a million?
