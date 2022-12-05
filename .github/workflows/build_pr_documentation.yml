@@ -13,7 +13,7 @@ jobs:
     with:
       commit_sha: ${{ github.event.pull_request.head.sha }}
       pr_number: ${{ github.event.number }}
-      package: deep-rl-class
+      package: deep-rl-course
       path_to_docs: deep-rl-class/units/
       additional_args: --not_python_module
       languages: en
