@@ -357,6 +357,7 @@ env = gym.make('LunarLander-v2')
 
 # Instantiate the agent
 model = PPO('MlpPolicy', env, verbose=1)
+
 # Train the agent
 model.learn(total_timesteps=int(2e5))
 ```
