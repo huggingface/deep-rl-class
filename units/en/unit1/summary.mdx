@@ -1,0 +1,19 @@
+# Summary [[summary]]
+
+That was a lot of information! Let's summarize:
+
+- Reinforcement Learning is a computational approach of learning from action. We build an agent that learns from the environment **by interacting with it through trial and error** and receiving rewards (negative or positive) as feedback.
+
+- The goal of any RL agent is to maximize its expected cumulative reward (also called expected return) because RL is based on the **reward hypothesis**, which is that **all goals can be described as the maximization of the expected cumulative reward.**
+
+- The RL process is a loop that outputs a sequence of **state, action, reward and next state.**
+
+- To calculate the expected cumulative reward (expected return), we discount the rewards: the rewards that come sooner (at the beginning of the game) **are more probable to happen since they are more predictable than the long term future reward.**
+
+- To solve an RL problem, you want to **find an optimal policy**. The policy is the “brain” of your agent, which will tell us **what action to take given a state.** The optimal policy is the one which **gives you the actions that maximize the expected return.**
+
+- There are two ways to find your optimal policy:
+    1. By training your policy directly: **policy-based methods.**
+    2. By training a value function that tells us the expected return the agent will get at each state and use this function to define our policy: **value-based methods.**
+
+- Finally, we speak about Deep RL because we introduce **deep neural networks to estimate the action to take (policy-based) or to estimate the value of a state (value-based)** hence the name “deep”.

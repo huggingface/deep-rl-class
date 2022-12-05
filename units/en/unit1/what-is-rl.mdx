@@ -1,0 +1,40 @@
+# What is Reinforcement Learning? [[what-is-reinforcement-learning]]
+
+To understand Reinforcement Learning, let’s start with the big picture.
+
+## The big picture [[the-big-picture]]
+
+The idea behind Reinforcement Learning is that an agent (an AI) will learn from the environment by **interacting with it** (through trial and error) and **receiving rewards** (negative or positive) as feedback for performing actions.
+
+Learning from interactions with the environment **comes from our natural experiences.**
+
+For instance, imagine putting your little brother in front of a video game he never played, giving him a controller, and leaving him alone.
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_1.jpg" alt="Illustration_1" width="100%">
+
+Your brother will interact with the environment (the video game) by pressing the right button (action). He got a coin, that’s a +1 reward. It’s positive, he just understood that in this game **he must get the coins.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_2.jpg" alt="Illustration_2" width="100%">
+
+But then, **he presses right again** and he touches an enemy. He just died, so that's a -1 reward.
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_3.jpg" alt="Illustration_3" width="100%">
+
+By interacting with his environment through trial and error, your little brother understood that **he needed to get coins in this environment but avoid the enemies.**
+
+**Without any supervision**, the child will get better and better at playing the game.
+
+That’s how humans and animals learn, **through interaction.** Reinforcement Learning is just a **computational approach of learning from actions.**
+
+
+### A formal definition [[a-formal-definition]]
+
+If we take now a formal definition:
+
+<Tip>
+Reinforcement learning is a framework for solving control tasks (also called decision problems) by building agents that learn from the environment by interacting with it through trial and error and receiving rewards (positive or negative) as unique feedback.
+</Tip>
+
+But how does Reinforcement Learning work?

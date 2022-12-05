@@ -1,0 +1,46 @@
+- title: Unit 0. Welcome to the course
+  sections:
+  - local: unit0/introduction
+    title: Welcome to the course 🤗
+  - local: unit0/setup
+    title: Setup
+  - local: unit0/discord101
+    title: Discord 101
+- title: Unit 1. Introduction to Deep Reinforcement Learning
+  sections:
+  - local: unit1/introduction
+    title: Introduction
+  - local: unit1/what-is-rl
+    title: What is Reinforcement Learning?
+  - local: unit1/rl-framework
+    title: The Reinforcement Learning Framework
+  - local: unit1/tasks
+    title: The type of tasks
+  - local: unit1/exp-exp-tradeoff
+    title: The Exploration/ Exploitation tradeoff
+  - local: unit1/two-methods
+    title: The two main approaches for solving RL problems
+  - local: unit1/deep-rl
+    title: The “Deep” in Deep Reinforcement Learning
+  - local: unit1/summary
+    title: Summary
+  - local: unit1/hands-on
+    title: Hands-on
+  - local: unit1/quiz
+    title: Quiz
+  - local: unit1/conclusion
+    title: Conclusion
+  - local: unit1/additional-readings
+    title: Additional Readings
+- title: Bonus Unit 1. Introduction to Deep Reinforcement Learning with Huggy
+  sections:
+  - local: unitbonus1/introduction
+    title: Introduction
+  - local: unitbonus1/how-huggy-works
+    title: How Huggy works?
+  - local: unitbonus1/train
+    title: Train Huggy
+  - local: unitbonus1/play
+    title: Play with Huggy
+  - local: unitbonus1/conclusion
+    title: Conclusion

@@ -1,0 +1,27 @@
+# Type of tasks [[tasks]]
+
+A task is an **instance** of a Reinforcement Learning problem. We can have two types of tasks: **episodic** and **continuing**.
+
+## Episodic task [[episodic-task]]
+
+In this case, we have a starting point and an ending point **(a terminal state). This creates an episode**: a list of States, Actions, Rewards, and new States.
+
+For instance, think about Super Mario Bros: an episode begin at the launch of a new Mario Level and ending **when you’re killed or you reached the end of the level.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
+<figcaption>Beginning of a new episode.
+</figcaption>
+</figure>
+
+
+## Continuing tasks [[continuing-tasks]]
+
+These are tasks that continue forever (no terminal state). In this case, the agent must **learn how to choose the best actions and simultaneously interact with the environment.**
+
+For instance, an agent that does automated stock trading. For this task, there is no starting point and terminal state. **The agent keeps running until we decide to stop it.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/stock.jpg" alt="Stock Market" width="100%">
+
+To recap:
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/tasks.jpg" alt="Tasks recap" width="100%">
