@@ -4,7 +4,7 @@ We're launching a **new version (v2.0) of the course starting December the 5th,*
 
 - The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
 
-- The course 📚: 
+- The course 📚: https://huggingface.co/deep-rl-course/unit0/introduction?fw=pt
 
 - **Sign up here** ➡️➡️➡️ http://eepurl.com/ic5ZUD
 
