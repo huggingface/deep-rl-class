@@ -23,7 +23,7 @@ This RL loop outputs a sequence of **state, action, reward and next state.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/sars.jpg" alt="State, Action, Reward, Next State" width="100%">
 
-The agent's goal is to maximize its cumulative reward, **called the expected return.**
+The agent's goal is to _maximize_ its cumulative reward, **called the expected return.**
 
 ## The reward hypothesis: the central idea of Reinforcement Learning [[reward-hypothesis]]
 
@@ -31,19 +31,20 @@ The agent's goal is to maximize its cumulative reward, **called the expected re
 
 Because RL is based on the **reward hypothesis**, which is that all goals can be described as the **maximization of the expected return** (expected cumulative reward).
 
-That’s why in Reinforcement Learning, **to have the best behavior,** we need to **maximize the expected cumulative reward.**
+That’s why in Reinforcement Learning, **to have the best behavior,** we aim to learn to take actions that **maximize the expected cumulative reward.**
+
 
 ## Markov Property [[markov-property]]
 
 In papers, you’ll see that the RL process is called the **Markov Decision Process** (MDP).
 
-We’ll talk again about the Markov Property in the following units. But if you need to remember something today about it, Markov Property implies that our agent needs **only the current state to decide** what action to take and **not the history of all the states** **and actions** they took before.
+We’ll talk again about the Markov Property in the following units. But if you need to remember something today about it, it's this: the Markov Property implies that our agent needs **only the current state to decide** what action to take and **not the history of all the states and actions** they took before.
 
 ## Observations/States Space [[obs-space]]
 
 Observations/States are the **information our agent gets from the environment.** In the case of a video game, it can be a frame (a screenshot). In the case of the trading agent, it can be the value of a certain stock, etc.
 
-There is a differentiation to make between *observation* and *state*:
+There is a differentiation to make between *observation* and *state*, however:
 
 - *State s*: is **a complete description of the state of the world** (there is no hidden information). In a fully observed environment.
 
@@ -53,9 +54,7 @@ There is a differentiation to make between *observation* and *state*:
 <figcaption>In chess game, we receive a state from the environment since we have access to the whole check board information.</figcaption>
 </figure>
 
-In chess game, we receive a state from the environment since we have access to the whole check board information.
-
-With a chess game, we are in a fully observed environment, since we have access to the whole check board information.
+In a chess game, we have access to the whole board information, so we receive a state from the environment. In other words, the environment is fully observed.
 
 - *Observation o*: is a **partial description of the state.** In a partially observed environment.
 
@@ -69,7 +68,7 @@ In Super Mario Bros, we only see a part of the level close to the player, so we 
 In Super Mario Bros, we are in a partially observed environment. We receive an observation **since we only see a part of the level.**
 
 <Tip>
-In reality, we use the term state in this course but we will make the distinction in implementations.
+In this course, we use the term "state" to denote both state and observation, but we will make the distinction in implementations.
 </Tip>
 
 To recap:
@@ -86,7 +85,8 @@ The actions can come from a *discrete* or *continuous space*:
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
-<figcaption>Again, in Super Mario Bros, we have only 4 directions and jump possible</figcaption>
+<figcaption>Again, in Super Mario Bros, we have only 5 possible actions: 4 directions and jumping</figcaption>
+
 </figure>
 
 In Super Mario Bros, we have a finite set of actions since we have only 4 directions and jump.
