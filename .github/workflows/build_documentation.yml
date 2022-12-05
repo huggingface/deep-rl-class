@@ -11,7 +11,7 @@ jobs:
     with:
       commit_sha: ${{ github.sha }}
       package: deep-rl-course
-      path_to_docs: deep-rl-course/units/
+      path_to_docs: deep-rl-class/units/
       additional_args: --not_python_module
       languages: en
     secrets:
