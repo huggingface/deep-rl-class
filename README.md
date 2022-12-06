@@ -1,6 +1,4 @@
-# The Hugging Face Deep Reinforcement Learning Class 🤗 
-
-We're launching a **new version (v2.0) of the course starting December the 5th,**
+# The Hugging Face Deep Reinforcement Learning Course 🤗 (v2.0)
 
 - The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
 
