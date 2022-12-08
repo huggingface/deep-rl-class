@@ -1,8 +1,8 @@
 # Monte Carlo vs Temporal Difference Learning [[mc-vs-td]]
 
-The last thing we need to talk about before diving into Q-Learning is the two ways of learning.
+The last thing we need to discuss before diving into Q-Learning is the two learning strategies.
 
-Remember that an RL agent **learns by interacting with its environment.** The idea is that **using the experience taken**, given the reward it gets, will **update its value or policy.**
+Remember that an RL agent **learns by interacting with its environment.** The idea is that **given the experience and the received reward, the agent will update its value function or policy.**
 
 Monte Carlo and Temporal Difference Learning are two different **strategies on how to train our value function or our policy function.** Both of them **use experience to solve the RL problem.**
 
@@ -14,7 +14,7 @@ We'll explain both of them **using a value-based method example.**
 
 Monte Carlo waits until the end of the episode, calculates  \\(G_t\\) (return) and uses it as **a target for updating  \\(V(S_t)\\).**
 
-So it requires a **complete entire episode of interaction before updating our value function.**
+So it requires a **complete episode of interaction before updating our value function.**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/monte-carlo-approach.jpg" alt="Monte Carlo"/>
 
@@ -29,7 +29,7 @@ If we take an example:
 - We get **the reward and the next state.**
 - We terminate the episode if the cat eats the mouse or if the mouse moves > 10 steps.
 
-- At the end of the episode, **we have a list of State, Actions, Rewards, and Next States**
+- At the end of the episode, **we have a list of State, Actions, Rewards, and Next States tuples**
 - **The agent will sum the total rewards \\(G_t\\)** (to see how well it did).
 - It will then **update \\(V(s_t)\\) based on the formula**
 
@@ -74,12 +74,12 @@ For instance, if we train a state-value function using Monte Carlo:
 
 ## Temporal Difference Learning: learning at each step [[td-learning]]
 
-- **Temporal difference, on the other hand, waits for only one interaction (one step) \\(S_{t+1}\\)**
+- **Temporal Difference, on the other hand, waits for only one interaction (one step) \\(S_{t+1}\\)**
 - to form a TD target and update \\(V(S_t)\\) using \\(R_{t+1}\\) and \\(gamma * V(S_{t+1})\\).
 
 The idea with **TD is to update the \\(V(S_t)\\) at each step.**
 
-But because we didn't play during an entire episode, we don't have \\(G_t\\) (expected return). Instead, **we estimate \\(G_t\\) by adding \\(R_{t+1}\\) and the discounted value of the next state.**
+But because we didn't experience an entire episode, we don't have \\(G_t\\) (expected return). Instead, **we estimate \\(G_t\\) by adding \\(R_{t+1}\\) and the discounted value of the next state.**
 
 This is called bootstrapping. It's called this **because TD bases its update part on an existing estimate \\(V(S_{t+1})\\) and not a complete sample \\(G_t\\).**
 

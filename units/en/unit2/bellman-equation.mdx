@@ -21,9 +21,9 @@ Then, to calculate the \\(V(S_{t+1})\\), we need to calculate the return startin
   <figcaption>To calculate the value of State 2: the sum of rewards **if the agent started in that state, and then followed the **policy for all the time steps.</figcaption>
 </figure>
 
-So you see, that's a pretty tedious process if you need to do it for each state value or state-action value.
+So you may have noticed, we're repeating the computation of the value of different states, which can be tedious if you need to do it for each state value or state-action value.
 
-Instead of calculating the expected return for each state or each state-action pair, **we can use the Bellman equation.**
+Instead of calculating the expected return for each state or each state-action pair, **we can use the Bellman equation.** (hint: if you know what Dynamic Programming is, this is very similar! if you don't know what it is, no worries!)
 
 The Bellman equation is a recursive equation that works like this: instead of starting for each state from the beginning and calculating the return, we can consider the value of any state as:
 
