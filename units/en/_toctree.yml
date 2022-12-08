@@ -24,6 +24,8 @@
     title: The “Deep” in Deep Reinforcement Learning
   - local: unit1/summary
     title: Summary
+  - local: unit1/glossary
+    title: Glossary
   - local: unit1/hands-on
     title: Hands-on
   - local: unit1/quiz
