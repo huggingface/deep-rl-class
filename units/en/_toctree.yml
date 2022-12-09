@@ -57,13 +57,15 @@
   - local: unit2/mc-vs-td
     title: Monte Carlo vs Temporal Difference Learning
   - local: unit2/summary1
-    title: Summary
+    title: Mid-way Recap
   - local: unit2/quiz1
-    title: First Quiz
+    title: Mid-way Quiz
   - local: unit2/q-learning
     title: Introducing Q-Learning
   - local: unit2/q-learning-example
     title: A Q-Learning example
+  - local: unit2/summary2
+    title: Q-Learning Recap
   - local: unit2/hands-on
     title: Hands-on
   - local: unit2/quiz2

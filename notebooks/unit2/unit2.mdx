@@ -1,27 +1,3 @@
-# Hands-on [[hands-on]]
-
-<CourseFloatingBanner classNames="absolute z-10 right-0 top-0"
-notebooks={[
-  {label: "Google Colab", value: "https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit2/unit2.ipynb"}
-  ]}
-  askForHelpUrl="http://hf.co/join/discord" />
-
-
-
-Now that we studied the Q-Learning algorithm, let's implement it from scratch and train our Q-Learning agent in two environments:
-1. [Frozen-Lake-v1  (non-slippery and slippery version)](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/) ☃️ : where our agent will need to **go from the starting state (S) to the goal state (G)** by walking only on frozen tiles (F) and avoiding holes (H).
-2. [An autonomous taxi](https://www.gymlibrary.dev/environments/toy_text/taxi/) 🚖 will need **to learn to navigate** a city to **transport its passengers from point A to point B.**
-
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/envs.gif" alt="Environments"/>
-
-Thanks to a [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard), you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 2?
-
-
-**To start the hands-on click on Open In Colab button** 👇 :
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit2/unit2.ipynb)
-
-
 # Unit 2: Q-Learning with FrozenLake-v1 ⛄ and Taxi-v3 🚕
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/thumbnail.jpg" alt="Unit 2 Thumbnail">
@@ -34,12 +10,12 @@ In this notebook, **you'll code from scratch your first Reinforcement Learning a
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/envs.gif" alt="Environments"/>
 
-### 🎮 Environments:
+###🎮 Environments: 
 
 - [FrozenLake-v1](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/)
 - [Taxi-v3](https://www.gymlibrary.dev/environments/toy_text/taxi/)
 
-### 📚 RL-Library:
+###📚 RL-Library: 
 
 - Python and Numpy
 
@@ -54,16 +30,61 @@ At the end of the notebook, you will:
 - Be able to **push your trained agent and the code to the Hub** with a nice video replay and an evaluation score 🔥.
 
 
-## Prerequisites 🏗️
 
+
+## This notebook is from Deep Reinforcement Learning Course
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/deep-rl-course-illustration.jpg" alt="Deep RL Course illustration"/>
+
+In this free course, you will:
+
+- 📖 Study Deep Reinforcement Learning in **theory and practice**.
+- 🧑‍💻 Learn to **use famous Deep RL libraries** such as Stable Baselines3, RL Baselines3 Zoo, CleanRL and Sample Factory 2.0.
+- 🤖 Train **agents in unique environments** 
+
+And more check 📚 the syllabus 👉 https://simoninithomas.github.io/deep-rl-course
+
+Don’t forget to **<a href="http://eepurl.com/ic5ZUD">sign up to the course</a>** (we are collecting your email to be able to **send you the links when each Unit is published and give you information about the challenges and updates).**
+
+
+The best way to keep in touch is to join our discord server to exchange with the community and with us 👉🏻 https://discord.gg/ydHrjt3WP5
+
+## Prerequisites 🏗️
 Before diving into the notebook, you need to:
 
-🔲 📚 **Study [Q-Learning by reading Unit 2](https://huggingface.co/deep-rl-course/unit2/introduction)**  🤗
+🔲 📚 **Study [Q-Learning by reading Unit 2](https://huggingface.co/deep-rl-course/unit2/introduction)**  🤗  
 
+## A small recap of Q-Learning
+
+- The *Q-Learning* **is the RL algorithm that**  
+
+  - Trains *Q-Function*, an **action-value function** that contains, as internal memory, a *Q-table* **that contains all the state-action pair values.**
+    
+  - Given a state and action, our Q-Function **will search into its Q-table the corresponding value.**
+    
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function-2.jpg" alt="Q function"  width="100%"/>
+
+- When the training is done,**we have an optimal Q-Function, so an optimal Q-Table.**
+    
+- And if we **have an optimal Q-function**, we
+have an optimal policy,since we **know for each state, what is the best action to take.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy"  width="100%"/>
+
+
+But, in the beginning, our **Q-Table is useless since it gives arbitrary value for each state-action pair (most of the time we initialize the Q-Table to 0 values)**. But, as we’ll explore the environment and update our Q-Table it will give us better and better approximations
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit2/q-learning.jpeg" alt="q-learning.jpeg" width="100%"/>
+
+This is the Q-Learning pseudocode:
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-2.jpg" alt="Q-Learning" width="100%"/>
+
+
+# Let's code our first Reinforcement Learning algorithm 🚀
 
 ## Install dependencies and create a virtual display 🔽
 
-During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames).
+During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames). 
 
 Hence the following cell will install the librairies and create and run a virtual screen 🖥
 
@@ -75,20 +96,20 @@ We’ll install multiple ones:
 
 The Hugging Face Hub 🤗 works as a central place where anyone can share and explore models and datasets. It has versioning, metrics, visualizations and other features that will allow you to easily collaborate with others.
 
-
 You can see here all the Deep reinforcement Learning models available 👉 https://huggingface.co/models?other=q-learning
 
 
-```bash
-pip install -r https://github.com/huggingface/deep-rl-class/tree/main/notebooks/unit2/requirements-unit2.txt
+```python
+!pip install -r https://github.com/huggingface/deep-rl-class/tree/main/notebooks/unit2/requirements-unit2.txt
 ```
 
-```bash
-sudo apt-get update
-apt install python-opengl
-apt install ffmpeg
-apt install xvfb
-pip3 install pyvirtualdisplay
+```python
+%capture
+!sudo apt-get update
+!apt install python-opengl
+!apt install ffmpeg
+!apt install xvfb
+!pip3 install pyvirtualdisplay
 ```
 
 To make sure the new installed libraries are used, **sometimes it's required to restart the notebook runtime**. The next cell will force the **runtime to crash, so you'll need to connect again and run the code starting from here**. Thanks for this trick, **we will be able to run our virtual screen.**
@@ -134,10 +155,10 @@ We're now ready to code our Q-Learning algorithm 🔥
 
 # Part 1: Frozen Lake ⛄ (non slippery version)
 
-## Create and understand [FrozenLake environment ⛄](https://www.gymlibrary.dev/environments/toy_text/frozen_lake/)
+## Create and understand [FrozenLake environment ⛄]((https://www.gymlibrary.dev/environments/toy_text/frozen_lake/)
 ---
 
-💡 A good habit when you start to use an environment is to check its documentation
+💡 A good habit when you start to use an environment is to check its documentation 
 
 👉 https://www.gymlibrary.dev/environments/toy_text/frozen_lake/
 
@@ -189,7 +210,7 @@ print("Observation Space", env.observation_space)
 print("Sample observation", env.observation_space.sample())  # Get a random observation
 ```
 
-We see with `Observation Space Shape Discrete(16)` that the observation is a value representing the **agent’s current position as current_row * nrows + current_col (where both the row and col start at 0)**.
+We see with `Observation Space Shape Discrete(16)` that the observation is a value representing the **agent’s current position as current_row * nrows + current_col (where both the row and col start at 0)**. 
 
 For example, the goal position in the 4x4 map can be calculated as follows: 3 * 4 + 3 = 15. The number of possible observations is dependent on the size of the map. **For example, the 4x4 map has 16 possible observations.**
 
@@ -215,7 +236,6 @@ Reward function 💰:
 - Reach hole: 0
 - Reach frozen: 0
 
-
 ## Create and Initialize the Q-table 🗄️
 (👀 Step 1 of the pseudocode)
 
@@ -226,24 +246,23 @@ It's time to initialize our Q-table! To know how many rows (states) and columns 
 
 
 ```python
-state_space =
+state_space = 
 print("There are ", state_space, " possible states")
 
-action_space =
+action_space = 
 print("There are ", action_space, " possible actions")
 ```
 
 ```python
 # Let's create our Qtable of size (state_space, action_space) and initialized each values at 0 using np.zeros
 def initialize_q_table(state_space, action_space):
-  Qtable =
+  Qtable = 
   return Qtable
 ```
 
 ```python
 Qtable_frozenlake = initialize_q_table(state_space, action_space)
 ```
-
 
 ### Solution
 
@@ -266,7 +285,7 @@ def initialize_q_table(state_space, action_space):
 Qtable_frozenlake = initialize_q_table(state_space, action_space)
 ```
 
-## Define the epsilon-greedy policy 🤖
+##Define the epsilon-greedy policy 🤖
 
 Epsilon-Greedy is the training policy that handles the exploration/exploitation trade-off.
 
@@ -286,16 +305,16 @@ Thanks to Sambit for finding a bug on the epsilon function 🤗
 ```python
 def epsilon_greedy_policy(Qtable, state, epsilon):
   # Randomly generate a number between 0 and 1
-  random_num =
+  random_num = 
   # if random_num > greater than epsilon --> exploitation
   if random_num > epsilon:
     # Take the action with the highest value given a state
     # np.argmax can be useful here
-    action =
+    action = 
   # else --> exploration
   else:
     action = # Take a random action
-
+  
   return action
 ```
 
@@ -318,7 +337,6 @@ def epsilon_greedy_policy(Qtable, state, epsilon):
 ```
 
 ## Define the greedy policy 🤖
-
 Remember we have two policies since Q-Learning is an **off-policy** algorithm. This means we're using a **different policy for acting and updating the value function**.
 
 - Epsilon greedy policy (acting policy)
@@ -332,8 +350,8 @@ Greedy policy will also be the final policy we'll have when the Q-learning agent
 ```python
 def greedy_policy(Qtable, state):
   # Exploitation: take the action with the highest state, action value
-  action =
-
+  action = 
+  
   return action
 ```
 
@@ -348,7 +366,7 @@ def greedy_policy(Qtable, state):
 ```
 
 ## Define the hyperparameters ⚙️
-The exploration related hyperparamters are some of the most important ones.
+The exploration related hyperparamters are some of the most important ones. 
 
 - We need to make sure that our agent **explores enough the state space** in order to learn a good value approximation, in order to do that we need to have progressive decay of the epsilon.
 - If you decrease too fast epsilon (too high decay_rate), **you take the risk that your agent is stuck**, since your agent didn't explore enough the state space and hence can't solve the problem.
@@ -375,7 +393,6 @@ decay_rate = 0.0005  # Exponential decay rate for exploration prob
 
 ## Step 6: Create the training loop method
 
-
 ```python
 def train(n_training_episodes, min_epsilon, max_epsilon, decay_rate, env, max_steps, Qtable):
   for episode in range(n_training_episodes):
@@ -389,19 +406,19 @@ def train(n_training_episodes, min_epsilon, max_epsilon, decay_rate, env, max_st
     # repeat
     for step in range(max_steps):
       # Choose the action At using epsilon greedy policy
-      action =
+      action = 
 
       # Take action At and observe Rt+1 and St+1
       # Take the action (a) and observe the outcome state(s') and reward (r)
-      new_state, reward, done, info =
+      new_state, reward, done, info = 
 
       # Update Q(s,a):= Q(s,a) + lr [R(s,a) + gamma * max Q(s',a') - Q(s,a)]
-      Qtable[state][action] =
+      Qtable[state][action] = 
 
       # If done, finish the episode
       if done:
         break
-
+      
       # Our state is the new state
       state = new_state
   return Qtable
@@ -501,7 +518,6 @@ def evaluate_agent(env, max_steps, n_eval_episodes, Q, seed):
 mean_reward, std_reward = evaluate_agent(env, max_steps, n_eval_episodes, Qtable_frozenlake, eval_seed)
 print(f"Mean_reward={mean_reward:.2f} +/- {std_reward:.2f}")
 ```
-
 
 ## Publish our trained model on the Hub 🔥
 
@@ -645,7 +661,8 @@ def push_to_hub(
   """
 
     model_card += """
-
+  ```
+  """
 
     readme_path = repo_local_path / "README.md"
     readme = ""
@@ -666,10 +683,10 @@ def push_to_hub(
     record_video(env, model["qtable"], video_path, video_fps)
 
     # Push everything to hub
-    print(f"Pushing the repo to the Hugging Face Hub")
+    print(f"Pushing repo {repo_name} to the Hugging Face Hub")
     repo.push_to_hub(commit_message=commit_message)
 
-    print("Your model is pushed to the hub. You can view your model here: ", repo_url)
+    print(f"Your model is pushed to the hub. You can view your model here: {repo_url}")
 ```
 
 ### .
@@ -738,10 +755,10 @@ model
 ```python
 username = ""  # FILL THIS
 repo_name = "q-FrozenLake-v1-4x4-noSlippery"
-push_to_hub(repo_id=f"username}/{repo_name}", model=model, env=env)
+push_to_hub(repo_id=f"{username}/{repo_name}", model=model, env=env)
 ```
 
-Congrats 🥳 you've just implemented from scratch, trained and uploaded your first Reinforcement Learning agent.
+Congrats 🥳 you've just implemented from scratch, trained and uploaded your first Reinforcement Learning agent. 
 FrozenLake-v1 no_slippery is very simple environment, let's try an harder one 🔥.
 
 # Part 2: Taxi-v3 🚖
@@ -749,13 +766,13 @@ FrozenLake-v1 no_slippery is very simple environment, let's try an harder one �
 ## Create and understand [Taxi-v3 🚕](https://www.gymlibrary.dev/environments/toy_text/taxi/)
 ---
 
-💡 A good habit when you start to use an environment is to check its documentation
+💡 A good habit when you start to use an environment is to check its documentation 
 
 👉 https://www.gymlibrary.dev/environments/toy_text/taxi/
 
 ---
 
-In `Taxi-v3` 🚕, there are four designated locations in the grid world indicated by R(ed), G(reen), Y(ellow), and B(lue).
+In `Taxi-v3` 🚕, there are four designated locations in the grid world indicated by R(ed), G(reen), Y(ellow), and B(lue). 
 
 When the episode starts, **the taxi starts off at a random square** and the passenger is at a random location. The taxi drives to the passenger’s location, **picks up the passenger**, drives to the passenger’s destination (another one of the four specified locations), and then **drops off the passenger**. Once the passenger is dropped off, the episode ends.
 
@@ -812,8 +829,6 @@ learning_rate = 0.7  # Learning rate
 
 # Evaluation parameters
 n_eval_episodes = 100  # Total number of test episodes
-
-
 
 # DO NOT MODIFY EVAL_SEED
 eval_seed = [
@@ -1039,7 +1054,7 @@ evaluate_agent(env, model["max_steps"], model["n_eval_episodes"], model["qtable"
 ```
 
 ## Some additional challenges 🏆
-The best way to learn **is to try things by your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results!
+The best way to learn **is to try things by your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results! 
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
@@ -1058,11 +1073,11 @@ Understanding Q-Learning is an **important step to understanding value-based met
 
 In the next Unit with Deep Q-Learning, we'll see that creating and updating a Q-table was a good strategy — **however, this is not scalable.**
 
-For instance, imagine you create an agent that learns to play Doom.
+For instance, imagine you create an agent that learns to play Doom. 
 
 <img src="https://vizdoom.cs.put.edu.pl/user/pages/01.tutorial/basic.png" alt="Doom"/>
 
-Doom is a large environment with a huge state space (millions of different states). Creating and updating a Q-table for that environment would not be efficient.
+Doom is a large environment with a huge state space (millions of different states). Creating and updating a Q-table for that environment would not be efficient. 
 
 That's why we'll study, in the next unit, Deep Q-Learning, an algorithm **where we use a neural network that approximates, given a state, the different Q-values for each action.**
 

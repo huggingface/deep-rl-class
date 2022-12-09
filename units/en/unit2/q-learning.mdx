@@ -14,7 +14,11 @@ Q-Learning is an **off-policy value-based method that uses a TD approach to tra
   <figcaption>Given a state and action, our Q Function outputs a state-action value (also called Q-value)</figcaption>
 </figure>
 
-The **Q comes from "the Quality" of that action at that state.**
+The **Q comes from "the Quality" (the value) of that action at that state.**
+
+Let's recap the difference between value and reward:
+- The *value of a state*, or a *state-action pair* is the expected cumulative reward our agent gets if it starts at this state (or state action pair) and then acts accordingly to its policy.
+- The *reward* is the **feedback I get from the environment** after performing an action at a state.
 
 Internally, our Q-function has **a Q-table, a table where each cell corresponds to a state-action value pair value.** Think of this Q-table as **the memory or cheat sheet of our Q-function.**
 
@@ -34,7 +38,6 @@ Therefore, Q-function contains a Q-table **that has the value of each-state act
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function-2.jpg" alt="Q-function"/>
-  <figcaption>Given a state and action pair, our Q-function will search inside its Q-table to output the state-action pair value (the Q value).</figcaption>
 </figure>
 
 If we recap, *Q-Learning* **is the RL algorithm that:**
@@ -69,12 +72,12 @@ This is the Q-Learning pseudocode; let's study each part and **see how it works
 
 We need to initialize the Q-Table for each state-action pair. **Most of the time, we initialize with values of 0.**
 
-### Step 2: Choose action using Epsilon Greedy Strategy [[step2]]
+### Step 2: Choose action using epsilon greedy strategy [[step2]]
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-4.jpg" alt="Q-learning"/>
 
 
-Epsilon Greedy Strategy is a policy that handles the exploration/exploitation trade-off.
+Epsilon greedy strategy is a policy that handles the exploration/exploitation trade-off.
 
 The idea is that we define epsilon ɛ = 1.0:
 
@@ -122,7 +125,7 @@ The difference is subtle:
 
 - *Off-policy*: using **a different policy for acting (inference) and updating (training).**
 
-For instance, with Q-Learning, the Epsilon greedy policy (acting policy), is different from the greedy policy that is **used to select the best next-state action value to update our Q-value (updating policy).**
+For instance, with Q-Learning, the epsilon greedy policy (acting policy), is different from the greedy policy that is **used to select the best next-state action value to update our Q-value (updating policy).**
 
 
 <figure>
@@ -140,7 +143,7 @@ Is different from the policy we use during the training part:
 
 - *On-policy:* using the **same policy for acting and updating.**
 
-For instance, with Sarsa, another value-based algorithm, **the Epsilon-Greedy Policy selects the next state-action pair, not a greedy policy.**
+For instance, with Sarsa, another value-based algorithm, **the epsilon greedy Policy selects the next state-action pair, not a greedy policy.**
 
 
 <figure>

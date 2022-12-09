@@ -31,7 +31,6 @@ The Bellman equation is a recursive equation that works like this: instead of st
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman4.jpg" alt="Bellman equation"/>
-  <figcaption>For simplification, here we don’t discount so gamma = 1.</figcaption>
 </figure>
 
 
@@ -44,13 +43,19 @@ To calculate the value of State 1: the sum of rewards **if the agent started in
 
 This is equivalent to  \\(V(S_{t})\\)  = Immediate reward  \\(R_{t+1}\\)  + Discounted value of the next state  \\(gamma * V(S_{t+1})\\)
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman6.jpg" alt="Bellman equation"/>
-
+<figure>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman6.jpg" alt="Bellman equation"/>
+  <figcaption>For simplification, here we don’t discount so gamma = 1.</figcaption>
+</figure>
 
 In the interest of simplicity, here we don't discount, so gamma = 1.
 
 - The value of  \\(V(S_{t+1}) \\)  = Immediate reward  \\(R_{t+2}\\)  + Discounted value of the next state ( \\(gamma * V(S_{t+2})\\) ).
 - And so on.
+
+
+
+
 
 To recap, the idea of the Bellman equation is that instead of calculating each value as the sum of the expected return, **which is a long process.** This is equivalent **to the sum of immediate reward + the discounted value of the state that follows.**
 

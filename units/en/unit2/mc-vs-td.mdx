@@ -43,7 +43,7 @@ By running more and more episodes, **the agent will learn to play better and be
 
 For instance, if we train a state-value function using Monte Carlo:
 
-- We just started to train our Value function, **so it returns 0 value for each state**
+- We just started to train our value function, **so it returns 0 value for each state**
 - Our learning rate (lr) is 0.1 and our discount rate is 1 (= no discount)
 - Our mouse **explores the environment and takes random actions**
 
@@ -75,7 +75,7 @@ For instance, if we train a state-value function using Monte Carlo:
 ## Temporal Difference Learning: learning at each step [[td-learning]]
 
 - **Temporal Difference, on the other hand, waits for only one interaction (one step) \\(S_{t+1}\\)**
-- to form a TD target and update \\(V(S_t)\\) using \\(R_{t+1}\\) and \\(gamma * V(S_{t+1})\\).
+- to form a TD target and update \\(V(S_t)\\) using \\(R_{t+1}\\) and \\( \gamma * V(S_{t+1})\\).
 
 The idea with **TD is to update the \\(V(S_t)\\) at each step.**
 
@@ -94,7 +94,7 @@ If we take the same example,
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-2.jpg" alt="Temporal Difference"/>
 
-- We just started to train our Value function, so it returns 0 value for each state.
+- We just started to train our value function, so it returns 0 value for each state.
 - Our learning rate (lr) is 0.1, and our discount rate is 1 (no discount).
 - Our mouse explore the environment and take a random action: **going to the left**
 - It gets a reward  \\(R_{t+1} = 1\\) since **it eats a piece of cheese**
@@ -106,7 +106,7 @@ If we take the same example,
 
 We can now update  \\(V(S_0)\\):
 
-New  \\(V(S_0) = V(S_0) + lr * [R_1 + gamma * V(S_1) - V(S_0)]\\)
+New  \\(V(S_0) = V(S_0) + lr * [R_1 + \gamma * V(S_1) - V(S_0)]\\)
 
 New \\(V(S_0) = 0 + 0.1 * [1 + 1 * 0–0]\\)
 

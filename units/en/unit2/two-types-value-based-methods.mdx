@@ -18,7 +18,7 @@ To find the optimal policy, we learned about two different methods:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-approaches-2.jpg" alt="Two RL approaches"/>
 
-The policy takes a state as input and outputs what action to take at that state (deterministic policy).
+The policy takes a state as input and outputs what action to take at that state (deterministic policy: a policy that output one action given a state, contrary to stochastic policy that output a probability distribution over actions).
 
 And consequently, **we don't define by hand the behavior of our policy; it's the training that will define it.**
 
@@ -35,8 +35,8 @@ Consequently, whatever method you use to solve your problem, **you will have a 
 
 So the difference is:
 
-- In policy-based, **the optimal policy is found by training the policy directly.**
-- In value-based, **finding an optimal value function leads to having an optimal policy.**
+- In policy-based, **the optimal policy (denoted π*) is found by training the policy directly.**
+- In value-based, **finding an optimal value function (denoted Q* or V*, we'll study the difference after) in our leads to having an optimal policy.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link between value and policy"/>
 
@@ -45,7 +45,7 @@ In fact, most of the time, in value-based methods, you'll use **an Epsilon-Gree
 
 So, we have two types of value-based functions:
 
-## The State-Value function [[state-value-function]]
+## The state-value function [[state-value-function]]
 
 We write the state value function under a policy π like this:
 
@@ -58,11 +58,11 @@ For each state, the state-value function outputs the expected return if the agen
   <figcaption>If we take the state with value -7: it's the expected return starting at that state and taking actions according to our policy (greedy policy), so right, right, right, down, down, right, right.</figcaption>
 </figure>
 
-## The Action-Value function [[action-value-function]]
+## The action-value function [[action-value-function]]
 
-In the Action-value function, for each state and action pair, the action-value function **outputs the expected return** if the agent starts in that state and takes action, and then follows the policy forever after.
+In the action-value function, for each state and action pair, the action-value function **outputs the expected return** if the agent starts in that state and takes action, and then follows the policy forever after.
 
-The value of taking action an in state s under a policy π is:
+The value of taking action an in state \\(s\\) under a policy \\(π\\) is:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/action-state-value-function-1.jpg" alt="Action State value function"/>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/action-state-value-function-2.jpg" alt="Action State value function"/>
@@ -83,4 +83,4 @@ In either case, whatever value function we choose (state-value or action-value f
 
 However, the problem is that it implies that **to calculate EACH value of a state or a state-action pair, we need to sum all the rewards an agent can get if it starts at that state.**
 
-This can be a tedious process, and that's **where the Bellman equation comes to help us.**
+This can be a computationally expensive process, and that's **where the Bellman equation comes to help us.**
