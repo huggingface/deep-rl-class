@@ -56,7 +56,7 @@
     title: The Bellman Equation, simplify our value estimation
   - local: unit2/mc-vs-td
     title: Monte Carlo vs Temporal Difference Learning
-  - local: unit2/summary1
+  - local: unit2/mid-way-recap
     title: Mid-way Recap
   - local: unit2/quiz1
     title: Mid-way Quiz
@@ -64,7 +64,7 @@
     title: Introducing Q-Learning
   - local: unit2/q-learning-example
     title: A Q-Learning example
-  - local: unit2/summary2
+  - local: unit2/q-learning-recap
     title: Q-Learning Recap
   - local: unit2/hands-on
     title: Hands-on
