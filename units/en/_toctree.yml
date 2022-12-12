@@ -46,3 +46,33 @@
     title: Play with Huggy
   - local: unitbonus1/conclusion
     title: Conclusion
+- title: Unit 2. Introduction to Q-Learning
+  sections:
+  - local: unit2/introduction
+    title: Introduction
+  - local: unit2/what-is-rl
+    title: What is RL? A short recap
+  - local: unit2/two-types-value-based-methods
+    title: The two types of value-based methods
+  - local: unit2/bellman-equation
+    title: The Bellman Equation, simplify our value estimation
+  - local: unit2/mc-vs-td
+    title: Monte Carlo vs Temporal Difference Learning
+  - local: unit2/mid-way-recap
+    title: Mid-way Recap
+  - local: unit2/mid-way-quiz
+    title: Mid-way Quiz
+  - local: unit2/q-learning
+    title: Introducing Q-Learning
+  - local: unit2/q-learning-example
+    title: A Q-Learning example
+  - local: unit2/q-learning-recap
+    title: Q-Learning Recap
+  - local: unit2/hands-on
+    title: Hands-on
+  - local: unit2/quiz2
+    title: Q-Learning Quiz
+  - local: unit2/conclusion
+    title: Conclusion
+  - local: unit2/additional-readings
+    title: Additional Readings
