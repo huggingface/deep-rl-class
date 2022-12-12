@@ -614,8 +614,6 @@ def push_to_hub(repo_id, model, env, video_fps=1, local_repo_path="hub"):
         if env.spec.kwargs.get("is_slippery", "") == False:
             model["slippery"] = False
 
-    print(model)
-
     # Pickle the model
     with open((repo_local_path) / "q-learning.pkl", "wb") as f:
         pickle.dump(model, f)
@@ -632,7 +630,8 @@ def push_to_hub(repo_id, model, env, video_fps=1, local_repo_path="hub"):
         "eval_datetime": datetime.datetime.now().isoformat(),
     }
 
-    # Write a JSON file
+    # Write a JSON file called "results.json" that will contain the
+    # evaluation results
     with open(repo_local_path / "results.json", "w") as outfile:
         json.dump(evaluate_data, outfile)
 
@@ -687,7 +686,6 @@ def push_to_hub(repo_id, model, env, video_fps=1, local_repo_path="hub"):
             readme = f.read()
     else:
         readme = model_card
-    print(readme)
 
     with readme_path.open("w", encoding="utf-8") as f:
         f.write(readme)
