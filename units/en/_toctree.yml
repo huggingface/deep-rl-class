@@ -58,7 +58,7 @@
     title: Monte Carlo vs Temporal Difference Learning
   - local: unit2/mid-way-recap
     title: Mid-way Recap
-  - local: unit2/quiz1
+  - local: unit2/mid-way-quiz
     title: Mid-way Quiz
   - local: unit2/q-learning
     title: Introducing Q-Learning
@@ -69,7 +69,7 @@
   - local: unit2/hands-on
     title: Hands-on
   - local: unit2/quiz2
-    title: Second Quiz
+    title: Q-Learning Quiz
   - local: unit2/conclusion
     title: Conclusion
   - local: unit2/additional-readings

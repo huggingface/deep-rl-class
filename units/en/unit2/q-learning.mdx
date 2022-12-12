@@ -17,6 +17,7 @@ Q-Learning is an **off-policy value-based method that uses a TD approach to tra
 The **Q comes from "the Quality" (the value) of that action at that state.**
 
 Let's recap the difference between value and reward:
+
 - The *value of a state*, or a *state-action pair* is the expected cumulative reward our agent gets if it starts at this state (or state action pair) and then acts accordingly to its policy.
 - The *reward* is the **feedback I get from the environment** after performing an action at a state.
 
@@ -42,7 +43,7 @@ Therefore, Q-function contains a Q-table **that has the value of each-state act
 
 If we recap, *Q-Learning* **is the RL algorithm that:**
 
-- Trains a *Q-Function* (an **action-value function**), which internally is a *Q-table that contains all the state-action pair values.**
+- Trains a *Q-Function* (an **action-value function**), which internally is a **Q-table that contains all the state-action pair values.**
 - Given a state and action, our Q-Function **will search into its Q-table the corresponding value.**
 - When the training is done, **we have an optimal Q-function, which means we have optimal Q-Table.**
 - And if we **have an optimal Q-function**, we **have an optimal policy** since we **know for each state what is the best action to take.**

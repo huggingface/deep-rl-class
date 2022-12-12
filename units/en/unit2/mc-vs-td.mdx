@@ -30,6 +30,8 @@ If we take an example:
 - We terminate the episode if the cat eats the mouse or if the mouse moves > 10 steps.
 
 - At the end of the episode, **we have a list of State, Actions, Rewards, and Next States tuples**
+For instance [[State tile 3 bottom, Go Left, +1, State tile 2 bottom], [State tile 2 bottom, Go Left, +0, State tile 1 bottom]...]
+
 - **The agent will sum the total rewards \\(G_t\\)** (to see how well it did).
 - It will then **update \\(V(s_t)\\) based on the formula**
 
