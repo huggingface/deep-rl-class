@@ -8,3 +8,4 @@ pyyaml==6.0
 imageio
 imageio_ffmpeg
 pyglet==1.5.1
+tqdm
