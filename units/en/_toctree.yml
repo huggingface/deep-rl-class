@@ -76,3 +76,7 @@
     title: Conclusion
   - local: unit2/additional-readings
     title: Additional Readings
+- title: What's next? New Units Publishing Schedule
+  sections:
+  - local: communication/publishing-schedule
+    title: Publishing Schedule
