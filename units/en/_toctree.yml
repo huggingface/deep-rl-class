@@ -76,3 +76,9 @@
     title: Conclusion
   - local: unit2/additional-readings
     title: Additional Readings
+- title: Unit 4. Introduction to ML-Agents
+  sections:
+  - local: unit4/introduction
+    title: Introduction
+  - local: unit4/how-mlagents-works
+    title: How ML-Agents works?
