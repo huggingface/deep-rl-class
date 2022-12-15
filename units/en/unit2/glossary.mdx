@@ -1,0 +1,11 @@
+# Glossary
+
+### Strategies to find the optimal policy
+
+- **Policy-based methods.** The policy is usually trained with a neural network to select what action to take given a state. In this case is the neural network which outputs the action that the agent should take instead of using a value function. Depending on the experience received by the environment, the neural network will be re-adjusted and will provide better actions.
+- **Value-based methods.** In this case, a value function is trained to output the value of a state or a state-action pair that will represent our policy. However, this value doesn't define what action the agent should take. In contrast, we need to specify the behavior of the agent given the output of the value function. For example, we could decide to adopt a policy to take the action that always leads to the biggest reward (Greedy Policy). In summary, the policy is a Greedy Policy (or whatever decision the user takes) that uses the values of the value-function to decide the actions to take.
+
+### Among the value-based methods, we can find two main strategies
+
+- **The state-value function.** For each state, the state-value function is the expected return if the agent starts in that state and follows the policy until the end.
+- **The action-value function.** In contrast to the state-value function, the action-value calculates for each state and action pair the expected return if the agent starts in that state and takes an action. Then it follows the policy forever after.
