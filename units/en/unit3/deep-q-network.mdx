@@ -11,7 +11,7 @@ When the Neural Network is initialized, **the Q-value estimation is terrible**. 
 
 We mentioned that we preprocess the input. It’s an essential step since we want to **reduce the complexity of our state to reduce the computation time needed for training**.
 
-So what we do is **reduce the state space to 84x84 and grayscale it** (since the colors in Atari environments don't add important information).
+To achieve this, we **reduce the state space to 84x84 and grayscale it**. We can do this since the colors in Atari environments don't add important information.
 This is an essential saving since we **reduce our three color channels (RGB) to 1**.
 
 We can also **crop a part of the screen in some games** if it does not contain important information.

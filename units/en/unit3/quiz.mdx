@@ -2,17 +2,17 @@
 
 The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
 
-### Q1: What are tabular methods?
+### Q1: We mentioned Q Learning is a tabular method. What are tabular methods?
 
 <details>
 <summary>Solution</summary>
 
-*Tabular methods* are a type of problems in which the state and actions spaces are small enough to approximate value functions to be **represented as arrays and tables**. For instance, **Q-Learning is a tabular method** since we use a table to represent the state,action value pairs.
+*Tabular methods* is a type of problem in which the state and actions spaces are small enough to approximate value functions to be **represented as arrays and tables**. For instance, **Q-Learning is a tabular method** since we use a table to represent the state, and action value pairs.
 
 
 </details>
 
-### Q2: Why we can't use a classical Q-Learning to solve an Atari Game?
+### Q2: Why can't we use a classical Q-Learning to solve an Atari Game?
 
 <Question
 	choices={[
@@ -34,7 +34,7 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 <details>
 <summary>Solution</summary>
 
-We stack frames together because it helps us **handle the problem of temporal limitation**. Since one frame is not enough to capture temporal information.
+We stack frames together because it helps us **handle the problem of temporal limitation**: one frame is not enough to capture temporal information.
 For instance, in pong, our agent **will be unable to know the ball direction if it gets only one frame**.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation.jpg" alt="Temporal limitation"/>
