@@ -6,7 +6,7 @@ The difference is that, during the training phase, instead of updating the Q-val
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-5.jpg" alt="Q Loss"/>
 
-in Deep Q-Learning, we create a **loss function that compares our Q-value prediction and the Q-target and uses Gradient Descent to update the weights of our Deep Q-Network to approximate our Q-values better**.
+in Deep Q-Learning, we create a **loss function that compares our Q-value prediction and the Q-target and uses gradient descent to update the weights of our Deep Q-Network to approximate our Q-values better**.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
 
@@ -35,7 +35,7 @@ Experience Replay in Deep Q-Learning has two functions:
 1. **Make more efficient use of the experiences during the training**.
 Usually, in online reinforcement learning, the agent interacts in the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient
 
-Experience replay helps **using the experiences of the training more efficiently**. We use a replay buffer that saves experience samples **that we can reuse during the training.** 
+Experience replay helps **using the experiences of the training more efficiently**. We use a replay buffer that saves experience samples **that we can reuse during the training.**
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay.jpg" alt="Experience Replay"/>
 
 ⇒ This allows the agent to **learn from the same experiences multiple times**.
@@ -59,9 +59,9 @@ But we **don’t have any idea of the real TD target**. We need to estimate it
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
 
-However, the problem is that we are using the same parameters (weights) for estimating the TD target **and** the Q value. Consequently, there is a significant correlation between the TD target and the parameters we are changing.
+However, the problem is that we are using the same parameters (weights) for estimating the TD target **and** the Q-value. Consequently, there is a significant correlation between the TD target and the parameters we are changing.
 
-Therefore, it means that at every step of training, **our Q values shift but also the target value shifts.** We’re getting closer to our target, but the target is also moving. It’s like chasing a moving target! This can lead to a significant oscillation in training.
+Therefore, it means that at every step of training, **our Q-values shift but also the target value shifts.** We’re getting closer to our target, but the target is also moving. It’s like chasing a moving target! This can lead to a significant oscillation in training.
 
 It’s like if you were a cowboy (the Q estimation) and you want to catch the cow (the Q-target). Your goal is to get closer (reduce the error).
 
@@ -88,16 +88,18 @@ Double DQNs, or Double Learning, were introduced [by Hado van Hasselt](https://
 
 To understand this problem, remember how we calculate the TD Target:
 
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="TD target"/>
+
 We face a simple problem by calculating the TD target: how are we sure that **the best action for the next state is the action with the highest Q-value?**
 
-We know that the accuracy of Q values depends on what action we tried **and** what neighboring states we explored.
+We know that the accuracy of Q-values depends on what action we tried **and** what neighboring states we explored.
 
-Consequently, we don’t have enough information about the best action to take at the beginning of the training. Therefore, taking the maximum Q value (which is noisy) as the best action to take can lead to false positives. If non-optimal actions are regularly **given a higher Q value than the optimal best action, the learning will be complicated.**
+Consequently, we don’t have enough information about the best action to take at the beginning of the training. Therefore, taking the maximum Q-value (which is noisy) as the best action to take can lead to false positives. If non-optimal actions are regularly **given a higher Q value than the optimal best action, the learning will be complicated.**
 
-The solution is: when we compute the Q target, we use two networks to decouple the action selection from the target Q value generation. We:
-- Use our **DQN network** to select the best action to take for the next state (the action with the highest Q value).
-- Use our **Target network** to calculate the target Q value of taking that action at the next state.
+The solution is: when we compute the Q target, we use two networks to decouple the action selection from the target Q-value generation. We:
+- Use our **DQN network** to select the best action to take for the next state (the action with the highest Q-value).
+- Use our **Target network** to calculate the target Q-value of taking that action at the next state.
 
-Therefore, Double DQN helps us reduce the overestimation of q values and, as a consequence, helps us train faster and have more stable learning.
+Therefore, Double DQN helps us reduce the overestimation of Q-values and, as a consequence, helps us train faster and have more stable learning.
 
 Since these three improvements in Deep Q-Learning, many have been added such as Prioritized Experience Replay, Dueling Deep Q-Learning. They’re out of the scope of this course but if you’re interested, check the links we put in the reading list.
