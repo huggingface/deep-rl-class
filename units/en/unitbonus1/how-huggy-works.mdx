@@ -5,13 +5,14 @@ This environment was created using the [Unity game engine](https://unity.com/) a
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%">
 
-In this environment we aim to train Huggy to **fetch the stick we throw at him. It means he needs to move correctly toward the stick**.
+In this environment we aim to train Huggy to **fetch the stick we throw. It means he needs to move correctly toward the stick**.
 
 ## The State Space, what Huggy perceives. [[state-space]]
 Huggy doesn't "see" his environment. Instead, we provide him information about the environment:
-* The target (stick) position
-* The relative position between himself and the target
-* The orientation of his legs.
+
+- The target (stick) position
+- The relative position between himself and the target
+- The orientation of his legs.
 
 Given all this information, Huggy can **use his policy to determine which action to take next to fulfill his goal**.
 
