@@ -80,7 +80,7 @@ We need to initialize the Q-table for each state-action pair. **Most of the tim
 
 Epsilon greedy strategy is a policy that handles the exploration/exploitation trade-off.
 
-The idea is that we define epsilon ɛ = 1.0:
+The idea is that we define epsilon ɛ ≤ 1.0:
 
 - *With probability 1 — ɛ* : we do **exploitation** (aka our agent selects the action with the highest state-action pair value).
 - With probability ɛ: **we do exploration** (trying random action).
