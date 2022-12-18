@@ -10,7 +10,7 @@ The value of a state is the **expected discounted return** the agent can get i
 But what does it mean to act according to our policy? After all, we don't have a policy in value-based methods since we train a value function and not a policy.
 </Tip>
 
-Remember that the goal of an **RL agent is to have an optimal policy π.**
+Remember that the goal of an **RL agent is to have an optimal policy π\*.**
 
 To find the optimal policy, we learned about two different methods:
 
@@ -35,8 +35,8 @@ Consequently, whatever method you use to solve your problem, **you will have a 
 
 So the difference is:
 
-- In policy-based, **the optimal policy (denoted π*) is found by training the policy directly.**
-- In value-based, **finding an optimal value function (denoted Q* or V*, we'll study the difference after) in our leads to having an optimal policy.**
+- In policy-based, **the optimal policy (denoted π\*) is found by training the policy directly.**
+- In value-based, **finding an optimal value function (denoted Q\* or V\*, we'll study the difference after) in our leads to having an optimal policy.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link between value and policy"/>
 

@@ -25,11 +25,11 @@ The reward function goes like this:
 
 To train our agent to have an optimal policy (so a policy that goes right, right, down), **we will use the Q-Learning algorithm**.
 
-## Step 1: We initialize the Q-Table [[step1]]
+## Step 1: We initialize the Q-table [[step1]]
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Example-1.jpg" alt="Maze-Example"/>
 
-So, for now, **our Q-Table is useless**; we need **to train our Q-function using the Q-Learning algorithm.**
+So, for now, **our Q-table is useless**; we need **to train our Q-function using the Q-Learning algorithm.**
 
 Let's do it for 2 training timesteps:
 
@@ -80,4 +80,4 @@ Because I go to the poison state, **I get \\(R_{t+1} = -10\\), and I die.**
 
 Because we're dead, we start a new episode. But what we see here is that **with two explorations steps, my agent became smarter.**
 
-As we continue exploring and exploiting the environment and updating Q-values using TD target, **Q-Table will give us better and better approximations. And thus, at the end of the training, we'll get an estimate of the optimal Q-Function.**
+As we continue exploring and exploiting the environment and updating Q-values using TD target, **Q-table will give us better and better approximations. And thus, at the end of the training, we'll get an estimate of the optimal Q-function.**
