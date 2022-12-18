@@ -68,14 +68,14 @@ Before diving into the notebook, you need to:
 
 ```bash
 # Clone this specific repository (can take 3min)
-git clone https://github.com/huggingface/ml-agents/
+!git clone https://github.com/huggingface/ml-agents/
 ```
 
 ```bash
 # Go inside the repository and install the package (can take 3min)
 %cd ml-agents
-pip3 install -e ./ml-agents-envs
-pip3 install -e ./ml-agents
+!pip3 install -e ./ml-agents-envs
+!pip3 install -e ./ml-agents
 ```
 
 ## Download and move the environment zip file in `./trained-envs-executables/linux/`
@@ -84,25 +84,25 @@ pip3 install -e ./ml-agents
 - We need to download it and place it to `./trained-envs-executables/linux/`
 
 ```bash
-mkdir ./trained-envs-executables
-mkdir ./trained-envs-executables/linux
+!mkdir ./trained-envs-executables
+!mkdir ./trained-envs-executables/linux
 ```
 
 ```bash
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
+!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
 ```
 
 Download the file Huggy.zip from https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF using `wget`. Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
 
 ```bash
 %%capture
-unzip -d ./trained-envs-executables/linux/ ./trained-envs-executables/linux/Huggy.zip
+!unzip -d ./trained-envs-executables/linux/ ./trained-envs-executables/linux/Huggy.zip
 ```
 
 Make sure your file is accessible
 
 ```bash
-chmod -R 755 ./trained-envs-executables/linux/Huggy
+!chmod -R 755 ./trained-envs-executables/linux/Huggy
 ```
 
 ## Let's recap how this environment works
@@ -175,7 +175,7 @@ Train the model and use the `--resume` flag to continue training in case of inte
 The training will take 30 to 45min depending on your machine (don't forget to **set up a GPU**), go take a ☕️you deserve it 🤗.
 
 ```bash
-mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
+!mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
 ```
 
 ## Push the agent to the 🤗 Hub
@@ -215,7 +215,7 @@ If the repo does not exist **it will be created automatically**
 4. `--commit-message`: since HF repos are git repository you need to define a commit message.
 
 ```bash
-mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --repo-id="ThomasSimonini/ppo-Huggy" --commit-message="Huggy"
+!mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --repo-id="ThomasSimonini/ppo-Huggy" --commit-message="Huggy"
 ```
 
 Else, if everything worked you should have this at the end of the process(but with a different url 😆) :
