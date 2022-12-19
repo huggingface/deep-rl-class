@@ -1,0 +1,104 @@
+# Quiz [[quiz]]
+
+The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
+
+### Q1: We mentioned Q Learning is a tabular method. What are tabular methods?
+
+<details>
+<summary>Solution</summary>
+
+*Tabular methods* is a type of problem in which the state and actions spaces are small enough to approximate value functions to be **represented as arrays and tables**. For instance, **Q-Learning is a tabular method** since we use a table to represent the state, and action value pairs.
+
+
+</details>
+
+### Q2: Why can't we use a classical Q-Learning to solve an Atari Game?
+
+<Question
+	choices={[
+		{
+			text: "Atari environments are too fast for Q-Learning",
+			explain: ""
+		},
+		{
+			text: "Atari environments have a big observation space. So creating an updating the Q-Table would not be efficient",
+			explain: "",
+      correct: true
+		}
+	]}
+/>
+
+
+### Q3: Why do we stack four frames together when we use frames as input in Deep Q-Learning?
+
+<details>
+<summary>Solution</summary>
+
+We stack frames together because it helps us **handle the problem of temporal limitation**: one frame is not enough to capture temporal information.
+For instance, in pong, our agent **will be unable to know the ball direction if it gets only one frame**.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation.jpg" alt="Temporal limitation"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation-2.jpg" alt="Temporal limitation"/>
+
+
+</details>
+
+
+### Q4: What are the two phases of Deep Q-Learning?
+
+<Question
+	choices={[
+		{
+			text: "Sampling",
+			explain: "We perform actions and store the observed experiences tuples in a replay memory.",
+      correct: true,
+		},
+		{
+			text: "Shuffling",
+			explain: "",
+		},
+    {
+      text: "Reranking",
+      explain: "",
+    },
+    {
+			text: "Training",
+			explain: "We select the small batch of tuple randomly and learn from it using a gradient descent update step.",
+      correct: true,
+		}
+	]}
+/>
+
+### Q5: Why do we create a replay memory in Deep Q-Learning?
+
+<details>
+   <summary>Solution</summary>
+
+**1. Make more efficient use of the experiences during the training**
+
+Usually, in online reinforcement learning, the agent interacts in the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient
+But with experience replay, **we create a replay buffer that saves experience samples that we can reuse during the training**.
+
+**2. Avoid forgetting previous experiences and reduce the correlation between experiences**
+
+  The problem we get if we give sequential samples of experiences to our neural network is that it **tends to forget the previous experiences as it overwrites new experiences**. For instance, if we are in the first level and then the second, which is different, our agent can forget how to behave and play in the first level.
+
+
+</details>
+
+### Q6: How do we use Double Deep Q-Learning?
+
+
+<details>
+  <summary>Solution</summary>
+
+  When we compute the Q target, we use two networks to decouple the action selection from the target Q value generation. We:
+
+  - Use our *DQN network* to **select the best action to take for the next state** (the action with the highest Q value).
+
+  - Use our *Target network* to calculate **the target Q value of taking that action at the next state**.
+
+</details>
+
+
+Congrats on finishing this Quiz 🥳, if you missed some elements, take time to read again the chapter to reinforce (😏) your knowledge.
