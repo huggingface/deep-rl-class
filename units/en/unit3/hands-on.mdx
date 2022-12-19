@@ -122,19 +122,12 @@ git clone https://github.com/DLR-RM/rl-baselines3-zoo
 ## Install dependencies 🔽
 We can now install the dependencies RL-Baselines3 Zoo needs (this can take 5min ⏲)
 
-But we'll also install:
-- `huggingface_sb3`: Additional code for Stable-baselines3 to load and upload models from the Hugging Face 🤗 Hub.
-
 ```bash
 cd /content/rl-baselines3-zoo/
 ```
 
 ```bash
 pip install -r requirements.txt
-```
-
-```bash
-pip install huggingface_sb3
 ```
 
 ## Train our Deep Q-Learning Agent to Play Space Invaders 👾
@@ -175,7 +168,7 @@ python train.py --algo dqn  --env SpaceInvadersNoFrameskip-v4 -f logs/
 ```
 
 ## Let's evaluate our agent 👀
-- RL-Baselines3-Zoo provides `enjoy.py` to evaluate our agent.
+- RL-Baselines3-Zoo provides `enjoy.py`, a python script to evaluate our agent. In most RL libraries, we call the evaluation script `enjoy.py`.
 - Let's evaluate it for 5000 timesteps 🔥
 
 ```bash
@@ -199,7 +192,7 @@ This way:
 - You can **showcase our work** 🔥
 - You can **visualize your agent playing** 👀
 - You can **share with the community an agent that others can use** 💾
-- You can **access a leaderboard 🏆 to see how well your agent is performing compared to your classmates** 👉  https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
+- You can **access a leaderboard 🏆 to see how well your agent is performing compared to your classmates** 👉  https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 To be able to share your model with the community, there are three more steps to follow:
 
@@ -293,7 +286,7 @@ But finding hyperparameters can be a daunting task. Fortunately, we'll see in th
 
 The best way to learn **is to try things by your own**!
 
-In the [Leaderboard](https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
+In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
 Here's a list of environments you can try to train your agent with:
 - BeamRiderNoFrameskip-v4
