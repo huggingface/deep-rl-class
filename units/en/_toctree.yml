@@ -68,6 +68,8 @@
     title: A Q-Learning example
   - local: unit2/q-learning-recap
     title: Q-Learning Recap
+  - local: unit2/glossary
+    title: Glossary
   - local: unit2/hands-on
     title: Hands-on
   - local: unit2/quiz2
@@ -76,7 +78,34 @@
     title: Conclusion
   - local: unit2/additional-readings
     title: Additional Readings
+- title: Unit 3. Deep Q-Learning with Atari Games
+  sections:
+  - local: unit3/introduction
+    title: Introduction
+  - local: unit3/from-q-to-dqn
+    title: From Q-Learning to Deep Q-Learning
+  - local: unit3/deep-q-network
+    title: The Deep Q-Network (DQN)
+  - local: unit3/deep-q-algorithm
+    title: The Deep Q Algorithm
+  - local: unit3/hands-on
+    title: Hands-on
+  - local: unit3/quiz
+    title: Quiz
+  - local: unit3/conclusion
+    title: Conclusion
+  - local: unit3/additional-readings
+    title: Additional Readings
+- title: Unit Bonus 2. Automatic Hyperparameter Tuning with Optuna
+  sections:
+  - local: unitbonus2/introduction
+    title: Introduction
+  - local: unitbonus2/optuna
+    title: Optuna
+  - local: unitbonus2/hands-on
+    title: Hands-on
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
     title: Publishing Schedule
+
