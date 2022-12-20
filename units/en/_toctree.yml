@@ -68,6 +68,8 @@
     title: A Q-Learning example
   - local: unit2/q-learning-recap
     title: Q-Learning Recap
+  - local: unit2/glossary
+    title: Glossary
   - local: unit2/hands-on
     title: Hands-on
   - local: unit2/quiz2
