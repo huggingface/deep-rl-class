@@ -96,13 +96,13 @@
     title: Conclusion
   - local: unit3/additional-readings
     title: Additional Readings
-- title: Unit Bonus 2. Automatic Hyperparameter Tuning with Optuna
+- title: Bonus Unit 3. Automatic Hyperparameter Tuning with Optuna
   sections:
-  - local: unitbonus2/introduction
+  - local: unitbonus3/introduction
     title: Introduction
-  - local: unitbonus2/optuna
+  - local: unitbonus3/optuna
     title: Optuna
-  - local: unitbonus2/hands-on
+  - local: unitbonus3/hands-on
     title: Hands-on
 - title: What's next? New Units Publishing Schedule
   sections:
