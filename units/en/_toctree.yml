@@ -88,6 +88,8 @@
     title: The Deep Q-Network (DQN)
   - local: unit3/deep-q-algorithm
     title: The Deep Q Algorithm
+  - local: unit3/glossary
+    title: Glossary
   - local: unit3/hands-on
     title: Hands-on
   - local: unit3/quiz
