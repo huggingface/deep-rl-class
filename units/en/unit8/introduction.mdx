@@ -1,0 +1,22 @@
+# Introduction [[introduction]]
+
+In the last Unit, we learned about Advantage Actor Critic (A2C), a hybrid architecture combining value-based and policy-based methods that help to stabilize the training by reducing the variance with:
+
+- *An Actor* that controls **how our agent behaves** (policy-based method).
+- *A Critic* that measures **how good the action taken is** (value-based method).
+
+Today we'll learn about Proximal Policy Optimization (PPO), an architecture that **improves our agent's training stability by avoiding too large policy updates**. To do that, we use a ratio that indicates the difference between our current and old policy and clip this ratio from a specific range \\( [1 - \epsilon, 1 + \epsilon] \\) .
+
+Doing this will ensure **that our policy update will not be too large and that the training is more stable.**
+
+This Unit is in two parts:
+- In this first part, you'll learn the theory behind PPO and use [CleanRL](https://github.com/vwxyzjn/cleanrl) to train your agent on TODO ADD
+- In the second part, we'll get deeper into PPO optimization by using [Sample-Factory](https://samplefactory.dev/).
+
+TODO ADD IMAGE TWO PARTS
+
+And then, after the theory, we'll train a PPO agent using . TODO ADD
+
+TODO: ADD ENVIRONMENTS
+
+Sounds exciting? Let's get started! 🚀
