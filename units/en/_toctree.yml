@@ -46,6 +46,10 @@
     title: Play with Huggy
   - local: unitbonus1/conclusion
     title: Conclusion
+- title: Live 1. How the course work, Q&A, and playing with Huggy
+  sections:
+  - local: live1/live1
+    title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
 - title: Unit 2. Introduction to Q-Learning
   sections:
   - local: unit2/introduction
@@ -96,7 +100,7 @@
     title: Conclusion
   - local: unit3/additional-readings
     title: Additional Readings
-- title: Unit Bonus 2. Automatic Hyperparameter Tuning with Optuna
+- title: Bonus Unit 2. Automatic Hyperparameter Tuning with Optuna
   sections:
   - local: unitbonus2/introduction
     title: Introduction
