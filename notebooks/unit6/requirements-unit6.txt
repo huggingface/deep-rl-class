@@ -1,5 +1,5 @@
 gymnasium
-panda_gym==2.0.0
 stable-baselines3[extra]
 huggingface_sb3
+panda_gym==2.0.0
 pyglet==1.5.1
