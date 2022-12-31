@@ -48,7 +48,7 @@
     title: Conclusion
 - title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
   sections:
-  - local: live1/live1.mdx
+  - local: live1/live1
     title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
 - title: Unit 2. Introduction to Q-Learning
   sections:
