@@ -1,0 +1,26 @@
+# An Introduction to Unity ML-Agents [[introduction-to-ml-agents]]
+
+One of the critical element in Reinforcement Learning is **to be able to create environments**. An interesting tool to use for that is game engines such as Godot, Unity or Unreal Engine.
+
+One of them, [Unity](https://unity.com/), created the [Unity ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents) , a plugin based on the game engine Unity that allows us **to use the Unity Game Engine as an environment builder to train agents**.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/example-envs.png" alt="MLAgents environments"/>
+<figcaption>Source: <a href="https://github.com/Unity-Technologies/ml-agents">ML-Agents documentation</figcaption>
+</figure>
+
+From playing football (soccer), learning to walk and jumping big walls, Unity ML-Agents Toolkit provides a ton of exceptional pre-made environments.
+
+In this Unit, we're going to learn to use ML-Agents, but **don't worry if you don't know how to use the Unity Game Engine**, you'll don't need to use.
+
+And so, today, we're going to train two agents:
+- The first one will learn to **shoot snowballs onto spawning target**.
+- The second needs to **press a button to spawn a pyramid, then navigate to the pyramid, knock it over, and move to the gold brick at the top**. To do that, it will need to explore its environment, and we will use a technique called curiosity.
+
+TODO: Add illustration environments
+
+Then, after training we’ll push the trained agents to the Hugging Face Hub and you’ll be able to visualize it playing directly on your browser without having to use the Unity Editor. You’ll be also be able to visualize and download others trained agents from the community.
+
+Doing this Unit will prepare you for the next challenge where you will train agent in multi-agents environments and compete against your classmates' agents.
+
+Sounds exciting? Let's get started,

@@ -1,0 +1,29 @@
+# The Shoot Target Environment
+
+## The Agent's Goal
+The first agent you're going to train is Julien the bear (the name is based after our [CTO Julien Chaumond](https://twitter.com/julien_c)) to shoot targets with snowballs.
+
+The goal in this environment is that Julien the bear shoot the maximum of targets that spawned, in the limited time. To do that, he will need to move correctly towards the target and shoot.
+Given he needs to wait 2 second after launching a snowball, he needs to learn to shoot correctly.
+
+TODO ADD GIF
+
+## The reward function
+
+TODO ADD IMAGE REWARD
+
+## The observation space
+
+In terms of observations, we don’t use normal vision (frame), but we use TOOD ADD raycasts that can each detect objects (target, walls)
+
+Think of raycasts as lasers that will detect if it passes through an object.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/raycasts.png" alt="Raycasts"/>
+<figcaption>Source: <a href="https://github.com/Unity-Technologies/ml-agents">ML-Agents documentation</a></figcaption>
+</figure>
+
+## The action space
+
+The action space is discrete with TODO ADD
+IMAGE

@@ -76,9 +76,21 @@
     title: Conclusion
   - local: unit2/additional-readings
     title: Additional Readings
-- title: Unit 4. Introduction to ML-Agents
+- title: Unit 5. Introduction to ML-Agents
   sections:
-  - local: unit4/introduction
+  - local: unit5/introduction
     title: Introduction
-  - local: unit4/how-mlagents-works
+  - local: unit5/how-mlagents-works
     title: How ML-Agents works?
+  - local: unit5/shoot-target-env
+    title: The Shoot Target environment
+  - local: unit5/pyramids
+    title: The Pyramids environment
+  - local: unit5/curiosity
+    title: (Optional) What is curiosity in Deep Reinforcement Learning?
+  - local: unit5/hands-on
+    title: Hands-on
+  - local: unit5/conclusion
+    title: Conclusion
+  - local: unit5/bonus
+    title: Bonus. Learn to create your own environments with Unity and MLAgents
