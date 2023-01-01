@@ -110,8 +110,18 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
+- title: Unit 4. Policy Gradient with Robotics
+  sections:
+  - local: unit4/introduction
+    title: Introduction
+  - local: unit4/what-are-policy-based-methods
+    title: What are the Policy Based methods?
+  - local: unit4/advantages-disadvantages
+    title: The advantages and disadvantages of Policy-based methods
+  - local: unit4/policy-gradient
+    title: Diving deeper into Policy-gradient methods
+
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
     title: Publishing Schedule
-

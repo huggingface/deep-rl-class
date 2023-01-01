@@ -1,0 +1,109 @@
+# Diving deeper into Policy-gradient methods
+
+## Getting the big picture
+
+We just learned that the goal of Policy-gradient methods is to find parameters //(/theta //) that maximize the expected return.
+
+The idea is that we have a parameterized stochastic policy. In our case, a neural network that output a probability distribution over actions. The probability of taking each action is also called action preference.
+
+If we take the example of CartPole-v1:
+- As input, we have a state.
+- As output, we have a probability distribution over actions at that state.
+
+TODO: IMAGE NEURAL NETWORK CARTPOLE
+
+
+Our goal with Policy-Gradients is to control the probability distribution of actions by tuning the policy such that **good actions (that maximize the return) are sampled more frequently in the future.**
+Each time the agent interacts with the environment, we tweak the parameters such that good actions will be sampled more likely in the future.
+
+But how we're going to optimize the weights using the expected return?
+
+The idea, is that we're going to let the agent interact during an episode. And if we win the episode, we consider that each action taken were good and must be more sampled in the future
+since they lead to win.
+
+So for each state, action pair, we want to increase the //(P(a|s)//): probability of taking that action at that state. Or decrease if we lost.
+
+TODO: IMAGE
+Collect an episode
+Change the weights of the policy network
+
+  If Good return: increase the P(a|s) each state action combination taken
+  If Bad: decrease the P(a|s)
+
+  The Policy Gradient algorithm (simplified) looks like this:
+  <figure class="image table text-center m-0 w-full">
+    <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg_bigpicture.jpg" alt="Policy Gradient Big Picture"/>
+  </figure>
+
+
+## Diving deeper into Policy-gradient
+
+We have our policy \\(\pi\\) which has a parameter \\(\theta\\). This \\(\pi\\), given a state, **outputs a probability distribution of actions**.
+
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy.jpg" alt="Policy"/>
+</figure>
+
+Where \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action at from state st, given our policy.
+
+**But how do we know if our policy is good?** We need to have a way to measure it. To know that we define a score/objective function called \\(J(\theta)\\).
+
+### The Objective Function
+
+The Objective function gives us the **performance of the agent** given a trajectory, it outputs the *expected cumulative reward*.
+
+TODO: Illustration Expected reward
+
+Our objective then is to maximize the expected cumulative rewards by finding \\(\theta \\) that will output the best action probability distributions.
+
+
+
+
+
+
+## Gradient Ascent
+Since we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
+
+Our update step for gradient-ascent is:
+\\ \theta \leftarrow \theta + \alpha *  \nabla_\theta U(\theta) \\)
+
+But to
+
+
+
+
+The score function J is the expected return:
+  <figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/objective.jpg" alt="Return"/>
+</figure>
+
+Remember that policy gradient can be seen as an optimization problem. So we must find the best parameters (θ) to maximize the score function, J(θ).
+
+To do that we’re going to use the [Policy Gradient Theorem](https://www.youtube.com/watch?v=AKbX1Zvo7r8). I’m not going to dive on the mathematical details but if you’re interested check [this video](https://www.youtube.com/watch?v=AKbX1Zvo7r8)
+
+The Reinforce algorithm works like this:
+Loop:
+- Use the policy \\(\pi_\theta\\)  to collect an episode \\(\tau\\)
+- Use the episode to estimate the gradient \\(\hat{g} = \nabla_\theta J(\theta)\\)
+
+ <figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg.jpg" alt="Policy Gradient"/>
+</figure>
+
+- Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
+
+The interpretation we can make is this one:
+- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action at from state st.
+=> This tells use **how we should change the weights of policy** if we want to increase/decrease the log probability of selecting action at at state st.
+- \\(R(\tau)\\): is the scoring function:
+  - If the return is high, it will push up the probabilities of the (state, action) combinations.
+  - Else, if the return is low, it will push down the probabilities of the (state, action) combinations.
+
+
+
+
+## The Policy Gradient Theorem
+
+
+
+##
