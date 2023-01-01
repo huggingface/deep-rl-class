@@ -25,14 +25,14 @@ With Unity ML-Agents, you have four essential components:
 - The first is the *Learning Environment*, which contains **the Unity scene (the environment) and the environment elements** (game characters).
 - The second is the *Python API* which contains **the low-level Python interface for interacting and manipulating the environment**. It’s the API we use to launch the training.
 - Then, we have the *Communicator* that **connects the environment (C#) with the Python API (Python)**.
-- Finally, we have the *Python trainers**: the **Reinforcement algorithms made with PyTorch (PPO, SAC…)**.
+- Finally, we have the *Python trainers*: the **Reinforcement algorithms made with PyTorch (PPO, SAC…)**.
 
 ## Inside the Learning Component [[inside-learning-component]]
 
 Inside the Learning Component, we have **three important elements**:
 
-- The first is the *agent*, the actor of the scene. We’ll **train the agent by optimizing his policy** (which will tell us what action to take in each state). The policy is called *Brain*.
-- Finally, there is the *Academy*. This element **orchestrates agents and their decision-making process**. Think of this Academy as a maestro that handles the requests from the python API.
+- The first is the *agent*, the actor of the scene. We’ll **train the agent by optimizing its policy** (which will tell us what action to take in each state). The policy is called *Brain*.
+- Finally, there is the *Academy*. This component **orchestrates agents and their decision-making processes**. Think of this Academy as a teacher that handles the requests from the Python API.
 
 To better understand its role, let’s remember the RL process. This can be modeled as a loop that works like this:
 
