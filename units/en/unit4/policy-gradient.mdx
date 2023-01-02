@@ -85,8 +85,8 @@ Fortunately we're going to use a solution called the Policy Gradient Theorem tha
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
 
-## The Reinforce algorithm
-The Reinforce algorithm is a policy-gradient algorithm that works like this:
+## The Reinforce algorithm (Monte Carlo Reinforce)
+The Reinforce algorithm also called Monte-Carlo policy-gradient is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter** \\(\theta\\):
 
 In a loop:
 - Use the policy \\(\pi_\theta\\)  to collect an episode \\(\tau\\)

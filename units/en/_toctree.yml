@@ -120,8 +120,6 @@
     title: The advantages and disadvantages of Policy-based methods
   - local: unit4/policy-gradient
     title: Diving deeper into Policy-gradient methods
-  - local: unit4/reinforce
-    title: The Reinforce algorithm
   - local: unit4/hands-on
     title: Hands-on
   - local: unit4/quiz
