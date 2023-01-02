@@ -110,8 +110,21 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
+- title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
+  sections:
+  - local: unitbonus3/introduction
+    title: Introduction
+  - local: unitbonus3/model-based
+    title: Model-Based Reinforcement Learning
+  - local: unitbonus3/decision-transformers
+    title: Decision Transformers and Offline RL
+  - local: unitbonus3/rlhf
+    title: Reinforcement Learning from Human Feedback
+  - local: unitbonus3/minerl
+    title: MineRL
+  - local: unitbonus3/language-models
+    title: Language models in RL
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
     title: Publishing Schedule
-
