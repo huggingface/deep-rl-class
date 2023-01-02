@@ -1,6 +1,6 @@
 # The advantages and disadvantages of policy-gradient methods
 
-At this point, you might ask "But Deep Q-Learning is excellent! Why use policy-gradient methods?", let's study then the **advantages and disadvantages of policy-gradient methods**.
+At this point, you might ask, "but Deep Q-Learning is excellent! Why use policy-gradient methods?". To answer this question, let's study the **advantages and disadvantages of policy-gradient methods**.
 
 ## Advantages
 
@@ -34,7 +34,7 @@ The problem is that the **two rose cases are aliased states because the agent pe
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster2.jpg" alt="Hamster 1"/>
 </figure>
 
-Under a deterministic policy, the policy will either move right when in a red state or move left. **Either case will cause our agent to get stuck and never suck the dust**.
+Under a deterministic policy, the policy either will move right when in a red state or move left. **Either case will cause our agent to get stuck and never suck the dust**.
 
 Under a value-based Reinforcement learning algorithm, we learn a **quasi-deterministic policy** ("greedy epsilon strategy"). Consequently, our agent can **spend a lot of time before finding the dust**.
 
@@ -44,29 +44,31 @@ On the other hand, an optimal stochastic policy **will randomly move left or rig
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster3.jpg" alt="Hamster 1"/>
 </figure>
 
-### Policy-gradient methods are more effective in in high-dimensional action spaces and continuous actions spaces
+### Policy-gradient methods are more effective in high-dimensional action spaces and continuous actions spaces
 
 Indeed, the problem with Deep Q-learning is that their **predictions assign a score (maximum expected future reward) for each possible action**, at each time step, given the current state.
 
 But what if we have an infinite possibility of actions?
 
-For instance, with a self-driving car, at each state, you can have a (near) infinite choice of actions (turning the wheel at 15°, 17.2°, 19,4°, honking, etc.). We'll need to output a Q-value for each possible action! And taking the max action of a continuous output is an optimization problem itself!
+For instance, with a self-driving car, at each state, you can have a (near) infinite choice of actions (turning the wheel at 15°, 17.2°, 19,4°, honking, etc.). **We'll need to output a Q-value for each possible action**! And **taking the max action of a continuous output is an optimization problem itself**!
 
-Instead, with a policy-gradient methods, we output a **probability distribution over actions.**
+Instead, with policy-gradient methods, we output a **probability distribution over actions.**
 
 ### Policy-gradient methods have better convergence properties
-In value-based methods, we use an aggressive operator to **change the value function: we take the maximum over Q-estimates**.
-Consequently, the action probabilities may change dramatically for an arbitrary small change in the estimated action-values if that change results in a different action having the maximal value.
-For instance if during the training the best action was left (with Q-value of 0.22) and the training step after it's right (since the right Q-value become 0.23) we dramatically changed the policy since now the policy will take most of the time right instead of left.
 
-On the other hand, in policy-gradient methods, stochastic policy action preferences (probability of taking action) **changes smoothly over time**.
+In value-based methods, we use an aggressive operator to **change the value function: we take the maximum over Q-estimates**.
+Consequently, the action probabilities may change dramatically for an arbitrarily small change in the estimated action values if that change results in a different action having the maximal value.
+
+For instance, if during the training, the best action was left (with a Q-value of 0.22) and the training step after it's right (since the right Q-value becomes 0.23), we dramatically changed the policy since now the policy will take most of the time right instead of left.
+
+On the other hand, in policy-gradient methods, stochastic policy action preferences (probability of taking action) **change smoothly over time**.
 
 ## Disadvantages
 
-Naturally, policy-gradient methods have also some disadvantages:
+Naturally, policy-gradient methods also have some disadvantages:
 
-- **Policy-gradient converge a lot of time on a local maximum instead of a global optimum.**
-- Policy-gradient goes less faster, **step by step: it can take longer to train (inefficient).**
-- Policy-gradient can have high variance, we'll see in Actor Critic unit why and how we can solve this problem.
+- **Policy-gradient converges a lot of time on a local maximum instead of a global optimum.**
+- Policy-gradient goes less fast, **step by step: it can take longer to train (inefficient).**
+- Policy-gradient can have high variance. We'll see in actor-critic unit why and how we can solve this problem.
 
-👉 If you want to go deeper on the advantages and disadvantages of policy-gradient methods, [you can check this video](https://youtu.be/y3oqOjHilio).
+👉 If you want to go deeper into the advantages and disadvantages of policy-gradient methods, [you can check this video](https://youtu.be/y3oqOjHilio).
