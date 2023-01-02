@@ -34,7 +34,7 @@ Now that we got the big picture, let's dive deeper into policy-gradient.
 We have our stochastic policy \\(\pi\\) which has a parameter \\(\theta\\). This \\(\pi\\), given a state, **outputs a probability distribution of actions**.
 
 <figure class="image table text-center m-0 w-full">
-  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic-policy.jpg" alt="Policy"/>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="Policy"/>
 </figure>
 
 Where \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action at from state st, given our policy.
@@ -67,15 +67,13 @@ Our objective then is to maximize the expected cumulative rewards by finding \\(
 ## Gradient Ascent and the Policy-gradient Theorem
 Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/gradient_ascent.png" alt="Gradient Ascent"/>
-
 Our update step for gradient-ascent is:
 \\ \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
 We can repeatidly apply this update state in the hope that \\(\theta)\\ converges to the value that maximize \\J(\theta)\\).
 
 However, we have two problems to derivate \\(J(\theta)\\):
-1. We can't calculate the true gradient of the objective function, since it would imply to calculate the probability of each possible trajectory which is computatially super expensive.
+1. We can't calculate the true gradient of the objective function, since it would imply to calculate the probability of each possible trajectory which is computotially super expensive.
 We want then to **calculate an estimation of the gradient with a sample-based estimate (collect some trajectories)**.
 
 2. We have another problem, that I detail in the optional next section. That is to differentiate this objective function we need to differentiate the state distribution (attached to the environment it gives us the probability of the environment goes into next state given the current state and the action taken) but we might not know about it.
@@ -83,10 +81,9 @@ We want then to **calculate an estimation of the gradient with a sample-based es
 Fortunately we're going to use a solution called the Policy Gradient Theorem that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
 
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient.png" alt="Policy Gradient"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
 
 ## The policy-gradient algorithm
-
 
 The Reinforce algorithm works like this:
 Loop:
@@ -94,7 +91,7 @@ Loop:
 - Use the episode to estimate the gradient \\(\hat{g} = \nabla_\theta J(\theta)\\)
 
  <figure class="image table text-center m-0 w-full">
-  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg.jpg" alt="Policy Gradient"/>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_one.png" alt="Policy Gradient"/>
 </figure>
 
 - Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
@@ -105,3 +102,9 @@ The interpretation we can make is this one:
 - \\(R(\tau)\\): is the scoring function:
   - If the return is high, it will push up the probabilities of the (state, action) combinations.
   - Else, if the return is low, it will push down the probabilities of the (state, action) combinations.
+
+
+We can also collect multiple episodes to estimate the gradient:
+<figure class="image table text-center m-0 w-full">
+ <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_multiple.png" alt="Policy Gradient"/>
+</figure>

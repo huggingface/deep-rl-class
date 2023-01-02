@@ -19,6 +19,9 @@ We studied in the Unit 1, that we had two methods to find (most of the time appr
 
 - On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi*\\) without having to learn a value function.
   - The idea then is to parameterize policy, for instance using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="stochastic policy" />
+
   - Our objective then is *to maximize the performance of the parameterized policy using gradient ascent*.
   - To do that we control the parameter \\(\theta\\) that will affect the distribution of actions over a state.
 
