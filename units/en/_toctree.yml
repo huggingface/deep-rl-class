@@ -110,8 +110,11 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
-- title: What's next? New Units Publishing Schedule
+- title: Certification and congratulations
   sections:
-  - local: communication/publishing-schedule
-    title: Publishing Schedule
-
+  - local: communication/conclusion
+    title: Congratulations
+  - local: communication/certification
+    title: Get your certificate of completion
+  - local: communication/whats-next
+    title: What can you do from here
