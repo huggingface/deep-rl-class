@@ -18,6 +18,7 @@ So we have:
 
 \\(\nabla_\theta J(\theta) =  \nabla_\theta \sum_{\tau}P(\tau;\theta)R(\tau)\\)
 
+
 We can rewrite the gradient of the sum as the sum of the gradient:
 
 \\( =  \sum_{\tau} \nabla_\theta P(\tau;\theta)R(\tau) \\)
@@ -34,16 +35,20 @@ We can then use the *derivative log trick* (also called *likelihood ratio trick*
 
 So given we have \\(\frac{\nabla_\theta P(\tau;\theta)}{P(\tau;\theta)} \\) we transform it as \\(\nabla_\theta log P(\tau|\theta) \\)
 
+
+
 So this is our likelihood policy gradient:
 
 \\( \nabla_\theta J(\theta) = \sum_{\tau} P(\tau;\theta)  \nabla_\theta log P(\tau;\theta) R(\tau) \\)
 
 
+
+
+
 Thanks for this new formula, we can estimate the gradient using trajectory samples (we can approximate the likelihood ratio policy gradient with sample-based estimate if you prefer).
 
-\\(\nabla_\theta J(\theta) = \frac{1}{m} \sum^{m}_{i=1} \nabla_\theta log P(\tau^{(i)};\theta)R(\tau^{(i)})\\)
+\\(\nabla_\theta J(\theta) = \frac{1}{m} \sum^{m}_{i=1} \nabla_\theta log P(\tau^{(i)};\theta)R(\tau^{(i)})\\) where each \\(\tau^{(i)}\\) is a sampled trajectory.
 
-where each \\(\tau(i)}\\) is a sampled trajectory.
 
 But we still have some mathematics work to do there: we need to simplify \\(  \nabla_\theta log P(\tau|\theta) \\)
 
