@@ -2,7 +2,7 @@
 
 ## Getting the big picture
 
-We just learned that policy-gradient methods aim to find parameters ////theta //) that **maximize the expected return**.
+We just learned that policy-gradient methods aim to find parameters (\\ \theta \\) that **maximize the expected return**.
 
 The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called *action preference*.
 
@@ -10,7 +10,7 @@ If we take the example of CartPole-v1:
 - As input, we have a state.
 - As output, we have a probability distribution over actions at that state.
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy-based.png" alt="Policy based" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
 
 Our goal with policy-gradient is to **control the probability distribution of actions** by tuning the policy such that **good actions (that maximize the return) are sampled more frequently in the future.**
 Each time the agent interacts with the environment, we tweak the parameters such that good actions will be sampled more likely in the future.
@@ -20,7 +20,7 @@ But **how we're going to optimize the weights using the expected return**?
 The idea is that we're going to **let the agent interact during an episode**. And if we win the episode, we consider that each action taken was good and must be more sampled in the future
 since they lead to win.
 
-So for each state-action pair, we want to increase the //(P(a|s)//): the probability of taking that action at that state. Or decrease if we lost.
+So for each state-action pair, we want to increase the \\(P(a|s)\\): the probability of taking that action at that state. Or decrease if we lost.
 
 The Policy-gradient algorithm (simplified) looks like this:
 <figure class="image table text-center m-0 w-full">
@@ -55,6 +55,9 @@ Let's detail a little bit more this formula:
 
 - \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
 - \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(tau\\) (that probability depends on (\\theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
 - \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given $\theta$, and the return of this trajectory.
 
 Our objective then is to maximize the expected cumulative rewards by finding \\(\theta \\) that will output the best action probability distributions:
@@ -68,9 +71,10 @@ Our objective then is to maximize the expected cumulative rewards by finding \\(
 Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
 
 Our update step for gradient-ascent is:
-\\ \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
-We can repeatedly apply this update state in the hope that \\(\theta)\\ converges to the value that maximizes \\J(\theta)\\).
+(\\ \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
+
+We can repeatedly apply this update state in the hope that \\(\theta)\\ converges to the value that maximizes \\(J(\theta)\\).
 
 However, we have two problems to derivate \\(J(\theta)\\):
 1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
@@ -78,8 +82,7 @@ We want then to **calculate a gradient estimation with a sample-based estimate (
 
 2. We have another problem that I detail in the optional next section. That is, to differentiate this objective function, we need to differentiate the state distribution, also called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
 
-TODO: add maths of jtheta
-TODO: Add markov decision dynamics
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
 Fortunately we're going to use a solution called the Policy Gradient Theorem that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
 

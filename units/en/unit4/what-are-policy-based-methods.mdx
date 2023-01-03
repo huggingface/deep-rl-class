@@ -14,7 +14,7 @@ We studied in the first unit, that we had two methods to find (most of the time 
 
 - In *value-Based methods*, we learn a value function.
   - The idea then is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
-  - Our objective is to **minimize the loss between the predicted and target value to approximate the true action-value function.
+  - Our objective is to **minimize the loss between the predicted and target value** to approximate the true action-value function.
   - We have a policy, but it's implicit since it **was generated directly from the Value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
 
 - On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi^{*}\\) without having to learn a value function.
@@ -27,18 +27,18 @@ We studied in the first unit, that we had two methods to find (most of the time 
 
 - Finally, we'll study the next time *actor-critic* which is a combination of value-based and policy-based methods.
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy-based.png" alt="Policy based" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
 
-Consequently, thanks to policy-based methods, we can directly optimize our policy \\(\pi_theta\\) to output a probability distribution over actions \\(\pi_\theta(a|s)\\) that leads to the best cumulative return.
+Consequently, thanks to policy-based methods, we can directly optimize our policy \\(\pi_\theta\\) to output a probability distribution over actions \\(\pi_\theta(a|s)\\) that leads to the best cumulative return.
 To do that, we define an objective function \\(J(\theta)\\), that is, the expected cumulative reward, and we **want to find \\(\theta\\) that maximizes this objective function**.
 
 ## The difference between policy-based and policy-gradient methods
 
 Policy-gradient methods, what we're going to study in this unit, is a subclass of policy-based methods. In policy-based methods, the optimization is most of the time *on-policy* since for each update, we only use data (trajectories) collected **by our most recent version of** \\(\pi_\theta\\).
 
-The difference between these two methods **lies on how we optimize the parameter** //(/theta//):
+The difference between these two methods **lies on how we optimize the parameter** \\(\theta\\):
 
-- In *policy-based methods*, we search directly for the optimal policy. We can optimize the parameter //(/theta//) **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.
-- In *policy-gradient methods*, because we're a subclass of the policy-based methods, we search directly for the optimal policy. But we optimize the parameter //(/theta//) **directly** by performing the gradient ascent on the performance of the objective function \\(J(\theta)\\).
+- In *policy-based methods*, we search directly for the optimal policy. We can optimize the parameter \\(\theta\\) **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.
+- In *policy-gradient methods*, because we're a subclass of the policy-based methods, we search directly for the optimal policy. But we optimize the parameter \\(\theta\\) **directly** by performing the gradient ascent on the performance of the objective function \\(J(\theta)\\).
 
 Before diving more into how works policy-gradient methods (the objective function, policy gradient theorem, gradient ascent, etc.), let's study the advantages and disadvantages of policy-based methods.
