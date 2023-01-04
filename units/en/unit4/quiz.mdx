@@ -1,0 +1,82 @@
+# Quiz
+
+The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
+
+
+### Q1: What are the advantages of policy-gradient over value-based methods? (Check all that apply)
+
+<Question
+	choices={[
+		{
+			text: "Policy-gradient methods can learn a stochastic policy",
+			explain: "",
+      			correct: true,
+		},
+		{
+			text: "Policy-gradient methods are more effective in high-dimensional action spaces and continuous actions spaces",
+			explain: "",
+      			correct: true,
+		},
+    {
+			text: "Policy-gradient converges most of the time on a global maximum.",
+			explain: "No, frequently, policy-gradient converges on a local maximum instead of a global optimum.",
+		},
+	]}
+/>
+
+### Q2: What is the Policy Gradient Theorem?
+
+<details>
+<summary>Solution</summary>
+
+*The Policy Gradient Theorem* is a formula that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
+
+</details>
+
+
+### Q3: What's the difference between policy-based methods and policy-gradient methods? (Check all that apply)
+
+<Question
+	choices={[
+    {
+      text: "Policy-based methods are a subset of policy-gradient methods.",
+      explain: "",
+    },
+    {
+      text: "Policy-gradient methods are a subset of policy-based methods.",
+      explain: "",
+      correct: true,
+    },
+    {
+      text: "In Policy-based methods, we can optimize the parameter θ **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.",
+      explain: "",
+      correct: true,
+    },
+    {
+	text: "In Policy-gradient methods, we optimize the parameter θ **directly** by performing the gradient ascent on the performance of the objective function.",
+	explain: "",
+	correct: true,
+	},
+	]}
+/>
+
+
+### Q4: Why do we use gradient ascent instead of gradient descent to optimize J(θ)?
+
+<Question
+	choices={[
+    {
+      text: "We want to minimize J(θ) and gradient ascent gives us the gives the direction of the steepest increase of J(θ)",
+      explain: "",
+    },
+		{
+			text: "We want to maximize J(θ) and gradient ascent gives us the gives the direction of the steepest increase of J(θ)",
+			explain: "",
+      correct: true
+		},
+	]}
+/>
+
+Congrats on finishing this Quiz 🥳, if you missed some elements, take time to read the chapter again to reinforce (😏) your knowledge.
