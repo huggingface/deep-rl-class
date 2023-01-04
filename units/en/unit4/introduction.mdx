@@ -1,0 +1,24 @@
+# Introduction [[introduction]]
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/thumbnail.png" alt="thumbnail"/>
+
+In the last unit, we learned about Deep Q-Learning. In this value-based deep reinforcement learning algorithm, we **used a deep neural network to approximate the different Q-values for each possible action at a state.**
+
+Since the beginning of the course, we only studied value-based methods, **where we estimate a value function as an intermediate step towards finding an optimal policy.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy" />
+
+In value-based methods, the policy ** \\(π\\) only exists because of the action value estimates since the policy is just a function** (for instance, greedy-policy) that will select the action with the highest value given a state.
+
+But, with policy-based methods, we want to optimize the policy directly **without having an intermediate step of learning a value function.**
+
+So today, **we'll learn about policy-based methods and study a subset of these methods called policy gradient**. Then we'll implement our first policy gradient algorithm called Monte Carlo **Reinforce** from scratch using PyTorch.
+Then, we'll test its robustness using the CartPole-v1 and PixelCopter environments.
+
+You'll then be able to iterate and improve this implementation for more advanced environments.
+
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/envs.gif" alt="Environments"/>
+</figure>
+
+Let's get started,

@@ -18,6 +18,12 @@ And finally, you'll **upload this trained agent to the Hugging Face Hub 🤗, a 
 
 Thanks to our <a href="https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard">leaderboard</a>, you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores. Who will win the challenge for Unit 1 🏆?
 
+To validate this hands-on for the [certification process](https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process), you need to push your trained model to the Hub and **get a result of >= 200**.
+
+To find your result, go to the [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) and find your model, **the result = mean_reward - std of reward**
+
+For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
+
 So let's get started! 🚀
 
 **To start the hands-on click on Open In Colab button** 👇 :
@@ -28,6 +34,7 @@ You can either do this hands-on by reading the notebook or following it with the
 
 <Youtube id="CsuIANBnSq8" />
 
+
 # Unit 1: Train your first Deep Reinforcement Learning Agent 🤖
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/thumbnail.jpg" alt="Unit 1 thumbnail" width="100%">
@@ -35,9 +42,6 @@ You can either do this hands-on by reading the notebook or following it with the
 In this notebook, you'll train your **first Deep Reinforcement Learning agent** a Lunar Lander agent that will learn to **land correctly on the Moon 🌕**. Using [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) a Deep Reinforcement Learning library, share them with the community, and experiment with different configurations
 
 ⬇️ Here is an example of what **you will achieve in just a couple of minutes.** ⬇️
-
-
-
 
 ```python
 %%html
@@ -65,7 +69,7 @@ At the end of the notebook, you will:
 
 
 
-## This notebook is from Deep Reinforcement Learning Course
+## This hands-on is from Deep Reinforcement Learning Course
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/deep-rl-course-illustration.jpg" alt="Deep RL Course illustration"/>
 
 In this free course, you will:
@@ -84,7 +88,7 @@ The best way to keep in touch and ask questions is to join our discord server to
 ## Prerequisites 🏗️
 Before diving into the notebook, you need to:
 
-🔲 📝 **Done Unit 0** that gives you all the **information about the course and help you to onboard** 🤗
+🔲 📝 **Read Unit 0** that gives you all the **information about the course and help you to onboard** 🤗
 
 🔲 📚 **Develop an understanding of the foundations of Reinforcement learning** (MC, TD, Rewards hypothesis...) by doing Unit 1
 
@@ -135,7 +139,7 @@ To make things easier, we created a script to install all these dependencies.
 ```
 
 ```python
-!pip install -r https://huggingface.co/spaces/ThomasSimonini/temp-space-requirements/raw/main/requirements/requirements-unit1.txt
+!pip install -r https://raw.githubusercontent.com/huggingface/deep-rl-class/main/notebooks/unit1/requirements-unit1.txt
 ```
 
 During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames).

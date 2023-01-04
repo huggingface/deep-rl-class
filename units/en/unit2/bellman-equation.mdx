@@ -18,7 +18,7 @@ Then, to calculate the \\(V(S_{t+1})\\), we need to calculate the return startin
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman3.jpg" alt="Bellman equation"/>
-  <figcaption>To calculate the value of State 2: the sum of rewards **if the agent started in that state, and then followed the **policy for all the time steps.</figcaption>
+  <figcaption>To calculate the value of State 2: the sum of rewards <b>if the agent started in that state</b>, and then followed the <b>policy for all the time steps.</b></figcaption>
 </figure>
 
 So you may have noticed, we're repeating the computation of the value of different states, which can be tedious if you need to do it for each state value or state-action value.
@@ -58,6 +58,6 @@ But you'll study an example with gamma = 0.99 in the Q-Learning section of this 
 
 
 
-To recap, the idea of the Bellman equation is that instead of calculating each value as the sum of the expected return, **which is a long process.** This is equivalent **to the sum of immediate reward + the discounted value of the state that follows.**
+To recap, the idea of the Bellman equation is that instead of calculating each value as the sum of the expected return, **which is a long process**, we calculate the value as **the sum of immediate reward + the discounted value of the state that follows.**
 
 Before going to the next section, think about the role of gamma in the Bellman equation. What happens if the value of gamma is very low (e.g. 0.1 or even 0)? What happens if the value is 1? What happens if the value is very high, such as a million?
