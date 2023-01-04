@@ -67,6 +67,7 @@ To test its robustness, we're going to train it in 2 different simple environmen
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the GitHub Repo](https://github.com/huggingface/deep-rl-class/issues).
 
 ## Objectives of this notebook 🏆
+
 At the end of the notebook, you will:
 
 - Be able to **code from scratch a Reinforce algorithm using PyTorch.**
@@ -74,22 +75,12 @@ At the end of the notebook, you will:
 - Be able to **push your trained agent to the Hub** with a nice video replay and an evaluation score 🔥.
 
 ## Prerequisites 🏗️
+
 Before diving into the notebook, you need to:
 
 🔲 📚 [Study Policy Gradients by reading Unit 4](https://huggingface.co/deep-rl-course/unit4/introduction)
 
 # Let's code Reinforce algorithm from scratch 🔥
-
-
-To validate this hands-on for the certification process, you need to push your trained models to the Hub.
-
-- Get a result of >= 350 for `Cartpole-v1`.
-- Get a result of >= 5 for `PixelCopter`.
-
-To find your result, go to the leaderboard and find your model, **the result = mean_reward - std of reward**. **If you don't see your model on the leaderboard, go at the bottom of the leaderboard page and click on the refresh button**.
-
-For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
-
 
 ## An advice 💡
 
@@ -209,7 +200,8 @@ As explained in [Reinforcement Learning Tips and Tricks](https://stable-baseline
 
 
 > Validate the implementation by making it run on harder and harder envs (you can compare results against the RL zoo). You usually need to run hyperparameter optimization for that step.
-___
+
+
 ### The CartPole-v1 environment
 
 > A pole is attached by an un-actuated joint to a cart, which moves along a frictionless track. The pendulum is placed upright on the cart and the goal is to balance the pole by applying forces in the left and right direction on the cart.
@@ -788,8 +780,6 @@ def push_to_hub(repo_id, model, hyperparameters, eval_env, video_fps=30, local_r
     print(f"Your model is pushed to the hub. You can view your model here: {repo_url}")
 ```
 
-### .
-
 By using `push_to_hub` **you evaluate, record a replay, generate a model card of your agent and push it to the Hub**.
 
 This way:
@@ -982,6 +972,7 @@ push_to_hub(
 ```
 
 ## Some additional challenges 🏆
+
 The best way to learn **is to try things on your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. But also trying to find better parameters.
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
