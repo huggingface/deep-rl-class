@@ -53,12 +53,12 @@ To test its robustness, we're going to train it in 2 different simple environmen
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/envs.gif" alt="Environments"/>
 
 
-###🎮 Environments:
+### 🎮 Environments:
 
 - [CartPole-v1](https://www.gymlibrary.dev/environments/classic_control/cart_pole/)
 - [PixelCopter](https://pygame-learning-environment.readthedocs.io/en/latest/user/games/pixelcopter.html)
 
-###📚 RL-Library:
+### 📚 RL-Library:
 
 - Python
 - PyTorch
@@ -68,6 +68,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 
 ## Objectives of this notebook 🏆
 At the end of the notebook, you will:
+
 - Be able to **code from scratch a Reinforce algorithm using PyTorch.**
 - Be able to **test the robustness of your agent using simple environments.**
 - Be able to **push your trained agent to the Hub** with a nice video replay and an evaluation score 🔥.
@@ -135,14 +136,14 @@ The first step is to install the dependencies. We’ll install multiple ones:
 
 - `gym`
 - `gym-games`: Extra gym environments made with PyGame.
-- `huggingface_hub`: 🤗 works as a central place where anyone can share and explore models and datasets. It has versioning, metrics, visualizations, and other features that will allow you to easily collaborate with others.
+- `huggingface_hub`: The Hub works as a central place where anyone can share and explore models and datasets. It has versioning, metrics, visualizations, and other features that will allow you to easily collaborate with others.
 
 You can see here all the Reinforce models available 👉 https://huggingface.co/models?other=reinforce
 
 And you can find all the Deep Reinforcement Learning models here 👉 https://huggingface.co/models?pipeline_tag=reinforcement-learning
 
 
-```python
+```bash
 !pip install -r https://raw.githubusercontent.com/huggingface/deep-rl-class/main/notebooks/unit4/requirements-unit4.txt
 ```
 
@@ -201,7 +202,7 @@ We're now ready to implement our Reinforce algorithm 🔥
 
 ### Why do we use a simple environment like CartPole-v1?
 
-As explained in [Reinforcement Learning Tips and Tricks](https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html), when you implement your agent from scratch you need **to be sure that it works correctly and find bugs with easy environments before going deeper**. Since finding bugs will be much easier in simple environments.
+As explained in [Reinforcement Learning Tips and Tricks](https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html), when you implement your agent from scratch, you need **to be sure that it works correctly and find bugs with easy environments before going deeper** as finding bugs will be much easier in simple environments.
 
 
 > Try to have some “sign of life” on toy problems
@@ -251,7 +252,7 @@ print("Action Space Sample", env.action_space.sample())  # Take a random action
 
 ## Let's build the Reinforce Architecture
 
-This implementation is based on two implementations:
+This implementation is based on three implementations:
 - [PyTorch official Reinforcement Learning example](https://github.com/pytorch/examples/blob/main/reinforcement_learning/reinforce.py)
 - [Udacity Reinforce](https://github.com/udacity/deep-reinforcement-learning/blob/master/reinforce/REINFORCE.ipynb)
 - [Improvement of the integration by Chris1nexus](https://github.com/huggingface/deep-rl-class/pull/95)
@@ -364,7 +365,7 @@ This is the Reinforce algorithm pseudocode:
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg_pseudocode.png" alt="Policy gradient pseudocode"/>
 
 
-- When we calculate the return Gt (line 6) we see that we calculate the sum of discounted rewards **starting at timestep t**.
+- When we calculate the return Gt (line 6), we see that we calculate the sum of discounted rewards **starting at timestep t**.
 
 - Why? Because our policy should only **reinforce actions on the basis of the consequences**: so rewards obtained before taking an action are useless (since they were not because of the action), **only the ones that come after the action matters**.
 
@@ -373,9 +374,9 @@ This is the Reinforce algorithm pseudocode:
 We use an interesting technique coded by [Chris1nexus](https://github.com/Chris1nexus) to **compute the return at each timestep efficiently**. The comments explained the procedure. Don't hesitate also [to check the PR explanation](https://github.com/huggingface/deep-rl-class/pull/95)
 But overall the idea is to **compute the return at each timestep efficiently**.
 
-The second question you may ask is **why do we minimize the loss**? You talked about Gradient Ascent not Gradient Descent?
+The second question you may ask is **why do we minimize the loss**? Did you talk about Gradient Ascent, not Gradient Descent?
 
-- We want to maximize our utility function $J(\theta)$ but in PyTorch like in Tensorflow it's better to **minimize an objective function.**
+- We want to maximize our utility function $J(\theta)$, but in PyTorch and TensorFlow, it's better to **minimize an objective function.**
     - So let's say we want to reinforce action 3 at a certain timestep. Before training this action P is 0.25.
     - So we want to modify $\theta$ such that $\pi_\theta(a_3|s; \theta) > 0.25$
     - Because all P must sum to 1, max $\pi_\theta(a_3|s; \theta)$ will **minimize other action probability.**
