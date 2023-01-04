@@ -15,19 +15,17 @@ We studied in the first unit, that we had two methods to find (most of the time 
 - In *value-based methods*, we learn a value function.
   - The idea is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
   - Our objective is to **minimize the loss between the predicted and target value** to approximate the true action-value function.
-  - We have a policy, but it's implicit since it **was generated directly from the Value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
+  - We have a policy, but it's implicit since it **was generated directly from the value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
 
 - On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi^{*}\\) without having to learn a value function.
   - The idea is **to parameterize the policy**. For instance, using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
-
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="stochastic policy" />
-
+  - <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="stochastic policy" />
   - Our objective then is **to maximize the performance of the parameterized policy using gradient ascent**.
   - To do that, we control the parameter \\(\theta\\) that will affect the distribution of actions over a state.
 
-- Finally, we'll study the next time *actor-critic* which is a combination of value-based and policy-based methods.
-
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
+
+- Finally, we'll study the next time *actor-critic* which is a combination of value-based and policy-based methods.
 
 Consequently, thanks to policy-based methods, we can directly optimize our policy \\(\pi_\theta\\) to output a probability distribution over actions \\(\pi_\theta(a|s)\\) that leads to the best cumulative return.
 To do that, we define an objective function \\(J(\theta)\\), that is, the expected cumulative reward, and we **want to find \\(\theta\\) that maximizes this objective function**.

@@ -2,7 +2,7 @@
 
 ## Getting the big picture
 
-We just learned that policy-gradient methods aim to find parameters (\\ \theta \\) that **maximize the expected return**.
+We just learned that policy-gradient methods aim to find parameters \\( \theta \\) that **maximize the expected return**.
 
 The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called *action preference*.
 
@@ -70,13 +70,15 @@ Our objective then is to maximize the expected cumulative rewards by finding \\(
 
 Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
 
+(If you need a refresher on the difference between gradient descent and gradient ascent [check this](https://www.baeldung.com/cs/gradient-descent-vs-ascent) and [this](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)).
+
 Our update step for gradient-ascent is:
 
-(\\ \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
+\\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
 We can repeatedly apply this update state in the hope that \\(\theta)\\ converges to the value that maximizes \\(J(\theta)\\).
 
-However, we have two problems to derivate \\(J(\theta)\\):
+However, we have two problems to obtain the derivative of \\(J(\theta)\\):
 1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
 We want then to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
 
@@ -91,6 +93,7 @@ Fortunately we're going to use a solution called the Policy Gradient Theorem tha
 If you want to understand how we derivate this formula that we will use to approximate the gradient, check the next (optional) section.
 
 ## The Reinforce algorithm (Monte Carlo Reinforce)
+
 The Reinforce algorithm, also called Monte-Carlo policy-gradient, is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter**  \\(\theta\\):
 
 In a loop:

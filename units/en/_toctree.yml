@@ -117,9 +117,9 @@
   - local: unit4/what-are-policy-based-methods
     title: What are the policy-based methods?
   - local: unit4/advantages-disadvantages
-    title: The advantages and disadvantages of Policy-based methods
+    title: The advantages and disadvantages of policy-gradient methods
   - local: unit4/policy-gradient
-    title: Diving deeper into Policy-gradient
+    title: Diving deeper into policy-gradient
   - local: unit4/pg-theorem
     title: (Optional) the Policy Gradient Theorem
   - local: unit4/hands-on
