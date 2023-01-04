@@ -12,13 +12,13 @@ For instance, in a soccer game (where you're going to train the agents in two un
 
 We studied in the first unit, that we had two methods to find (most of the time approximate) this optimal policy \\(\pi*\\).
 
-- In *value-Based methods*, we learn a value function.
-  - The idea then is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
+- In *value-based methods*, we learn a value function.
+  - The idea is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
   - Our objective is to **minimize the loss between the predicted and target value** to approximate the true action-value function.
   - We have a policy, but it's implicit since it **was generated directly from the Value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
 
 - On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi^{*}\\) without having to learn a value function.
-  - The idea then is **to parameterize the policy**. For instance, using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
+  - The idea is **to parameterize the policy**. For instance, using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="stochastic policy" />
 

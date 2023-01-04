@@ -8,7 +8,7 @@ There are multiple advantages over value-based methods. Let's see some of them:
 
 ### The simplicity of integration
 
-Indeed, **we can estimate the policy directly without storing additional data (action values).**
+We can estimate the policy directly without storing additional data (action values).
 
 ### Policy-gradient methods can learn a stochastic policy
 
@@ -46,7 +46,7 @@ On the other hand, an optimal stochastic policy **will randomly move left or rig
 
 ### Policy-gradient methods are more effective in high-dimensional action spaces and continuous actions spaces
 
-Indeed, the problem with Deep Q-learning is that their **predictions assign a score (maximum expected future reward) for each possible action**, at each time step, given the current state.
+The problem with Deep Q-learning is that their **predictions assign a score (maximum expected future reward) for each possible action**, at each time step, given the current state.
 
 But what if we have an infinite possibility of actions?
 
@@ -67,8 +67,8 @@ On the other hand, in policy-gradient methods, stochastic policy action preferen
 
 Naturally, policy-gradient methods also have some disadvantages:
 
-- **Policy-gradient converges a lot of time on a local maximum instead of a global optimum.**
-- Policy-gradient goes less fast, **step by step: it can take longer to train (inefficient).**
+- **Frequently, policy-gradient converges on a local maximum instead of a global optimum.**
+- Policy-gradient goes slower, **step by step: it can take longer to train (inefficient).**
 - Policy-gradient can have high variance. We'll see in actor-critic unit why and how we can solve this problem.
 
 👉 If you want to go deeper into the advantages and disadvantages of policy-gradient methods, [you can check this video](https://youtu.be/y3oqOjHilio).

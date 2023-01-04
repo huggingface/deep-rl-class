@@ -15,7 +15,7 @@ If we take the example of CartPole-v1:
 Our goal with policy-gradient is to **control the probability distribution of actions** by tuning the policy such that **good actions (that maximize the return) are sampled more frequently in the future.**
 Each time the agent interacts with the environment, we tweak the parameters such that good actions will be sampled more likely in the future.
 
-But **how we're going to optimize the weights using the expected return**?
+But **how are we going to optimize the weights using the expected return**?
 
 The idea is that we're going to **let the agent interact during an episode**. And if we win the episode, we consider that each action taken was good and must be more sampled in the future
 since they lead to win.
@@ -80,7 +80,7 @@ However, we have two problems to derivate \\(J(\theta)\\):
 1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
 We want then to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
 
-2. We have another problem that I detail in the optional next section. That is, to differentiate this objective function, we need to differentiate the state distribution, also called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
+2. We have another problem that I detail in the next optional section. To differentiate this objective function, we need to differentiate the state distribution, called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
@@ -91,7 +91,7 @@ Fortunately we're going to use a solution called the Policy Gradient Theorem tha
 If you want to understand how we derivate this formula that we will use to approximate the gradient, check the next (optional) section.
 
 ## The Reinforce algorithm (Monte Carlo Reinforce)
-The Reinforce algorithm also called Monte-Carlo policy-gradient is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter** \\(\theta\\):
+The Reinforce algorithm, also called Monte-Carlo policy-gradient, is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter**  \\(\theta\\):
 
 In a loop:
 - Use the policy \\(\pi_\theta\\)  to collect an episode \\(\tau\\)
