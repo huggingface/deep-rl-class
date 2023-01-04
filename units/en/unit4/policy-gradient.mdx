@@ -54,7 +54,7 @@ Let's detail a little bit more this formula:
 
 
 - \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
-- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(tau\\) (that probability depends on (\\theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
+- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on \\( \theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
@@ -76,7 +76,7 @@ Our update step for gradient-ascent is:
 
 \\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
-We can repeatedly apply this update state in the hope that \\(\theta)\\ converges to the value that maximizes \\(J(\theta)\\).
+We can repeatedly apply this update state in the hope that \\(\theta \\) converges to the value that maximizes \\(J(\theta)\\).
 
 However, we have two problems to obtain the derivative of \\(J(\theta)\\):
 1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
