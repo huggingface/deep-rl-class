@@ -1,0 +1,120 @@
+# Diving deeper into policy-gradient methods
+
+## Getting the big picture
+
+We just learned that policy-gradient methods aim to find parameters \\( \theta \\) that **maximize the expected return**.
+
+The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called *action preference*.
+
+If we take the example of CartPole-v1:
+- As input, we have a state.
+- As output, we have a probability distribution over actions at that state.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
+
+Our goal with policy-gradient is to **control the probability distribution of actions** by tuning the policy such that **good actions (that maximize the return) are sampled more frequently in the future.**
+Each time the agent interacts with the environment, we tweak the parameters such that good actions will be sampled more likely in the future.
+
+But **how are we going to optimize the weights using the expected return**?
+
+The idea is that we're going to **let the agent interact during an episode**. And if we win the episode, we consider that each action taken was good and must be more sampled in the future
+since they lead to win.
+
+So for each state-action pair, we want to increase the \\(P(a|s)\\): the probability of taking that action at that state. Or decrease if we lost.
+
+The Policy-gradient algorithm (simplified) looks like this:
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg_bigpicture.jpg" alt="Policy Gradient Big Picture"/>
+</figure>
+
+Now that we got the big picture, let's dive deeper into policy-gradient methods.
+
+## Diving deeper into policy-gradient methods
+
+We have our stochastic policy \\(\pi\\) which has a parameter \\(\theta\\). This \\(\pi\\), given a state, **outputs a probability distribution of actions**.
+
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="Policy"/>
+</figure>
+
+Where \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action \\(a_t\\) from state \\(s_t\\) given our policy.
+
+**But how do we know if our policy is good?** We need to have a way to measure it. To know that, we define a score/objective function called \\(J(\theta)\\).
+
+### The objective function
+
+The *objective function* gives us the **performance of the agent** given a trajectory (state action sequence without considering reward (contrary to an episode)), and it outputs the *expected cumulative reward*.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/objective.jpg" alt="Return"/>
+
+Let's detail a little bit more this formula:
+- The *expected return* (also called expected cumulative reward), is the weighted average (where the weights are given by \\(P(\tau;\theta)\\) of all possible values that the return \\(R(\tau)\\) can take.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/expected_reward.png" alt="Return"/>
+
+
+- \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
+- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on \\( \theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
+- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given $\theta$, and the return of this trajectory.
+
+Our objective then is to maximize the expected cumulative rewards by finding \\(\theta \\) that will output the best action probability distributions:
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/max_objective.png" alt="Max objective"/>
+
+
+## Gradient Ascent and the Policy-gradient Theorem
+
+Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
+
+(If you need a refresher on the difference between gradient descent and gradient ascent [check this](https://www.baeldung.com/cs/gradient-descent-vs-ascent) and [this](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)).
+
+Our update step for gradient-ascent is:
+
+\\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
+
+We can repeatedly apply this update state in the hope that \\(\theta \\) converges to the value that maximizes \\(J(\theta)\\).
+
+However, we have two problems to obtain the derivative of \\(J(\theta)\\):
+1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
+We want then to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
+
+2. We have another problem that I detail in the next optional section. To differentiate this objective function, we need to differentiate the state distribution, called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
+Fortunately we're going to use a solution called the Policy Gradient Theorem that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
+
+If you want to understand how we derivate this formula that we will use to approximate the gradient, check the next (optional) section.
+
+## The Reinforce algorithm (Monte Carlo Reinforce)
+
+The Reinforce algorithm, also called Monte-Carlo policy-gradient, is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter**  \\(\theta\\):
+
+In a loop:
+- Use the policy \\(\pi_\theta\\)  to collect an episode \\(\tau\\)
+- Use the episode to estimate the gradient \\(\hat{g} = \nabla_\theta J(\theta)\\)
+
+ <figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_one.png" alt="Policy Gradient"/>
+</figure>
+
+- Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
+
+The interpretation we can make is this one:
+- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action at from state st.
+This tells us **how we should change the weights of policy** if we want to increase/decrease the log probability of selecting action \\(a_t\\) at state \\(s_t\\).
+- \\(R(\tau)\\): is the scoring function:
+  - If the return is high, it will **push up the probabilities** of the (state, action) combinations.
+  - Else, if the return is low, it will **push down the probabilities** of the (state, action) combinations.
+
+
+We can also **collect multiple episodes (trajectories)** to estimate the gradient:
+<figure class="image table text-center m-0 w-full">
+ <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_multiple.png" alt="Policy Gradient"/>
+</figure>

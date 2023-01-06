@@ -46,6 +46,10 @@
     title: Play with Huggy
   - local: unitbonus1/conclusion
     title: Conclusion
+- title: Live 1. How the course work, Q&A, and playing with Huggy
+  sections:
+  - local: live1/live1
+    title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
 - title: Unit 2. Introduction to Q-Learning
   sections:
   - local: unit2/introduction
@@ -88,6 +92,8 @@
     title: The Deep Q-Network (DQN)
   - local: unit3/deep-q-algorithm
     title: The Deep Q Algorithm
+  - local: unit3/glossary
+    title: Glossary
   - local: unit3/hands-on
     title: Hands-on
   - local: unit3/quiz
@@ -96,7 +102,7 @@
     title: Conclusion
   - local: unit3/additional-readings
     title: Additional Readings
-- title: Unit Bonus 2. Automatic Hyperparameter Tuning with Optuna
+- title: Bonus Unit 2. Automatic Hyperparameter Tuning with Optuna
   sections:
   - local: unitbonus2/introduction
     title: Introduction
@@ -104,8 +110,27 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
+- title: Unit 4. Policy Gradient with PyTorch
+  sections:
+  - local: unit4/introduction
+    title: Introduction
+  - local: unit4/what-are-policy-based-methods
+    title: What are the policy-based methods?
+  - local: unit4/advantages-disadvantages
+    title: The advantages and disadvantages of policy-gradient methods
+  - local: unit4/policy-gradient
+    title: Diving deeper into policy-gradient
+  - local: unit4/pg-theorem
+    title: (Optional) the Policy Gradient Theorem
+  - local: unit4/hands-on
+    title: Hands-on
+  - local: unit4/quiz
+    title: Quiz
+  - local: unit4/conclusion
+    title: Conclusion
+  - local: unit4/additional-readings
+    title: Additional Readings
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
     title: Publishing Schedule
-

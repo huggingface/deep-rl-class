@@ -13,7 +13,7 @@ Internally, our Q-function has **a Q-table, a table where each cell corresponds
 The problem is that Q-Learning is a *tabular method*. This raises a problem in which the states and actions spaces **are small enough to approximate value functions to be represented as arrays and tables**. Also, this is **not scalable**.
 Q-Learning worked well with small state space environments like:
 
-- FrozenLake, we had 14 states.
+- FrozenLake, we had 16 states.
 - Taxi-v3, we had 500 states.
 
 But think of what we're going to do today: we will train an agent to learn to play Space Invaders a more complex game, using the frames as input.
