@@ -1,12 +1,10 @@
-# The Shoot Target Environment
+# The SnowballTarget Environment
 
 ## The Agent's Goal
-The first agent you're going to train is Julien the bear (the name is based after our [CTO Julien Chaumond](https://twitter.com/julien_c)) to shoot targets with snowballs.
+The first agent you're going to train is Julien the bear (the name is based after our [CTO Julien Chaumond](https://twitter.com/julien_c)) to hit targets with snowballs.
 
-The goal in this environment is that Julien the bear shoot the maximum of targets that spawned, in the limited time. To do that, he will need to move correctly towards the target and shoot.
-Given he needs to wait 2 second after launching a snowball, he needs to learn to shoot correctly.
-
-TODO ADD GIF
+The goal in this environment is that Julien the bear **hit as much as possible targets that spawned, in the limited time** (1000 timesteps). To do that, it will need **to place itself correctly from the target and shoot
+**. In addition, to avoid "snowball spamming" (aka shooting a snowall every timestep),**Julien the bear has a "cool off" system** (it needs to wait 0.5 seconds after a shoot to be able to shoot again).
 
 ## The reward function
 

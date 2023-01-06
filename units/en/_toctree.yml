@@ -136,8 +136,8 @@
     title: Introduction
   - local: unit5/how-mlagents-works
     title: How ML-Agents works?
-  - local: unit5/shoot-target-env
-    title: The Shoot Target environment
+  - local: unit5/snowball-target
+    title: The SnowballTarget environment
   - local: unit5/pyramids
     title: The Pyramids environment
   - local: unit5/curiosity
