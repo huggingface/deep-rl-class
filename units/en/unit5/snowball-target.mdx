@@ -1,18 +1,25 @@
 # The SnowballTarget Environment
 
 ## The Agent's Goal
-The first agent you're going to train is Julien the bear (the name is based after our [CTO Julien Chaumond](https://twitter.com/julien_c)) to hit targets with snowballs.
+The first agent you're going to train is Julien the bear (the name is based after our [CTO Julien Chaumond](https://twitter.com/julien_c)) **to hit targets with snowballs**.
 
-The goal in this environment is that Julien the bear **hit as much as possible targets that spawned, in the limited time** (1000 timesteps). To do that, it will need **to place itself correctly from the target and shoot
-**. In addition, to avoid "snowball spamming" (aka shooting a snowall every timestep),**Julien the bear has a "cool off" system** (it needs to wait 0.5 seconds after a shoot to be able to shoot again).
+The goal in this environment is that Julien the bear **hit as many targets as possible in the limited time** (1000 timesteps). To do that, it will need **to place itself correctly from the target and shoot.
+**. In addition, to avoid "snowball spamming" (aka shooting a snowball every timestep),**Julien the bear has a "cool off" system** (it needs to wait 0.5 seconds after a shoot to be able to shoot again).
 
-## The reward function
+## The reward function and the reward engineering problem
+The reward function is simple. The environment gives a +1 reward every time the agent hits a target.
+Because the agent's goal is to maximize the expected cumulative reward, it will try to hit as many targets as possible.
+
+We could have a more complex reward function (with a penalty to push the agent to go faster, etc.). But when you design an environment, you need to avoid the *reward engineering problem*, which is having a too complex reward function to force your agent to behave as you want it to do.
+Why? Because by doing that, you might miss interesting strategies that the agent will find with a simpler reward function.
 
 TODO ADD IMAGE REWARD
 
 ## The observation space
 
-In terms of observations, we don’t use normal vision (frame), but we use TOOD ADD raycasts that can each detect objects (target, walls)
+Regarding observations, we don't use normal vision (frame), but we use raycasts.
+
+ TOOD ADD raycasts that can each detect objects (target, walls)
 
 Think of raycasts as lasers that will detect if it passes through an object.
 
