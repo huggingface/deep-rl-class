@@ -60,11 +60,12 @@ Where \\(\mu(s_0)\\) is the initial state distribution and \\( P(s_{t+1}^{(i)}|s
 
 We know that the log of a product is equal to the sum of the logs:
 
-\\(\nabla_\theta log P(\tau^{(i)};\theta)= \nabla_\theta  \left[ \sum_{t=0}^{H} log P(s_{t+1}^{(i)}|s_{t}^{(i)}  a_{t}^{(i)}) + \sum_{t=0}^{H} log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)})\right]\\)
+\\(\nabla_\theta log P(\tau^{(i)};\theta)= \nabla_\theta \left[log \mu(s_0) + \sum\limits_{t=0}^{H}log P(s_{t+1}^{(i)}|s_{t}^{(i)} a_{t}^{(i)}) + \sum\limits_{t=0}^{H}log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)})\right] \\)
 
 We also know that the gradient of the sum is equal to the sum of gradient:
 
-\\( \nabla_\theta log P(\tau^{(i)};\theta)=  \nabla_\theta \sum_{t=0}^{H} log P(s_{t+1}^{(i)}|s_{t}^{(i)}  a_{t}^{(i)}) + \nabla_\theta \sum_{t=0}^{H} log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)}) \\)
+\\( \nabla_\theta log P(\tau^{(i)};\theta)=\nabla_\theta log\mu(s_0) + \nabla_\theta \sum\limits_{t=0}^{H} log P(s_{t+1}^{(i)}|s_{t}^{(i)} a_{t}^{(i)}) + \nabla_\theta \sum\limits_{t=0}^{H} log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)}) \\)
+
 
 Since neither initial state distribution or state transition dynamics of the MDP are dependent of \\(\theta\\), the derivate of both terms are 0. So we can remove them:
 
