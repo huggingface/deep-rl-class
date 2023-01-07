@@ -28,6 +28,9 @@ To find your result, go to the leaderboard and find your model, **the result = m
 
 For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
 
+And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSimonini/Check-my-progress-Deep-RL-Course
+
+
 **To start the hands-on click on Open In Colab button** 👇 :
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit4/unit4.ipynb)
@@ -671,7 +674,7 @@ def record_video(env, policy, out_directory, fps=30):
 ```
 
 ```python
-def push_to_hub(repo_id, 
+def push_to_hub(repo_id,
                 model,
                 hyperparameters,
                 eval_env,
@@ -689,12 +692,12 @@ def push_to_hub(repo_id,
   :param model: the pytorch model we want to save
   :param hyperparameters: training hyperparameters
   :param eval_env: evaluation environment
-  :param video_fps: how many frame per seconds to record our video replay 
+  :param video_fps: how many frame per seconds to record our video replay
   """
 
   _, repo_name = repo_id.split("/")
   api = HfApi()
-  
+
   # Step 1: Create the repo
   repo_url = api.create_repo(
         repo_id=repo_id,
@@ -703,25 +706,25 @@ def push_to_hub(repo_id,
 
   with tempfile.TemporaryDirectory() as tmpdirname:
     local_directory = Path(tmpdirname)
-  
+
     # Step 2: Save the model
     torch.save(model, local_directory / "model.pt")
 
     # Step 3: Save the hyperparameters to JSON
     with open(local_directory / "hyperparameters.json", "w") as outfile:
       json.dump(hyperparameters, outfile)
-    
+
     # Step 4: Evaluate the model and build JSON
-    mean_reward, std_reward = evaluate_agent(eval_env, 
+    mean_reward, std_reward = evaluate_agent(eval_env,
                                             hyperparameters["max_t"],
-                                            hyperparameters["n_evaluation_episodes"], 
+                                            hyperparameters["n_evaluation_episodes"],
                                             model)
     # Get datetime
     eval_datetime = datetime.datetime.now()
     eval_form_datetime = eval_datetime.isoformat()
 
     evaluate_data = {
-          "env_id": hyperparameters["env_id"], 
+          "env_id": hyperparameters["env_id"],
           "mean_reward": mean_reward,
           "n_evaluation_episodes": hyperparameters["n_evaluation_episodes"],
           "eval_datetime": eval_form_datetime,
@@ -733,7 +736,7 @@ def push_to_hub(repo_id,
 
     # Step 5: Create the model card
     env_name = hyperparameters["env_id"]
-    
+
     metadata = {}
     metadata["tags"] = [
           env_name,
