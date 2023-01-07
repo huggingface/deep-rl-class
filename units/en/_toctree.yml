@@ -144,10 +144,10 @@
     title: (Optional) What is curiosity in Deep Reinforcement Learning?
   - local: unit5/hands-on
     title: Hands-on
-  - local: unit5/conclusion
-    title: Conclusion
   - local: unit5/bonus
     title: Bonus. Learn to create your own environments with Unity and MLAgents
+  - local: unit5/conclusion
+    title: Conclusion
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
