@@ -11,7 +11,6 @@ The reward function is:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/pyramids-reward.png" alt="Pyramids Environment"/>
 
-
 To train this new agent that seeks that button and then the Pyramid to destroy, we’ll use a combination of two types of rewards:
 
 - The *extrinsic one* given by the environment (illustration above).
@@ -27,7 +26,8 @@ In terms of observation, we **use 148 raycasts that can each detect objects** (s
 
 We also use a **boolean variable indicating the switch state** (did we turn on or not the switch to spawn the Pyramid) and a vector that **contains the agent’s speed**.
 
-ADD SCREENSHOT CODE
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/pyramids-obs-code.png" alt="Pyramids obs code"/>
+
 
 ## The action space
 
