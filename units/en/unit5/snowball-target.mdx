@@ -19,14 +19,15 @@ In addition, to avoid "snowball spamming" (aka shooting a snowball every timeste
 
 The reward function is simple. **The environment gives a +1 reward every time the agent's snowball hits a target** and because the agent's goal is to maximize the expected cumulative reward, **it will try to hit as many targets as possible**.
 
-In terms of code it looks like this:
-
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/snowballtarget-reward-code.png" alt="Reward"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget_reward.png" alt="Reward system"/>
 
 We could have a more complex reward function (with a penalty to push the agent to go faster, etc.). But when you design an environment, you need to avoid the *reward engineering problem*, which is having a too complex reward function to force your agent to behave as you want it to do.
 Why? Because by doing that, **you might miss interesting strategies that the agent will find with a simpler reward function**.
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget_reward.png" alt="Reward system"/>
+In terms of code it looks like this:
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/snowballtarget-reward-code.png" alt="Reward"/>
+
 
 ## The observation space
 
