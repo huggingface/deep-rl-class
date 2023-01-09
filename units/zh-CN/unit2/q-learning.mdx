@@ -1,0 +1,157 @@
+# Introducing Q-Learning [[q-learning]]
+## What is Q-Learning? [[what-is-q-learning]]
+
+Q-Learning is an **off-policy value-based method that uses a TD approach to train its action-value function:**
+
+- *Off-policy*: we'll talk about that at the end of this unit.
+- *Value-based method*: finds the optimal policy indirectly by training a value or action-value function that will tell us **the value of each state or each state-action pair.**
+- *Uses a TD approach:* **updates its action-value function at each step instead of at the end of the episode.**
+
+**Q-Learning is the algorithm we use to train our Q-function**, an **action-value function** that determines the value of being at a particular state and taking a specific action at that state.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function.jpg" alt="Q-function"/>
+  <figcaption>Given a state and action, our Q Function outputs a state-action value (also called Q-value)</figcaption>
+</figure>
+
+The **Q comes from "the Quality" (the value) of that action at that state.**
+
+Let's recap the difference between value and reward:
+
+- The *value of a state*, or a *state-action pair* is the expected cumulative reward our agent gets if it starts at this state (or state-action pair) and then acts accordingly to its policy.
+- The *reward* is the **feedback I get from the environment** after performing an action at a state.
+
+Internally, our Q-function has **a Q-table, a table where each cell corresponds to a state-action pair value.** Think of this Q-table as **the memory or cheat sheet of our Q-function.**
+
+Let's go through an example of a maze.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-1.jpg" alt="Maze example"/>
+
+The Q-table is initialized. That's why all values are = 0. This table **contains, for each state, the four state-action values.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-2.jpg" alt="Maze example"/>
+
+Here we see that the **state-action value of the initial state and going up is 0:**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-3.jpg" alt="Maze example"/>
+
+Therefore, Q-function contains a Q-table **that has the value of each-state action pair.** And given a state and action, **our Q-function will search inside its Q-table to output the value.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function-2.jpg" alt="Q-function"/>
+</figure>
+
+If we recap, *Q-Learning* **is the RL algorithm that:**
+
+- Trains a *Q-function* (an **action-value function**), which internally is a **Q-table that contains all the state-action pair values.**
+- Given a state and action, our Q-function **will search into its Q-table the corresponding value.**
+- When the training is done, **we have an optimal Q-function, which means we have optimal Q-table.**
+- And if we **have an optimal Q-function**, we **have an optimal policy** since we **know for each state what is the best action to take.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy"/>
+
+
+But, in the beginning, **our Q-table is useless since it gives arbitrary values for each state-action pair** (most of the time, we initialize the Q-table to 0). As the agent **explores the environment and we update the Q-table, it will give us better and better approximations** to the optimal policy.
+
+<figure class="image table text-center m-0 w-full">
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-1.jpg" alt="Q-learning"/>
+  <figcaption>We see here that with the training, our Q-table is better since, thanks to it, we can know the value of each state-action pair.</figcaption>
+</figure>
+
+Now that we understand what Q-Learning, Q-function, and Q-table are, **let's dive deeper into the Q-Learning algorithm**.
+
+## The Q-Learning algorithm [[q-learning-algo]]
+
+This is the Q-Learning pseudocode; let's study each part and **see how it works with a simple example before implementing it.** Don't be intimidated by it, it's simpler than it looks! We'll go over each step.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-2.jpg" alt="Q-learning"/>
+
+### Step 1: We initialize the Q-table [[step1]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-3.jpg" alt="Q-learning"/>
+
+
+We need to initialize the Q-table for each state-action pair. **Most of the time, we initialize with values of 0.**
+
+### Step 2: Choose action using epsilon-greedy strategy [[step2]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-4.jpg" alt="Q-learning"/>
+
+
+Epsilon greedy strategy is a policy that handles the exploration/exploitation trade-off.
+
+The idea is that we define the initial epsilon ɛ = 1.0:
+
+- *With probability 1 — ɛ* : we do **exploitation** (aka our agent selects the action with the highest state-action pair value).
+- With probability ɛ: **we do exploration** (trying random action).
+
+At the beginning of the training, **the probability of doing exploration will be huge since ɛ is very high, so most of the time, we'll explore.** But as the training goes on, and consequently our **Q-table gets better and better in its estimations, we progressively reduce the epsilon value** since we will need less and less exploration and more exploitation.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-5.jpg" alt="Q-learning"/>
+
+
+### Step 3: Perform action At, gets reward Rt+1 and next state St+1 [[step3]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-6.jpg" alt="Q-learning"/>
+
+### Step 4: Update Q(St, At) [[step4]]
+
+Remember that in TD Learning, we update our policy or value function (depending on the RL method we choose) **after one step of the interaction.**
+
+To produce our TD target, **we used the immediate reward \\(R_{t+1}\\) plus the discounted value of the next state best state-action pair** (we call that bootstrap).
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-7.jpg" alt="Q-learning"/>
+
+Therefore, our \\(Q(S_t, A_t)\\) **update formula goes like this:**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-8.jpg" alt="Q-learning"/>
+
+
+It means that to update our \\(Q(S_t, A_t)\\):
+
+- We need \\(S_t, A_t, R_{t+1}, S_{t+1}\\).
+- To update our Q-value at a given state-action pair, we use the TD target.
+
+How do we form the TD target?
+1. We obtain the reward after taking the action \\(R_{t+1}\\).
+2. To get the **best next-state-action pair value**, we use a greedy policy to select the next best action. Note that this is not an epsilon-greedy policy, this will always take the action with the highest state-action value.
+
+Then when the update of this Q-value is done, we start in a new state and select our action **using a epsilon-greedy policy again.**
+
+**This is why we say that Q Learning is an off-policy algorithm.**
+
+## Off-policy vs On-policy [[off-vs-on]]
+
+The difference is subtle:
+
+- *Off-policy*: using **a different policy for acting (inference) and updating (training).**
+
+For instance, with Q-Learning, the epsilon-greedy policy (acting policy), is different from the greedy policy that is **used to select the best next-state action value to update our Q-value (updating policy).**
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-1.jpg" alt="Off-on policy"/>
+  <figcaption>Acting Policy</figcaption>
+</figure>
+
+Is different from the policy we use during the training part:
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-2.jpg" alt="Off-on policy"/>
+  <figcaption>Updating policy</figcaption>
+</figure>
+
+- *On-policy:* using the **same policy for acting and updating.**
+
+For instance, with Sarsa, another value-based algorithm, **the epsilon-greedy policy selects the next state-action pair, not a greedy policy.**
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-3.jpg" alt="Off-on policy"/>
+    <figcaption>Sarsa</figcaption>
+</figure>
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-4.jpg" alt="Off-on policy"/>
+</figure>

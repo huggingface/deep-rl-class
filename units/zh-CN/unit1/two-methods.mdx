@@ -1,0 +1,90 @@
+# Two main approaches for solving RL problems [[two-methods]]
+
+<Tip>
+Now that we learned the RL framework, how do we solve the RL problem?
+</Tip>
+
+In other terms, how to build an RL agent that can **select the actions that maximize its expected cumulative reward?**
+
+## The Policy π: the agent’s brain [[policy]]
+
+The Policy **π** is the **brain of our Agent**, it’s the function that tells us what **action to take given the state we are.** So it **defines the agent’s behavior** at a given time.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy" />
+<figcaption>Think of policy as the brain of our agent, the function that will tell us the action to take given a state</figcaption>
+</figure>
+
+This Policy **is the function we want to learn**, our goal is to find the optimal policy π\*, the policy that **maximizes expected return** when the agent acts according to it. We find this π\* **through training.**
+
+There are two approaches to train our agent to find this optimal policy π\*:
+
+- **Directly,** by teaching the agent to learn which **action to take,** given the current state: **Policy-Based Methods.**
+- Indirectly, **teach the agent to learn which state is more valuable** and then take the action that **leads to the more valuable states**: Value-Based Methods.
+
+## Policy-Based Methods [[policy-based]]
+
+In Policy-Based methods, **we learn a policy function directly.**
+
+This function will define a mapping between each state and the best corresponding action. We can also say that it'll define **a probability distribution over the set of possible actions at that state.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_2.jpg" alt="Policy" />
+<figcaption>As we can see here, the policy (deterministic) <b>directly indicates the action to take for each step.</b></figcaption>
+</figure>
+
+
+We have two types of policies:
+
+
+- *Deterministic*: a policy at a given state **will always return the same action.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_3.jpg" alt="Policy"/>
+<figcaption>action = policy(state)</figcaption>
+</figure>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_4.jpg" alt="Policy" width="100%"/>
+
+- *Stochastic*: outputs **a probability distribution over actions.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_5.jpg" alt="Policy"/>
+<figcaption>policy(actions | state) = probability distribution over the set of actions given the current state</figcaption>
+</figure>
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario"/>
+<figcaption>Given an initial state, our stochastic policy will output probability distributions over the possible actions at that state.</figcaption>
+</figure>
+
+
+If we recap:
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_1.jpg" alt="Pbm recap" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_2.jpg" alt="Pbm recap" width="100%" />
+
+
+## Value-based methods [[value-based]]
+
+In value-based methods, instead of training a policy function, we **train a value function** that maps a state to the expected value **of being at that state.**
+
+The value of a state is the **expected discounted return** the agent can get if it **starts in that state, and then act according to our policy.**
+
+“Act according to our policy” just means that our policy is **“going to the state with the highest value”.**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_1.jpg" alt="Value based RL" width="100%" />
+
+Here we see that our value function **defined value for each possible state.**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_2.jpg" alt="Value based RL"/>
+<figcaption>Thanks to our value function, at each step our policy will select the state with the biggest value defined by the value function: -7, then -6, then -5 (and so on) to attain the goal.</figcaption>
+</figure>
+
+Thanks to our value function, at each step our policy will select the state with the biggest value defined by the value function: -7, then -6, then -5 (and so on) to attain the goal.
+
+If we recap:
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_1.jpg" alt="Vbm recap" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_2.jpg" alt="Vbm recap" width="100%" />

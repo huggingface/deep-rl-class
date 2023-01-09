@@ -1,0 +1,97 @@
+# Second Quiz [[quiz2]]
+
+The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
+
+
+### Q1: What is Q-Learning?
+
+
+<Question
+	choices={[
+		{
+			text: "The algorithm we use to train our Q-function",
+			explain: "",
+      correct: true
+		},
+		{
+			text: "A value function",
+			explain: "It's an action-value function since it determines the value of being at a particular state and taking a specific action at that state",
+		},
+    {
+			text: "An algorithm that determines the value of being at a particular state and taking a specific action at that state",
+			explain: "",
+      correct: true
+		},
+		{
+			text: "A table",
+      explain: "Q-function is not a Q-table. The Q-function is the algorithm that will feed the Q-table."
+		}
+	]}
+/>
+
+### Q2: What is a Q-table?
+
+<Question
+	choices={[
+		{
+			text: "An algorithm we use in Q-Learning",
+			explain: "",
+		},
+		{
+			text: "Q-table is the internal memory of our agent",
+			explain: "",
+      correct: true
+		},
+    {
+			text: "In Q-table each cell corresponds a state value",
+			explain: "Each cell corresponds to a state-action value pair value. Not a state value.",
+		}
+	]}
+/>
+
+### Q3: Why if we have an optimal Q-function Q* we have an optimal policy?
+
+<details>
+<summary>Solution</summary>
+
+Because if we have an optimal Q-function, we have an optimal policy since we know for each state what is the best action to take.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="link value policy"/>
+
+</details>
+
+### Q4: Can you explain what is Epsilon-Greedy Strategy?
+
+<details>
+<summary>Solution</summary>
+Epsilon Greedy Strategy is a policy that handles the exploration/exploitation trade-off.
+
+The idea is that we define epsilon ɛ = 1.0:
+
+- With *probability 1 — ɛ* : we do exploitation (aka our agent selects the action with the highest state-action pair value).
+- With *probability ɛ* : we do exploration (trying random action).
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-4.jpg" alt="Epsilon Greedy"/>
+
+
+</details>
+
+### Q5: How do we update the Q value of a state, action pair?
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-update-ex.jpg" alt="Q Update exercise"/>
+
+<details>
+<summary>Solution</summary>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-update-solution.jpg" alt="Q Update exercise"/>
+
+</details>
+
+
+
+### Q6: What's the difference between on-policy and off-policy
+
+<details>
+<summary>Solution</summary>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-4.jpg" alt="On/off policy"/>
+</details>
+
+Congrats on finishing this Quiz 🥳, if you missed some elements, take time to read again the chapter to reinforce (😏) your knowledge.
