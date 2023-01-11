@@ -18,7 +18,7 @@ Q-Learning worked well with small state space environments like:
 
 But think of what we're going to do today: we will train an agent to learn to play Space Invaders a more complex game, using the frames as input.
 
-As **[Nikita Melkozerov mentioned](https://twitter.com/meln1k), Atari environments** have an observation space with a shape of (210, 160, 3)*, containing values ranging from 0 to 255 so that gives us \\(256^{210x160x3} = 256^{100800}\\) (for comparison, we have approximately \\(10^{80}\\) atoms in the observable universe).
+As **[Nikita Melkozerov mentioned](https://twitter.com/meln1k), Atari environments** have an observation space with a shape of (210, 160, 3)*, containing values ranging from 0 to 255 so that gives us \\(256^{210 \times 160 \times 3} = 256^{100800}\\) (for comparison, we have approximately \\(10^{80}\\) atoms in the observable universe).
 
 * A single frame in Atari is composed of an image of 210x160 pixels. Given the images are in color (RGB), there are 3 channels. This is why the shape is (210, 160, 3). For each pixel, the value can go from 0 to 255.
 

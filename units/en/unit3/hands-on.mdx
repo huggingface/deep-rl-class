@@ -137,7 +137,7 @@ To train an agent with RL-Baselines3-Zoo, we just need to do two things:
 
 
 Here we see that:
-- We use the `Atari Wrapper` that does the pre-processing (Frame reduction, grayscale, stack four frames frames),
+- We use the `Atari Wrapper` that does the pre-processing (Frame reduction, grayscale, stack four frames),
 - We use `CnnPolicy`, since we use Convolutional layers to process the frames.
 - We train the model for 10 million `n_timesteps`.
 - Memory (Experience Replay) size is 100000, i.e. the number of experience steps you saved to train again your agent with.
