@@ -257,14 +257,16 @@ If the repo does not exist **it will be created automatically**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/mlagentspushtohub.png" alt="Push to Hub"/>
 
-For instance:
-
-`!mlagents-push-to-hf  --run-id="SnowballTarget1" --local-dir="./results/SnowballTarget1" --repo-id="ThomasSimonini/ppo-SnowballTarget"  --commit-message="First Push"`
-
 ```python
 !mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir  --repo-id= # Your repo id  --commit-message= # Your commit message
 ```
 
+For instance:
+
+```python
+!mlagents-push-to-hf  --run-id="SnowballTarget1" --local-dir="./results/SnowballTarget1" --repo-id="ThomasSimonini/ppo-SnowballTarget"  --commit-message="First Push"
+```
+  
 Else, if everything worked you should have this at the end of the process(but with a different url 😆) :
 
 
@@ -355,13 +357,15 @@ The training will take 30 to 45min depending on your machine, go take a ☕️yo
 - Now that we trained our agent, we’re **ready to push it to the Hub to be able to visualize it playing on your browser🔥.**
 
 ```python
-
-```
-
-```python
 !mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir  --repo-id= # Your repo id  --commit-message= # Your commit message
 ```
+  
+For instance:
 
+```python
+!mlagents-push-to-hf  --run-id="Pyramids" --local-dir="./results/Pyramids Training" --repo-id="ThomasSimonini/ppo-Pyramids"  --commit-message="First Push"
+```
+  
 ### Watch your agent playing 👀
 
 The temporary link for Pyramids demo is: https://singularite.itch.io/pyramids
