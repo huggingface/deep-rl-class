@@ -37,6 +37,6 @@ Policy-gradient methods, what we're going to study in this unit, is a subclass o
 The difference between these two methods **lies on how we optimize the parameter** \\(\theta\\):
 
 - In *policy-based methods*, we search directly for the optimal policy. We can optimize the parameter \\(\theta\\) **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.
-- In *policy-gradient methods*, because we're a subclass of the policy-based methods, we search directly for the optimal policy. But we optimize the parameter \\(\theta\\) **directly** by performing the gradient ascent on the performance of the objective function \\(J(\theta)\\).
+- In *policy-gradient methods*, because it is a subclass of the policy-based methods, we search directly for the optimal policy. But we optimize the parameter \\(\theta\\) **directly** by performing the gradient ascent on the performance of the objective function \\(J(\theta)\\).
 
-Before diving more into how works policy-gradient methods (the objective function, policy gradient theorem, gradient ascent, etc.), let's study the advantages and disadvantages of policy-based methods.
+Before diving more into how policy-gradient methods work (the objective function, policy gradient theorem, gradient ascent, etc.), let's study the advantages and disadvantages of policy-based methods.
