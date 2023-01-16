@@ -1,8 +1,8 @@
 # Advantage Actor-Critic (A2C) [[advantage-actor-critic-a2c]]
 ## Reducing variance with Actor-Critic methods
-The solution to reducing the variance of Reinforce algorithm and training our agent faster and better is to use a combination of policy-based and value-based methods: *the Actor-Critic method*.
+The solution to reducing the variance of the Reinforce algorithm and training our agent faster and better is to use a combination of Policy-Based and Value-Based methods: *the Actor-Critic method*.
 
-To understand the Actor-Critic, imagine you play a video game. You can play with a friend that will provide you with some feedback. You're the Actor, and your friend is the Critic.
+To understand the Actor-Critic, imagine you play a video game. You can play with a friend that will provide you with some feedback. You're the Actor and your friend is the Critic.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/ac.jpg" alt="Actor Critic"/>
 
@@ -19,7 +19,7 @@ This is the idea behind Actor-Critic. We learn two function approximations:
 - *A value function* to assist the policy update by measuring how good the action taken is: \\( \hat{q}_{w}(s,a) \\)
 
 ## The Actor-Critic Process
-Now that we have seen the Actor Critic's big picture let's dive deeper to understand how Actor and Critic improve together during the training.
+Now that we have seen the Actor Critic's big picture, let's dive deeper to understand how Actor and Critic improve together during the training.
 
 As we saw, with Actor-Critic methods, there are two function approximations (two neural networks):
 - *Actor*, a **policy function** parameterized by theta: \\( \pi_{\theta}(s,a) \\)
@@ -50,10 +50,10 @@ Let's see the training process to understand how Actor and Critic are optimized:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step5.jpg" alt="Step 5 Actor Critic"/>
 
-## Adding "Advantage" in Actor Critic (A2C)
+## Adding "Advantage" in Actor-Critic (A2C)
 We can stabilize learning further by **using the Advantage function as Critic instead of the Action value function**.
 
-The idea is that the Advantage function calculates the relative advantage of an action compared to the others possible at a state: **how better taking that action at a state is compared to the average value of the state**. It's subtracting the mean value of the state from the state action pair:
+The idea is that the Advantage function calculates the relative advantage of an action compared to the others possible at a state: **how taking that action at a state is better compared to the average value of the state**. It's subtracting the mean value of the state from the state action pair:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/advantage1.jpg" alt="Advantage Function"/>
 
