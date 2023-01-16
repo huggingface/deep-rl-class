@@ -1,6 +1,6 @@
 # How do Unity ML-Agents work? [[how-mlagents-works]]
 
-Before training our agent, we need to understand **what is ML-Agents and how it works**.
+Before training our agent, we need to understand **what ML-Agents is and how it works**.
 
 ## What is Unity ML-Agents? [[what-is-mlagents]]
 
@@ -23,7 +23,7 @@ With Unity ML-Agents, you have six essential components:
 </figure>
 
 - The first is the *Learning Environment*, which contains **the Unity scene (the environment) and the environment elements** (game characters).
-- The second is the *Python Low-level API* which contains **the low-level Python interface for interacting and manipulating the environment**. It’s the API we use to launch the training.
+- The second is the *Python Low-level API*, which contains **the low-level Python interface for interacting and manipulating the environment**. It’s the API we use to launch the training.
 - Then, we have the *External Communicator* that **connects the Learning Environment (made with C#) with the low level Python API (Python)**.
 - The *Python trainers*: the **Reinforcement algorithms made with PyTorch (PPO, SAC…)**.
 - The *Gym wrapper*: to encapsulate RL environment in a gym wrapper.
@@ -34,7 +34,7 @@ With Unity ML-Agents, you have six essential components:
 Inside the Learning Component, we have **three important elements**:
 
 - The first is the *agent component*, the actor of the scene. We’ll **train the agent by optimizing its policy** (which will tell us what action to take in each state). The policy is called *Brain*.
-- Finally, there is the *Academy*. This component **orchestrates agents and their decision-making processes**. Think of this Academy as a teacher that handles the requests from the Python API.
+- Finally, there is the *Academy*. This component **orchestrates agents and their decision-making processes**. Think of this Academy as a teacher who handles Python API requests.
 
 To better understand its role, let’s remember the RL process. This can be modeled as a loop that works like this:
 
