@@ -153,6 +153,7 @@ print("Sample observation", env.observation_space.sample())  # Get a random obse
 ```
 
 The observation Space (from [Jeffrey Y Mo](https://hackmd.io/@jeffreymo/SJJrSJh5_#PyBullet)):
+The difference is that our observation space is 28 not 29.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/obs_space.png" alt="PyBullet Ant Obs space"/>
 
@@ -385,7 +386,7 @@ Now it's your turn:
 2. Make a vectorized environment
 3. Add a wrapper to normalize the observations and rewards. [Check the documentation](https://stable-baselines3.readthedocs.io/en/master/guide/vec_envs.html#vecnormalize)
 4. Create the A2C Model (don't forget verbose=1 to print the training logs).
-5. Train it for 2M Timesteps
+5. Train it for 1M Timesteps
 6. Save the model and  VecNormalize statistics when saving the agent
 7. Evaluate your agent
 8. Publish your trained model on the Hub 🔥 with `package_to_hub`
@@ -445,7 +446,7 @@ package_to_hub(
 
 ## Some additional challenges 🏆
 
-The best way to learn **is to try things by your own**! Why not trying  `HalfCheetahBulletEnv-v0` for PyBullet?
+The best way to learn **is to try things by your own**! Why not trying  `HalfCheetahBulletEnv-v0` for PyBullet and `PandaPickAndPlace-v1` for Panda-Gym?
 
 If you want to try more advanced tasks for panda-gym, you need to check what was done using **TQC or SAC** (a more sample-efficient algorithm suited for robotics tasks). In real robotics, you'll use a more sample-efficient algorithm for a simple reason: contrary to a simulation **if you move your robotic arm too much, you have a risk of breaking it**.
 
