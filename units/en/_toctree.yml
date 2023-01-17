@@ -148,6 +148,20 @@
     title: Bonus. Learn to create your own environments with Unity and MLAgents
   - local: unit5/conclusion
     title: Conclusion
+- title: Unit 6. Actor Critic methods with Robotics environments
+  sections:
+  - local: unit6/introduction
+    title: Introduction
+  - local: unit6/variance-problem
+    title: The Problem of Variance in Reinforce
+  - local: unit6/advantage-actor-critic
+    title: Advantage Actor Critic (A2C)
+  - local: unit6/hands-on
+    title: Advantage Actor Critic (A2C) using Robotics Simulations with PyBullet and Panda-Gym 🤖
+  - local: unit6/conclusion
+    title: Conclusion
+  - local: unit6/additional-readings
+    title: Additional Readings
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
