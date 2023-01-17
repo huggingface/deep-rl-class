@@ -155,7 +155,7 @@
   - local: unit6/variance-problem
     title: The Problem of Variance in Reinforce
   - local: unit6/advantage-actor-critic
-    title: Advantage Actor-Critic (A2C)
+    title: Advantage Actor Critic (A2C)
   - local: unit6/hands-on
     title: Advantage Actor Critic (A2C) using Robotics Simulations with PyBullet and Panda-Gym 🤖
   - local: unit6/conclusion
