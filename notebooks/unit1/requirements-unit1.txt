@@ -1,0 +1,5 @@
+stable-baselines3[extra]
+box2d
+box2d-kengz
+huggingface_sb3
+pyglet==1.5.1
