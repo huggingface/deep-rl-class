@@ -104,7 +104,7 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
-- title: Unit 6. Actor Crtic methods with Robotics environments
+- title: Unit 6. Actor Critic methods with Robotics environments
   sections:
   - local: unit6/introduction
     title: Introduction
