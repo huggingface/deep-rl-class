@@ -13,7 +13,7 @@ This repository contains the Deep Reinforcement Learning Course mdx files and no
 <br>
 <br>
 
-# The documentation below is for v1.0 (depreciated)
+# The documentation below is for v1.0 (deprecated)
 
 We're launching a **new version (v2.0) of the course starting December the 5th,**
 
@@ -26,7 +26,7 @@ The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
 <br>
 <br>
 
-# The documentation below is for v1.0 (depreciated)
+# The documentation below is for v1.0 (deprecated)
 
 In this free course, you will:
 

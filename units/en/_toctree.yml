@@ -130,6 +130,38 @@
     title: Conclusion
   - local: unit4/additional-readings
     title: Additional Readings
+- title: Unit 5. Introduction to Unity ML-Agents
+  sections:
+  - local: unit5/introduction
+    title: Introduction
+  - local: unit5/how-mlagents-works
+    title: How ML-Agents works?
+  - local: unit5/snowball-target
+    title: The SnowballTarget environment
+  - local: unit5/pyramids
+    title: The Pyramids environment
+  - local: unit5/curiosity
+    title: (Optional) What is curiosity in Deep Reinforcement Learning?
+  - local: unit5/hands-on
+    title: Hands-on
+  - local: unit5/bonus
+    title: Bonus. Learn to create your own environments with Unity and MLAgents
+  - local: unit5/conclusion
+    title: Conclusion
+- title: Unit 6. Actor Critic methods with Robotics environments
+  sections:
+  - local: unit6/introduction
+    title: Introduction
+  - local: unit6/variance-problem
+    title: The Problem of Variance in Reinforce
+  - local: unit6/advantage-actor-critic
+    title: Advantage Actor Critic (A2C)
+  - local: unit6/hands-on
+    title: Advantage Actor Critic (A2C) using Robotics Simulations with PyBullet and Panda-Gym 🤖
+  - local: unit6/conclusion
+    title: Conclusion
+  - local: unit6/additional-readings
+    title: Additional Readings
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
