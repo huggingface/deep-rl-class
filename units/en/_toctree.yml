@@ -170,6 +170,8 @@
     title: An introduction to Multi-Agents Reinforcement Learning (MARL)
   - local: unit7/multi-agent-setting
     title: Designing Multi-Agents systems
+  - local: unit7/self-play
+    title: Designing Multi-Agents systems
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule

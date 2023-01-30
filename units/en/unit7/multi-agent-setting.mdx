@@ -1,1 +1,46 @@
 # Designing Multi-Agents systems
+
+For this section, you're going to watch this excellent introduction to multi-agents made by <a href="https://www.youtube.com/channel/UCq0imsn84ShAe9PBOFnoIrg"> Brian Douglas </a>.
+
+<Youtube id="qgb0gyrpiGk" />
+
+
+In this video, Brian talked about how to design multi-agents systems? Especially he took a vacuum cleaner example and asked how they can cooperate each other?
+
+To design this Multi-Agent Reinforcement Learning system (MARL), we have two solutions.
+
+## Decentralized system
+
+[ADD illustration decentralized approach]
+
+In decentralized learning, each agent is trained independently from others. In the example given each vacuum learns to clean as much place it can without caring about what other vacuums (agents) are doing.
+
+The benefit is since no information is shared between agents, these vacuum can be designed and trained like we train single agents.
+
+The idea, here is that our training agent will consider other agents as part of the environment dynamics. Not as agents.
+
+However the big drawback of this technique, is that it will make the environment non-stationary since the underlying markov decision process changes over time since other agents are also interacting in the environment.
+And this is problematic for many Reinforcement Learning algorithms that can't reach a global optimum.
+
+## Centralized approach
+
+[ADD illustration centralized approach]
+
+In this architecture, we have a high level process that collect agents experiences: experience buffer. And we'll use these experience to learn a common policy.
+
+For instance, in the vacuum cleaner, the observation will be:
+- The coverage map of the vacuums.
+- The position of all the vacuums.
+
+We use that collective experience to train a policy that will move all three robots in a most beneficial way as a whole. So each robots is learning from the common experience.
+And we have a stationary environment since all the agents are treated as a larger entity and they know the change of other agents policy (since it’s the same than their).
+
+If we recap:
+- In decentralized approach. We **treat all agents independently without considering the existence of the other agents.**
+    1. In this case all agents considers others agents as part of the environment.
+    2. **It’s a non-stationarity environment condition** ⇒ so non-guaranty of convergence.
+
+- In centralized approach:
+    1. A single policy is learned from all the agents.
+    2. Takes as input the present state of an environment and the policy output a jointed actions.
+    3. The reward is global.
