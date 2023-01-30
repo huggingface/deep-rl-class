@@ -32,3 +32,21 @@ We do the same with self-play:
 - We learn from it, and when we acquired some skills, we update our opponent with a more recent copy of our training policy.
 
 The theory behind self-play is not something new, it was already used by Arthur Samuel’s checker player system in the fifties, and by Gerald Tesauro’s TD-Gammon in 1955. If you want to learn more about the history of self-play check this very good blogpost by Andrew Cohen: [https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents](https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents)
+
+## Self-Play in MLAgents
+
+Self-Play is integrated into the MLAgents library and is managed by multiple hyperparameters that we’re going to study. But the main focus as explained in the documentation is the tradeoff between the skill level and generality of the final policy and the stability of learning.
+
+Training against a set of slowly changing or unchanging adversaries with low diversity **results in more stable training. But a risk to overfit if the change is too slow.**
+
+We need then to control:
+
+- How often do we change opponents with swap_steps and team_change parameters.
+- The number of opponents saved with window parameter. A larger value of `window`
+ means that an agent's pool of opponents will contain a larger diversity of behaviors since it will contain policies from earlier in the training run.
+- Probability of playing against the current self vs opponent sampled in the pool with play_against_latest_model_ratio. A larger value of `play_against_latest_model_ratio`
+ indicates that an agent will be playing against the current opponent more often.
+- The number of training steps before saving a new opponent with save_steps parameters. A larger value of `save_steps`
+ will yield a set of opponents that cover a wider range of skill levels and possibly play styles since the policy receives more training.
+
+To get more details about these hyperparameters you definitely need to check this part of the documentation: [https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Training-Configuration-File.md#self-play](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Training-Configuration-File.md#self-play)
