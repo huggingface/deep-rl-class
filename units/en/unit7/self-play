@@ -1,1 +1,34 @@
-# Self-Play
+# Self-Play: a classic technique to train competitive agents in adversarial games
+
+Now that we studied the basics of multi-agents. We're ready to go deeper. As mentioned in the introduction, we're going to train agents in an adversarial games a Soccer 2vs2 game.
+
+<figure>
+<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif” alt=”SoccerTwos”/>
+
+<figcaption>This environment was made by the <a href=”https://github.com/Unity-Technologies/ml-agents”>Unity MLAgents Team</a></figcaption>
+
+</figure>
+
+## What is Self-Play?
+
+Training correctly agents in an adversarial game can be **quite complex**.
+
+On the one hand, we need to find how to get a well-trained opponent to play against your training agent. And on the other hand, even if you have a very good trained opponent, it's not a good solution since how your agent is going to improve its policy when the opponent is too strong?
+
+Think of a child that just started to learn soccer, playing against a very good soccer player will be useless since it will be too hard to win or at least get the ball from time to time. So the child will continuously lose without having time to learn a good policy.
+
+The best solution would be to have an opponent that is on the same level as the agent and will upgrade its level as the agent upgrade its own. Because if the opponent is too strong we’ll learn nothing and if it is too weak, we’re going to overlearn useless behavior against a stronger opponent then.
+
+This solution is called *self-play*. In self-play, the agent uses former copies of itself (of its policy) as an opponent. This way, the agent will play against an agent of the same level (challenging but not too much), have opportunities to improve gradually its policy, and then, as it becomes better update its opponent. It’s a way to bootstrap an opponent and have a gradual increase of opponent complexity.
+
+It’s the same way human learn in competition:
+
+- We start to train against an opponent of similar level
+- Then we learn from it, and when we acquired some skills, we can move further with stronger opponents.
+
+We do the same with self-play:
+
+- We start with a copy of our agent as an opponent this way this opponent is on a similar level.
+- We learn from it, and when we acquired some skills, we update our opponent with a more recent copy of our training policy.
+
+The theory behind self-play is not something new, it was already used by Arthur Samuel’s checker player system in the fifties, and by Gerald Tesauro’s TD-Gammon in 1955. If you want to learn more about the history of self-play check this very good blogpost by Andrew Cohen: [https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents](https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents)
