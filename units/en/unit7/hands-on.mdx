@@ -139,7 +139,31 @@ The action space is three discrete branches:
 
 ## Step 2: Understand MA-POCA
 
-[https://arxiv.org/pdf/2111.05992.pdf](https://arxiv.org/pdf/2111.05992.pdf)
+We know how to train agents to play against others: **we can use self-play.** This is a perfect technique for a 1vs1.
+
+But in our case we’re 2vs2, and each team has 2 agents. How then we can **train cooperative behavior for groups of agents?**
+
+As explained in the [Unity Blog](https://blog.unity.com/technology/ml-agents-v20-release-now-supports-training-complex-cooperative-behaviors), agents typically receive a reward as a group (+1 - penalty) when the team scores a goal. This implies that **every agent on the team is rewarded even if each agent didn’t contribute the same to the win**, which makes it difficult to learn what to do independently.
+
+The solution was developed by the Unity MLAgents team in a new multi-agent trainer called *MA-POCA (Multi-Agent POsthumous Credit Assignment)*.
+
+The idea is simple but powerful: a centralized critic **processes the states of all agents in the team to estimate how well each agent is doing**. This of this critic like a coach.
+
+This allows each agent to **make decisions based only on what it perceives locally**, and **simultaneously evaluate how good its behavior is in the context of the whole group**.
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/mapoca.png" alt="MA POCA"/>
+
+<figcaption>This illustrates MA-POCA’s centralized learning and decentralized execution. Source: <a href="https://blog.unity.com/technology/ml-agents-plays-dodgeball">MLAgents Plays Dodgeball</a>
+</figcaption>
+
+</figure>
+
+
+The solution then is to use Self-Play with an MA-POCA trainer (called poca). The poca trainer will help us to train cooperative behavior and self-play to get an opponent team.
+
+If you want to dive deeper into this MA-POCA algorithm, you need to read the paper they published [here](https://arxiv.org/pdf/2111.05992.pdf) and the sources we put on the additional readings section.
 
 ## Step 3: Define the config file
 
