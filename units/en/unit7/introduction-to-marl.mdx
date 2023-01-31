@@ -2,10 +2,10 @@
 
 ## From single agent to multiple agents
 
-From the first unit, we learned to train agents in a single-agent system. Where our agent was alone in its environment: **it was not cooperating or collaborating with other agents**.
+In the first unit, we learned to train agents in a single-agent system. Where our agent was alone in its environment: **it was not cooperating or collaborating with other agents**.
 
 <figure>
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/patchwork.jpg alt=”Patchwork”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/patchwork.jpg" alt="Patchwork"/>
 <figcaption>
 A patchwork of all the environments you've trained your agents on since the beginning of the course
 </figcaption>
@@ -16,19 +16,19 @@ When we do Multi agents reinforcement learning (MARL), we are in a situation whe
 For instance, you can think of a warehouse where **multiple robots need to navigate to load and unload packages**.
 
 <figure>
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/warehouse.jpg” alt=”Warehouse”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/warehouse.jpg" alt="Warehouse"/>
 <figcaption> <a href="[https://www.freepik.com/free-vector/robots-warehouse-interior-automated-machines_32117680.htm#query=warehouse robot&position=17&from_view=keyword](https://www.freepik.com/free-vector/robots-warehouse-interior-automated-machines_32117680.htm#query=warehouse%20robot&position=17&from_view=keyword)">Image by upklyak</a> on Freepik </figcaption>
 
 Or a road with **several autonomous vehicles**.
 
 <figure>
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/selfdrivingcar.jpg” alt=”Self driving cars”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/selfdrivingcar.jpg" alt="Self driving cars"/>
 <figcaption>
 <a href="[https://www.freepik.com/free-vector/autonomous-smart-car-automatic-wireless-sensor-driving-road-around-car-autonomous-smart-car-goes-scans-roads-observe-distance-automatic-braking-system_26413332.htm#query=self driving cars highway&position=34&from_view=search&track=ais](https://www.freepik.com/free-vector/autonomous-smart-car-automatic-wireless-sensor-driving-road-around-car-autonomous-smart-car-goes-scans-roads-observe-distance-automatic-braking-system_26413332.htm#query=self%20driving%20cars%20highway&position=34&from_view=search&track=ais)">Image by jcomp</a> on Freepik
 </figcaption>
 </figure>
 
-In these examples, we have multiple agents interacting in the environment and with the other agents. This implies defining a multi-agent system. But first, let's understand the different types of multi-agent environments.
+In these examples, we have **multiple agents interacting in the environment and with the other agents**. This implies defining a multi-agents system. But first, let's understand the different types of multi-agent environments.
 
 ## Different types of multi-agent environments
 
@@ -42,16 +42,16 @@ For instance, in a warehouse, **robots must collaborate to load and unload the p
 
 For example, in a game of tennis, **each agent wants to beat the other agent**.
 
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/tennis.png alt=”Tennis”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/tennis.png alt="Tennis"/>
 
 - *Mixed of both adversarial and cooperative*: like in our SoccerTwos environment, two agents are part of a team (blue or purple): they need to cooperate with each other and beat the opponent team.
 
 <figure>
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif” alt=”SoccerTwos”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
 
 </figure>
 
-<figcaption>This environment was made by the <a href=”https://github.com/Unity-Technologies/ml-agents”>Unity MLAgents Team</a></figcaption>
+<figcaption>This environment was made by the <a href="https://github.com/Unity-Technologies/ml-agents">Unity MLAgents Team</a></figcaption>
 
 
-So now we can ask how we design these multi-agent systems. Said differently, how can we train agents in a multi-agent setting?
+So now we can ask how we design these multi-agent systems. Said differently, **how can we train agents in a multi-agents setting** ?
