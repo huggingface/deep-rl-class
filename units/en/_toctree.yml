@@ -171,7 +171,9 @@
   - local: unit7/multi-agent-setting
     title: Designing Multi-Agents systems
   - local: unit7/self-play
-    title: Designing Multi-Agents systems
+    title: Self-Play
+  - local: unit7/hands-on
+    title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
   - local: unit7/additional-readings
     title: Additional Readings
 - title: What's next? New Units Publishing Schedule
