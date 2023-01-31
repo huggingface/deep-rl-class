@@ -104,16 +104,19 @@ Player B has a rating of 2300
 - We first calculate the expected score:
 
 \\(E_{A} = \frac{1}{1+10^{(2300-2600)/400}} = 0.849 \\)
+
 \\(E_{B} = \frac{1}{1+10^{(2600-2300)/400}} = 0.151 \\)
 
 - If the organizers determined that K=16 and A wins, the new rating would be:
 
 \\(ELO_A = 2600 + 16*(1-0.849) = 2602 \\)
+
 \\(ELO_B = 2300 + 16*(1-0.151) = 2298 \\)
 
 - If the organizers determined that K=16 and B wins, the new rating would be:
 
 \\(ELO_A = 2600 + 16*(0-0.849) = 2586 \\)
+
 \\(ELO_B = 2300 + 16 *(1-0.151) = 2314 \\)
 
 
