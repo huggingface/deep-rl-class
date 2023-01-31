@@ -1,0 +1,74 @@
+# Hands-on
+
+<CourseFloatingBanner classNames="absolute z-10 right-0 top-0"
+notebooks={[
+  {label: "Google Colab", value: "https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/notebooks/unit7/unit7.ipynb"}
+  ]}
+  askForHelpUrl="http://hf.co/join/discord" />
+
+
+Now that you learned the bases of multi-agents. You're ready to train our first agents in a multi-agents system: **a 2vs2 soccer team that needs to beat the opponent team**.
+
+And you’re going to participate in AI vs. AI challenges where your trained agent will compete against other classmates’ agents every day and be ranked on a new leaderboard.
+
+To validate this hands-on for the certification process, you just need to push your trained model. There are no minimal result to attain to validate it.
+
+For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
+
+
+This hands-on will be different, since to get correct results you need to train your agents for 4h to 5h. And given the risk of timeout in colab we advise you to train on your own computer.
+
+Let's get started,
+
+
+## What is AI vs. AI ?
+
+AI vs. AI is a tool we developed at Hugging Face.
+It's a matchmaking algorithm  where your pushed models are ranked by playing against other models.
+
+AI vs. AI is three tools:
+
+- A *matchmaking process* defining which model against which model and running the model fights using a background task in the Space.
+- A *leaderboard* getting the match history results and displaying the models ELO ratings: [ADD LEADERBOARD]
+- A *Space demo* to visualize your agents playing against others : https://huggingface.co/spaces/unity/ML-Agents-SoccerTwos
+
+
+We're going to write a blogpost to explain this AI vs. AI tool in detail, but to give you the big picture it works this way:
+- Every 4h, our algorithm fetch all the available models for a given environment.
+- It creates a queue of matches with the matchmaking algorithm.
+- Simulate the match in a Unity headless process and gather the match result (1 if first model won, 0.5 if it’s a draw, 0 if the second model won) in a Dataset.
+- Then, when all matches from the matches queue are done, we update the elo score for each model and update the leaderboard.
+
+### Competition Rules
+
+This first AI vs. AI competition is an experiment, the goal is to improve the tool in the future with your feedback. So some **breakups can happen during the challenge**. But don't worry
+**all the results are saved in a dataset so we can always restart the calculation correctly without loosing information**.
+
+In order that your model get correctly evaluated against others you need to follow these rules:
+
+1. You can't change the observation space or action space. By doing that your model will not work in our evaluation.
+2. You can't use a custom trainer for now, you need to use Unity MLAgents.
+3. We provide executables to train your agents, you can also use the Unity Editor if you prefer **but in order to avoid bugs we advise you to use our executables**.
+
+What will make the difference during this challenge are **the hyperparameters you choose**.
+
+# Step 0: Install MLAgents and download the correct executable
+
+
+
+# Step 1: Understand the environment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- EXE
