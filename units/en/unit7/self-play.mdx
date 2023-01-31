@@ -1,11 +1,11 @@
 # Self-Play: a classic technique to train competitive agents in adversarial games
 
-Now that we studied the basics of multi-agents. We're ready to go deeper. As mentioned in the introduction, we're going to train agents in an adversarial games a Soccer 2vs2 game.
+Now that we studied the basics of multi-agents. We're ready to go deeper. As mentioned in the introduction, we're going **to train agents in an adversarial games with SoccerTwos a 2vs2 game.
 
 <figure>
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif” alt=”SoccerTwos”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
 
-<figcaption>This environment was made by the <a href=”https://github.com/Unity-Technologies/ml-agents”>Unity MLAgents Team</a></figcaption>
+<figcaption>This environment was made by the <a href="https://github.com/Unity-Technologies/ml-agents">Unity MLAgents Team</a></figcaption>
 
 </figure>
 
@@ -80,7 +80,7 @@ After every game:
 
 So if A and B have rating Ra, and Rb, then the **expected scores are** given by:
 
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/elo1.png” alt=”ELO Score”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/elo1.png" alt="ELO Score"/>
 
 Then, at the end of the game, we need to update the player’s actual Elo score, we use a linear adjustment **proportional to the amount by which the player over-performed or under-performed.**
 
@@ -91,7 +91,7 @@ We also define a maximum adjustment rating per game: K-factor.
 
 If Player A has Ea points but scored Sa points, then the player’s rating is updated using the formula:
 
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/elo2.png” alt=”ELO Score”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/elo2.png" alt="ELO Score"/>
 
 ### Example
 
