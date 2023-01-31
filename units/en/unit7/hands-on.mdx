@@ -8,7 +8,7 @@ To validate this hands-on for the certification process, you just need to push a
 
 For more information about the certification process, check this section 👉 [https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process](https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process)
 
-This hands-on will be different, since to get correct results you need to train your agents from 4 hours to 8 hours. And given the risk of timeout in colab we advise you to train on your own computer. You don’t need a super computer, a simple laptop is good enough for this exercise.
+This hands-on will be different, since to get correct results **you need to train your agents from 4 hours to 8 hours**. And given the risk of timeout in colab we advise you to train on your own computer. You don’t need a super computer, a simple laptop is good enough for this exercise.
 
 Let's get started,
 
@@ -59,48 +59,55 @@ We're constantly trying to improve our tutorials, so **if you find some issues 
 
 ⚠ ⚠ ⚠  We’re not going to use the same version than for the Unit 5: Introduction to ML-Agents ⚠ ⚠ ⚠
 
-We advise you to use (conda)[[https://docs.conda.io/en/latest/](https://docs.conda.io/en/latest/)] as a package manager and create a new environment.
+We advise you to use [conda](https://docs.conda.io/en/latest/](https://docs.conda.io/en/latest/) as a package manager and create a new environment.
 
 With conda, we create a new environment called rl:
 
+```bash
 conda create --name rl python=3.8
-
 conda activate rl
+```
 
 To be able to train correctly our agents and push to the Hub, we need to install an experimental version of ML-Agents (the branch aivsai from Hugging Face ML-Agents fork)
 
+```bash
 git clone --branch aivsai [https://github.com/huggingface/ml-agents/](https://github.com/huggingface/ml-agents/)
+```
 
 When the cloning is done (it takes 2.5Go), we go inside the repository and install the package
 
+```bash
 cd ml-agents
 pip install -e ./ml-agents-envs
 pip install -e ./ml-agents
+```
 
 We also need to install pytorch with:
 
+```bash
 pip install torch
+```
 
 Now that’s installed we need to add the environment training executable. Based on your operating system you need to download one of them, unzip it and place it in a new folder inside `ml-agents`that you call `training-envs-executables`
 
 At the end your executable should be in `mlagents/training-envs-executables/SoccerTwos`
 
-Windows: [https://drive.google.com/file/d/1sqFxbEdTMubjVktnV4C6ICjp89wLhUcP/view?usp=sharing](https://drive.google.com/file/d/1sqFxbEdTMubjVktnV4C6ICjp89wLhUcP/view?usp=sharing)
+Windows: Download [this executable](https://drive.google.com/file/d/1sqFxbEdTMubjVktnV4C6ICjp89wLhUcP/view?usp=sharing)
 
-Linux (Ubuntu): [https://drive.google.com/file/d/1KuqBKYiXiIcU4kNMqEzhgypuFP5_45CL/view?usp=sharing](https://drive.google.com/file/d/1KuqBKYiXiIcU4kNMqEzhgypuFP5_45CL/view?usp=sharing)
+Linux (Ubuntu): Download [this executable](https://drive.google.com/file/d/1KuqBKYiXiIcU4kNMqEzhgypuFP5_45CL/view?usp=sharing)
 
 Mac: [ADD Berangere]
 
 ## Step 1: Understand the environment
 
-The environment is called `SoccerTwos` it was made by the Unity MLAgents Team. You can find its documentation here: [https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Learning-Environment-Examples.md#soccer-twos](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Learning-Environment-Examples.md#soccer-twos)
+The environment is called `SoccerTwos` it was made by the Unity MLAgents Team. You can find its documentation [here](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Learning-Environment-Examples.md#soccer-twos)
 
 The goal in this environment **is to get the ball into the opponent's goal while preventing the ball from entering its own goal.**
 
 <figure>
-<img src=”[https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif”](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif%E2%80%9D) alt=”SoccerTwos”/>
+<img src="[https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif"](https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif%E2%80%9D) alt="SoccerTwos"/>
 
-<figcaption>This environment was made by the <a href=”[https://github.com/Unity-Technologies/ml-agents”](https://github.com/Unity-Technologies/ml-agents%E2%80%9D)>Unity MLAgents Team</a></figcaption>
+<figcaption>This environment was made by the <a href="[https://github.com/Unity-Technologies/ml-agents"](https://github.com/Unity-Technologies/ml-agents%E2%80%9D)>Unity MLAgents Team</a></figcaption>
 
 </figure>
 
@@ -108,7 +115,7 @@ The goal in this environment **is to get the ball into the opponent's goal while
 
 The reward function is:
 
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccerreward.png” alt=”SoccerTwos Reward”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccerreward.png" alt="SoccerTwos Reward"/>
 
 ### The observation space
 
@@ -128,15 +135,15 @@ The observation space is composed vector size of 336:
 
 The action space is three discrete branches:
 
-<img src=”https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/socceraction.png” alt=”SoccerTwos Action”/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/socceraction.png" alt="SoccerTwos Action"/>
 
 ## Step 2: Understand MA-POCA
 
 [https://arxiv.org/pdf/2111.05992.pdf](https://arxiv.org/pdf/2111.05992.pdf)
 
-## Step 3: Define the Config
+## Step 3: Define the config file
 
-We already learned in (Unit 5)[https://huggingface.co/deep-rl-course/unit5/introduction] that in ML-Agents, you define **the training hyperparameters into config.yaml files.**
+We already learned in (Unit 5)[https://huggingface.co/deep-rl-course/unit5/introduction] that in ML-Agents, you define **the training hyperparameters into `config.yaml` files.**
 
 There are multiple hyperparameters. To know them better, you should check for each explanation with **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**
 
@@ -198,7 +205,9 @@ For 5M timesteps (which is the recommended value) it will take from 5 to 8 hours
 
 Depending on the executable you use (windows, ubuntu, mac) the training command will look like this (your executable path can be different so don’t hesitate to check before running).
 
-`mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos.exe --run-id="SoccerTwos" --no-graphics`
+```bash
+mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos.exe --run-id="SoccerTwos" --no-graphics
+```
 
 The executable contains 8 copies of SoccerTwos.
 
@@ -220,9 +229,8 @@ Create a new token (**[https://huggingface.co/settings/tokens](https://huggingfa
 
 Copy the token, run this, and paste the token
 
-```
+```bash
 huggingface-cli login
-
 ```
 
 Then, we need to run `mlagents-push-to-hf`.
@@ -237,9 +245,11 @@ If the repo does not exist **it will be created automatically**
 
 In my case
 
-`mlagents-push-to-hf  --run-id="SoccerTwos" --local-dir="./results/SoccerTwos" --repo-id="ThomasSimonini/poca-SoccerTwos" --commit-message="First Push"`
-
+```bash
+mlagents-push-to-hf  --run-id="SoccerTwos" --local-dir="./results/SoccerTwos" --repo-id="ThomasSimonini/poca-SoccerTwos" --commit-message="First Push"`
 ```
+
+```bash
 mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir  --repo-id= # Your repo id --commit-message="First Push"
 ```
 
@@ -259,38 +269,27 @@ But in order that everything works perfectly you need to check:
 
 1. That you have this tag in your model: ML-Agents-SoccerTwos. This is the tag we use to select models to be added to the challenge pool. To do that go to your model and check the tags
 
-verify1.png
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify1.png" alt="Verify"/>
+
 
 If it’s not the case you just need to modify readme and add it
 
-verify2.png
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify2.png" alt="Verify"/>
 
-1. That you have a SoccerTwos onnx file
+2. That you have a `SoccerTwos.onnx` file
 
-verify3.png
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify3.png" alt="Verify"/>
 
 We strongly advise you to create a new model when you push to hub if you want to train it again, or train a new version.
 
 ## Step 7: Visualize some match in our demo
 
-Now that your model is part of AI vs AI Challenge, you can visualize how good it is compared to others.
+Now that your model is part of AI vs AI Challenge, **you can visualize how good it is compared to others**.
 
 In order to do that, you just need to go on this demo:
 
-Select your model as team blue (or team purple if you prefer) and another. The best to compare your model is either with the one who’s on top of the leaderboard. Or use the baseline model as opponent [https://huggingface.co/unity/MLAgents-SoccerTwos](https://huggingface.co/unity/MLAgents-SoccerTwos)
+- Select your model as team blue (or team purple if you prefer) and another. The best to compare your model is either with the one who’s on top of the leaderboard. Or use the [baseline model as opponent](https://huggingface.co/unity/MLAgents-SoccerTwos)
 
-This matches you see live are not used to the calculation of your result but are good way to visualize how good your agent is.
+This matches you see live are not used to the calculation of your result **but are good way to visualize how good your agent is**.
 
 And don't hesitate to share the best score your agent gets on discord in #rl-i-made-this channel 🔥
-
-### Conclusion
-
-That’s all for today. Congrats on finishing this tutorial!
-
-The best way to learn is to practice and try stuff. Why not training another agent with a different configuration?
-
-And don’t hesitate from time to time to check the [leaderboard](https://huggingface.co/spaces/huggingface-projects/AIvsAI-SoccerTwos)
-
-See you on Unit 8 🔥,
-
-## Keep Learning, Stay awesome 🤗
