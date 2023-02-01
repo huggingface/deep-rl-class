@@ -162,6 +162,22 @@
     title: Conclusion
   - local: unit6/additional-readings
     title: Additional Readings
+- title: Unit 7. Introduction to Multi-Agents and AI vs AI
+  sections:
+  - local: unit7/introduction
+    title: Introduction
+  - local: unit7/introduction-to-marl
+    title: An introduction to Multi-Agents Reinforcement Learning (MARL)
+  - local: unit7/multi-agent-setting
+    title: Designing Multi-Agents systems
+  - local: unit7/self-play
+    title: Self-Play
+  - local: unit7/hands-on
+    title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
+  - local: unit7/conclusion
+    title: Conclusion
+  - local: unit7/additional-readings
+    title: Additional Readings
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
