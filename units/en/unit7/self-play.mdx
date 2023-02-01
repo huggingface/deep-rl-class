@@ -1,6 +1,6 @@
 # Self-Play: a classic technique to train competitive agents in adversarial games
 
-Now that we studied the basics of multi-agents. We're ready to go deeper. As mentioned in the introduction, we're going **to train agents in an adversarial games with SoccerTwos a 2vs2 game**.
+Now that we studied the basics of multi-agents. We're ready to go deeper. As mentioned in the introduction, we're going **to train agents in an adversarial game with SoccerTwos, a 2vs2 game**.
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
@@ -11,27 +11,27 @@ Now that we studied the basics of multi-agents. We're ready to go deeper. As men
 
 ## What is Self-Play?
 
-Training correctly agents in an adversarial game can be **quite complex**.
+Training agents correctly in an adversarial game can be **quite complex**.
 
 On the one hand, we need to find how to get a well-trained opponent to play against your training agent. And on the other hand, even if you have a very good trained opponent, it's not a good solution since how your agent is going to improve its policy when the opponent is too strong?
 
-Think of a child that just started to learn soccer, playing against a very good soccer player will be useless since it will be too hard to win or at least get the ball from time to time. So the child will continuously lose without having time to learn a good policy.
+Think of a child that just started to learn soccer. Playing against a very good soccer player will be useless since it will be too hard to win or at least get the ball from time to time. So the child will continuously lose without having time to learn a good policy.
 
-The best solution would be **to have an opponent that is on the same level as the agent and will upgrade its level as the agent upgrade its own**. Because if the opponent is too strong we’ll learn nothing and if it is too weak, we’re going to overlearn useless behavior against a stronger opponent then.
+The best solution would be **to have an opponent that is on the same level as the agent and will upgrade its level as the agent upgrades its own**. Because if the opponent is too strong, we’ll learn nothing; if it is too weak, we’ll overlearn useless behavior against a stronger opponent then.
 
-This solution is called *self-play*. In self-play, **the agent uses former copies of itself (of its policy) as an opponent**. This way, the agent will play against an agent of the same level (challenging but not too much), have opportunities to improve gradually its policy, and then, as it becomes better update its opponent. It’s a way to bootstrap an opponent and have a gradual increase of opponent complexity.
+This solution is called *self-play*. In self-play, **the agent uses former copies of itself (of its policy) as an opponent**. This way, the agent will play against an agent of the same level (challenging but not too much), have opportunities to gradually improve its policy, and then update its opponent as it becomes better. It’s a way to bootstrap an opponent and progressively increase the opponent's complexity.
 
-It’s the same way human learn in competition:
+It’s the same way humans learn in competition:
 
 - We start to train against an opponent of similar level
 - Then we learn from it, and when we acquired some skills, we can move further with stronger opponents.
 
 We do the same with self-play:
 
-- We **start with a copy of our agent as an opponent** this way this opponent is on a similar level.
-- We **learn from it**, and when we acquired some skills, we **update our opponent with a more recent copy of our training policy**.
+- We **start with a copy of our agent as an opponent** this way, this opponent is on a similar level.
+- We **learn from it**, and when we acquire some skills, we **update our opponent with a more recent copy of our training policy**.
 
-The theory behind self-play is not something new, it was already used by Arthur Samuel’s checker player system in the fifties, and by Gerald Tesauro’s TD-Gammon in 1955. If you want to learn more about the history of self-play [check this very good blogpost by Andrew Cohen](https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents)
+The theory behind self-play is not something new. It was already used by Arthur Samuel’s checker player system in the fifties and by Gerald Tesauro’s TD-Gammon in 1955. If you want to learn more about the history of self-play [check this very good blogpost by Andrew Cohen](https://blog.unity.com/technology/training-intelligent-adversaries-using-self-play-with-ml-agents)
 
 ## Self-Play in MLAgents
 
@@ -49,7 +49,7 @@ We need then to control:
 - The **number of training steps before saving a new opponent** with `save_steps` parameters. A larger value of `save_steps`
  will yield a set of opponents that cover a wider range of skill levels and possibly play styles since the policy receives more training.
 
-To get more details about these hyperparameters you definitely need [to check this part of the documentation](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Training-Configuration-File.md#self-play)
+To get more details about these hyperparameters, you definitely need [to check this part of the documentation](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Training-Configuration-File.md#self-play)
 
 
 ## The ELO Score to evaluate our agent
@@ -60,9 +60,9 @@ In adversarial games, tracking the **cumulative reward is not always a meaningfu
 
 Instead, we’re using an ***ELO rating system*** (named after Arpad Elo) that calculates the **relative skill level** between 2 players from a given population in a zero-sum game.
 
-In a zero-sum game: one agent wins is the other agent loss. It’s a mathematical representation of a situation in which each participant’s gain or loss of utility **is exactly balanced by the gain or loss of the utility of the other participants.** We talk about zero-sum games because the sum of utility is equal to zero.
+In a zero-sum game: one agent wins, and the other agent loses. It’s a mathematical representation of a situation in which each participant’s gain or loss of utility **is exactly balanced by the gain or loss of the utility of the other participants.** We talk about zero-sum games because the sum of utility is equal to zero.
 
-During the training, this ELO (starting at a certain score: in general 1200), can decrease in the beginning but should then increase progressively.
+This ELO (starting at a specific score: frequently 1200) can decrease initially but should increase progressively during the training.
 
 The Elo system is **inferred from the losses and draws against other players.** It means that player ratings depend **on the ratings of their opponents and the results scored against them.**
 
@@ -70,7 +70,7 @@ Elo defines an Elo score that is the relative skills of a player in a zero-sum g
 
 The central idea is to think of the performance of a player **as a random variable that is normally distributed.**
 
-The difference in rating between 2 players serves as **the predictor of the outcomes of a match.** If the player wins but the probability is high it will not win a lot of points from their opponent, since it means that it was much stronger than it.
+The difference in rating between 2 players serves as **the predictor of the outcomes of a match.** If the player wins, but the probability of winning is high, it will only win a few points from its opponent since it means that it is much stronger than it.
 
 After every game:
 
@@ -84,7 +84,7 @@ So if A and B have rating Ra, and Rb, then the **expected scores are** given by:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/elo1.png" alt="ELO Score"/>
 
-Then, at the end of the game, we need to update the player’s actual Elo score, we use a linear adjustment **proportional to the amount by which the player over-performed or under-performed.**
+Then, at the end of the game, we need to update the player’s actual Elo score. We use a linear adjustment **proportional to the amount by which the player over-performed or under-performed.**
 
 We also define a maximum adjustment rating per game: K-factor.
 
@@ -126,8 +126,8 @@ Player B has a rating of 2300
 
 Using ELO score has multiple advantages:
 
-- Points are **always balanced** (more points are exchanged when there is an unexpected outcome but the sum is always the same).
-- It is a **self-corrected system** since if a player wins against a weak player, you will not win a lot of points.
+- Points are **always balanced** (more points are exchanged when there is an unexpected outcome, but the sum is always the same).
+- It is a **self-corrected system** since if a player wins against a weak player, you will only win a few points.
 - If **works with team games**: we calculate the average for each team and use it in Elo.
 
 ### The Disadvantages

@@ -1,22 +1,22 @@
 # Hands-on
 
-Now that you learned the bases of multi-agents. You're ready to train our first agents in a multi-agents system: **a 2vs2 soccer team that needs to beat the opponent team**.
+Now that you learned the bases of multi-agents. You're ready to train our first agents in a multi-agent system: **a 2vs2 soccer team that needs to beat the opponent team**.
 
 And you’re going to participate in AI vs. AI challenges where your trained agent will compete against other classmates’ **agents every day and be ranked on a new leaderboard.**
 
-To validate this hands-on for the certification process, you just need to push a trained model. There **are no minimal result to attain to validate it.**
+To validate this hands-on for the certification process, you just need to push a trained model. There **are no minimal results to attain to validate it.**
 
 For more information about the certification process, check this section 👉 [https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process](https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process)
 
-This hands-on will be different, since to get correct results **you need to train your agents from 4 hours to 8 hours**. And given the risk of timeout in colab we advise you to train on your own computer. You don’t need a super computer, a simple laptop is good enough for this exercise.
+This hands-on will be different since to get correct results **you need to train your agents from 4 hours to 8 hours**. And given the risk of timeout in Colab, we advise you to train on your computer. You don’t need a supercomputer: a simple laptop is good enough for this exercise.
 
-Let's get started,
+Let's get started! 🔥
 
 ## What is AI vs. AI?
 
 AI vs. AI is an open-source tool we developed at Hugging Face to compete agents on the Hub against one another in a multi-agent setting. These models are then ranked in a leaderboard.
 
-The idea of this tool is to have a powerful evaluation tool: **by evaluating your agent with a lot of others you’ll get a good idea of the quality of your policy.**
+The idea of this tool is to have a robust evaluation tool: **by evaluating your agent with a lot of others, you’ll get a good idea of the quality of your policy.**
 
 More precisely, AI vs. AI is three tools:
 
@@ -26,25 +26,25 @@ More precisely, AI vs. AI is three tools:
 
 We're going to write a blog post to explain this AI vs. AI tool in detail, but to give you the big picture it works this way:
 
-- Every 4h, our algorithm **fetch all the available models for a given environment (in our case ML-Agents-SoccerTwos).**
+- Every four hours, our algorithm **fetches all the available models for a given environment (in our case ML-Agents-SoccerTwos).**
 - It creates a **queue of matches with the matchmaking algorithm.**
 - We simulate the match in a Unity headless process and **gather the match result** (1 if the first model won, 0.5 if it’s a draw, 0 if the second model won) in a Dataset.
 - Then, when all matches from the matches queue are done, **we update the ELO score for each model and update the leaderboard.**
 
 ### Competition Rules
 
-This first AI vs. AI competition **is an experiment,** the goal is to improve the tool in the future with your feedback. So some **breakups can happen during the challenge**. But don't worry
+This first AI vs. AI competition **is an experiment**: the goal is to improve the tool in the future with your feedback. So some **breakups can happen during the challenge**. But don't worry
 **all the results are saved in a dataset so we can always restart the calculation correctly without losing information**.
 
 In order that your model to get correctly evaluated against others you need to follow these rules:
 
 1. **You can't change the observation space or action space of the agent.** By doing that your model will not work during evaluation.
 2. You **can't use a custom trainer for now,** you need to use Unity MLAgents ones.
-3. We provide executables to train your agents, you can also use the Unity Editor if you prefer **but in order to avoid bugs we advise you to use our executables**.
+3. We provide executables to train your agents. You can also use the Unity Editor if you prefer **, but to avoid bugs, we advise you to use our executables**.
 
 What will make the difference during this challenge are **the hyperparameters you choose**.
 
-The AI vs AI algorithm will run until April the 30th 2023.
+The AI vs AI algorithm will run until April the 30th, 2023.
 
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the GitHub Repo](https://github.com/huggingface/deep-rl-class/issues).
 
@@ -55,7 +55,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues 
 
 ## Step 0: Install MLAgents and download the correct executable
 
-⚠ We're going to use an experimental version of ML-Agents were you can push to hub and load from hub Unity ML-Agents Models **you need to install the same version.**
+⚠ We're going to use an experimental version of ML-Agents which allows you to push and load your models to/from the Hub. **You need to install the same version.**
 
 ⚠ ⚠ ⚠  We’re not going to use the same version than for the Unit 5: Introduction to ML-Agents ⚠ ⚠ ⚠
 
@@ -71,7 +71,7 @@ conda activate rl
 To be able to train correctly our agents and push to the Hub, we need to install an experimental version of ML-Agents (the branch aivsai from Hugging Face ML-Agents fork)
 
 ```bash
-git clone --branch aivsai [https://github.com/huggingface/ml-agents/](https://github.com/huggingface/ml-agents/)
+git clone --branch aivsai https://github.com/huggingface/ml-agents
 ```
 
 When the cloning is done (it takes 2.5Go), we go inside the repository and install the package
@@ -88,7 +88,7 @@ We also need to install pytorch with:
 pip install torch
 ```
 
-Now that’s installed we need to add the environment training executable. Based on your operating system you need to download one of them, unzip it and place it in a new folder inside `ml-agents`that you call `training-envs-executables`
+Now that it’s installed, we need to add the environment training executable. Based on your operating system you need to download one of them, unzip it and place it in a new folder inside `ml-agents` that you call `training-envs-executables`
 
 At the end your executable should be in `mlagents/training-envs-executables/SoccerTwos`
 
@@ -145,9 +145,9 @@ But in our case we’re 2vs2, and each team has 2 agents. How then we can **trai
 
 As explained in the [Unity Blog](https://blog.unity.com/technology/ml-agents-v20-release-now-supports-training-complex-cooperative-behaviors), agents typically receive a reward as a group (+1 - penalty) when the team scores a goal. This implies that **every agent on the team is rewarded even if each agent didn’t contribute the same to the win**, which makes it difficult to learn what to do independently.
 
-The solution was developed by the Unity MLAgents team in a new multi-agent trainer called *MA-POCA (Multi-Agent POsthumous Credit Assignment)*.
+The Unity MLAgents team developed the solution in a new multi-agent trainer called *MA-POCA (Multi-Agent POsthumous Credit Assignment)*.
 
-The idea is simple but powerful: a centralized critic **processes the states of all agents in the team to estimate how well each agent is doing**. This of this critic like a coach.
+The idea is simple but powerful: a centralized critic **processes the states of all agents in the team to estimate how well each agent is doing**. Think of this critic as a coach.
 
 This allows each agent to **make decisions based only on what it perceives locally**, and **simultaneously evaluate how good its behavior is in the context of the whole group**.
 
@@ -167,7 +167,7 @@ If you want to dive deeper into this MA-POCA algorithm, you need to read the pap
 
 ## Step 3: Define the config file
 
-We already learned in (Unit 5)[https://huggingface.co/deep-rl-course/unit5/introduction] that in ML-Agents, you define **the training hyperparameters into `config.yaml` files.**
+We already learned in [Unit 5](https://huggingface.co/deep-rl-course/unit5/introduction) that in ML-Agents, you define **the training hyperparameters into `config.yaml` files.**
 
 There are multiple hyperparameters. To know them better, you should check for each explanation with **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**
 
@@ -208,7 +208,7 @@ behaviors:
       initial_elo: 1200.0
 ```
 
-Compared to Pyramids or SnowballTarget we have new hyperparameters with self-play part. How you modify them can be critical in getting good results.
+Compared to Pyramids or SnowballTarget, we have new hyperparameters with a self-play part. How you modify them can be critical in getting good results.
 
 The advice I can give you here is to check the explanation and recommended value for each parameters (especially self-play ones) with **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md).**
 
@@ -225,7 +225,7 @@ We define four parameters:
 3. `-run_id`: the name you want to give to your training run id.
 4. `-no-graphics`: to not launch the visualization during the training.
 
-For 5M timesteps (which is the recommended value) it will take from 5 to 8 hours of training. You can continue to use your computer in the meantime, but my advice is to deactivate the computer standby mode to avoid the training to be stopped.
+Depending on your hardware, 5M timesteps (the recommended value) will take 5 to 8 hours of training. You can continue using your computer in the meantime, but I advise deactivating the computer standby mode to prevent the training from being stopped.
 
 Depending on the executable you use (windows, ubuntu, mac) the training command will look like this (your executable path can be different so don’t hesitate to check before running).
 
@@ -279,9 +279,7 @@ mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir 
 
 If everything worked you should have this at the end of the process(but with a different url 😆) :
 
-```
-Your model is pushed to the hub. You can view your model here: https://huggingface.co/ThomasSimonini/poca-SoccerTwos
-```
+Your model is pushed to the Hub. You can view your model here: https://huggingface.co/ThomasSimonini/poca-SoccerTwos
 
 It's the link to your model. It contains a model card that explains how to use it, your Tensorboard, and your config file. **What's awesome is that it's a git repository, which means you can have different commits, update your repository with a new push, etc.**
 
@@ -304,7 +302,7 @@ If it’s not the case you just need to modify readme and add it
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify3.png" alt="Verify"/>
 
-We strongly advise you to create a new model when you push to hub if you want to train it again, or train a new version.
+We strongly suggest that you create a new model when you push to the Hub if you want to train it again or train a new version.
 
 ## Step 7: Visualize some match in our demo
 
