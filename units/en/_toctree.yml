@@ -162,6 +162,14 @@
     title: Conclusion
   - local: unit6/additional-readings
     title: Additional Readings
+- title: Bonus Unit 3. AI vs. AI Challenge, Snowball Fight
+  sections:
+  - local: unitbonus3/introduction
+    title: Introduction
+  - local: unitbonus3/hands-on
+    title: AI vs. AI Challenge Snowball Fight
+  - local: unitbonus3/conclusion
+    title: Conclusion
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
