@@ -1,0 +1,90 @@
+# 两种解决RL问题的主要方式[[两周方式]]
+
+<Tip>
+现在我们已经学习了RL框架，我们怎么解决RL问题呢？
+</Tip>
+
+换句话说，怎么构建一个RL智能体可以表示选择 **最大化累计奖励的过程**
+
+## π策略：智能体的大脑[[策略]]
+
+**π**策略是**智能体的大脑**，它是告诉我们在给定状态下**采取什么行动的函数。**因此它**定义了智能体在给定时间的行为**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy" />
+<figcaption>思考做我智能体大脑的策略，这个函数会告诉我们智能体的动作状态</figcaption>
+</figure>
+
+这个策略是**函数想要学习**的，我们的目标是找到最优策略 π\* ，这个策略当智能体根据他行动时返回**最大期望**。我们通过**训练**找到 π\*
+
+这里有两种方式去训练我们的智能体找到最优策略π\*:
+
+- **直接型** ，通过教授智能体**采取动作**并给出当前状态：**基于策略方法**
+- **间接型** ，通过教授智能体那个**状态更有价值**，并且采取动作**向更有价值的状态行进**：基于价值的方法
+
+## 基于策略方法[[基于策略]]
+
+在基于策略的方法中，**我们直接学习一个策略函数** 
+
+这个函数会定义一个匹配最佳状态的动作。我们同样可以说他定义了**一系列动作状态的概率分布**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_2.jpg" alt="Policy" />
+<figcaption>如图所见, 策略 (确定的) <b>直接指示每一步该怎么走.</b></figcaption>
+</figure>
+
+
+我们有两类策略：
+
+
+- *确定型*：一个给定状态的策略**返回同样的动作**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_3.jpg" alt="Policy"/>
+<figcaption>动作 = 策略(状态)</figcaption>
+</figure>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_4.jpg" alt="Policy" width="100%"/>
+
+- *随机型*：结果是一个动作的概率分布
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_5.jpg" alt="Policy"/>
+<figcaption>策略(动作 | 状态) = 给定当前状态下动作集的概率分布</figcaption>
+</figure>
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario"/>
+<figcaption>给定一个初始状态，我们的随机策略将输出该状态下可能动作的概率分布。</figcaption>
+</figure>
+
+
+回顾一下：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_1.jpg" alt="Pbm recap" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_2.jpg" alt="Pbm recap" width="100%" />
+
+
+## 基于价值的方法[[基于价值]]
+
+在基于价值的方法中，相比于训练一个策略函数，我们训练匹配**那个状态价值**期望一个**价值函数**。
+
+状态的值是智能体是否能从从**一个状态开始并根据策略执行**动作的**折扣期望**的返回值
+
+根据策略执行仅仅代表我们的策略是在那个状态是高价值的
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_1.jpg" alt="Value based RL" width="100%" />
+
+这里我们看的我们的价值函数定义了**每个可能状态的价值**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_2.jpg" alt="Value based RL"/>
+<figcaption>多亏了我们的价值函数，在每一步，我们的策略都会选择价值函数定义的最大值的状态：-7，然后是 -6，然后是 -5（依此类推）以达到目标。</figcaption>
+</figure>
+
+多亏了我们的价值函数，在每一步，我们的策略都会选择价值函数定义的最大值的状态：-7，然后是 -6，然后是 -5（依此类推）以达到目标。
+
+回顾一下：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_1.jpg" alt="Vbm recap" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_2.jpg" alt="Vbm recap" width="100%" />

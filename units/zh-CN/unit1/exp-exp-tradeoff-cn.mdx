@@ -1,0 +1,37 @@
+# 探索/利用权衡 [[exp-exp-tradeoff]]
+
+最后，在研究解决强化学习问题的不同方法之前，我们必须讨论一个更重要的主题：*探索/利用*
+
+- *探索* 正在通过尝试随机操作来探索环境，以**找到有关环境的更多信息。**
+- *利用* 是**利用已知信息来最大化回报。**
+
+请记住，我们的 RL 智能体的目标是最大化预期的累积奖励。然而，**我们可能会陷入一个常见的陷阱**。
+
+让我们举个例子：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/exp_1.jpg" alt="Exploration" width="100%">
+
+在这个游戏中，我们的老鼠可以拥有**无限数量的小奶酪**（每个 +1）。但是在迷宫的顶端，有一大笔奶酪（+1000）。
+
+然而，如果我们只专注于利用，我们的智能体将永远无法达到巨量奶酪。相反，它只会利用**最近的奖励来源**，即使这个来源很小（利用）。
+
+但如果我们的智能体进行一点点探索，它就可以**发现大奖励**（那堆大奶酪）。
+
+这就是我们所说的探索/利用权衡。我们需要平衡我们**探索环境**和我们**利用我们对环境的了解的程度。**
+
+因此，我们必须**定义一个有助于处理这种权衡的规则**。我们将在以后的单元中看到处理它的不同方法。
+
+如果还是一头雾水，**想想一个真正的问题：挑选餐厅：**
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/exp_2.jpg" alt="Exploration">
+<figcaption>来源：<a href="https://inst.eecs.berkeley.edu/~cs188/sp20/assets/lecture/lec15_6up.pdf">伯克利人工智能课程</a>
+</figcaption>
+</figure>
+
+- *利用*：您每天都去同一家您认为不错的餐厅，**冒着错过另一家更好的餐厅的风险。**
+- *探索*：尝试您以前从未去过的餐厅，有可能会有糟糕的体验**但可能有机会获得美妙的体验。**
+
+回顾一下：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/expexpltradeoff.jpg" alt="Exploration Exploitation Tradeoff" width="100%">

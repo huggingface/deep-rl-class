@@ -1,0 +1,92 @@
+# 测验 [[测验]]
+
+学习和[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)** 的最佳方法是测试自己。 ** 这将帮助您找到 **您需要加强知识的地方**。
+
+### Q1：什么是强化学习？
+
+<details>
+<summary>解决方案</summary>
+
+强化学习是一个**解决控制任务（也称为决策问题）**的框架，它通过构建智能体来从环境中学习，通过反复试验与环境交互并**接收奖励（正面或负面）作为独特的反馈** .
+
+</details>
+
+
+
+### Q2：定义 RL 循环
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rl-loop-ex.jpg" alt="Exercise RL Loop"></img>
+
+步步：
+- 我们的代理从环境中接收 ______
+- 基于那个 ______ 代理采取 ______
+- 我们的特工将向右移动
+- 环境变得 ______
+- 环境给代理人一个______
+
+
+<question choices="{[" {="None" text:="None" "an="None" action="None" a0,="None" action="None" a0,="None" state="None" s0,="None" state="None" s1,="None" reward="None" r1",="None" explain:="None" "at="None" every="None" step:="None" our="None" agent="None" receives="None" **state="None" s0**="None" from="None" the="None" environment.="None" based="None" on="None" that="None" **state="None" s0**="None" the="None" agent="None" takes="None" an="None" **action="None" a0**.="None" our="None" agent="None" will="None" move="None" to="None" the="None" right.="None" the="None" environment="None" goes="None" to="None" a="None" **new="None" state="None" s1**.="None" the="None" environment="None" gives="None" **a="None" reward="None" r1**="None" to="None" the="None" agent."="None" },="None" {="None" text:="None" "state="None" s0,="None" state="None" s0,="None" action="None" a0,="None" new="None" state="None" s1,="None" reward="None" r1",="None" explain:="None" "",="None" correct:="None" true="None" },="None" {="None" text:="None" "a="None" state="None" s0,="None" state="None" s0,="None" action="None" a0,="None" state="None" s1,="None" action="None" a1",="None" explain:="None" "at="None" every="None" step:="None" our="None" agent="None" receives="None" **state="None" s0**="None" from="None" the="None" environment.="None" based="None" on="None" that="None" **state="None" s0**="None" the="None" agent="None" takes="None" an="None" **action="None" a0**.="None" our="None" agent="None" will="None" move="None" to="None" the="None" right.="None" the="None" environment="None" goes="None" to="None" a="None" **new="None" state="None" s1**.="None" the="None" environment="None" gives="None" **a="None" reward="None" r1**="None" to="None" the="None" agent."="None" }="None" ]}="None"></question>
+
+### Q3：状态和观察有什么区别？
+
+<question choices="{[" {="None" text:="None" "the="None" state="None" is="None" a="None" complete="None" description="None" of="None" the="None" state="None" of="None" the="None" world="None" (there="None" is="None" no="None" hidden="None" information)",="None" explain:="None" "",="None" correct:="None" true="None" },="None" {="None" text:="None" "the="None" state="None" is="None" a="None" partial="None" description="None" of="None" the="None" state",="None" explain:="None" ""="None" },="None" {="None" text:="None" "the="None" observation="None" is="None" a="None" complete="None" description="None" of="None" the="None" state="None" of="None" the="None" world="None" (there="None" is="None" no="None" hidden="None" information)",="None" explain:="None" ""="None" },="None" {="None" text:="None" "the="None" observation="None" is="None" a="None" partial="None" description="None" of="None" the="None" state",="None" explain:="None" "",="None" correct:="None" true="None" },="None" {="None" text:="None" "we="None" receive="None" a="None" state="None" when="None" we="None" play="None" with="None" chess="None" environment",="None" explain:="None" "since="None" we="None" have="None" access="None" to="None" the="None" whole="None" checkboard="None" information.",="None" correct:="None" true="None" },="None" {="None" text:="None" "we="None" receive="None" an="None" observation="None" when="None" we="None" play="None" with="None" chess="None" environment",="None" explain:="None" "since="None" we="None" have="None" access="None" to="None" the="None" whole="None" checkboard="None" information."="None" },="None" {="None" text:="None" "we="None" receive="None" a="None" state="None" when="None" we="None" play="None" with="None" super="None" mario="None" bros",="None" explain:="None" "we="None" only="None" see="None" a="None" part="None" of="None" the="None" level="None" close="None" to="None" the="None" player,="None" so="None" we="None" receive="None" an="None" observation."="None" },="None" {="None" text:="None" "we="None" receive="None" an="None" observation="None" when="None" we="None" play="None" with="None" super="None" mario="None" bros",="None" explain:="None" "we="None" only="None" see="None" a="None" part="None" of="None" the="None" level="None" close="None" to="None" the="None" player.",="None" correct:="None" true="None" }="None" ]}="None"></question>
+
+### Q4：任务是强化学习问题的实例。什么是两种类型的任务？
+
+<question choices="{[" {="None" text:="None" "episodic",="None" explain:="None" "in="None" episodic="None" task,="None" we="None" have="None" a="None" starting="None" point="None" and="None" an="None" ending="None" point="None" (a="None" terminal="None" state).="None" this="None" creates="None" an="None" episode:="None" a="None" list="None" of="None" states,="None" actions,="None" rewards,="None" and="None" new="None" states.="None" for="None" instance,="None" think="None" about="None" super="None" mario="None" bros:="None" an="None" episode="None" begin="None" at="None" the="None" launch="None" of="None" a="None" new="None" mario="None" level="None" and="None" ending="None" when="None" you’re="None" killed="None" or="None" you="None" reached="None" the="None" end="None" of="None" the="None" level.",="None" correct:="None" true="None" },="None" {="None" text:="None" "recursive",="None" explain:="None" ""="None" },="None" {="None" text:="None" "adversarial",="None" explain:="None" ""="None" },="None" {="None" text:="None" "continuing",="None" explain:="None" "continuing="None" tasks="None" are="None" tasks="None" that="None" continue="None" forever="None" (no="None" terminal="None" state).="None" in="None" this="None" case,="None" the="None" agent="None" must="None" learn="None" how="None" to="None" choose="None" the="None" best="None" actions="None" and="None" simultaneously="None" interact="None" with="None" the="None" environment.",="None" correct:="None" true="None" }="None" ]}="None"></question>
+
+### Q5：探索/开发权衡是什么？
+
+<details>
+<summary>解决方案</summary>
+
+在强化学习中，我们需要平衡我们探索环境的程度和我们利用我们对环境的了解的程度**。
+
+- *探索* 正在通过**尝试随机操作来探索环境，以找到有关环境的更多信息**。
+
+- *利用*是**利用已知信息来最大化回报**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/expexpltradeoff.jpg" alt="Exploration Exploitation Tradeoff" width="100%">
+
+</details>
+
+
+### Q6：什么是政策？
+
+<details>
+<summary>解决方案</summary>
+
+- Policy π ** 是我们智能体的大脑**。它是告诉我们在给定状态下采取什么行动的函数。因此它定义了代理在给定时间的行为。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy">
+
+</details>
+
+
+### Q7：什么是基于价值的方法？
+
+<details>
+<summary>解决方案</summary>
+
+- 基于价值的方法是解决强化学习问题的主要方法之一。
+- 在基于价值的方法中，我们不是训练策略函数，而是训练一个将状态映射到处于该状态的期望值的价值函数**。
+
+
+
+</details>
+
+### Q8：什么是基于策略的方法？
+
+<details>
+<summary>解决方案</summary>
+
+- 在*基于策略的方法*中，我们直接学习了一个**策略函数**。
+- 此策略函数将**从每个状态映射到该状态下的最佳对应动作**。或者**在该状态下可能采取的行动集的概率分布**。
+
+
+
+
+</details>
+
+
+恭喜你完成了这个 Quiz 🥳，如果你错过了一些信息，请花时间再次阅读本章以巩固（😏）你的知识，但是**别担心**：在课程中我们会再次复习这些概念，并且您将**通过实践**加强您的理论知识**。
