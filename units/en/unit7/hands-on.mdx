@@ -240,6 +240,8 @@ The executable contains 8 copies of SoccerTwos.
 
 ⚠️ It’s normal if you don’t see a big increase of ELO score (and even a decrease below 1200) before 2M timesteps, since your agents will spend most of their time moving randomly on the field before being able to goal.
 
+⚠️ You can stop the training with Ctrl + C but beware of typing only once this command to stop the training since MLAgents needs to generate a final .onnx file before closing the run.
+
 ## Step 5: **Push the agent to the Hugging Face Hub**
 
 Now that we trained our agents, we’re **ready to push them to the Hub to be able to participate in the AI vs. AI challenge and visualize them playing on your browser🔥.**
