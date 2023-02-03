@@ -199,7 +199,7 @@ behaviors:
         gamma: 0.99
         strength: 1.0
     keep_checkpoints: 5
-    max_steps: 50000000
+    max_steps: 5000000
     time_horizon: 1000
     summary_freq: 10000
     self_play:
@@ -228,7 +228,7 @@ We define four parameters:
 3. `-run_id`: the name you want to give to your training run id.
 4. `-no-graphics`: to not launch the visualization during the training.
 
-Depending on your hardware, 5M timesteps (the recommended value) will take 5 to 8 hours of training. You can continue using your computer in the meantime, but I advise deactivating the computer standby mode to prevent the training from being stopped.
+Depending on your hardware, 5M timesteps (the recommended value but you can also try 10M) will take 5 to 8 hours of training. You can continue using your computer in the meantime, but I advise deactivating the computer standby mode to prevent the training from being stopped.
 
 Depending on the executable you use (windows, ubuntu, mac) the training command will look like this (your executable path can be different so don’t hesitate to check before running).
 
