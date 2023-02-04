@@ -110,6 +110,74 @@
     title: Optuna
   - local: unitbonus2/hands-on
     title: Hands-on
+- title: Unit 4. Policy Gradient with PyTorch
+  sections:
+  - local: unit4/introduction
+    title: Introduction
+  - local: unit4/what-are-policy-based-methods
+    title: What are the policy-based methods?
+  - local: unit4/advantages-disadvantages
+    title: The advantages and disadvantages of policy-gradient methods
+  - local: unit4/policy-gradient
+    title: Diving deeper into policy-gradient
+  - local: unit4/pg-theorem
+    title: (Optional) the Policy Gradient Theorem
+  - local: unit4/hands-on
+    title: Hands-on
+  - local: unit4/quiz
+    title: Quiz
+  - local: unit4/conclusion
+    title: Conclusion
+  - local: unit4/additional-readings
+    title: Additional Readings
+- title: Unit 5. Introduction to Unity ML-Agents
+  sections:
+  - local: unit5/introduction
+    title: Introduction
+  - local: unit5/how-mlagents-works
+    title: How ML-Agents works?
+  - local: unit5/snowball-target
+    title: The SnowballTarget environment
+  - local: unit5/pyramids
+    title: The Pyramids environment
+  - local: unit5/curiosity
+    title: (Optional) What is curiosity in Deep Reinforcement Learning?
+  - local: unit5/hands-on
+    title: Hands-on
+  - local: unit5/bonus
+    title: Bonus. Learn to create your own environments with Unity and MLAgents
+  - local: unit5/conclusion
+    title: Conclusion
+- title: Unit 6. Actor Critic methods with Robotics environments
+  sections:
+  - local: unit6/introduction
+    title: Introduction
+  - local: unit6/variance-problem
+    title: The Problem of Variance in Reinforce
+  - local: unit6/advantage-actor-critic
+    title: Advantage Actor Critic (A2C)
+  - local: unit6/hands-on
+    title: Advantage Actor Critic (A2C) using Robotics Simulations with PyBullet and Panda-Gym 🤖
+  - local: unit6/conclusion
+    title: Conclusion
+  - local: unit6/additional-readings
+    title: Additional Readings
+- title: Unit 7. Introduction to Multi-Agents and AI vs AI
+  sections:
+  - local: unit7/introduction
+    title: Introduction
+  - local: unit7/introduction-to-marl
+    title: An introduction to Multi-Agents Reinforcement Learning (MARL)
+  - local: unit7/multi-agent-setting
+    title: Designing Multi-Agents systems
+  - local: unit7/self-play
+    title: Self-Play
+  - local: unit7/hands-on
+    title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
+  - local: unit7/conclusion
+    title: Conclusion
+  - local: unit7/additional-readings
+    title: Additional Readings
 - title: Certification and congratulations
   sections:
   - local: communication/conclusion
