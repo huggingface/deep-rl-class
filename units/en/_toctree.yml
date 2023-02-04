@@ -116,14 +116,16 @@
     title: Introduction
   - local: unitbonus3/model-based
     title: Model-Based Reinforcement Learning
-  - local: unitbonus3/decision-transformers
-    title: Decision Transformers and Offline RL
+  - local: unitbonus3/offline-online
+    title: Offline vs. Online Reinforcement Learning
   - local: unitbonus3/rlhf
     title: Reinforcement Learning from Human Feedback
-  - local: unitbonus3/minerl
-    title: MineRL
+  - local: unitbonus3/decision-transformers
+    title: Decision Transformers and Offline RL
   - local: unitbonus3/language-models
     title: Language models in RL
+  - local: unitbonus3/envs-to-try
+    title: Interesting Environments to try
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
