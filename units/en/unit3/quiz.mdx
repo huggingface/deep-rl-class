@@ -76,8 +76,8 @@ For instance, in pong, our agent **will be unable to know the ball direction if 
 
 **1. Make more efficient use of the experiences during the training**
 
-Usually, in online reinforcement learning, the agent interacts in the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient
-But with experience replay, **we create a replay buffer that saves experience samples that we can reuse during the training**.
+Usually, in online reinforcement learning, the agent interacts in the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient.
+But, with experience replay, **we create a replay buffer that saves experience samples that we can reuse during the training**.
 
 **2. Avoid forgetting previous experiences and reduce the correlation between experiences**
 
