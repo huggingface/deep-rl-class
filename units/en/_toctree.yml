@@ -194,3 +194,7 @@
     title: Language models in RL
   - local: unitbonus3/envs-to-try
     title: Interesting Environments to try
+- title: What's next? New Units Publishing Schedule
+  sections:
+  - local: communication/publishing-schedule
+    title: Publishing Schedule
