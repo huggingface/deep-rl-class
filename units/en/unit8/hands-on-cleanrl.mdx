@@ -1,0 +1,32 @@
+# Hands-on
+
+Now that we studied the theory behind PPO, the best way to understand how it works **is to implement it from scratch.**
+
+Implementing an architecture from scratch is the best way to understand it, and it's a good habit. We have already done it for a value-based method with Q-Learning and a Policy-based method with Reinforce.
+
+So, to be able to code it, we're going to use two resources:
+- A tutorial made by [Costa Huang](https://github.com/vwxyzjn). Costa is behind [CleanRL](https://github.com/vwxyzjn/cleanrl), a Deep Reinforcement Learning library that provides high-quality single-file implementation with research-friendly features.
+- In addition to the tutorial, to go deeper, you can read the 13 core implementation details: [https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/](https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/)
+
+Then, to test its robustness, we're going to train it in 2 different classical environments:
+
+- [Cartpole-v1](https://www.gymlibrary.ml/environments/classic_control/cart_pole/?highlight=cartpole)
+- [LunarLander-v2](https://www.gymlibrary.ml/environments/box2d/lunar_lander/)
+
+<figure class="image table text-center m-0 w-full">
+    <video
+        alt="LunarLander"
+        style="max-width: 70%; margin: auto;"
+        autoplay loop autobuffer muted playsinline
+    >
+      <source src="assets/63_deep_rl_intro/lunarlander.mp4" type="video/mp4">
+  </video>
+</figure>
+
+And finally, we will be push the trained model to the Hub to evaluate and visualize your agent playing.
+
+LunarLander-v2 is the first environment you used when you started this course. At that time, you didn't know how it worked, and now, you can code it from scratch and train it. **How incredible is that 🤩.**
+
+<iframe src="https://giphy.com/embed/pynZagVcYxVUk" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-office-michael-heartbreak-pynZagVcYxVUk">via GIPHY</a></p>
+
+Let's get started! 🚀

@@ -178,6 +178,22 @@
     title: Conclusion
   - local: unit7/additional-readings
     title: Additional Readings
+- title: Unit 8. Part 1 Proximal Policy Optimization (PPO)
+  sections:
+  - local: unit8/introduction
+    title: Introduction
+  - local: unit8/intuition-behind-ppo
+    title: The intuition behind PPO
+  - local: unit8/clipped-surrogate-objective
+    title: Introducing the Clipped Surrogate Objective Function
+  - local: unit8/visualize
+    title: Visualize the Clipped Surrogate Objective Function
+  - local: unit8/hands-on-cleanrl
+    title: PPO with CleanRL
+  - local: unit8/conclusion
+    title: Conclusion
+  - local: unit8/additional-readings
+    title: Additional Readings
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
