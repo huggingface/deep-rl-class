@@ -369,7 +369,7 @@ def epsilon_greedy_policy(Qtable, state, epsilon):
 ```
 
 ## Define the hyperparameters ⚙️
-The exploration related hyperparamters are some of the most important ones.
+The exploration related hyperparameters are some of the most important ones.
 
 - We need to make sure that our agent **explores enough of the state space** to learn a good value approximation. To do that, we need to have progressive decay of the epsilon.
 - If you decrease epsilon too fast (too high decay_rate), **you take the risk that your agent will be stuck**, since your agent didn't explore enough of the state space and hence can't solve the problem.
