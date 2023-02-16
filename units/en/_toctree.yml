@@ -191,9 +191,9 @@
   - local: unitbonus3/decision-transformers
     title: Decision Transformers and Offline RL
   - local: unitbonus3/language-models
-    title: Interesting environments to try
-  - local: unitbonus3/envs-to-try
     title: Language models in RL
+  - local: unitbonus3/envs-to-try
+    title: Interesting environments to try
   - local: unitbonus3/rl-documentation
     title: Brief introduction to RL documentation
 - title: What's next? New Units Publishing Schedule
