@@ -198,6 +198,10 @@
   sections:
   - local: unit8/introduction-sf
     title: Introduction
+  - local: unit8/hands-on-sf
+    title: PPO with Sample Factory and Doom
+  - local: unit8/conclusion-sf
+    title: Conclusion
 - title: What's next? New Units Publishing Schedule
   sections:
   - local: communication/publishing-schedule
