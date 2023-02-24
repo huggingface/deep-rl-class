@@ -194,6 +194,14 @@
     title: Conclusion
   - local: unit8/additional-readings
     title: Additional Readings
+- title: Unit 8. Part 2 Proximal Policy Optimization (PPO) with Doom
+  sections:
+  - local: unit8/introduction-sf
+    title: Introduction
+  - local: unit8/hands-on-sf
+    title: PPO with Sample Factory and Doom
+  - local: unit8/conclusion-sf
+    title: Conclusion
 - title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
   sections:
   - local: unitbonus3/introduction
