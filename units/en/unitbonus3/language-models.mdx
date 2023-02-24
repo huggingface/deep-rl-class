@@ -20,9 +20,7 @@ There is therefore a potential synergy between LMs which can bring knowledge abo
 
 As a first attempt, the paper [“Grounding Large Language Models with Online Reinforcement Learning”](https://arxiv.org/abs/2302.02662v1) tackled the problem of **adapting or aligning a LM to a textual environment using PPO**. They showed that the knowledge encoded in the LM lead to a fast adaptation to the environment (opening avenue for sample efficiency RL agents) but also that such knowledge allowed the LM to better generalize to new tasks once aligned.
 
-<video controls width="250">
-    <source src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/papier_v4.mp4" type="video/mp4">
-</video>
+<video src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/papier_v4.mp4" type="video/mp4" />
 
 Another direction studied in [“Guiding Pretraining in Reinforcement Learning with Large Language Models”](https://arxiv.org/abs/2302.06692) was to keep the LM frozen but leverage its knowledge to **guide an RL agent’s exploration**. Such method allows the RL agent to be guided towards human-meaningful and plausibly useful behaviors without requiring a human in the loop during training.
 
