@@ -191,7 +191,7 @@ env = # TODO: Add the wrapper
 ```python
 env = make_vec_env(env_id, n_envs=4)
 
-env = VecNormalize(env, norm_obs=True, norm_reward=False, clip_obs=10.0)
+env = VecNormalize(env, norm_obs=True, norm_reward=True, clip_obs=10.0)
 ```
 
 ### Create the A2C Model 🤖
