@@ -16,6 +16,8 @@ Now that we studied the Q-Learning algorithm, let's implement it from scratch an
 
 Thanks to a [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard), you'll be able to compare your results with other classmates and exchange the best practices to improve your agent's scores. Who will win the challenge for Unit 2?
 
+**If you don't find your model, go to the bottom of the page and click on the refresh button.**
+
 To validate this hands-on for the [certification process](https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process), you need to push your trained Taxi model to the Hub and **get a result of >= 4.5**.
 
 To find your result, go to the [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) and find your model, **the result = mean_reward - std of reward**
@@ -259,7 +261,8 @@ print("There are ", action_space, " possible actions")
 ```
 
 ```python
-# Let's create our Qtable of size (state_space, action_space) and initialized each values at 0 using np.zeros
+# Let's create our Qtable of size (state_space, action_space) and initialized each values at 0 using np.zeros. np.zeros needs a tuple (a,b)
+
 def initialize_q_table(state_space, action_space):
   Qtable =
   return Qtable
