@@ -1,4 +1,4 @@
-"# DEPRECIATED UNIT, THE NEW UNIT 2 IS HERE: https://huggingface.co/deep-rl-course/unit2/introduction
+# DEPRECIATED UNIT, THE NEW UNIT 2 IS HERE: https://huggingface.co/deep-rl-course/unit2/introduction
 **Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit2/introduction"
 
 
