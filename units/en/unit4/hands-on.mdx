@@ -375,11 +375,11 @@ The second question you may ask is **why do we minimize the loss**? Did you talk
 
 - We want to maximize our utility function $J(\theta)$, but in PyTorch and TensorFlow, it's better to **minimize an objective function.**
     - So let's say we want to reinforce action 3 at a certain timestep. Before training this action P is 0.25.
-    - So we want to modify $\theta$ such that $\pi_\theta(a_3|s; \theta) > 0.25$
-    - Because all P must sum to 1, max $\pi_\theta(a_3|s; \theta)$ will **minimize other action probability.**
-    - So we should tell PyTorch **to min $1 - \pi_\theta(a_3|s; \theta)$.**
-    - This loss function approaches 0 as $\pi_\theta(a_3|s; \theta)$ nears 1.
-    - So we are encouraging the gradient to max $\pi_\theta(a_3|s; \theta)$
+    - So we want to modify \\(theta \\) such that \\(\pi_\theta(a_3|s; \theta) > 0.25 \\)
+    - Because all P must sum to 1, max \\(pi_\theta(a_3|s; \theta)\\) will **minimize other action probability.**
+    - So we should tell PyTorch **to min \\(1 - \pi_\theta(a_3|s; \theta)\\).**
+    - This loss function approaches 0 as \\(\pi_\theta(a_3|s; \theta)\\) nears 1.
+    - So we are encouraging the gradient to max \\(\pi_\theta(a_3|s; \theta)\\)
 
 
 ```python
