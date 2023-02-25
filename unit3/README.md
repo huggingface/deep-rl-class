@@ -1,6 +1,10 @@
+# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unit3/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit3/introduction
+
+
 # Unit 3: Deep Q-Learning with Atari Games 👾
 
-In this Unit, **we'll study our first Deep Reinforcement Learning agent**: Deep Q-Learning. 
+In this Unit, **we'll study our first Deep Reinforcement Learning agent**: Deep Q-Learning.
 
 And **we'll train it to play Space Invaders and other Atari environments using [RL-Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)**, a training framework for RL using Stable-Baselines that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results, and recording videos.
 

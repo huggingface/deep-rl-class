@@ -1,8 +1,13 @@
+# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unitbonus3/decision-transformers
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unitbonus3/decision-transformers
+
+
+
 # Unit 9: Decision Transformers and offline Reinforcement Learning 🤖
 
 ![cover](assets/img/thumbnail.gif)
 
-In this Unit, you'll learn what is Decision Transformer and Offline Reinforcement Learning. And then, you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run. 
+In this Unit, you'll learn what is Decision Transformer and Offline Reinforcement Learning. And then, you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run.
 
 This course is **self-paced**, you can start whenever you want.
 
@@ -18,12 +23,12 @@ Here are the steps for this Unit:
 
 2️⃣ 👩‍💻 Then dive on the first hands-on.
  👩‍💻 The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1K3UuajwoPY1MzRKNkONNRS3gS5DxZ-qF?usp=sharing)
- 
+
 3️⃣ 📖 Read [Train your first Decision Transformer](https://huggingface.co/blog/train-decision-transformers)
 
-4️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run**. 
+4️⃣ 👩‍💻 Then dive on the hands-on, where **you’ll train your first Offline Decision Transformer model from scratch to make a half-cheetah run**.
  👩‍💻 The hands-on 👉 https://github.com/huggingface/blog/blob/main/notebooks/101_train-decision-transformers.ipynb
- 
+
 ## How to make the most of this course
 
 To make the most of the course, my advice is to:

@@ -1,6 +1,10 @@
-# Unit 5: Policy Gradient with PyTorch 
+# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unit4/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit4/introduction
 
-In this Unit, **we'll study Policy Gradient Methods**. 
+
+# Unit 5: Policy Gradient with PyTorch
+
+In this Unit, **we'll study Policy Gradient Methods**.
 
 And we'll **implement Reinforce (a policy gradient method) from scratch using PyTorch**. Before testing its robustness using CartPole-v1, PixelCopter, and Pong.
 
