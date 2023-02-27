@@ -1,11 +1,11 @@
-# 深度 Q-Network (DQN)  [[deep-q-network]]
-这是我们深度 Q-Learning 网络的结构：
+# 深度 Q 网络 (DQN)  [[deep-q-network]]
+这是我们深度 Q 学习网络的结构：
 
 <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/deep-q-network.png" alt="Deep Q Network"/>
 
-作为输入，我们的状态采用 **4 帧堆**经过网络，并且输出一个该状态下**每个可能动作的 Q-value 向量**。然后想 Q-Learning 一样，我们仅仅需要使用 epsilon-贪婪 策略去筛选我们要采取的动作就行。
+作为输入，我们的状态采用 **4 帧堆**经过网络，并且输出一个该状态下**每个可能动作的 Q 值向量**。然后像 Q 学习一样，我们仅仅需要使用 $\epsilon$-贪婪 策略去筛选我们要采取的动作就行。
 
-当神经网络开始初始化， **Q-value 的估计很糟糕**。但是随着训练进行，我们的深度 Q-Network 会用合适的动作关联情景并且**学习如何掌控游戏**。
+当神经网络开始初始化， **Q 值的估计很糟糕**。但是随着训练进行，我们的深度 Q 网络会用合适的动作关联情景并且**学习如何掌控游戏**。
 
 
 ## 预处理输入和时序限制[[preprocessing]]
@@ -34,8 +34,8 @@
 
 如果你不知道啥是卷积层，别担心。你可以查看[Udacity 的深度强化学习课程第四课](https://www.udacity.com/course/deep-learning-pytorch--ud188)
 
-最后，我们有一对全连接层输出每一个该状态下可能动作的 Q-value.
+最后，我们有一对全连接层输出每一个该状态下可能动作的 Q 值.
 
 <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/deep-q-network.png" alt="Deep Q Network"/>
 
-我们了解了深度 Q-Learning 是用一个给定一个状态的神经网络去估计该状态每一个可能的动作的不同 Q-value。下面让我们学习深度 Q-Learning 算法。
+我们了解了深度 Q 学习是用一个给定一个状态的神经网络去估计该状态每一个可能的动作的不同 Q 值。下面让我们学习深度 Q 学习算法。

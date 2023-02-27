@@ -8,12 +8,12 @@
         ]}
         askForHelpUrl="http://hf.co/join/discord" />
 
-现在你已经学习了深度 Q-Learning 背后的理论，**你已经准备好训练你的深度 Q-Learning 智能体去玩 Atari 游戏了**。我们将从空间入侵开始，但是你可以用在任何你想要的 Atari 游戏里 🔥。
+现在你已经学习了深度 Q 学习背后的理论，**你已经准备好训练你的深度 Q 学习智能体去玩 Atari 游戏了**。我们将从空间入侵开始，但是你可以用在任何你想要的 Atari 游戏里 🔥。
 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
 
-我们使用的[RL-Baselines-3 Zoo 集成](https://github.com/DLR-RM/rl-baselines3-zoo), 一个深度 Q-learning 的基础版本，没有像双重-DQN ，竞争—DQN 或者优先经验重演的扩展。
+我们使用的[RL-Baselines-3 Zoo 集成](https://github.com/DLR-RM/rl-baselines3-zoo), 一个深度 Q 学习的基础版本，没有像双深度 Q 网络 ，竞争深度 Q 网络或者优先经验回放的扩展。
 
 同样如果在本次动手尝试后你亲自想了解执行深度 Q-Learning。你一定要看一看 CleanRL 的执行：https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
 
@@ -31,13 +31,13 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit3/unit3.ipynb)
 
 
-# Unit 3: 用 RL Baselines3 Zoo 进行深度 Q-Learning 和 Atari 游戏 👾  
+# Unit 3: 用 RL Baselines3 Zoo 进行深度 Q 学习来玩 Atari 游戏 👾  
 
 <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230222150251.jpg" alt="Unit 3 Thumbnail">
 
 在笔记中，你将使用 [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo) ,一个基于 [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) 的训练框架其可以使用脚本去训练，评估调整超参数图示结果和视频记录，训练一个深度 Q-Learning 智能体去玩空间入侵游戏。
 
-我们使用 [RL-Baselines-3 Zoo 集成, 深度 Q-Learning 的原始版本](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) 其不包含像双重 DQN，竞争-DQN 和优先经验重演的扩充。
+我们使用 [RL-Baselines-3 Zoo 集成, 深度 Q 学习的原始版本](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) 其不包含像双深度 Q 网络 ，竞争深度 Q 网络或者优先经验回放的扩充。
 
 ⬇️ 这是你将要**达成效果**的例子 ⬇️
 
@@ -65,11 +65,11 @@
 ## 前置准备 🏗️
 在进入本笔记前，你需要：
 
-🔲 📚 **[学习 Unit 3 的深度 Q-Learning ](https://huggingface.co/deep-rl-course/unit3/introduction)**  🤗
+🔲 📚 **[学习 Unit 3 的深度 Q 学习 ](https://huggingface.co/deep-rl-course/unit3/introduction)**  🤗
 
 我们会持续提升我们的教程质量，如果你在本笔记中发现了什么问题请 [在 Github Repo 上提出 issue](https://github.com/huggingface/deep-rl-class/issues).
 
-# 让我们训练一个深度 Q-Learning 智能体去玩 Atari 空间入侵 👾 并把他上传到 Hub。
+# 让我们训练一个深度 Q 学习智能体去玩 Atari 空间入侵 👾 并把他上传到 Hub。
 
 ## 设置 GPU 💪
 
@@ -128,7 +128,7 @@ cd /content/rl-baselines3-zoo/
 pip install -r requirements.txt
 ```
 
-## 训练我们的深度 Q-Learning 智能体去玩空间入侵 👾
+## 训练我们的深度 Q 学习智能体去玩空间入侵 👾
 
 要用 RL-Baselines3-Zoo 训练智能体，我们仅需做两件事：
 1. 在 `rl-baselines3-zoo/hyperparams/dqn.yml` 里定义超参数
@@ -140,7 +140,7 @@ pip install -r requirements.txt
 - 使用 `Atari Wrapper` 进行预加载 (缩减帧, 灰度, 堆叠四帧),
 - 使用 `CnnPolicy`, 用卷积层加载帧。
 - 我们用一千万 `n_timesteps` 训练模型。
-- 内存大小 (经验重演) 大小是 100000 ,也就是你保存的经验步数量再次训练智能体。
+- 内存大小 (经验回放) 大小是 100000 ,也就是你保存的经验步数量再次训练智能体。
 
 💡 我的建议是**减少训练的时间步到 1M**，这大概在 P100 的机器上花 90min。 `!nvidia-smi` 命令会显示你的GPU运行情况。在一千万步下,他将花 9 个小时 ，这有可能导致 Coblab 超时。这里建议你在你本地的机子（或其他）上面跑代码，只需要点击： `File>Download`。
 
@@ -231,7 +231,7 @@ python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --
 python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --repo-name dqn-SpaceInvadersNoFrameskip-v4  -orga ThomasSimonini  -f logs/
 ```
 
-恭喜 🥳 你已经完成训练并上传了你的第一个用 RL-Baselines-3 Zoo 的深度 Q-Learning 智能体。上面的脚本已经展示了一个模型仓库的链接像 https://huggingface.co/ThomasSimonini/dqn-SpaceInvadersNoFrameskip-v4。当你点击这个链接，你可以：
+恭喜 🥳 你已经完成训练并上传了你的第一个用 RL-Baselines-3 Zoo 的深度 Q 学习智能体。上面的脚本已经展示了一个模型仓库的链接像 https://huggingface.co/ThomasSimonini/dqn-SpaceInvadersNoFrameskip-v4。当你点击这个链接，你可以：
 
 - 在右边看见你**智能体的预览**。
 - 点击 "Files and versions" 查看所有仓库中的文件。
@@ -273,7 +273,7 @@ python -m rl_zoo3.load_from_hub --algo dqn --env BeamRiderNoFrameskip-v4 -orga s
 python enjoy.py --algo dqn --env BeamRiderNoFrameskip-v4 -n 5000  -f rl_trained/
 ```
 
-为啥不试着训练一下你自己的**深度 Q-Learning 智能体去玩 BeamRiderNoFrameskip-v4? 🏆.**
+为啥不试着训练一下你自己的**深度 Q 学习智能体去玩 BeamRiderNoFrameskip-v4? 🏆.**
 
 如果你想尝试, 查看链接 https://huggingface.co/sb3/dqn-BeamRiderNoFrameskip-v4#hyperparameters. 这里, **在模型卡里，你会获得训练好的智能体超参数。**
 
@@ -292,7 +292,7 @@ python enjoy.py --algo dqn --env BeamRiderNoFrameskip-v4 -n 5000  -f rl_trained/
 - EnduroNoFrameskip-v4
 - PongNoFrameskip-v4
 
-同样，**如果你想要学习自己执行深度 Q-Learning**,你一定要看一看 CleanRL 运行过程 https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
+同样，**如果你想要学习自己执行深度 Q 学习**,你一定要看一看 CleanRL 运行过程 https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
 

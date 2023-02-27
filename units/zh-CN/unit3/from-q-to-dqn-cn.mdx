@@ -1,6 +1,6 @@
-# 从 Q-Learning 到深度 Q-Learning [[from-q-to-dqn]]
+# 从 Q 学习到深度 Q 学习 [[from-q-to-dqn]]
 
-我们已知 Q-Learning 是我们用来训练我们的 Q-Function （一个决定在特定状态并在该状态采取特定动作的**动作-价值函数**）的一种算法。
+我们已知 Q 学习是我们用来训练我们的 Q 函数（一个决定在特定状态并在该状态采取特定动作的**动作-价值函数**）的一种算法。
 
 
 <figure>
@@ -9,9 +9,9 @@
 
 **Q 代表那个状态下的动作的质量**。
 
-在内部，我们的 Q-Function 有一个 **Q-table (一张每个格子对应状态-动作对的值的表)**。把这个 Q-table 当作 Q-Function 的**记忆或者备忘录**。
+在内部，我们的 Q 函数有一个 **Q 表格 (一张每个格子对应状态-动作对的值的表)**。把这个 Q 表格当作 Q 函数的**记忆或者备忘录**。
 
-这里的问题是 Q-learning 是*打表法*。这导致了状态和动作空间必须**足够小以列表的方式呈现在表里来适应合适的价值函数**。同样，他也不可**扩展**。Q-Learning 在小状态空间环境效果很好，比如：
+这里的问题是 Q 学习是*表格型方法*。这导致了状态和动作空间必须**足够小以列表的方式呈现在表里来适应合适的价值函数**。同样，他也不可**扩展**。Q 学习在小状态空间环境效果很好，比如：
 
 - FrozenLake, 我们有 16 个状态.
 - Taxi-v3, 我们有 500 个状态.
@@ -24,10 +24,10 @@
 
 <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/atari.png" alt="Atari State Space"/>
 
-因此，状态空间是巨大的。所以在这种环境下创建和更新 Q-table 会失效。针对这种情况，最好的方法是用参数化 Q-function \\(Q_{\theta}(s,a)\\) 去估计 Q-value 而不是用 Q-table。
+因此，状态空间是巨大的。所以在这种环境下创建和更新 Q 表格会失效。针对这种情况，最好的方法是用参数化 Q 函数 \\(Q_{\theta}(s,a)\\) 去估计 Q 值而不是用 Q 表格。
 
-神经网络会进行估计，对于给定状态下每个可能的动作给出不同的 Q-value。这就是深度 Q-Learning干的事情。
+神经网络会进行估计，对于给定状态下每个可能的动作给出不同的 Q 值。这就是深度 Q 学习干的事情。
 
 <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/deep.png" alt="Deep Q Learning"/>
 
-现在我们理解了深度 Q-Learning,下面让我们深入深度 Q-Network。
+现在我们理解了深度 Q 学习,下面让我们深入深度 Q 网络。
