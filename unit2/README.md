@@ -1,3 +1,7 @@
+# DEPRECIATED UNIT, THE NEW UNIT 2 IS HERE: https://huggingface.co/deep-rl-course/unit2/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit2/introduction"
+
+
 # Unit 2: Introduction to Q-Learning
 
 In this Unit, we're going to dive deeper into one of the Reinforcement Learning methods: value-based methods and **study our first RL algorithm: Q-Learning**.
@@ -70,7 +74,7 @@ You can work directly **with the colab notebook, which allows you not to have to
 - To dive deeper on Monte Carlo and Temporal Difference Learning:
   - [Why do temporal difference (TD) methods have lower variance than Monte Carlo methods?](https://stats.stackexchange.com/questions/355820/why-do-temporal-difference-td-methods-have-lower-variance-than-monte-carlo-met)
   - [When are Monte Carlo methods preferred over temporal difference ones?](https://stats.stackexchange.com/questions/336974/when-are-monte-carlo-methods-preferred-over-temporal-difference-ones)
- 
+
 ## How to make the most of this course
 
 To make the most of the course, my advice is to:

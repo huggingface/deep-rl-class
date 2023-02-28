@@ -8,7 +8,7 @@ In other terms, how to build an RL agent that can **select the actions that ma
 
 ## The Policy π: the agent’s brain [[policy]]
 
-The Policy **π** is the **brain of our Agent**, it’s the function that tells us what **action to take given the state we are.** So it **defines the agent’s behavior** at a given time.
+The Policy **π** is the **brain of our Agent**, it’s the function that tells us what **action to take given the state we are in.** So it **defines the agent’s behavior** at a given time.
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy" />
@@ -67,7 +67,7 @@ If we recap:
 
 ## Value-based methods [[value-based]]
 
-In value-based methods, instead of training a policy function, we **train a value function** that maps a state to the expected value **of being at that state.**
+In value-based methods, instead of learning a policy function, we **learn a value function** that maps a state to the expected value **of being at that state.**
 
 The value of a state is the **expected discounted return** the agent can get if it **starts in that state, and then act according to our policy.**
 

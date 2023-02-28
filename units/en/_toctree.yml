@@ -178,6 +178,52 @@
     title: Conclusion
   - local: unit7/additional-readings
     title: Additional Readings
+- title: Unit 8. Part 1 Proximal Policy Optimization (PPO)
+  sections:
+  - local: unit8/introduction
+    title: Introduction
+  - local: unit8/intuition-behind-ppo
+    title: The intuition behind PPO
+  - local: unit8/clipped-surrogate-objective
+    title: Introducing the Clipped Surrogate Objective Function
+  - local: unit8/visualize
+    title: Visualize the Clipped Surrogate Objective Function
+  - local: unit8/hands-on-cleanrl
+    title: PPO with CleanRL
+  - local: unit8/conclusion
+    title: Conclusion
+  - local: unit8/additional-readings
+    title: Additional Readings
+- title: Unit 8. Part 2 Proximal Policy Optimization (PPO) with Doom
+  sections:
+  - local: unit8/introduction-sf
+    title: Introduction
+  - local: unit8/hands-on-sf
+    title: PPO with Sample Factory and Doom
+  - local: unit8/conclusion-sf
+    title: Conclusion
+- title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
+  sections:
+  - local: unitbonus3/introduction
+    title: Introduction
+  - local: unitbonus3/model-based
+    title: Model-Based Reinforcement Learning
+  - local: unitbonus3/offline-online
+    title: Offline vs. Online Reinforcement Learning
+  - local: unitbonus3/rlhf
+    title: Reinforcement Learning from Human Feedback
+  - local: unitbonus3/decision-transformers
+    title: Decision Transformers and Offline RL
+  - local: unitbonus3/language-models
+    title: Language models in RL
+  - local: unitbonus3/curriculum-learning
+    title: (Automatic) Curriculum Learning for RL
+  - local: unitbonus3/envs-to-try
+    title: Interesting environments to try
+  - local: unitbonus3/godotrl
+    title: An Introduction to Godot RL
+  - local: unitbonus3/rl-documentation
+    title: Brief introduction to RL documentation
 - title: Certification and congratulations
   sections:
   - local: communication/conclusion

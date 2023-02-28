@@ -1,3 +1,7 @@
+# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unit5/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit5/introduction
+
+
 # Unit 4: An Introduction to Unity MLAgents with Hugging Face 🤗
 ![cover](https://miro.medium.com/max/1400/1*8DV9EFl-vdijvcTHilHuEw.png)
 

@@ -28,6 +28,8 @@ To validate this hands-on for the certification process, you need to push your t
 
 To find your result, [go to the leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) and find your model, **the result = mean_reward - std of reward**
 
+**If you don't find your model, go to the bottom of the page and click on the refresh button.**
+
 For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
 
 **To start the hands-on click on Open In Colab button** 👇 :
@@ -191,7 +193,7 @@ env = # TODO: Add the wrapper
 ```python
 env = make_vec_env(env_id, n_envs=4)
 
-env = VecNormalize(env, norm_obs=True, norm_reward=False, clip_obs=10.0)
+env = VecNormalize(env, norm_obs=True, norm_reward=True, clip_obs=10.0)
 ```
 
 ### Create the A2C Model 🤖

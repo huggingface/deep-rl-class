@@ -22,6 +22,8 @@ To validate this hands-on for the certification process, you need to push your t
 
 To find your result, go to the leaderboard and find your model, **the result = mean_reward - std of reward**
 
+**If you don't find your model, go to the bottom of the page and click on the refresh button.**
+
 For more information about the certification process, check this section 👉 https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process
 
 And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSimonini/Check-my-progress-Deep-RL-Course
@@ -36,7 +38,7 @@ And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSi
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/thumbnail.jpg" alt="Unit 3 Thumbnail">
 
-In this notebook, **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning hyperparameters, plotting results and recording videos.
+In this notebook, **you'll train a Deep Q-Learning agent** playing Space Invaders using [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo), a training framework based on [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) that provides scripts for training, evaluating agents, tuning arameters, plotting results and recording videos.
 
 We're using the [RL-Baselines-3 Zoo integration, a vanilla version of Deep Q-Learning](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) with no extensions such as Double-DQN, Dueling-DQN, and Prioritized Experience Replay.
 
@@ -131,7 +133,7 @@ pip install -r requirements.txt
 ## Train our Deep Q-Learning Agent to Play Space Invaders 👾
 
 To train an agent with RL-Baselines3-Zoo, we just need to do two things:
-1. We define the hyperparameters in `rl-baselines3-zoo/hyperparams/dqn.yml`
+1. We define the hyperparameters in `/content/rl-baselines3-zoo/hyperparams/dqn.yml`
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit3/hyperparameters.png" alt="DQN Hyperparameters">
 

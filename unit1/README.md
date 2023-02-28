@@ -1,4 +1,8 @@
-# Unit 1: Introduction to Deep Reinforcement Learning 🚀
+# DEPRECIATED THE NEW UNIT 1 IS HERE: https://huggingface.co/deep-rl-course/unit1/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit1/introduction
+
+
+# Unit 1: Introduction to Deep Reinforcement Learning 🚀 (DEPRECIATED)
 
 ![cover](assets/img/thumbnail.png)
 
