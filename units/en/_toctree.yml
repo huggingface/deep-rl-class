@@ -224,7 +224,9 @@
     title: An Introduction to Godot RL
   - local: unitbonus3/rl-documentation
     title: Brief introduction to RL documentation
-- title: What's next? New Units Publishing Schedule
+- title: Certification and congratulations
   sections:
-  - local: communication/publishing-schedule
-    title: Publishing Schedule
+  - local: communication/conclusion
+    title: Congratulations
+  - local: communication/certification
+    title: Get your certificate of completion
