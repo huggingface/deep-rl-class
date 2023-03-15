@@ -1,6 +1,4 @@
 stable-baselines3[extra]
-box2d
-box2d-kengz
 box2d-py
 huggingface_sb3
 pyglet==1.5.1
