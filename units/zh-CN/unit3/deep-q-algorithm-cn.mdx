@@ -1,22 +1,22 @@
 # 深度 Q 学习算法 [[deep-q-algorithm]]
 
-我们了解到深度 Q 学习**是用一个深度神经网络在给定状态下估计每个可能动作的不同 q-value** (价值-函数 估计)。
+我们了解到深度 Q 学习**是用一个深度神经网络在给定状态下估计每个可能动作的不同 Q 值** (价值-函数 估计)。
 
 区别在于，在训练部分，相比于我们在 Q 学习里面已经完成的直接更新状态-动作对的 Q 值：
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/q-ex-5.png" alt="Q Loss"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-5.jpg" alt="Q Loss"/>
 
 在深度 Q 学习中，我们创建了一个**损失函数来对比 Q 值的预测和 Q 目标并且使用梯度下降更新我们深度 Q 网络的权重来使 Q 值预测得更精准**。
 
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/Q-target.png" alt="Q-target"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
 
 深度 Q 学习训练算法有**两个部分**：
 
 - **采样**：我们执行动作并且**储存观察到的经验元组在重演内存中**。
 - **训练**：随机选择**一个小批次并从中学习用梯度下降更新每一步**。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/sampling-training.png" alt="Sampling Training"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/sampling-training.jpg" alt="Sampling Training"/>
 
 相比于 Q 学习这不是唯一的不同。深度 Q 学习训练主要因为结合了非线性 Q 值函数（神经网络）和 自举法（当用现有估计更新目标并且非真实完全返回）可能会**经历不稳定状态**。
 
@@ -37,7 +37,7 @@
 通常，在线强化学习中，智能体会与环境交互，获得经验（状态，动作，奖励和下一个状态），学习这些（更新神经网络），抛弃他们这种做法并不高效。
 
 经验回放帮助训练中使用**经验更高效**。我们使用一个回放缓冲区在**训练中重复使用**来节省经验采样。
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/experience-replay.png" alt="Experience Replay"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay.jpg" alt="Experience Replay"/>
 
 ⇒ 这使得智能体在**同样的经验中学习多次**。
 
@@ -50,7 +50,7 @@
 
 在深度 Q 学习的伪代码中，我们**从容器 N 中初始化一个回放内存缓冲区 D**（N 是你可以自定义的超参数）。接下来我们将经验储存在内存中同时采样一小批经验喂给训练片段的深度 Q 网络。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/experience-replay.png" alt="Experience Replay Pseudocode"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay-pseudocode.jpg" alt="Experience Replay Pseudocode"/>
 
 ## 固定 Q 目标来稳定训练 [[fixed-q]]
 
@@ -58,7 +58,7 @@
 
 但是我们对于**真实的　TD　目标是啥完全不知道**。我们需要估计他。通过贝尔曼方程，我们了解到　TD　目标仅仅是采取该状态动作的奖励加下一个状态的折扣　Q 值。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/Q-target.png" alt="Q-target"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
 
 然而这里有个问题是我们使用相同的参数（权重）去估计　TD　目标和　Q 值。因此，TD　目标与我们正在更改的参数之间存在显着相关性。
 
@@ -68,7 +68,7 @@
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-1.jpg" alt="Q-target"/>
 
-在每一个时间步中，你都尽可能的尝试靠近奶牛，但同样牛也在每个时间步中移动（因为你们使用相同参数）。
+在每一个时间步中，你都尽可能的尝试靠近奶牛，但同样奶牛也在每个时间步中移动（因为你们使用相同参数）。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-2.jpg" alt="Q-target"/>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-3.jpg" alt="Q-target"/>
@@ -80,7 +80,7 @@
 - 使用一个**分开的固定参数的网络去估计　TD　目标**。
 - 通过在**深度　Q 网络中每　C　步复制参数**去更新目标网络。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/fixed-q-target-pseudocode.png" alt="Fixed Q-target Pseudocode"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/fixed-q-target-pseudocode.jpg" alt="Fixed Q-target Pseudocode"/>
 
 
 
@@ -90,7 +90,7 @@
 
 为了理解这个问题，先看一下我们怎么计算　TD　目标的：
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/TD-1.png" alt="TD target"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="TD target"/>
 
 我们在计算　TD 目标中面临着一个简单的问题：我们怎么确保下一个状态的**最佳动作是有着最高 Q 值的动作**。
 

@@ -8,7 +8,7 @@
         ]}
         askForHelpUrl="http://hf.co/join/discord" />
 
-现在你已经学习了深度 Q 学习背后的理论，**你已经准备好训练你的深度 Q 学习智能体去玩 Atari 游戏了**。我们将从空间入侵开始，但是你可以用在任何你想要的 Atari 游戏里 🔥。
+现在你已经学习了深度 Q 学习背后的理论，**你已经准备好训练你的深度 Q 学习智能体去玩 Atari 游戏了**。我们将从 Space Invaders 开始，但是你可以用在任何你想要的 Atari 系列游戏里 🔥。
 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
@@ -33,11 +33,11 @@
 
 # Unit 3: 用 RL Baselines3 Zoo 进行深度 Q 学习来玩 Atari 游戏 👾  
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230222150251.jpg" alt="Unit 3 Thumbnail">
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/thumbnail.jpg" alt="Unit 3 Thumbnail">
 
-在笔记中，你将使用 [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo) ,一个基于 [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) 的训练框架其可以使用脚本去训练，评估调整超参数图示结果和视频记录，训练一个深度 Q-Learning 智能体去玩空间入侵游戏。
+在笔记中，你将使用 [RL Baselines3 Zoo](https://github.com/DLR-RM/rl-baselines3-zoo) ,一个基于 [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/) 的训练框架其可以使用脚本去训练，评估调整超参数图示结果和视频记录，训练一个深度 Q 学习智能体去玩 Space Invaders 游戏。
 
-我们使用 [RL-Baselines-3 Zoo 集成, 深度 Q 学习的原始版本](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) 其不包含像双深度 Q 网络 ，竞争深度 Q 网络或者优先经验回放的扩充。
+我们使用 [RL-Baselines-3 Zoo 集成, 深度 Q 学习的原始版本](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) 其不包含像双深度 Q 网络 ，竞争深度 Q 网络或者优先级经验回放的扩充。
 
 ⬇️ 这是你将要**达成效果**的例子 ⬇️
 
@@ -69,7 +69,7 @@
 
 我们会持续提升我们的教程质量，如果你在本笔记中发现了什么问题请 [在 Github Repo 上提出 issue](https://github.com/huggingface/deep-rl-class/issues).
 
-# 让我们训练一个深度 Q 学习智能体去玩 Atari 空间入侵 👾 并把他上传到 Hub。
+# 让我们训练一个深度 Q 学习智能体去玩 Atari  Space Invaders  👾 并把他上传到 Hub。
 
 ## 设置 GPU 💪
 
@@ -128,7 +128,7 @@ cd /content/rl-baselines3-zoo/
 pip install -r requirements.txt
 ```
 
-## 训练我们的深度 Q 学习智能体去玩空间入侵 👾
+## 训练我们的深度 Q 学习智能体去玩 Space Invaders 👾
 
 要用 RL-Baselines3-Zoo 训练智能体，我们仅需做两件事：
 1. 在 `rl-baselines3-zoo/hyperparams/dqn.yml` 里定义超参数

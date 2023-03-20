@@ -4,7 +4,7 @@
 
 
 <figure>
-  <img src="https://raw.githubusercontent.com/innovation64/Picimg/main/Q-function.png" alt="Q-function"/>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function.jpg" alt="Q-function"/>
 </figure>
 
 **Q 代表那个状态下的动作的质量**。
@@ -22,12 +22,12 @@
 
 * Atari 中的单一帧由一张 210x160 像素的图片组成。给定的图片是彩色的，有 3 个通道。这也是为什么形状大小为 (210, 160, 3)。对于每一个像素，取值在0 到 255 间。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/atari.png" alt="Atari State Space"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari.jpg" alt="Atari State Space"/>
 
 因此，状态空间是巨大的。所以在这种环境下创建和更新 Q 表格会失效。针对这种情况，最好的方法是用参数化 Q 函数 \\(Q_{\theta}(s,a)\\) 去估计 Q 值而不是用 Q 表格。
 
 神经网络会进行估计，对于给定状态下每个可能的动作给出不同的 Q 值。这就是深度 Q 学习干的事情。
 
-<img src="https://raw.githubusercontent.com/innovation64/Picimg/main/deep.png" alt="Deep Q Learning"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/deep.jpg" alt="Deep Q Learning"/>
 
 现在我们理解了深度 Q 学习,下面让我们深入深度 Q 网络。
