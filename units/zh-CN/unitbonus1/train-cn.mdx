@@ -24,21 +24,21 @@
 
 ### 环境🎮
 
--  Huggy 狗， [Thomas Simonini](https://twitter.com/ThomasSimonini) 基于 [Puppo The Corgi](https://blog.unity.com/technology/puppo-the-corgi- cuteness-overload-with-the-unity-ml-agents-toolkit)
+-  Huggy 狗， [Thomas Simonini](https://twitter.com/ThomasSimonini) 基于 [Puppo The Corgi](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)创建的环境
 
 ### 使用的库📚
 
-- [MLAgents（Hugging Face）](https://github.com/huggingface/ml-agents)
+- [MLAgents（Hugging Face 版本）](https://github.com/huggingface/ml-agents)
 
-我们一直在努力改进我们的教程，所以**如果你在此笔记本中发现一些问题**，请[在 Github Repo 上打开一个问题](https://github.com/huggingface/deep-rl-class /问题）。
+我们一直在努力改进我们的教程，所以**如果你在此 Notebook 中发现一些问题**，请[在 Github Repo 上打开一个 issue](https://github.com/huggingface/deep-rl-class/issues)。
 
 ## 本章的目标 🏆
 
 在本章的末尾，你将：
 
 - 了解**用于训练 Huggy 的状态空间、动作空间和奖励函数**。
-- **训练你自己的 Huggy ** 来拿棍子。
-- 能够直接在浏览器中与训练有素的 Huggy 一起玩**。
+- **训练你自己的 Huggy** 来拿棍子。
+- 能够直接在**浏览器中与训练有素的 Huggy 一起玩**。
 
 
 ## 前置条件🏗️
@@ -50,20 +50,20 @@
 🔲 📚 **通过奖励单元 1 阅读 Huggy 的介绍**
 
 ## 设置 GPU 💪
-- 为了**加速智能体的训练，我们将使用 GPU**。为此，请转到“运行时 > 更改运行时类型”
+- 为了**加速智能体的训练，我们将使用 GPU**。为此，请点击 `Runtime > Change Runtime type`
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step1.jpg" alt="GPU Step 1">
 
--`硬件加速器> GPU`
+-`Hardware Accelerator > GPU`
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step2.jpg" alt="GPU Step 2">
 
-## 克隆存储库并安装依赖项🔽
+## 克隆仓库并安装依赖项🔽
 
-- 我们需要克隆存储库，它**包含允许你将训练有素的代理推送到仓库的实验版本。**
+- 我们需要克隆仓库，它**包含允许你将训练有素的代理推送到 Hub 的实验版本。**
 
 ```bash
-# 克隆这个特定的存储库（可能需要 3 分钟）
+# 克隆这个特定的仓库（可能需要 3 分钟）
 git clone https://github.com/huggingface/ml-agents/
 ```
 
@@ -74,10 +74,10 @@ pip3 install -e ./ml-agents-envs
 pip3 install -e ./ml-agents
 ```
 
-## 下载并移动 `./trained-envs-executables/linux/` 中的环境 zip 文件
+## 下载并将环境压缩文件移动到 `./trained-envs-executables/linux/` 下
 
-- 我们的环境可执行文件位于一个 zip 文件中。
-- 我们需要下载它并将其放置到`./trained-envs-executables/linux/`
+- 我们的环境可执行文件位于一个压缩文件中。
+- 我们需要下载它并将其放置到`./trained-envs-executables/linux/` 位置下
 
 ```bash
 mkdir ./trained-envs-executables
@@ -85,10 +85,10 @@ mkdir ./trained-envs-executables/linux
 ```
 
 ```bash
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
+!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
 ```
 
-使用 `wget` 从 https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF 下载文件 Huggy.zip。查看从 GDrive 下载大文件的完整解决方案 [此处](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
+使用 `wget` 从 https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF 下载文件 Huggy.zip。查看在  GDrive 中完整方案并在此处[下载大文件](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
 
 ```bash
 %%capture
@@ -168,27 +168,27 @@ chmod -R 755 ./trained-envs-executables/linux/Huggy
 
 
 
-培训将需要 30 到 45 分钟，具体取决于你的机器（不要忘记**设置 GPU**），去参加☕️你应得的🤗。
+训练将需要 30 到 45 分钟，具体取决于你的机器（不要忘记**设置 GPU**），去喝个咖啡☕️放松一下🤗。
 
 ```bash
 mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
 ```
 
-## 将智能体推送到🤗仓库
+## 将智能体推送到🤗 Hub
 
-- 现在我们已经训练了我们的智能体，我们**准备将其推送到仓库，以便能够在你的浏览器上与 Huggy 一起玩🔥。**
+- 现在我们已经训练了我们的智能体，我们**准备将其推送到 Hub，以便能够在你的浏览器上与 Huggy 一起玩🔥。**
 
 为了能够与社区共享你的模型，还需要执行三个步骤：
 
 1️⃣（如果尚未完成）创建一个 HF 帐户 ➡ https://huggingface.co/join
 
-2️⃣ 登录，然后，你需要存储来自 Hugging Face 网站的身份验证令牌。
-- 创建一个新令牌（https://huggingface.co/settings/tokens）**具有写入权限**
+2️⃣ 登录，然后，你需要存储来自 Hugging Face 网站的身份验证 token。
+- 创建一个新 token（https://huggingface.co/settings/tokens）**具有写入权限**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
 
-- 复制令牌
-- 运行下面的单元格并粘贴令牌
+- 复制 token
+- 运行下面的单元格并粘贴 token
 
 
 ```python
@@ -248,7 +248,7 @@ Your model is pushed to the hub. You can view your model here: https://huggingfa
 
 恭喜你完成了这个奖励单元！
 
-你现在可以坐下来享受和你的 Huggy 🐶 一起玩耍的乐趣了。并且不要 ** 忘记通过与你的朋友分享 Huggy 来传播热爱 🤗**。如果你在社交媒体上分享它，**请标记我们@huggingface 和我@simoninithomas**
+你现在可以坐下来享受和你的 Huggy 🐶 一起玩耍的乐趣了。并且不要 ** 忘记通过与你的朋友分享 Huggy 来传播热爱 🤗**。如果你在社交媒体上分享它，**请声明我们@huggingface 和我@simoninithomas**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-cover.jpeg" alt="Huggy cover" width="100%">
 
