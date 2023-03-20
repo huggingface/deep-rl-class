@@ -67,7 +67,7 @@
 
 🔲 📚 **[学习 Unit 3 的深度 Q 学习 ](https://huggingface.co/deep-rl-course/unit3/introduction)**  🤗
 
-我们会持续提升我们的教程质量，如果你在本笔记中发现了什么问题请 [在 Github Repo 上提出 issue](https://github.com/huggingface/deep-rl-class/issues).
+我们会持续提升我们的教程质量，如果你在本笔记中发现了什么问题请 [在 Github Repo 上提出 issue](https://github.com/huggingface/deep-rl-class/issues)。
 
 # 让我们训练一个深度 Q 学习智能体去玩 Atari  Space Invaders  👾 并把他上传到 Hub。
 
@@ -83,7 +83,7 @@
 
 ## 创建一个虚拟显示 🔽
 
-在笔记中, 我们需要生成一个重演视频。在 colab 中，**我们需要一个虚拟屏幕去渲染环境**（并记录帧）。
+在 Notebook 中, 我们需要生成一个回放视频。在 colab 中，**我们需要一个虚拟屏幕去渲染环境**（并记录帧）。
 
 所以参照下面单元格安装相关库并运行虚拟屏幕 🖥
 
@@ -142,7 +142,7 @@ pip install -r requirements.txt
 - 我们用一千万 `n_timesteps` 训练模型。
 - 内存大小 (经验回放) 大小是 100000 ,也就是你保存的经验步数量再次训练智能体。
 
-💡 我的建议是**减少训练的时间步到 1M**，这大概在 P100 的机器上花 90min。 `!nvidia-smi` 命令会显示你的GPU运行情况。在一千万步下,他将花 9 个小时 ，这有可能导致 Coblab 超时。这里建议你在你本地的机子（或其他）上面跑代码，只需要点击： `File>Download`。
+💡 我的建议是**减少训练的时间步到 1M**，这大概在 P100 的机器上花 90min。 `!nvidia-smi` 命令会显示你的 GPU 运行情况。在一千万步下,他将花 9 个小时 ，这有可能导致 Coblab 超时。这里建议你在你本地的机子（或其他）上面跑代码，只需要点击： `File>Download`。
 
 为了优化超参数，我的建议是聚焦下面三个超参数：
 - `learning_rate`
@@ -159,7 +159,7 @@ pip install -r requirements.txt
 python train.py --algo ________ --env SpaceInvadersNoFrameskip-v4  -f _________
 ```
 
-#### 解决方案
+#### 参考答案
 
 ```bash
 python train.py --algo dqn  --env SpaceInvadersNoFrameskip-v4 -f logs/
@@ -173,14 +173,14 @@ python train.py --algo dqn  --env SpaceInvadersNoFrameskip-v4 -f logs/
 python enjoy.py  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --no-render  --n-timesteps _________  --folder logs/
 ```
 
-#### 解决方案
+#### 参考答案
 
 ```bash
 python enjoy.py  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --no-render  --n-timesteps 5000  --folder logs/
 ```
 
 ## 把我们训练的模型发布在 Hub 上 🚀
-现在经过训练后我们得到了不错的分数，我们可以通过以下一行代码将我们训练的模型发布到 Hub 上。
+现在经过训练后我们得到了不错的分数，我们可以通过以下一行代码将我们训练的模型发布到 Hub 🤗上。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit3/space-invaders-model.gif" alt="Space Invaders model">
 
@@ -212,7 +212,7 @@ git config --global credential.helper store
 
 如果你不想使用 Google Colab 或者 Jupyter Notebook，你需要用这个命令代替：`huggingface-cli login`
 
-3️⃣ 我们现在已经准备好推送你的智能体到 Hub 了 🔥
+3️⃣ 我们现在已经准备好推送你的智能体到 Hub 🤗了 🔥
 
 让我们运行 `push_to_hub.py` 去上传我们训练的智能体到 Hub。这里有两个重要参数:
 
@@ -225,7 +225,7 @@ git config --global credential.helper store
 python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --repo-name _____________________ -orga _____________________ -f logs/
 ```
 
-#### 解决方案
+#### 参考答案
 
 ```bash
 python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --repo-name dqn-SpaceInvadersNoFrameskip-v4  -orga ThomasSimonini  -f logs/
