@@ -1,35 +1,52 @@
-# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unit5/introduction
-**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit5/introduction
+# DEPRECIATED THE NEW VERSION OF THIS UNIT IS HERE: https://huggingface.co/deep-rl-course/unit4/introduction
+**Everything under is depreciated** 👇, the new version of the course is here: https://huggingface.co/deep-rl-course/unit4/introduction
 
 
-# Unit 4: An Introduction to Unity MLAgents with Hugging Face 🤗
-![cover](https://miro.medium.com/max/1400/1*8DV9EFl-vdijvcTHilHuEw.png)
+# Unit 4: Policy Gradient with PyTorch
 
-In this Unit, We’ll learn about [ML-Agents](https://huggingface.co/docs/hub/ml-agents) and use one of the pre-made environments: Pyramids. In this environment, we’ll train an agent that needs to press a button to spawn a pyramid, then navigate to the pyramid, knock it over, and move to the gold brick at the top.
+In this Unit, **we'll study Policy Gradient Methods**.
 
-To do that, **it will need to explore its environment, and we will use a technique called curiosity**.
+And we'll **implement Reinforce (a policy gradient method) from scratch using PyTorch**. Before testing its robustness using CartPole-v1, PixelCopter, and Pong.
 
-Then, after training we’ll push the **trained agent to the Hugging Face Hub and you’ll be able to visualize it playing directly on your browser without having to use the Unity Editor. You’ll be also be able to visualize and download others trained agents from the community**.
+<img src="assets/img/envs.gif" alt="unit 4 environments"/>
 
-![cover](https://raw.githubusercontent.com/huggingface/deep-rl-class/update/unit4/unit4/img/agents.gif)
+You'll then be able to **compare your agent’s results with other classmates thanks to a leaderboard** 🔥 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
+
+This course is **self-paced**, you can start whenever you want.
 
 ## Required time ⏱️
 The required time for this unit is, approximately:
-- 2 hours for the theory and hands-on.
+- 1 hour for the theory
+- 1-2 hours for the hands-on.
 
 ## Start this Unit 🚀
 Here are the steps for this Unit:
 
-1️⃣📖 **Read An [An Introduction to Unity ML-Agents with Hugging Face 🤗](https://thomassimonini.medium.com/an-introduction-to-unity-ml-agents-with-hugging-face-efbac62c8c80)**.
+1️⃣ 📖 **Read [Policy Gradient with PyTorch Chapter](https://huggingface.co/blog/deep-rl-pg)**.
 
-2️⃣👩‍💻 In the meantime, **you can start the tutorial using Google Colab** 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit4/unit4.ipynb)
+2️⃣ 👩‍💻 Then dive on the hands-on where you'll **code your first Deep Reinforcement Learning algorithm from scratch: Reinforce**.
+
+Reinforce is a *Policy-Based Method*: a Deep Reinforcement Learning algorithm that tries **to optimize the policy directly without using an action-value function**.
+More precisely, Reinforce is a *Policy-Gradient Method*, a subclass of *Policy-Based Methods* that aims **to optimize the policy directly by estimating the weights of the optimal policy using Gradient Ascent**.
+
+To test its robustness, we're going to train it in 3 different simple environments:
+- Cartpole-v1
+- PongEnv
+- PixelcopterEnv
+
+Thanks to a leaderboard, **you'll be able to compare your results with other classmates** and exchange the best practices to improve your agent's scores Who will win the challenge for Unit 5 🏆?
+
+The hands-on 👉 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/unit5/unit5.ipynb)
+
+The leaderboard 👉 https://huggingface.co/spaces/chrisjay/Deep-Reinforcement-Learning-Leaderboard
 
 You can work directly **with the colab notebook, which allows you not to have to install everything on your machine (and it’s free)**.
 
-3️⃣ The best way to learn **is to try things on your own**. That’s why we have a challenges section in the colab where we **give you some ideas on how you can go further: using another environment etc**.
 
 ## Additional readings 📚
-- [MLAgents Documentation](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Readme.md)
+- [Foundations of Deep RL Series, L3 Policy Gradients and Advantage Estimation by Pieter Abbeel](https://youtu.be/AKbX1Zvo7r8)
+- [Policy Gradient Algorithms](https://lilianweng.github.io/posts/2018-04-08-policy-gradient/)
+- [An Intuitive Explanation of Policy Gradient](https://towardsdatascience.com/an-intuitive-explanation-of-policy-gradient-part-1-reinforce-aa4392cbfd3c)
 
 ## How to make the most of this course
 
@@ -54,4 +71,4 @@ Don’t forget to **introduce yourself when you sign up 🤗**
 
 ❓If you have other questions, [please check our FAQ](https://github.com/huggingface/deep-rl-class#faq)
 
-### Keep learning, stay awesome 🤗,
+### Keep learning, stay awesome,
