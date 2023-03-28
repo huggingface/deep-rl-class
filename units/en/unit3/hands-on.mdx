@@ -127,7 +127,10 @@ cd /content/rl-baselines3-zoo/
 ```
 
 ```bash
+pip install setuptools==65.5.0
 pip install -r requirements.txt
+# Since colab uses Python 3.9 we need to add this installation
+pip install gym[atari,accept-rom-license]==0.21.0
 ```
 
 ## Train our Deep Q-Learning Agent to Play Space Invaders 👾
