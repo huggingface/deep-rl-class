@@ -13,6 +13,8 @@ The library provides:
 
 You can find out more about Godot RL agents on their [GitHub page](https://github.com/edbeeching/godot_rl_agents) or their AAAI-2022 Workshop [paper](https://arxiv.org/abs/2112.03636). The library's creator, [Ed Beeching](https://edbeeching.github.io/), is a Research Scientist here at Hugging Face.
 
+Installation of the library is simple: `pip install godot-rl`
+
 ## Create a custom RL environment with Godot RL Agents
 
 In this section, you will **learn how to create a custom environment in the Godot Game Engine** and then implement an AI controller that learns to play with Deep Reinforcement Learning.
@@ -31,13 +33,13 @@ Godot Engine is a feature-packed, cross-platform game engine designed to create 
 
 While we will guide you through the steps to implement your agent, you may wish to learn more about the Godot Game Engine. Their [documentation](https://docs.godotengine.org/en/latest/index.html) is thorough, there are many tutorials on YouTube we would also recommend [GDQuest](https://www.gdquest.com/), [KidsCanCode](https://kidscancode.org/godot_recipes/4.x/) and [Bramwell](https://www.youtube.com/channel/UCczi7Aq_dTKrQPF5ZV5J3gg) as sources of information.
 
-In order to create games in Godot, **you must first download the editor**. The latest version Godot RL agents was updated to use Godot 4 beta, as we are expecting this to be released in the next few months.
+In order to create games in Godot, **you must first download the editor**. Godot RL Agents supports the latest version of Godot, Godot 4.0.
 
-At the time of writing the latest beta version was beta 14 which can be downloaded at the following links:
+Which can be downloaded at the following links:
 
-- [Windows](https://downloads.tuxfamily.org/godotengine/4.0/beta14/Godot_v4.0-beta14_win64.exe.zip)
-- [Mac](https://downloads.tuxfamily.org/godotengine/4.0/beta14/Godot_v4.0-beta14_macos.universal.zip)
-- [Linux](https://downloads.tuxfamily.org/godotengine/4.0/beta14/Godot_v4.0-beta14_linux.x86_64.zip)
+- [Windows](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_win64.exe.zip)
+- [Mac](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_macos.universal.zip)
+- [Linux](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_linux.x86_64.zip)
 
 ### Loading the starter project
 
@@ -191,7 +193,7 @@ func _on_area_3d_body_entered(body):
 
 We now need to synchronize between the game running in Godot and the neural network being trained in Python. Godot RL agents provides a node that does just that. Open the train.tscn scene, right click on the root node and click “Add child node”. Then, search for “sync” and add a Godot RL Agents Sync node. This node handles the communication between Python and Godot over TCP.
 
-You can run training live in the the editor, but first launching the python training with `python examples/clean_rl_example.py —env-id=debug`
+You can run training live in the the editor, by first launching the python training with `gdrl`
 
 In this simple example, a reasonable policy is learned in several minutes. You may wish to speed up training, click on the Sync node in the train scene and you will see there is a “Speed Up” property exposed in the editor:
 
