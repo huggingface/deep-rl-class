@@ -1,0 +1,107 @@
+# 深度 Q 学习算法 [[deep-q-algorithm]]
+
+我们了解到深度 Q 学习**是用一个深度神经网络在给定状态下估计每个可能动作的不同 Q 值** (价值-函数 估计)。
+
+区别在于，在训练部分，相比于我们在 Q 学习里面已经完成的直接更新状态-动作对的 Q 值：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-5.jpg" alt="Q Loss"/>
+
+在深度 Q 学习中，我们创建了一个**损失函数来对比 Q 值的预测和 Q 目标并且使用梯度下降更新我们深度 Q 网络的权重来使 Q 值预测得更精准**。
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
+
+深度 Q 学习训练算法有**两个部分**：
+
+- **采样**：我们执行动作并且**储存观察到的经验元组在重演内存中**。
+- **训练**：随机选择**一个小批次并从中学习用梯度下降更新每一步**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/sampling-training.jpg" alt="Sampling Training"/>
+
+相比于 Q 学习这不是唯一的不同。深度 Q 学习训练主要因为结合了非线性 Q 值函数（神经网络）和 自举法（当用现有估计更新目标并且非真实完全返回）可能会**经历不稳定状态**。
+
+为了稳定训练，我们使用以下三种不同的解决方案：
+1. *经验回放* 去制造更多的**有用经验**。
+2. *固定 Q 目标* **稳定训练**。
+3. *双深度 Q 学习*, 解决 Q 值**高估**问题。
+
+让我们继续！
+
+## 经验回放去制造更多的有用经验[[exp-replay]]
+
+为什么我们要制造一个回放内存？
+
+经验回放在深度 Q 学习 里面有两个函数：
+
+1. **在训练中制造更多更有效的经验**。
+通常，在线强化学习中，智能体会与环境交互，获得经验（状态，动作，奖励和下一个状态），学习这些（更新神经网络），抛弃他们这种做法并不高效。
+
+经验回放帮助训练中使用**经验更高效**。我们使用一个回放缓冲区在**训练中重复使用**来节省经验采样。
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay.jpg" alt="Experience Replay"/>
+
+⇒ 这使得智能体在**同样的经验中学习多次**。
+
+2. **避免忘记之前所学并且减少经验间的相关性**.
+- 现在的问题是如果我们给了一个序列的经验采样在我们的神经网络中，他会倾向于在得到**新经验后忘记之前的经验**。举个例子，如果智能体现在在第一阶段下一步在第二阶段，这两个是不同的，这就使得智能体忘记了在第一阶段干了啥。
+
+现在的解决办法是创建一个储存经验的元组作重演缓冲 ，当与环境交互时并从中采样一小批元组。这阻止了**网络只学会当下干了什么的情况**。 
+
+经验回放同样还有其他好处。通过随机采样经验，我们移除了观测序列的相关性同时避免了动作函数值**陷入震荡或发生爆炸**。
+
+在深度 Q 学习的伪代码中，我们**从容器 N 中初始化一个回放内存缓冲区 D**（N 是你可以自定义的超参数）。接下来我们将经验储存在内存中同时采样一小批经验喂给训练片段的深度 Q 网络。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay-pseudocode.jpg" alt="Experience Replay Pseudocode"/>
+
+## 固定 Q 目标来稳定训练 [[fixed-q]]
+
+当我们想要计算时序差分误差（或者叫损失）时，我们计算　**TD　目标（Q 目标）和当前　Q 值（Q的估计）的不同**。
+
+但是我们对于**真实的　TD　目标是啥完全不知道**。我们需要估计他。通过贝尔曼方程，我们了解到　TD　目标仅仅是采取该状态动作的奖励加下一个状态的折扣　Q 值。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/Q-target.jpg" alt="Q-target"/>
+
+然而这里有个问题是我们使用相同的参数（权重）去估计　TD　目标和　Q 值。因此，TD　目标与我们正在更改的参数之间存在显着相关性。
+
+这意味着训练的每一步，我们的　**Q 值改变目标值同样也会改变** 。我们离目标越近，同样目标也会移动。就像在追逐目标一样！这会导致在训练中有显著的震荡。
+
+就像假如你是个牛仔（Q　估计）并且你想要抓住奶牛（Q 目标）。你的目标是不断靠近他（减少错误）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-1.jpg" alt="Q-target"/>
+
+在每一个时间步中，你都尽可能的尝试靠近奶牛，但同样奶牛也在每个时间步中移动（因为你们使用相同参数）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-2.jpg" alt="Q-target"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-3.jpg" alt="Q-target"/>
+
+这导致了追逐的奇怪路径（训练中的显着振荡）。
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-4.jpg" alt="Q-target"/>
+
+我们在伪代码中看到如下：
+- 使用一个**分开的固定参数的网络去估计　TD　目标**。
+- 通过在**深度　Q 网络中每　C　步复制参数**去更新目标网络。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/fixed-q-target-pseudocode.jpg" alt="Fixed Q-target Pseudocode"/>
+
+
+
+## 双深度 Q 网络 [[double-dqn]]
+
+双深度 Q 网络, 或者叫双重学习,  [ Hado van Hasselt](https://papers.nips.cc/paper/3964-double-q-learning)所介绍。这个方法主要用来**解决　Q 值的高估问题**。
+
+为了理解这个问题，先看一下我们怎么计算　TD　目标的：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="TD target"/>
+
+我们在计算　TD 目标中面临着一个简单的问题：我们怎么确保下一个状态的**最佳动作是有着最高 Q 值的动作**。
+
+我们知道 Q 值的精度依赖于我们尝试过的动作**和**我们探索过的周边状态。
+
+因此，在训练之初我们对于最佳动作的采取没有足够的信息。采取最大 Q 值（噪声）作为最佳动作可能导致负向效果。如果**相比于最佳动作给非最优动作更高的 Q 值，学习将会变得非常复杂。**
+
+解决这个问题的方法是：当我们计算 Q 目标时，我们使用两个网络在目标 Q 值生成中解除动作选择。我们：
+- 使用 **DQN 网络** 去为下一个状态筛选最佳动作（有最高 Q 值的动作）。
+- 使用 **目标网络** 去计算下一个状态的目标 Q 值的采取动作
+
+因此，双深度 Q 网络帮助我们减少 Q 值高估并且帮助我们更快训练和更稳定学习。
+
+在这三项提升深度 Q 学习的措施之后，还出现了像 优先经验回放，竞技深度 Q 学习等许多方法。但这些并不在本课程范围内，如果你有兴趣，可以查看我们提供的阅读链接。

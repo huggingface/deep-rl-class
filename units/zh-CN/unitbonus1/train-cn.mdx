@@ -1,21 +1,21 @@
-# 让我们和哈吉一起训练和玩耍🐶 [[train]]
+# 让我们和 Huggy 一起训练和玩耍🐶 [[train]]
 
 
 
 
           <coursefloatingbanner classnames="absolute z-10 right-0 top-0" notebooks="{[" {label:="None" "google="None" colab",="None" value:="None" "https:="None" colab.research.google.com="None" github="None" huggingface="None" deep-rl-class="None" blob="None" master="None" notebooks="None" bonus-unit1="None" bonus-unit1.ipynb"}="None" ]}="None" askforhelpurl="http://hf.co/join/discord"></coursefloatingbanner>
 
-## 让我们训练哈吉🐶
+## 让我们训练 Huggy 🐶
 
-**要开始训练哈吉，请单击“在 Colab 中打开”按钮** 👇：
+**要开始训练 Huggy ，请单击“在 Colab 中打开”按钮** 👇：
 
 [![在 Colab 中打开](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-类/blob/master/notebooks/bonus-unit1/bonus-unit1.ipynb)
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit2/thumbnail.png" alt="Bonus Unit 1Thumbnail">
 
-在本笔记本中，我们将通过**教哈吉狗拿起棍子然后直接在浏览器中玩它**来巩固我们在第一个单元中学到的知识
+在本笔记本中，我们将通过**教 Huggy 狗拿起棍子然后直接在浏览器中玩它**来巩固我们在第一个单元中学到的知识
 
-⬇️ 这是**您将在本单元结束时实现的示例。** ⬇️（启动 ▶ 以查看）
+⬇️ 这是**你将在本单元结束时实现的示例。** ⬇️（启动 ▶ 以查看）
 
 ```python
 %%html
@@ -24,46 +24,46 @@
 
 ### 环境🎮
 
-- 哈吉狗， [Thomas Simonini](https://twitter.com/ThomasSimonini) 基于 [Puppo The Corgi](https://blog.unity.com/technology/puppo-the-corgi- cuteness-overload-with-the-unity-ml-agents-toolkit)
+-  Huggy 狗， [Thomas Simonini](https://twitter.com/ThomasSimonini) 基于 [Puppo The Corgi](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)创建的环境
 
 ### 使用的库📚
 
-- [MLAgents（Hugging Face）](https://github.com/huggingface/ml-agents)
+- [MLAgents（Hugging Face 版本）](https://github.com/huggingface/ml-agents)
 
-我们一直在努力改进我们的教程，所以**如果您在此笔记本中发现一些问题**，请[在 Github Repo 上打开一个问题](https://github.com/huggingface/deep-rl-class /问题）。
+我们一直在努力改进我们的教程，所以**如果你在此 Notebook 中发现一些问题**，请[在 Github Repo 上打开一个 issue](https://github.com/huggingface/deep-rl-class/issues)。
 
 ## 本章的目标 🏆
 
-在本章的末尾，您将：
+在本章的末尾，你将：
 
-- 了解**用于训练哈吉的状态空间、动作空间和奖励函数**。
-- **训练你自己的哈吉** 来拿棍子。
-- 能够直接在浏览器中与训练有素的哈吉一起玩**。
+- 了解**用于训练 Huggy 的状态空间、动作空间和奖励函数**。
+- **训练你自己的 Huggy** 来拿棍子。
+- 能够直接在**浏览器中与训练有素的 Huggy 一起玩**。
 
 
 ## 前置条件🏗️
 
-在深入研究该章节之前，您需要：
+在深入研究该章节之前，你需要：
 
 🔲 📚 **通过第 1 单元了解强化学习的基础**（MC、TD、奖励假设...）
 
-🔲 📚 **通过奖励单元 1 阅读哈吉的介绍**
+🔲 📚 **通过奖励单元 1 阅读 Huggy 的介绍**
 
 ## 设置 GPU 💪
-- 为了**加速智能体的训练，我们将使用 GPU**。为此，请转到“运行时 > 更改运行时类型”
+- 为了**加速智能体的训练，我们将使用 GPU**。为此，请点击 `Runtime > Change Runtime type`
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step1.jpg" alt="GPU Step 1">
 
--`硬件加速器> GPU`
+-`Hardware Accelerator > GPU`
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step2.jpg" alt="GPU Step 2">
 
-## 克隆存储库并安装依赖项🔽
+## 克隆仓库并安装依赖项🔽
 
-- 我们需要克隆存储库，它**包含允许您将训练有素的代理推送到仓库的实验版本。**
+- 我们需要克隆仓库，它**包含允许你将训练有素的代理推送到 Hub 的实验版本。**
 
 ```bash
-# 克隆这个特定的存储库（可能需要 3 分钟）
+# 克隆这个特定的仓库（可能需要 3 分钟）
 git clone https://github.com/huggingface/ml-agents/
 ```
 
@@ -74,10 +74,10 @@ pip3 install -e ./ml-agents-envs
 pip3 install -e ./ml-agents
 ```
 
-## 下载并移动 `./trained-envs-executables/linux/` 中的环境 zip 文件
+## 下载并将环境压缩文件移动到 `./trained-envs-executables/linux/` 下
 
-- 我们的环境可执行文件位于一个 zip 文件中。
-- 我们需要下载它并将其放置到`./trained-envs-executables/linux/`
+- 我们的环境可执行文件位于一个压缩文件中。
+- 我们需要下载它并将其放置到`./trained-envs-executables/linux/` 位置下
 
 ```bash
 mkdir ./trained-envs-executables
@@ -85,17 +85,17 @@ mkdir ./trained-envs-executables/linux
 ```
 
 ```bash
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
+!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
 ```
 
-使用 `wget` 从 https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF 下载文件 Huggy.zip。查看从 GDrive 下载大文件的完整解决方案 [此处](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
+使用 `wget` 从 https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF 下载文件 Huggy.zip。查看在  GDrive 中完整方案并在此处[下载大文件](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
 
 ```bash
 %%capture
 unzip -d ./trained-envs-executables/linux/ ./trained-envs-executables/linux/Huggy.zip
 ```
 
-确保您的文件可访问
+确保你的文件可访问
 
 ```bash
 chmod -R 755 ./trained-envs-executables/linux/Huggy
@@ -103,31 +103,31 @@ chmod -R 755 ./trained-envs-executables/linux/Huggy
 
 ## 让我们回顾一下这个环境是如何工作的
 
-### 状态空间：哈吉感知的内容。
+### 状态空间： Huggy 感知的内容。
 
-哈吉不会“看到”他的环境。相反，我们向他提供有关环境的信息：
+ Huggy 不会“看到”他的环境。相反，我们向他提供有关环境的信息：
 
 - 目标（摇杆）位置
 - 自己和目标之间的相对位置
 - 他腿的方向。
 
-鉴于所有这些信息，哈吉**可以决定接下来要采取什么行动来实现他的目标**。
+鉴于所有这些信息， Huggy **可以决定接下来要采取什么行动来实现他的目标**。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%">
 
 
-### 动作空间：哈吉可以做什么动作
+### 动作空间： Huggy 可以做什么动作
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%">
 
-**关节电机驱动抱腿**。这意味着为了达到目标，哈吉需要**学会正确地旋转每条腿的关节马达，这样他才能移动**。
+**关节电机驱动抱腿**。这意味着为了达到目标， Huggy 需要**学会正确地旋转每条腿的关节马达，这样他才能移动**。
 
 ### 奖励函数
 
-奖励函数的设计是为了让 **哈吉实现他的目标**：拿到棍子。
+奖励函数的设计是为了让 ** Huggy 实现他的目标**：拿到棍子。
 
 请记住，强化学习的基础之一是*奖励假设*：目标可以描述为**预期累积奖励**的最大化**。
 
-在这里，我们的目标是哈吉**朝着棍子走去，但不要旋转太多**。因此，我们的奖励函数必须转化为这个目标。
+在这里，我们的目标是 Huggy **朝着棍子走去，但不要旋转太多**。因此，我们的奖励函数必须转化为这个目标。
 
 我们的奖励函数：
 
@@ -135,14 +135,14 @@ chmod -R 755 ./trained-envs-executables/linux/Huggy
 
 - *定向奖励*：我们**奖励他接近目标**。
 - *时间惩罚*：在每个动作中给予的固定时间惩罚，以**迫使他尽快到达棍子**。
-- *旋转惩罚*：如果哈吉旋转太多并且转得太快**，我们会对哈吉进行惩罚。
-- *达到目标奖励*：我们奖励哈吉**达到目标**。
+- *旋转惩罚*：如果 Huggy 旋转太多并且转得太快**，我们会对 Huggy 进行惩罚。
+- *达到目标奖励*：我们奖励 Huggy **达到目标**。
 
-## 检查哈吉配置文件
+## 检查 Huggy 配置文件
 
-- 在 ML-Agents 中，您将**训练超参数定义到 config.yaml 文件中。**
+- 在 ML-Agents 中，你将**训练超参数定义到 config.yaml 文件中。**
 
-- 对于本笔记本的范围，我们不打算修改超参数，但如果您想尝试作为实验，您还应该尝试修改其他一些超参数，Unity 提供了非常好的文档，在这里解释了它们中的每一个] （https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md）。
+- 对于本笔记本的范围，我们不打算修改超参数，但如果你想尝试作为实验，你还应该尝试修改其他一些超参数，Unity 提供了非常好的文档，在这里解释了它们中的每一个] （https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md）。
 
 - **如果你想修改超参数**，在Google Colab notebook中，你可以点击这里打开config.yaml: `/content/ml-agents/config/ppo/Huggy.yaml`
 
@@ -159,7 +159,7 @@ chmod -R 755 ./trained-envs-executables/linux/Huggy
 
 1. `mlagents-learn <config>`：超参数配置文件所在路径。
 2. `--env`：环境可执行文件所在的位置。
-3. `--run_id`：您要为训练运行 ID 指定的名称。
+3. `--run_id`：你要为训练运行 ID 指定的名称。
 4. `--no-graphics`：在训练期间不启动可视化。
 
 训练模型并使用 `--resume` 标志在中断的情况下继续训练。
@@ -168,27 +168,27 @@ chmod -R 755 ./trained-envs-executables/linux/Huggy
 
 
 
-培训将需要 30 到 45 分钟，具体取决于您的机器（不要忘记**设置 GPU**），去参加☕️你应得的🤗。
+训练将需要 30 到 45 分钟，具体取决于你的机器（不要忘记**设置 GPU**），去喝个咖啡☕️放松一下🤗。
 
 ```bash
 mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
 ```
 
-## 将智能体推送到🤗仓库
+## 将智能体推送到🤗 Hub
 
-- 现在我们已经训练了我们的智能体，我们**准备将其推送到仓库，以便能够在您的浏览器上与哈吉一起玩🔥。**
+- 现在我们已经训练了我们的智能体，我们**准备将其推送到 Hub，以便能够在你的浏览器上与 Huggy 一起玩🔥。**
 
-为了能够与社区共享您的模型，还需要执行三个步骤：
+为了能够与社区共享你的模型，还需要执行三个步骤：
 
 1️⃣（如果尚未完成）创建一个 HF 帐户 ➡ https://huggingface.co/join
 
-2️⃣ 登录，然后，您需要存储来自 Hugging Face 网站的身份验证令牌。
-- 创建一个新令牌（https://huggingface.co/settings/tokens）**具有写入权限**
+2️⃣ 登录，然后，你需要存储来自 Hugging Face 网站的身份验证 token。
+- 创建一个新 token（https://huggingface.co/settings/tokens）**具有写入权限**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
 
-- 复制令牌
-- 运行下面的单元格并粘贴令牌
+- 复制 token
+- 运行下面的单元格并粘贴 token
 
 
 ```python
@@ -197,7 +197,7 @@ from huggingface_hub import notebook_login
 notebook_login()
 ```
 
-如果您不想使用 Google Colab 或 Jupyter Notebook，则需要改用此命令：`huggingface-cli login`
+如果你不想使用 Google Colab 或 Jupyter Notebook，则需要改用此命令：`huggingface-cli login`
 然后，我们只需要运行 mlagents-push-to-hf 即可。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/mlpush.png" alt="ml learn function" width="100%">
@@ -206,9 +206,9 @@ notebook_login()
 
 1. `--run-id`：训练运行id的名称。
 2. `--local-dir`：代理的保存位置，它是 results/<run_id name="None">，所以在我的例子中是 results/First Training。
-3. `--repo-id`：您要创建或更新的 Hugging Face 存储库的名称。总是<your huggingface="None" username="None">/<the repo="None" name="None">
+3. `--repo-id`：你要创建或更新的 Hugging Face 存储库的名称。总是<your huggingface="None" username="None">/<the repo="None" name="None">
 如果回购不存在**它将自动创建**
-4. `--commit-message`：由于 HF 存储库是 git 存储库，因此您需要定义提交消息。
+4. `--commit-message`：由于 HF 存储库是 git 存储库，因此你需要定义提交消息。
 
 ```bash
 mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --repo-id="ThomasSimonini/ppo-Huggy" --commit-message="Huggy"
@@ -222,25 +222,25 @@ mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --rep
 Your model is pushed to the hub. You can view your model here: https://huggingface.co/ThomasSimonini/ppo-Huggy
 ```
 
-它是您的模型存储库的链接。存储库包含一个模型卡，解释如何使用模型、您的 Tensorboard 日志和您的配置文件。 **很棒的是它是一个 git 存储库，这意味着您可以进行不同的提交、使用新推送更新您的存储库、打开 Pull Requests 等。**
+它是你的模型存储库的链接。存储库包含一个模型卡，解释如何使用模型、你的 Tensorboard 日志和你的配置文件。 **很棒的是它是一个 git 存储库，这意味着你可以进行不同的提交、使用新推送更新你的存储库、打开 Pull Requests 等。**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/modelcard.png" alt="ml learn function" width="100%">
 
-但现在最好的是：**能够在线玩哈吉👀。**
+但现在最好的是：**能够在线玩 Huggy 👀。**
 
-## 和你的哈吉一起玩 🐕
+## 和你的 Huggy 一起玩 🐕
 
 这一步最简单：
 
-- 在浏览器中打开游戏哈吉：https://singularite.itch.io/huggy
+- 在浏览器中打开游戏 Huggy ：https://singularite.itch.io/huggy
 
-- 点击玩我的哈吉模型
+- 点击玩我的 Huggy 模型
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/load-huggy.jpg" alt="load-huggy" width="100%">
 
-1. 在第 1 步中，选择您的模型存储库，即模型 ID（在我的例子中是 ThomasSimonini/ppo-Huggy）。
+1. 在第 1 步中，选择你的模型存储库，即模型 ID（在我的例子中是 ThomasSimonini/ppo-Huggy）。
 
-2. 在第 2 步中，**选择您要重播的模型**：
+2. 在第 2 步中，**选择你要重播的模型**：
   - 我有多个，因为我们每 500000 个时间步保存一个模型。
   - 但因为我想要更新的，所以我选择 `Huggy.onnx`
 
@@ -248,7 +248,7 @@ Your model is pushed to the hub. You can view your model here: https://huggingfa
 
 恭喜你完成了这个奖励单元！
 
-您现在可以坐下来享受和您的哈吉🐶 一起玩耍的乐趣了。并且不要 ** 忘记通过与您的朋友分享哈吉来传播热爱 🤗**。如果你在社交媒体上分享它，**请标记我们@huggingface 和我@simoninithomas**
+你现在可以坐下来享受和你的 Huggy 🐶 一起玩耍的乐趣了。并且不要 ** 忘记通过与你的朋友分享 Huggy 来传播热爱 🤗**。如果你在社交媒体上分享它，**请声明我们@huggingface 和我@simoninithomas**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-cover.jpeg" alt="Huggy cover" width="100%">
 

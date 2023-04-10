@@ -1,0 +1,99 @@
+# 测试 [[quiz]]
+
+学习和[避免自以为是](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)**的最好方法是对自己进行测试。**这将帮助您找到需要**加强知识的地方**。
+
+### Q1: 我们提到的 Q 学习是一种表格型方法，所以什么是表格型方法?
+
+<details>
+<summary>参考答案</summary>
+
+*表格型方法*是针对状态和动作空间足够小去用数组或元组表现估计价值函数的问题类型的方法。**Q 学习** 是一个表格型方法的例子，其表被用于表示不同的状态-动作对的值。
+
+
+</details>
+
+### Q2: 为什么我们不能用经典的 Q 学习处理 Atari 游戏?
+
+<Question
+	choices={[
+		{
+			text: "Atari 的环境对于 Q 学习太快了",
+			explain: ""
+		},
+		{
+			text: "Atari 环境拥有巨大的观测空间。所以创建 Q 表格会失效 ",
+			explain: "",
+      correct: true
+		}
+	]}
+/>
+
+
+### Q3: 当我们用帧去输入深度 Q学习时，为什么要把四帧堆叠在一起?
+
+<details>
+<summary>参考答案</summary>
+
+我们堆叠在一起因为他帮助我们**解决了时序限制**的问题：一帧没有足够的时序信息。举个例子，在 pong 中，我们的智能体**在一帧中无法判断球的方向**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation.jpg" alt="Temporal limitation"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation-2.jpg" alt="Temporal limitation"/>
+
+
+</details>
+
+
+### Q4: 深度 Q 学习的两部分是啥?
+
+<Question
+	choices={[
+		{
+			text: "采样",
+			explain: "我们执行动作并储存观测到的经验在重演内存中。",
+      correct: true,
+		},
+		{
+			text: "重新洗牌",
+			explain: "",
+		},
+    {
+      text: "重新更改秩",
+      explain: "",
+    },
+    {
+			text: "训练",
+			explain: "我们随机从元组选择一小批并用梯度下降更新每一步。",
+      correct: true,
+		}
+	]}
+/>
+
+### Q5: 为什么我们在深度 Q 学习中要创建回放内存?
+
+<details>
+   <summary>参考答案</summary>
+
+1. **在训练中制造更多更有效的经验**。
+通常，在线强化学习中，智能体会与环境交互，获得经验（状态，动作，奖励和下一个状态），学习这些（更新神经网络），抛弃他们这种做法并不高效。经验回放帮助训练中使用**经验更高效**。我们使用一个回放缓冲在**训练中重复使用**来节省经验采样。这使得智能体在**同样的经验中学习多次**。
+
+2. **避免忘记之前所学并且减少经验间的相关性**.
+- 现在的问题是如果我们给了一个序列的经验采样在我们的神经网络中，他会倾向于在得到**新经验后忘记之前的经验**。举个例子，如果智能体现在在第一阶段下一步在第二阶段，这两个是不同的，这就使得智能体忘记了在第一阶段干了啥。
+
+
+</details>
+
+### Q6: 我们怎么使用双深度 Q 网络?
+
+
+<details>
+  <summary>参考答案</summary>
+当我们计算 Q 目标时，我们使用两个网络在目标 Q 值生成中解除动作选择。我们：
+
+- 使用 **DQN 网络** 去为下一个状态筛选最佳动作（有最高 Q 值的动作）。
+- 使用 **目标网络** 去计算下一个状态的目标 Q 值的采取动作
+
+
+</details>
+
+
+恭喜你完成测试 🥳, 如果你忘了某些部分，可以回顾相关章节去强化一下相关知识点 (😏) 。

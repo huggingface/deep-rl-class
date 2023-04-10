@@ -1,0 +1,41 @@
+# 深度 Q 网络 (DQN)  [[deep-q-network]]
+这是我们深度 Q 学习网络的结构：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/deep-q-network.jpg" alt="Deep Q Network"/>
+
+作为输入，我们的状态采用 **4 帧堆**经过网络，并且输出一个该状态下**每个可能动作的 Q 值向量**。然后像 Q 学习一样，我们仅仅需要使用 $\epsilon$-贪婪 策略去筛选我们要采取的动作就行。
+
+当神经网络开始初始化， **Q 值的估计很糟糕**。但是随着训练进行，我们的深度 Q 网络会用合适的动作关联情景并且**学习如何掌控游戏**。
+
+
+## 预处理输入和时序限制[[preprocessing]]
+
+我们需要**预处理输入**。对于我们想要**减少我们状态的复杂度来减少训练的计算时间来说**，这很重要。
+
+为了达到这个目标，我们减少**状态空间到 84x84 并且进行灰度化**。让 Atari 环境不加入重要信息就可以实现这一步骤。**把 3 通道（RGB）降低到 1 通道**极大地节省了计算。
+
+如果不包括重要信息的话，我们同样可以**裁剪掉一些游戏画面**来节省计算。
+然后我们把 4 个帧堆在一起。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/preprocessing.jpg" alt="Preprocessing"/>
+
+**为啥要堆在一起呢？**
+因为这帮助我们处理一些**时序限制问题**。让我们用 Pong 这个游戏举例，当你看到如下帧：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation.jpg" alt="Temporal Limitation"/>
+
+你能告诉我那个球将要去哪里吗？
+不，你不能。因为一个帧没有足够的运动信息。但是如果我增加多三张呢？**这里你可以看到球要向右方向运动**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation-2.jpg" alt="Temporal Limitation"/>
+这就是为什么去抓取时序信息并且堆叠 4 帧在一起。
+
+后面，堆叠的帧经过三层卷积层处理，这些层允许我们**捕获和利用图片中的空间关系**。同样因为帧是堆叠在一起的，你也**可以从中利用一些时序属性**。
+
+如果你不知道啥是卷积层，别担心。你可以查看[Udacity 的深度强化学习课程第四课](https://www.udacity.com/course/deep-learning-pytorch--ud188)
+
+最后，我们有一对全连接层输出每一个该状态下可能动作的 Q 值.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/deep-q-network.jpg" alt="Deep Q Network"/>
+
+我们了解了深度 Q 学习是用一个给定一个状态的神经网络去估计该状态每一个可能的动作的不同 Q 值。下面让我们学习深度 Q 学习算法。
