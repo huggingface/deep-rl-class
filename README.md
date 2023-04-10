@@ -1,6 +1,8 @@
 # [The Hugging Face Deep Reinforcement Learning Course 🤗 (v2.0)](https://huggingface.co/deep-rl-course/unit0/introduction)
 
-This repository contains the Deep Reinforcement Learning Course mdx files and notebooks. The website is here: https://huggingface.co/deep-rl-course/unit0/introduction?fw=pt
+If you like the course, don't hesitate to **⭐ star this repository. This helps us 🤗**.
+
+This repository contains the Deep Reinforcement Learning Course mdx files and notebooks. **The website is here**: https://huggingface.co/deep-rl-course/unit0/introduction?fw=pt
 
 - The syllabus 📚: https://simoninithomas.github.io/deep-rl-course
 
