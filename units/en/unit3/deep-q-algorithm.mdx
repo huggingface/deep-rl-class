@@ -33,9 +33,9 @@ Why do we create a replay memory?
 Experience Replay in Deep Q-Learning has two functions:
 
 1. **Make more efficient use of the experiences during the training**.
-Usually, in online reinforcement learning, the agent interacts in the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient
+Usually, in online reinforcement learning, the agent interacts with the environment, gets experiences (state, action, reward, and next state), learns from them (updates the neural network), and discards them. This is not efficient.
 
-Experience replay helps **using the experiences of the training more efficiently**. We use a replay buffer that saves experience samples **that we can reuse during the training.**
+Experience replay helps by **using the experiences of the training more efficiently**. We use a replay buffer that saves experience samples **that we can reuse during the training.**
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay.jpg" alt="Experience Replay"/>
 
 ⇒ This allows the agent to **learn from the same experiences multiple times**.
@@ -47,7 +47,7 @@ The solution is to create a Replay Buffer that stores experience tuples while in
 
 Experience replay also has other benefits. By randomly sampling the experiences, we remove correlation in the observation sequences and avoid **action values from oscillating or diverging catastrophically.**
 
-In the Deep Q-Learning pseudocode, we **initialize a replay memory buffer D from capacity N** (N is a hyperparameter that you can define). We then store experiences in the memory and sample a batch of experiences to feed the Deep Q-Network during the training phase.
+In the Deep Q-Learning pseudocode, we **initialize a replay memory buffer D with capacity N** (N is a hyperparameter that you can define). We then store experiences in the memory and sample a batch of experiences to feed the Deep Q-Network during the training phase.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/experience-replay-pseudocode.jpg" alt="Experience Replay Pseudocode"/>
 
@@ -61,9 +61,9 @@ But we **don’t have any idea of the real TD target**. We need to estimate it
 
 However, the problem is that we are using the same parameters (weights) for estimating the TD target **and** the Q-value. Consequently, there is a significant correlation between the TD target and the parameters we are changing.
 
-Therefore, it means that at every step of training, **our Q-values shift but also the target value shifts.** We’re getting closer to our target, but the target is also moving. It’s like chasing a moving target! This can lead to a significant oscillation in training.
+Therefore, at every step of training, **both our Q-values and the target values shift.** We’re getting closer to our target, but the target is also moving. It’s like chasing a moving target! This can lead to significant oscillation in training.
 
-It’s like if you were a cowboy (the Q estimation) and you want to catch the cow (the Q-target). Your goal is to get closer (reduce the error).
+It’s like if you were a cowboy (the Q estimation) and you wanted to catch a cow (the Q-target). Your goal is to get closer (reduce the error).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/qtarget-1.jpg" alt="Q-target"/>
 
@@ -76,7 +76,7 @@ This leads to a bizarre path of chasing (a significant oscillation in training).
 
 Instead, what we see in the pseudo-code is that we:
 - Use a **separate network with fixed parameters** for estimating the TD Target
-- **Copy the parameters from our Deep Q-Network at every C step** to update the target network.
+- **Copy the parameters from our Deep Q-Network every C steps** to update the target network.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/fixed-q-target-pseudocode.jpg" alt="Fixed Q-target Pseudocode"/>
 
@@ -84,7 +84,7 @@ Instead, what we see in the pseudo-code is that we:
 
 ## Double DQN [[double-dqn]]
 
-Double DQNs, or Double Learning, were introduced [by Hado van Hasselt](https://papers.nips.cc/paper/3964-double-q-learning). This method **handles the problem of the overestimation of Q-values.**
+Double DQNs, or Double Deep Q-Learning neural networks, were introduced [by Hado van Hasselt](https://papers.nips.cc/paper/3964-double-q-learning). This method **handles the problem of the overestimation of Q-values.**
 
 To understand this problem, remember how we calculate the TD Target:
 
@@ -100,6 +100,6 @@ The solution is: when we compute the Q target, we use two networks to decouple t
 - Use our **DQN network** to select the best action to take for the next state (the action with the highest Q-value).
 - Use our **Target network** to calculate the target Q-value of taking that action at the next state.
 
-Therefore, Double DQN helps us reduce the overestimation of Q-values and, as a consequence, helps us train faster and have more stable learning.
+Therefore, Double DQN helps us reduce the overestimation of Q-values and, as a consequence, helps us train faster and with more stable learning.
 
-Since these three improvements in Deep Q-Learning, many have been added such as Prioritized Experience Replay, Dueling Deep Q-Learning. They’re out of the scope of this course but if you’re interested, check the links we put in the reading list.
+Since these three improvements in Deep Q-Learning, many more have been added, such as Prioritized Experience Replay and Dueling Deep Q-Learning. They’re out of the scope of this course but if you’re interested, check the links we put in the reading list.

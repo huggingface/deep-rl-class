@@ -16,7 +16,7 @@ Now that you've studied the theory behind Deep Q-Learning, **you’re ready to t
 
 We're using the [RL-Baselines-3 Zoo integration](https://github.com/DLR-RM/rl-baselines3-zoo), a vanilla version of Deep Q-Learning with no extensions such as Double-DQN, Dueling-DQN, or Prioritized Experience Replay.
 
-Also, **if you want to learn to implement Deep Q-Learning by yourself after this hands-on**, you definitely should look at CleanRL implementation: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
+Also, **if you want to learn to implement Deep Q-Learning by yourself after this hands-on**, you definitely should look at the CleanRL implementation: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
 
 To validate this hands-on for the certification process, you need to push your trained model to the Hub and **get a result of >= 200**.
 
@@ -87,7 +87,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 
 During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames).
 
-Hence the following cell will install the librairies and create and run a virtual screen 🖥
+The following cell will install the librairies and create and run a virtual screen 🖥
 
 ```bash
 apt install python-opengl
@@ -143,7 +143,7 @@ To train an agent with RL-Baselines3-Zoo, we just need to do two things:
 
 Here we see that:
 - We use the `Atari Wrapper` that does the pre-processing (Frame reduction, grayscale, stack four frames),
-- We use `CnnPolicy`, since we use Convolutional layers to process the frames.
+- We use the `CnnPolicy`, since we use Convolutional layers to process the frames.
 - We train the model for 10 million `n_timesteps`.
 - Memory (Experience Replay) size is 100000, i.e. the number of experience steps you saved to train again your agent with.
 
@@ -154,7 +154,7 @@ In terms of hyperparameters optimization, my advice is to focus on these 3 hyper
 - `buffer_size (Experience Memory size)`
 - `batch_size`
 
-As a good practice, you need to **check the documentation to understand what each hyperparameters does**: https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html#parameters
+As a good practice, you need to **check the documentation to understand what each hyperparameter does**: https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html#parameters
 
 
 
@@ -185,16 +185,16 @@ python enjoy.py  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --no-render  --n
 ```
 
 ## Publish our trained model on the Hub 🚀
-Now that we saw we got good results after the training, we can publish our trained model on the Hub with one line of code.
+Now that we saw we got good results after the training, we can publish our trained model to the Hub with one line of code.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit3/space-invaders-model.gif" alt="Space Invaders model">
 
 By using `rl_zoo3.push_to_hub.py`, **you evaluate, record a replay, generate a model card of your agent, and push it to the Hub**.
 
 This way:
-- You can **showcase our work** 🔥
+- You can **showcase your work** 🔥
 - You can **visualize your agent playing** 👀
-- You can **share with the community an agent that others can use** 💾
+- You can **share an agent with the community that others can use** 💾
 - You can **access a leaderboard 🏆 to see how well your agent is performing compared to your classmates** 👉  https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 To be able to share your model with the community, there are three more steps to follow:
@@ -215,11 +215,11 @@ notebook_login()
 git config --global credential.helper store
 ```
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
 
 3️⃣ We're now ready to push our trained agent to the Hub 🔥
 
-Let's run `push_to_hub.py` file to upload our trained agent to the Hub. There are two important parameters:
+Let's run the `push_to_hub.py` file to upload our trained agent to the Hub. There are two important parameters:
 
 * `--repo-name `: The name of the repo
 * `-orga`: Your Hugging Face username
@@ -278,16 +278,16 @@ python -m rl_zoo3.load_from_hub --algo dqn --env BeamRiderNoFrameskip-v4 -orga s
 python enjoy.py --algo dqn --env BeamRiderNoFrameskip-v4 -n 5000  -f rl_trained/
 ```
 
-Why not trying to train your own **Deep Q-Learning Agent playing BeamRiderNoFrameskip-v4? 🏆.**
+Why not try training your own **Deep Q-Learning Agent playing BeamRiderNoFrameskip-v4? 🏆.**
 
-If you want to try, check https://huggingface.co/sb3/dqn-BeamRiderNoFrameskip-v4#hyperparameters. There, **in the model card, you have the hyperparameters of the trained agent.**
+If you want to try, check out https://huggingface.co/sb3/dqn-BeamRiderNoFrameskip-v4#hyperparameters. There, **in the model card, you'll find the hyperparameters of the trained agent.**
 
-But finding hyperparameters can be a daunting task. Fortunately, we'll see in the next bonus Unit, how we can **use Optuna for optimizing the Hyperparameters 🔥.**
+Finding hyperparameters in general can be a daunting task. Fortunately, we'll see in the next bonus Unit how we can **use Optuna for optimizing the Hyperparameters 🔥.**
 
 
 ## Some additional challenges 🏆
 
-The best way to learn **is to try things by your own**!
+The best way to learn **is to try things on your own**!
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
@@ -297,18 +297,18 @@ Here's a list of environments you can try to train your agent with:
 - EnduroNoFrameskip-v4
 - PongNoFrameskip-v4
 
-Also, **if you want to learn to implement Deep Q-Learning by yourself**, you definitely should look at CleanRL implementation: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
+Also, **if you want to learn to implement Deep Q-Learning by yourself**, you definitely should look at the CleanRL implementation: https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/dqn_atari.py
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
 
 ________________________________________________________________________
 Congrats on finishing this chapter!
 
-If you’re still feel confused with all these elements...it's totally normal! **This was the same for me and for all people who studied RL.**
+If you’re still feel confused with all these elements...it's totally normal! **This was the same for me and for all people who study RL.**
 
-Take time to really **grasp the material before continuing and try the additional challenges**. It’s important to master these elements and having a solid foundations.
+Take time to really **grasp the material before continuing and try the additional challenges**. It’s important to master these elements and have a solid foundations.
 
-In the next unit, **we’re going to learn about [Optuna](https://optuna.org/)**. One of the most critical task in Deep Reinforcement Learning is to find a good set of training hyperparameters. And Optuna is a library that helps you to automate the search.
+In the next unit, **we’re going to learn about [Optuna](https://optuna.org/)**. One of the most critical tasks in Deep Reinforcement Learning is to find a good set of training hyperparameters. And Optuna is a library that helps you to automate the search.
 
 See you on Bonus unit 2! 🔥
 
