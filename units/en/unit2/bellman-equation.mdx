@@ -5,7 +5,7 @@ The Bellman equation **simplifies our state value or state-action value calcula
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman.jpg" alt="Bellman equation"/>
 
-With what we have learned so far, we know that if we calculate the \\(V(S_t)\\) (value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(The policy we defined in the following example is a Greedy Policy; for simplification, we don't discount the reward).**
+With what we have learned so far, we know that if we calculate \\(V(S_t)\\) (the value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(The policy we defined in the following example is a Greedy Policy; for simplification, we don't discount the reward).**
 
 So to calculate \\(V(S_t)\\), we need to calculate the sum of the expected rewards. Hence:
 

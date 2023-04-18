@@ -27,7 +27,7 @@ For more information about the certification process, check this section 👉 ht
 And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSimonini/Check-my-progress-Deep-RL-Course
 
 
-**To start the hands-on click on Open In Colab button** 👇 :
+**To start the hands-on click on the Open In Colab button** 👇 :
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit2/unit2.ipynb)
 
@@ -36,7 +36,7 @@ And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSi
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/thumbnail.jpg" alt="Unit 2 Thumbnail">
 
-In this notebook, **you'll code from scratch your first Reinforcement Learning agent** playing FrozenLake ❄️ using Q-Learning, share it to the community, and experiment with different configurations.
+In this notebook, **you'll code your first Reinforcement Learning agent from scratch** to play FrozenLake ❄️ using Q-Learning, share it with the community, and experiment with different configurations.
 
 
 ⬇️ Here is an example of what **you will achieve in just a couple of minutes.** ⬇️
@@ -61,7 +61,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 At the end of the notebook, you will:
 
 - Be able to use **Gym**, the environment library.
-- Be able to code from scratch a Q-Learning agent.
+- Be able to code a Q-Learning agent from scratch.
 - Be able to **push your trained agent and the code to the Hub** with a nice video replay and an evaluation score 🔥.
 
 
@@ -72,23 +72,23 @@ Before diving into the notebook, you need to:
 
 ## A small recap of Q-Learning
 
-- The *Q-Learning* **is the RL algorithm that**
+- *Q-Learning* **is the RL algorithm that**
 
-  - Trains *Q-Function*, an **action-value function** that contains, as internal memory, a *Q-table* **that contains all the state-action pair values.**
+  - Trains *Q-Function*, an **action-value function** that encoded, in internal memory, by a *Q-table* **that contains all the state-action pair values.**
 
-  - Given a state and action, our Q-Function **will search into its Q-table the corresponding value.**
+  - Given a state and action, our Q-Function **will search the Q-table for the corresponding value.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function-2.jpg" alt="Q function"  width="100%"/>
 
 - When the training is done,**we have an optimal Q-Function, so an optimal Q-Table.**
 
 - And if we **have an optimal Q-function**, we
-have an optimal policy,since we **know for each state, what is the best action to take.**
+have an optimal policy, since we **know for, each state, the best action to take.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy"  width="100%"/>
 
 
-But, in the beginning, our **Q-Table is useless since it gives arbitrary value for each state-action pair (most of the time we initialize the Q-Table to 0 values)**. But, as we’ll explore the environment and update our Q-Table it will give us better and better approximations
+But, in the beginning, our **Q-Table is useless since it gives arbitrary values for each state-action pair (most of the time we initialize the Q-Table to 0 values)**. But, as we explore the environment and update our Q-Table it will give us better and better approximations
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit2/q-learning.jpeg" alt="q-learning.jpeg" width="100%"/>
 
@@ -113,7 +113,7 @@ We’ll install multiple ones:
 
 The Hugging Face Hub 🤗 works as a central place where anyone can share and explore models and datasets. It has versioning, metrics, visualizations and other features that will allow you to easily collaborate with others.
 
-You can see here all the Deep RL models available (if they use Q Learning) 👉 https://huggingface.co/models?other=q-learning
+You can see all the Deep RL models available here (if they use Q Learning) 👉 https://huggingface.co/models?other=q-learning
 
 ```bash
 pip install -r https://raw.githubusercontent.com/huggingface/deep-rl-class/main/notebooks/unit2/requirements-unit2.txt
@@ -125,7 +125,7 @@ apt install python-opengl ffmpeg xvfb
 pip3 install pyvirtualdisplay
 ```
 
-To make sure the new installed libraries are used, **sometimes it's required to restart the notebook runtime**. The next cell will force the **runtime to crash, so you'll need to connect again and run the code starting from here**. Thanks for this trick, **we will be able to run our virtual screen.**
+To make sure the new installed libraries are used, **sometimes it's required to restart the notebook runtime**. The next cell will force the **runtime to crash, so you'll need to connect again and run the code starting from here**. Thanks to this trick, **we will be able to run our virtual screen.**
 
 ```python
 import os
@@ -299,7 +299,7 @@ Remember we have two policies since Q-Learning is an **off-policy** algorithm. T
 - Epsilon-greedy policy (acting policy)
 - Greedy-policy (updating policy)
 
-Greedy policy will also be the final policy we'll have when the Q-learning agent will be trained. The greedy policy is used to select an action from the Q-table.
+The greedy policy will also be the final policy we'll have when the Q-learning agent completes training. The greedy policy is used to select an action using the Q-table.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/off-on-4.jpg" alt="Q-Learning" width="100%"/>
 
@@ -330,9 +330,9 @@ The idea with epsilon-greedy:
 
 - With *probability 1 - ɛ* : **we do exploitation** (i.e. our agent selects the action with the highest state-action pair value).
 
-- With *probability ɛ*: we do **exploration** (trying random action).
+- With *probability ɛ*: we do **exploration** (trying a random action).
 
-And as the training goes, we progressively **reduce the epsilon value since we will need less and less exploration and more exploitation.**
+As the training continues, we progressively **reduce the epsilon value since we will need less and less exploration and more exploitation.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-4.jpg" alt="Q-Learning" width="100%"/>
 
@@ -726,7 +726,7 @@ By using `push_to_hub` **you evaluate, record a replay, generate a model card of
 This way:
 - You can **showcase our work** 🔥
 - You can **visualize your agent playing** 👀
-- You can **share with the community an agent that others can use** 💾
+- You can **share an agent with the community that others can use** 💾
 - You can **access a leaderboard 🏆 to see how well your agent is performing compared to your classmates** 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 
@@ -788,8 +788,8 @@ repo_name = "q-FrozenLake-v1-4x4-noSlippery"
 push_to_hub(repo_id=f"{username}/{repo_name}", model=model, env=env)
 ```
 
-Congrats 🥳 you've just implemented from scratch, trained and uploaded your first Reinforcement Learning agent.
-FrozenLake-v1 no_slippery is very simple environment, let's try an harder one 🔥.
+Congrats 🥳 you've just implemented from scratch, trained, and uploaded your first Reinforcement Learning agent.
+FrozenLake-v1 no_slippery is very simple environment, let's try a harder one 🔥.
 
 # Part 2: Taxi-v3 🚖
 
@@ -1009,7 +1009,7 @@ repo_name = ""
 push_to_hub(repo_id=f"{username}/{repo_name}", model=model, env=env)
 ```
 
-Now that's on the Hub, you can compare the results of your Taxi-v3 with your classmates using the leaderboard 🏆 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
+Now that it's on the Hub, you can compare the results of your Taxi-v3 with your classmates using the leaderboard 🏆 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 ⚠ To see your entry, you need to go to the bottom of the leaderboard page and **click on refresh** ⚠
 
@@ -1075,24 +1075,24 @@ evaluate_agent(env, model["max_steps"], model["n_eval_episodes"], model["qtable"
 ```
 
 ## Some additional challenges 🏆
-The best way to learn **is to try things by your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results!
+The best way to learn **is to try things on your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. With 1,000,000 steps, we saw some great results!
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
-Here are some ideas to achieve so:
+Here are some ideas to climb up the leaderboard:
 
 * Train more steps
 * Try different hyperparameters by looking at what your classmates have done.
 * **Push your new trained model** on the Hub 🔥
 
-Are walking on ice and driving taxis too boring to you? Try to **change the environment**, why not using FrozenLake-v1 slippery version? Check how they work [using the gym documentation](https://www.gymlibrary.dev/) and have fun 🎉.
+Are walking on ice and driving taxis too boring to you? Try to **change the environment**, why not use the FrozenLake-v1 slippery version? Check how they work [using the gym documentation](https://www.gymlibrary.dev/) and have fun 🎉.
 
 _____________________________________________________________________
 Congrats 🥳, you've just implemented, trained, and uploaded your first Reinforcement Learning agent.
 
 Understanding Q-Learning is an **important step to understanding value-based methods.**
 
-In the next Unit with Deep Q-Learning, we'll see that creating and updating a Q-table was a good strategy — **however, this is not scalable.**
+In the next Unit with Deep Q-Learning, we'll see that while creating and updating a Q-table was a good strategy — **however, it is not scalable.**
 
 For instance, imagine you create an agent that learns to play Doom.
 
@@ -1100,11 +1100,11 @@ For instance, imagine you create an agent that learns to play Doom.
 
 Doom is a large environment with a huge state space (millions of different states). Creating and updating a Q-table for that environment would not be efficient.
 
-That's why we'll study, in the next unit, Deep Q-Learning, an algorithm **where we use a neural network that approximates, given a state, the different Q-values for each action.**
+That's why we'll study Deep Q-Learning in the next unit, an algorithm **where we use a neural network that approximates, given a state, the different Q-values for each action.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
 
 
-See you on Unit 3! 🔥
+See you in Unit 3! 🔥
 
 ## Keep learning, stay awesome 🤗
