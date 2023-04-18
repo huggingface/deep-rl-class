@@ -34,7 +34,7 @@ The problem is that the **two rose cases are aliased states because the agent pe
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster2.jpg" alt="Hamster 1"/>
 </figure>
 
-Under a deterministic policy, the policy either will move right when in a red state or move left. **Either case will cause our agent to get stuck and never suck the dust**.
+Under a deterministic policy, the policy will either always move right when in a red state or always move left. **Either case will cause our agent to get stuck and never suck the dust**.
 
 Under a value-based Reinforcement learning algorithm, we learn a **quasi-deterministic policy** ("greedy epsilon strategy"). Consequently, our agent can **spend a lot of time before finding the dust**.
 
@@ -67,8 +67,8 @@ On the other hand, in policy-gradient methods, stochastic policy action preferen
 
 Naturally, policy-gradient methods also have some disadvantages:
 
-- **Frequently, policy-gradient converges on a local maximum instead of a global optimum.**
+- **Frequently, policy-gradient methods converges to a local maximum instead of a global optimum.**
 - Policy-gradient goes slower, **step by step: it can take longer to train (inefficient).**
-- Policy-gradient can have high variance. We'll see in actor-critic unit why and how we can solve this problem.
+- Policy-gradient can have high variance. We'll see in the actor-critic unit why, and how we can solve this problem.
 
 👉 If you want to go deeper into the advantages and disadvantages of policy-gradient methods, [you can check this video](https://youtu.be/y3oqOjHilio).

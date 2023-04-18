@@ -10,7 +10,7 @@
 
 
 
-Now that we studied the theory behind Reinforce, **you’re ready to code your Reinforce agent with PyTorch**. And you'll test its robustness using CartPole-v1 and PixelCopter,.
+Now that we've studied the theory behind Reinforce, **you’re ready to code your Reinforce agent with PyTorch**. And you'll test its robustness using CartPole-v1 and PixelCopter,.
 
 You'll then be able to iterate and improve this implementation for more advanced environments.
 
@@ -19,9 +19,9 @@ You'll then be able to iterate and improve this implementation for more advanced
 </figure>
 
 
-To validate this hands-on for the certification process, you need to push your trained models to the Hub.
+To validate this hands-on for the certification process, you need to push your trained models to the Hub and:
 
-- Get a result of >= 350 for `Cartpole-v1`.
+- Get a result of >= 350 for `Cartpole-v1`
 - Get a result of >= 5 for `PixelCopter`.
 
 To find your result, go to the leaderboard and find your model, **the result = mean_reward - std of reward**. **If you don't see your model on the leaderboard, go at the bottom of the leaderboard page and click on the refresh button**.
@@ -75,7 +75,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 
 At the end of the notebook, you will:
 
-- Be able to **code from scratch a Reinforce algorithm using PyTorch.**
+- Be able to **code a Reinforce algorithm from scratch using PyTorch.**
 - Be able to **test the robustness of your agent using simple environments.**
 - Be able to **push your trained agent to the Hub** with a nice video replay and an evaluation score 🔥.
 
@@ -87,9 +87,9 @@ Before diving into the notebook, you need to:
 
 # Let's code Reinforce algorithm from scratch 🔥
 
-## An advice 💡
+## Some advice 💡
 
-It's better to run this colab in a copy on your Google Drive, so that **if it timeouts** you still have the saved notebook on your Google Drive and do not need to fill everything from scratch.
+It's better to run this colab in a copy on your Google Drive, so that **if it times out** you still have the saved notebook on your Google Drive and do not need to fill everything in from scratch.
 
 To do that you can either do `Ctrl + S` or `File > Save a copy in Google Drive.`
 
@@ -107,7 +107,7 @@ To do that you can either do `Ctrl + S` or `File > Save a copy in Google Drive.`
 
 During the notebook, we'll need to generate a replay video. To do so, with colab, **we need to have a virtual screen to be able to render the environment** (and thus record the frames).
 
-Hence the following cell will install the librairies and create and run a virtual screen 🖥
+The following cell will install the librairies and create and run a virtual screen 🖥
 
 ```python
 %%capture
@@ -145,7 +145,7 @@ And you can find all the Deep Reinforcement Learning models here 👉 https://hu
 
 ## Import the packages 📦
 
-In addition to import the installed libraries, we also import:
+In addition to importing the installed libraries, we also import:
 
 - `imageio`: A library that will help us to generate a replay video
 
@@ -217,10 +217,10 @@ So, we start with CartPole-v1. The goal is to push the cart left or right **so t
 
 The episode ends if:
 - The pole Angle is greater than ±12°
-- Cart Position is greater than ±2.4
-- Episode length is greater than 500
+- The Cart Position is greater than ±2.4
+- The episode length is greater than 500
 
-We get a reward 💰 of +1 every timestep the Pole stays in the equilibrium.
+We get a reward 💰 of +1 every timestep that the Pole stays in the equilibrium.
 
 ```python
 env_id = "CartPole-v1"
@@ -258,8 +258,8 @@ This implementation is based on three implementations:
 
 So we want:
 - Two fully connected layers (fc1 and fc2).
-- Using ReLU as activation function of fc1
-- Using Softmax to output a probability distribution over actions
+- To use ReLU as activation function of fc1
+- To use Softmax to output a probability distribution over actions
 
 ```python
 class Policy(nn.Module):
@@ -310,7 +310,7 @@ class Policy(nn.Module):
         return action.item(), m.log_prob(action)
 ```
 
-I make a mistake, can you guess where?
+I made a mistake, can you guess where?
 
 - To find out let's make a forward pass:
 
@@ -325,7 +325,7 @@ debug_policy.act(env.reset())
 
 - Do you know why? Check the act function and try to see why it does not work.
 
-Advice 💡: Something is wrong in this implementation. Remember that we act function **we want to sample an action from the probability distribution over actions**.
+Advice 💡: Something is wrong in this implementation. Remember that for the act function **we want to sample an action from the probability distribution over actions**.
 
 
 ### (Real) Solution
@@ -352,9 +352,9 @@ class Policy(nn.Module):
 
 By using CartPole, it was easier to debug since **we know that the bug comes from our integration and not from our simple environment**.
 
-- Since **we want to sample an action from the probability distribution over actions**, we can't use `action = np.argmax(m)` since it will always output the action that have the highest probability.
+- Since **we want to sample an action from the probability distribution over actions**, we can't use `action = np.argmax(m)` since it will always output the action that has the highest probability.
 
-- We need to replace with `action = m.sample()` that will sample an action from the probability distribution P(.|s)
+- We need to replace this with `action = m.sample()` which will sample an action from the probability distribution P(.|s)
 
 ### Let's build the Reinforce Training Algorithm
 This is the Reinforce algorithm pseudocode:
@@ -371,7 +371,7 @@ This is the Reinforce algorithm pseudocode:
 We use an interesting technique coded by [Chris1nexus](https://github.com/Chris1nexus) to **compute the return at each timestep efficiently**. The comments explained the procedure. Don't hesitate also [to check the PR explanation](https://github.com/huggingface/deep-rl-class/pull/95)
 But overall the idea is to **compute the return at each timestep efficiently**.
 
-The second question you may ask is **why do we minimize the loss**? Did you talk about Gradient Ascent, not Gradient Descent?
+The second question you may ask is **why do we minimize the loss**? Didn't we talk about Gradient Ascent, not Gradient Descent earlier?
 
 - We want to maximize our utility function $J(\theta)$, but in PyTorch and TensorFlow, it's better to **minimize an objective function.**
     - So let's say we want to reinforce action 3 at a certain timestep. Before training this action P is 0.25.
@@ -797,12 +797,12 @@ def push_to_hub(repo_id,
     print(f"Your model is pushed to the Hub. You can view your model here: {repo_url}")
 ```
 
-By using `push_to_hub` **you evaluate, record a replay, generate a model card of your agent and push it to the Hub**.
+By using `push_to_hub`, **you evaluate, record a replay, generate a model card of your agent, and push it to the Hub**.
 
 This way:
 - You can **showcase our work** 🔥
 - You can **visualize your agent playing** 👀
-- You can **share with the community an agent that others can use** 💾
+- You can **share an agent with the community that others can use** 💾
 - You can **access a leaderboard 🏆 to see how well your agent is performing compared to your classmates** 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 
@@ -821,7 +821,7 @@ To be able to share your model with the community there are three more steps to 
 notebook_login()
 ```
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login` (or `login`)
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login` (or `login`)
 
 3️⃣ We're now ready to push our trained agent to the 🤗 Hub 🔥 using `package_to_hub()` function
 
@@ -836,7 +836,7 @@ push_to_hub(
 )
 ```
 
-Now that we try the robustness of our implementation, let's try a more complex environment: PixelCopter 🚁
+Now that we tested the robustness of our implementation, let's try a more complex environment: PixelCopter 🚁
 
 
 
@@ -881,7 +881,7 @@ The action space(2) 🎮:
 - Down
 
 The reward function 💰:
-- For each vertical block it passes through it gains a positive reward of +1. Each time a terminal state reached it receives a negative reward of -1.
+- For each vertical block it passes, it gains a positive reward of +1. Each time a terminal state is reached it receives a negative reward of -1.
 
 ### Define the new Policy 🧠
 - We need to have a deeper neural network since the environment is more complex
@@ -986,11 +986,11 @@ push_to_hub(
 
 ## Some additional challenges 🏆
 
-The best way to learn **is to try things on your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. But also trying to find better parameters.
+The best way to learn **is to try things on your own**! As you saw, the current agent is not doing great. As a first suggestion, you can train for more steps. But also try to find better parameters.
 
 In the [Leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) you will find your agents. Can you get to the top?
 
-Here are some ideas to achieve so:
+Here are some ideas to climb up the leaderboard:
 * Train more steps
 * Try different hyperparameters by looking at what your classmates have done 👉 https://huggingface.co/models?other=reinforce
 * **Push your new trained model** on the Hub 🔥
@@ -1008,9 +1008,9 @@ frames as observation)?
 In the next unit, **we're going to learn more about Unity MLAgents**, by training agents in Unity environments. This way, you will be ready to participate in the **AI vs AI challenges where you'll train your agents
 to compete against other agents in a snowball fight and a soccer game.**
 
-Sounds fun? See you next time!
+Sound fun? See you next time!
 
-Finally, we would love **to hear what you think of the course and how we can improve it**. If you have some feedback then, please 👉  [fill this form](https://forms.gle/BzKXWzLAGZESGNaE9)
+Finally, we would love **to hear what you think of the course and how we can improve it**. If you have some feedback then please 👉  [fill this form](https://forms.gle/BzKXWzLAGZESGNaE9)
 
 See you in Unit 5! 🔥
 
