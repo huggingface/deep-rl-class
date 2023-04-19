@@ -11,8 +11,8 @@ We learned what ML-Agents is and how it works. We also studied the two environme
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/envs.png" alt="Environments" />
 
-The ML-Agents integration on the Hub **is still experimental**. Some features will be added in the future. But for now, to validate this hands-on for the certification process, you just need to push your trained models to the Hub.
-There are no minimum results to attain to validate this Hands On. But if you want to get nice results, you can try to reach the following:
+The ML-Agents integration on the Hub **is still experimental**. Some features will be added in the future. But, for now, to validate this hands-on for the certification process, you just need to push your trained models to the Hub.
+There are no minimum results to attain in order to validate this Hands On. But if you want to get nice results, you can try to reach the following:
 
 - For [Pyramids](https://singularite.itch.io/pyramids): Mean Reward = 1.75
 - For [SnowballTarget](https://singularite.itch.io/snowballtarget): Mean Reward = 15 or 30 targets shoot in an episode.
@@ -30,7 +30,7 @@ For more information about the certification process, check this section 👉 ht
 In this notebook, you'll learn about ML-Agents and train two agents.
 
 - The first one will learn to **shoot snowballs onto spawning targets**.
-- The second need to press a button to spawn a pyramid, then navigate to the pyramid, knock it over, **and move to the gold brick at the top**. To do that, it will need to explore its environment, and we will use a technique called curiosity.
+- The second needs to press a button to spawn a pyramid, then navigate to the pyramid, knock it over, **and move to the gold brick at the top**. To do that, it will need to explore its environment, and we will use a technique called curiosity.
 
 After that, you'll be able **to watch your agents playing directly on your browser**.
 
@@ -59,13 +59,13 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 
 At the end of the notebook, you will:
 
-- Understand how works **ML-Agents**, the environment library.
+- Understand how **ML-Agents** works and the environment library.
 - Be able to **train agents in Unity Environments**.
 
 ## Prerequisites 🏗️
 Before diving into the notebook, you need to:
 
-🔲 📚 **Study [what is ML-Agents and how it works by reading Unit 5](https://huggingface.co/deep-rl-course/unit5/introduction)**  🤗
+🔲 📚 **Study [what ML-Agents is and how it works by reading Unit 5](https://huggingface.co/deep-rl-course/unit5/introduction)**  🤗
 
 # Let's train our agents 🚀
 
@@ -101,7 +101,7 @@ Before diving into the notebook, you need to:
 If you need a refresher on how this environment works check this section 👉
 https://huggingface.co/deep-rl-course/unit5/snowball-target
 
-### Download and move the environm  ent zip file in `./training-envs-executables/linux/`
+### Download and move the environment zip file in `./training-envs-executables/linux/`
 - Our environment executable is in a zip file.
 - We need to download it and place it to `./training-envs-executables/linux/`
 - We use a linux executable because we use colab, and colab machines OS is Ubuntu (linux)
@@ -134,14 +134,14 @@ Make sure your file is accessible
 ```
 
 ### Define the SnowballTarget config file
-- In ML-Agents, you define the **training hyperparameters into config.yaml files.**
+- In ML-Agents, you define the **training hyperparameters in config.yaml files.**
 
-There are multiple hyperparameters. To know them better, you should check for each explanation with [the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)
+There are multiple hyperparameters. To understand them better, you should read the explanation for each one in [the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)
 
 
 You need to create a `SnowballTarget.yaml` config file in ./content/ml-agents/config/ppo/
 
-We'll give you here a first version of this config (to copy and paste into your `SnowballTarget.yaml file`), **but you should modify it**.
+We'll give you a preliminary version of this config (to copy and paste into your `SnowballTarget.yaml file`), **but you should modify it**.
 
 ```yaml
 behaviors:
@@ -197,7 +197,7 @@ Train the model and use the `--resume` flag to continue training in case of inte
 
 > It will fail the first time if and when you use `--resume`. Try rerunning the block to bypass the error.
 
-The training will take 10 to 35min depending on your config. Go take a ☕️you deserve it 🤗.
+The training will take 10 to 35min depending on your config. Go take a ☕️ you deserve it 🤗.
 
 ```bash
 !mlagents-learn ./config/ppo/SnowballTarget.yaml --env=./training-envs-executables/linux/SnowballTarget/SnowballTarget --run-id="SnowballTarget1" --no-graphics
@@ -205,7 +205,7 @@ The training will take 10 to 35min depending on your config. Go take a ☕️you
 
 ### Push the agent to the Hugging Face Hub
 
-- Now that we trained our agent, we’re **ready to push it to the Hub to be able to visualize it playing on your browser🔥.**
+- Now that we've trained our agent, we’re **ready to push it to the Hub and visualize it playing on your browser🔥.**
 
 To be able to share your model with the community, there are three more steps to follow:
 
@@ -225,9 +225,9 @@ from huggingface_hub import notebook_login
 notebook_login()
 ```
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
 
-Then, we need to run `mlagents-push-to-hf`.
+Then we need to run `mlagents-push-to-hf`.
 
 And we define four parameters:
 
@@ -235,7 +235,7 @@ And we define four parameters:
 2. `--local-dir`: where the agent was saved, it’s results/<run_id name>, so in my case results/First Training.
 3. `--repo-id`: the name of the Hugging Face repo you want to create or update. It’s always <your huggingface username>/<the repo name>
 If the repo does not exist **it will be created automatically**
-4. `--commit-message`: since HF repos are git repository you need to define a commit message.
+4. `--commit-message`: since HF repos are git repositories you need to give a commit message.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/mlagentspushtohub.png" alt="Push to Hub"/>
 
@@ -247,7 +247,7 @@ For instance:
 !mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir  --repo-id= # Your repo id  --commit-message= # Your commit message
 ```
 
-Else, if everything worked you should have this at the end of the process(but with a different url 😆) :
+If everything worked you should see this at the end of the process (but with a different url 😆) :
 
 
 
@@ -277,18 +277,18 @@ This step it's simple:
   - I have multiple ones since we saved a model every 500000 timesteps.
   - But if I want the more recent I choose `SnowballTarget.onnx`
 
-👉 What's nice **is to try different models steps to see the improvement of the agent.**
+👉 It's nice to **try different model stages to see the improvement of the agent.**
 
-And don't hesitate to share the best score your agent gets on discord in #rl-i-made-this channel 🔥
+And don't hesitate to share the best score your agent gets on discord in the #rl-i-made-this channel 🔥
 
-Let's now try a more challenging environment called Pyramids.
+Now let's try a more challenging environment called Pyramids.
 
 ## Pyramids 🏆
 
 ### Download and move the environment zip file in `./training-envs-executables/linux/`
 - Our environment executable is in a zip file.
-- We need to download it and place it to `./training-envs-executables/linux/`
-- We use a linux executable because we use colab, and colab machines OS is Ubuntu (linux)
+- We need to download it and place it into `./training-envs-executables/linux/`
+- We use a linux executable because we're using colab, and the colab machine's OS is Ubuntu (linux)
 
 Download the file Pyramids.zip from https://drive.google.com/uc?export=download&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H using `wget`. Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
 
@@ -316,7 +316,7 @@ Make sure your file is accessible
 
 For this training, we’ll modify one thing:
 - The total training steps hyperparameter is too high since we can hit the benchmark (mean reward = 1.75) in only 1M training steps.
-👉 To do that, we go to config/ppo/PyramidsRND.yaml,**and modify these to max_steps to 1000000.**
+👉 To do that, we go to config/ppo/PyramidsRND.yaml,**and change max_steps to 1000000.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids-config.png" alt="Pyramids config"/>
 
@@ -326,7 +326,7 @@ We’re now ready to train our agent 🔥.
 
 ### Train the agent
 
-The training will take 30 to 45min depending on your machine, go take a ☕️you deserve it 🤗.
+The training will take 30 to 45min depending on your machine, go take a ☕️ you deserve it 🤗.
 
 ```python
 !mlagents-learn ./config/ppo/PyramidsRND.yaml --env=./training-envs-executables/linux/Pyramids/Pyramids --run-id="Pyramids Training" --no-graphics
@@ -347,13 +347,13 @@ The temporary link for the Pyramids demo is: https://singularite.itch.io/pyramid
 ### 🎁 Bonus: Why not train on another environment?
 Now that you know how to train an agent using MLAgents, **why not try another environment?**
 
-MLAgents provides 18 different and we’re building some custom ones. The best way to learn is to try things of your own, have fun.
+MLAgents provides 18 different environments and we’re building some custom ones. The best way to learn is to try things on your own, have fun.
 
 ![cover](https://miro.medium.com/max/1400/0*xERdThTRRM2k_U9f.png)
 
-You have the full list of the one currently available on Hugging Face here 👉 https://github.com/huggingface/ml-agents#the-environments
+You have the full list of the one currently available environments on Hugging Face here 👉 https://github.com/huggingface/ml-agents#the-environments
 
-For the demos to visualize your agent, the temporary link is: https://singularite.itch.io (temporary because we'll also put the demos on Hugging Face Space)
+For the demos to visualize your agent, the temporary link is: https://singularite.itch.io (temporary because we'll also put the demos on Hugging Face Spaces)
 
 For now we have integrated:
 - [Worm](https://singularite.itch.io/worm) demo where you teach a **worm to crawl**.
@@ -363,7 +363,7 @@ If you want new demos to be added, please open an issue: https://github.com/hugg
 
 That’s all for today. Congrats on finishing this tutorial!
 
-The best way to learn is to practice and try stuff. Why not try another environment? ML-Agents has 18 different environments, but you can also create your own? Check the documentation and have fun!
+The best way to learn is to practice and try stuff. Why not try another environment? ML-Agents has 18 different environments, but you can also create your own. Check the documentation and have fun!
 
 See you on Unit 6 🔥,
 

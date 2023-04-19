@@ -7,7 +7,7 @@ This is an (optional) introduction to Curiosity. If you want to learn more, you 
 
 ## Two Major Problems in Modern RL
 
-To understand what is Curiosity, we need first to understand the two major problems with RL:
+To understand what Curiosity is, we first need to understand the two major problems with RL:
 
 First, the *sparse rewards problem:* that is, **most rewards do not contain information, and hence are set to zero**.
 
@@ -33,7 +33,7 @@ A solution to these problems is **to develop a reward function intrinsic to the 
 
 **This intrinsic reward mechanism is known as Curiosity** because this reward pushes the agent to explore states that are novel/unfamiliar. To achieve that, our agent will receive a high reward when exploring new trajectories.
 
-This reward is inspired by how human acts. ** we naturally have an intrinsic desire to explore environments and discover new things**.
+This reward is inspired by how humans act. ** We naturally have an intrinsic desire to explore environments and discover new things**.
 
 There are different ways to calculate this intrinsic reward. The classical approach (Curiosity through next-state prediction) is to calculate Curiosity **as the error of our agent in predicting the next state, given the current state and action taken**.
 
@@ -41,7 +41,7 @@ There are different ways to calculate this intrinsic reward. The classical appro
 
 Because the idea of Curiosity is to **encourage our agent to perform actions that reduce the uncertainty in the agent’s ability to predict the consequences of its actions** (uncertainty will be higher in areas where the agent has spent less time or in areas with complex dynamics).
 
-If the agent spends a lot of time on these states, it will be good to predict the next state (low Curiosity). On the other hand, if it’s a new state unexplored, it will be hard to predict the following state (high Curiosity).
+If the agent spends a lot of time on these states, it will be good at predicting the next state (low Curiosity). On the other hand, if it’s in a new, unexplored state, it will be hard to predict the following state (high Curiosity).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/curiosity4.png" alt="Curiosity"/>
 
