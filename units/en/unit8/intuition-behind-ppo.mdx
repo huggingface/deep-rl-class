@@ -1,11 +1,11 @@
 # The intuition behind PPO [[the-intuition-behind-ppo]]
 
 
-The idea with Proximal Policy Optimization (PPO) is that we want to improve the training stability of the policy by limiting the change you make to the policy at each training epoch: **we want to avoid having too large policy updates.**
+The idea with Proximal Policy Optimization (PPO) is that we want to improve the training stability of the policy by limiting the change you make to the policy at each training epoch: **we want to avoid having too large of a policy update.**
 
 For two reasons:
 - We know empirically that smaller policy updates during training are **more likely to converge to an optimal solution.**
-- A too-big step in a policy update can result in falling “off the cliff” (getting a bad policy) **and having a long time or even no possibility to recover.**
+- A too-big step in a policy update can result in falling “off the cliff” (getting a bad policy) **and taking a long time or even having no possibility to recover.**
 
 <figure class="image table text-center m-0 w-full">
   <img class="center" src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/cliff.jpg" alt="Policy Update cliff"/>

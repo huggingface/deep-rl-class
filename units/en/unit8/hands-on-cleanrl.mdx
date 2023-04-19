@@ -31,9 +31,9 @@ Then, to test its robustness, we're going to train it in:
   </video>
 </figure>
 
-And finally, we will be push the trained model to the Hub to evaluate and visualize your agent playing.
+And finally, we will push the trained model to the Hub to evaluate and visualize your agent playing.
 
-LunarLander-v2 is the first environment you used when you started this course. At that time, you didn't know how it worked, and now, you can code it from scratch and train it. **How incredible is that 🤩.**
+LunarLander-v2 is the first environment you used when you started this course. At that time, you didn't know how it worked, and now you can code it from scratch and train it. **How incredible is that 🤩.**
 
 <iframe src="https://giphy.com/embed/pynZagVcYxVUk" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-office-michael-heartbreak-pynZagVcYxVUk">via GIPHY</a></p>
 
@@ -118,7 +118,7 @@ pip install huggingface_hub
 pip install box2d
 ```
 
-## Let's code PPO from scratch with Costa Huang tutorial
+## Let's code PPO from scratch with Costa Huang's tutorial
 - For the core implementation of PPO we're going to use the excellent [Costa Huang](https://costa.sh/) tutorial.
 - In addition to the tutorial, to go deeper you can read the 37 core implementation details: https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/
 
@@ -429,7 +429,7 @@ package_to_hub(
 )
 ```
 
-- Here's what look the ppo.py final file
+- Here's what the final ppo.py file looks like:
 
 ```python
 # docs and experiment results can be found at https://docs.cleanrl.dev/rl-algorithms/ppo/#ppopy
@@ -1034,7 +1034,7 @@ To be able to share your model with the community there are three more steps to 
 
 1️⃣ (If it's not already done) create an account to HF ➡ https://huggingface.co/join
 
-2️⃣ Sign in and then, you need to store your authentication token from the Hugging Face website.
+2️⃣ Sign in and get your authentication token from the Hugging Face website.
 - Create a new token (https://huggingface.co/settings/tokens) **with write role**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
@@ -1048,11 +1048,11 @@ notebook_login()
 !git config --global credential.helper store
 ```
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
 
 ## Let's start the training 🔥
 
-- Now that you've coded from scratch PPO and added the Hugging Face Integration, we're ready to start the training 🔥
+- Now that you've coded PPO from scratch and added the Hugging Face Integration, we're ready to start the training 🔥
 
 - First, you need to copy all your code to a file you create called `ppo.py`
 
@@ -1060,7 +1060,7 @@ If you don't want to use a Google Colab or a Jupyter Notebook, you need to use t
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/step2.png" alt="PPO"/>
 
-- Now we just need to run this python script using `python <name-of-python-script>.py` with the additional parameters we defined with `argparse`
+- Now we just need to run this python script using `python <name-of-python-script>.py` with the additional parameters we defined using `argparse`
 
 - You should modify more hyperparameters otherwise the training will not be super stable.
 
@@ -1070,8 +1070,8 @@ If you don't want to use a Google Colab or a Jupyter Notebook, you need to use t
 
 ## Some additional challenges 🏆
 
-The best way to learn **is to try things by your own**! Why not trying  another environment?
+The best way to learn **is to try things on your own**! Why not try another environment?
 
-See you on Unit 8, part 2 where we going to train agents to play Doom 🔥
+See you in Unit 8, part 2 where we're going to train agents to play Doom 🔥
 
 ## Keep learning, stay awesome 🤗
