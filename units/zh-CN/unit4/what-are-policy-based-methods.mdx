@@ -1,42 +1,39 @@
-# What are the policy-based methods?
+# 什么是基于策略的方法？
 
-The main goal of Reinforcement learning is to **find the optimal policy \\(\pi^{*}\\) that will maximize the expected cumulative reward**.
-Because Reinforcement Learning is based on the *reward hypothesis*: **all goals can be described as the maximization of the expected cumulative reward.**
+强化学习的主要目标是**找到最优策略 \\(\pi^{*}\\) 可以最大化累积奖励期望。** 因为强化学习是基于**奖励假设**：**所有目标可以被描述为累计奖励期望的最大化。**
 
-For instance, in a soccer game (where you're going to train the agents in two units), the goal is to win the game. We can describe this goal in reinforcement learning as
-**maximizing the number of goals scored** (when the ball crosses the goal line) into your opponent's soccer goals. And **minimizing the number of goals in your soccer goals**.
+举个例子，在足球比赛中（你在第二单元中训练的智能体），你的目标是赢得比赛。我们在强化学习中可以把这个目标描述为**最大化进球数**（当球越过球门线时）进入对手的足球门，并最小化进入你自己的足球门的进球数。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/soccer.jpg" alt="Soccer" />
 
-## Value-based, Policy-based, and Actor-critic methods
+## 基于价值，基于策略，和演员-评判家方法
 
-We studied in the first unit, that we had two methods to find (most of the time approximate) this optimal policy \\(\pi^{*}\\).
+我们在第一单元的学习中，我们有两个方法去寻找（大部分时间是近似）最优策略 \\(\pi^{*}\\)。
 
-- In *value-based methods*, we learn a value function.
-  - The idea is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
-  - Our objective is to **minimize the loss between the predicted and target value** to approximate the true action-value function.
-  - We have a policy, but it's implicit since it **was generated directly from the value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
+- 在*基于价值的方法*中，我们学习了价值函数。
+  - 核心思想是一个最优价值函数导向最优策略 \\(\pi^{*}\\)。
+  - 我们的目标是**最小化预测和目标价值之间的损失**来估计真正的动作价值函数。
+  - 我们有一个策略，但这是隐式的，因为它是**直接从价值函数生成的**。例如，在 Q 学习中，我们定义了 epsilon-Greedy 策略。
 
-- On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi^{*}\\) without having to learn a value function.
-  - The idea is **to parameterize the policy**. For instance, using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
+- 在另一方面，在**基于策略方法**中，我们直接估计 \\(\pi^{*}\\) 而不用学习价值函数。
+  - 核心思想是**参数化策略**。举个例子，用神经网络 \\(\pi_\theta\\),这个策略对动作（随机策略）输出概率分布。
   - <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="stochastic policy" />
-  - Our objective then is **to maximize the performance of the parameterized policy using gradient ascent**.
-  - To do that, we control the parameter \\(\theta\\) that will affect the distribution of actions over a state.
+  - 我们的目标是**用梯度上升最大化参数化策略的性能**
+  - 为此，我们控制参数 \(\theta\\) 来影响一个状态对动作的分布。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
 
-- Finally, we'll study the next time *actor-critic* which is a combination of value-based and policy-based methods.
+- 最后，我们将要学习下一个*演员-评判家*理论，一个结合了基于价值和策略的方法。
 
-Consequently, thanks to policy-based methods, we can directly optimize our policy \\(\pi_\theta\\) to output a probability distribution over actions \\(\pi_\theta(a|s)\\) that leads to the best cumulative return.
-To do that, we define an objective function \\(J(\theta)\\), that is, the expected cumulative reward, and we **want to find \\(\theta\\) that maximizes this objective function**.
+所以，多亏了基于策略的方法，我们可以直接最优化我们的策略 \\(\pi_\theta\\) 通过动作 \\(\pi_\theta(a|s)\\) 输出概率分布来导向最佳累积返回。为了达到这个目的，我们定义了目标函数 \\(J(\theta)\\)，其代表累积奖励期望，并且我们想要找到可以**最大化目标函数的 \\(\theta\\)**。
 
-## The difference between policy-based and policy-gradient methods
+## 基于策略和策略梯度方法的不同
 
-Policy-gradient methods, what we're going to study in this unit, is a subclass of policy-based methods. In policy-based methods, the optimization is most of the time *on-policy* since for each update, we only use data (trajectories) collected **by our most recent version of** \\(\pi_\theta\\).
+策略梯度方法，我们将要在本单元学习的内容，是一种基于策略方法的子类。在基于策略的方法中，优化对于每次更新大部分是基于当前策略的，也就是我们使用的数据（轨迹）是由我们**最近版本**的 \\(\pi_\theta\\) 收集的。
 
-The difference between these two methods **lies on how we optimize the parameter** \\(\theta\\):
+两种方法的不同之处在于**我们怎么优化参数** \\(\theta\\)：
 
-- In *policy-based methods*, we search directly for the optimal policy. We can optimize the parameter \\(\theta\\) **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.
-- In *policy-gradient methods*, because it is a subclass of the policy-based methods, we search directly for the optimal policy. But we optimize the parameter \\(\theta\\) **directly** by performing the gradient ascent on the performance of the objective function \\(J(\theta)\\).
+- 在基于*策略的方法*中，我们直接从最优策略搜索。我们可以使用技术（如爬山法、模拟退火或进化策略）通过最大化目标函数的局部近似来**间接地**优化参数 \\(\theta\\) 。
+- 在*策略梯度方法中*，因为是基于策略方法的子类，我们直接搜索最优策略。但是我们通过在目标函数 \\(J(\theta)\\) 的性能上执行梯度上升**直接**优化参数 \\(\theta\\) 。
 
-Before diving more into how policy-gradient methods work (the objective function, policy gradient theorem, gradient ascent, etc.), let's study the advantages and disadvantages of policy-based methods.
+在深入了解策略梯度方法如何工作（目标函数、策略梯度定理、梯度上升等）之前，让我们先研究一下基于策略的方法的优缺点。

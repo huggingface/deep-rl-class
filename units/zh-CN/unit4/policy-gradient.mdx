@@ -1,120 +1,116 @@
-# Diving deeper into policy-gradient methods
+# 深入了解策略梯度方法
 
-## Getting the big picture
+## 了解全局
 
-We just learned that policy-gradient methods aim to find parameters \\( \theta \\) that **maximize the expected return**.
+我们刚刚了解到策略梯度方法旨在找到参数 \\( \theta \\) **即最大化期望回报**。
 
-The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called *action preference*.
+这个想法是我们有一个参数化的随机策略。在我们的例子中，神经网络输出动作的概率分布。采取每个动作的概率也称为*动作偏好*。
 
-If we take the example of CartPole-v1:
-- As input, we have a state.
-- As output, we have a probability distribution over actions at that state.
+以 CartPole-v1 为例：
+- 作为输入，我们有一个状态。
+- 作为输出，我们有该状态下动作的概率分布。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
 
-Our goal with policy-gradient is to **control the probability distribution of actions** by tuning the policy such that **good actions (that maximize the return) are sampled more frequently in the future.**
-Each time the agent interacts with the environment, we tweak the parameters such that good actions will be sampled more likely in the future.
+我们使用策略梯度的目标是通过调整策略来**控制动作的概率分布**，以便在未来更频繁地对**好的动作（最大化回报）进行采样。** 每次智能体与环境交互时，我们都会调整参数，以便将来更有可能对好的动作进行采样。
 
-But **how are we going to optimize the weights using the expected return**?
+但是**我们如何使用预期回报来优化权重呢**？
 
-The idea is that we're going to **let the agent interact during an episode**. And if we win the episode, we consider that each action taken was good and must be more sampled in the future
-since they lead to win.
+一个想法是让**智能体在一个完整的片段中进行交互**。如果我们在这个片段获胜，我们就认为每个采取的动作都是好的，将来必须更多地采样它们，因为它们导致了胜利。
 
-So for each state-action pair, we want to increase the \\(P(a|s)\\): the probability of taking that action at that state. Or decrease if we lost.
+所以对于每个状态-动作对，我们想增加  \\(P(a|s)\\)：在那个状态下采取那个动作的概率。如果输了就减少此概率。
 
-The Policy-gradient algorithm (simplified) looks like this:
+策略梯度算法（简化）如下所示：
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg_bigpicture.jpg" alt="Policy Gradient Big Picture"/>
 </figure>
 
-Now that we got the big picture, let's dive deeper into policy-gradient methods.
+现在我们了解了全局，让我们更深入地了解策略梯度方法。
 
-## Diving deeper into policy-gradient methods
+## 深入了解策略梯度方法
 
-We have our stochastic policy \\(\pi\\) which has a parameter \\(\theta\\). This \\(\pi\\), given a state, **outputs a probability distribution of actions**.
+我们有我们的随机策略 \\(\pi\\) ，该策略有一个参数 \(\theta\\)。这个 \\(\pi\\)，给定一个状态，**会输出动作的概率分布**。
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="Policy"/>
 </figure>
 
-Where \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action \\(a_t\\) from state \\(s_t\\) given our policy.
+其中，\\(\pi_\theta(a_t|s_t)\\) 是智能体根据策略从状态 \\(s_t\\) 选择动作 \\(a_t\\) 的概率。
 
-**But how do we know if our policy is good?** We need to have a way to measure it. To know that, we define a score/objective function called \\(J(\theta)\\).
+**但是我们怎么知道我们的政策是否好呢？**我们需要有一种方法来衡量它。要知道这一点，我们定义了一个分数/目标函数，称为 \\(J(\theta)\\)。
 
-### The objective function
+### 目标函数
 
-The *objective function* gives us the **performance of the agent** given a trajectory (state action sequence without considering reward (contrary to an episode)), and it outputs the *expected cumulative reward*.
+在这里，*目标函数*给出了一个轨迹（不考虑奖励的状态动作序列（与片段相反））的**智能体表现**，并输出*期望累积奖励*。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/objective.jpg" alt="Return"/>
 
-Let's detail a little bit more this formula:
-- The *expected return* (also called expected cumulative reward), is the weighted average (where the weights are given by \\(P(\tau;\theta)\\) of all possible values that the return \\(R(\tau)\\) can take.
+让我们更详细地说明这个公式：
+- *期望回报*（也称为期望累积奖励）是所有可能的回报值 \\(R(\tau)\\) 的加权平均值（权重由 \\(P(\tau;\theta)\\) 给出）。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/expected_reward.png" alt="Return"/>
 
 
-- \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
-- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on \\( \theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
+- \\(R(\tau)\\) :  这是一条任意轨迹的回报。为了使用它来计算期望回报，我们需要将其乘以每个可能轨迹的概率。
+- \\(P(\tau;\theta)\\) : 每个可能轨迹 \\(\tau\\) 的概率（该概率取决于 \\(\theta\\)，因为它定义了用于选择轨迹动作的策略，这影响了所访问的状态）。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
-- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given \\(\theta \\), and the return of this trajectory.
+- \\(J(\theta)\\) : 期望回报，我们通过对所有轨迹进行求和来计算它，其中包括给定 \\(\theta \\) 下采取该轨迹的概率以及该轨迹的回报。
 
-Our objective then is to maximize the expected cumulative reward by finding \\(\theta \\) that will output the best action probability distributions:
+我们的目标是通过找到能够输出最佳动作概率分布的 \\(\theta\\) 来最大化期望累积奖励。
 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/max_objective.png" alt="Max objective"/>
 
 
-## Gradient Ascent and the Policy-gradient Theorem
+## 梯度上升和策略梯度定理
 
-Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
+策略梯度是一个优化问题：我们想要找到最大化我们的目标函数 \\(J(\theta)\\) 的 \\(\theta\\) 值，因此我们需要使用 **梯度上升**。它是 *梯度下降* 的反向，因为它给出了 \\(J(\theta)\\) 最陡增加的方向。
 
-(If you need a refresher on the difference between gradient descent and gradient ascent [check this](https://www.baeldung.com/cs/gradient-descent-vs-ascent) and [this](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)).
+（如果您需要关于梯度下降和梯度上升之间的区别的提醒，请参阅[这个](https://www.baeldung.com/cs/gradient-descent-vs-ascent)和[这个](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)）
 
-Our update step for gradient-ascent is:
+我们的梯度上升更新步骤是：
 
 \\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
-We can repeatedly apply this update state in the hope that \\(\theta \\) converges to the value that maximizes \\(J(\theta)\\).
+我们可以反复应用此更新状态，希望 \\(\theta\\) 收敛到最大化 \\(J(\theta)\\) 的值。
 
-However, we have two problems to obtain the derivative of \\(J(\theta)\\):
-1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
-We want then to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
+但是，我们有两个问题需要解决才能获得 \\(J(\theta)\\) 的导数：
+1. 我们无法计算出目标函数的真实梯度，因为这将意味着要计算每种可能轨迹的概率，这在计算上是非常昂贵的。因此我们希望通过**采样估计（收集一些轨迹）来计算一个梯度估计**。
 
-2. We have another problem that I detail in the next optional section. To differentiate this objective function, we need to differentiate the state distribution, called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
+2. 我们还有另一个问题，我在下一个可选章节中详细介绍。为了对这个目标函数求导，我们需要对状态分布进行求导，这被称为马尔可夫决策过程动力学，它与环境相关。它给出了环境在给定当前状态和智能体采取的动作的情况下进入下一个状态的概率。问题是我们可能不知道它，因此无法对它进行求导。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
-Fortunately we're going to use a solution called the Policy Gradient Theorem that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
+幸运的是，我们将使用一种称为策略梯度定理的解决方案，它将帮助我们将目标函数重新表述为一个不涉及状态分布微分的可微分函数。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
 
-If you want to understand how we derivate this formula that we will use to approximate the gradient, check the next (optional) section.
+如果你想了解我们如何推导我们将用于近似梯度的这个公式，请查看下一个（可选）部分。
 
-## The Reinforce algorithm (Monte Carlo Reinforce)
+## 强化算法 (蒙特卡洛强化)
 
-The Reinforce algorithm, also called Monte-Carlo policy-gradient, is a policy-gradient algorithm that **uses an estimated return from an entire episode to update the policy parameter**  \\(\theta\\):
+强化算法, 也叫做蒙特卡洛策略梯度, 是一种策略梯度算法，**它使用来自整个回合的估计回报来更新策略参数 \\(\theta\\)**：
 
-In a loop:
-- Use the policy \\(\pi_\theta\\)  to collect an episode \\(\tau\\)
-- Use the episode to estimate the gradient \\(\hat{g} = \nabla_\theta J(\theta)\\)
+在一个循环中：
+- 使用策略 \\(\pi_\theta\\) 收集一个轨迹 \\(\tau\\)
+- 利用轨迹估算梯度 \\(\hat{g} = \nabla_\theta J(\theta)\\)
 
  <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_one.png" alt="Policy Gradient"/>
 </figure>
 
-- Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
+- 更新策略权重：\\(\theta \leftarrow \theta + \alpha \hat{g}\\)
 
-The interpretation we can make is this one:
-- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action at from state st.
-This tells us **how we should change the weights of policy** if we want to increase/decrease the log probability of selecting action \\(a_t\\) at state \\(s_t\\).
-- \\(R(\tau)\\): is the scoring function:
-  - If the return is high, it will **push up the probabilities** of the (state, action) combinations.
-  - Else, if the return is low, it will **push down the probabilities** of the (state, action) combinations.
+我们可以做出以下解释：
+- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) 是选择从状态 \\(s_t\\) 选取动作 \\(a_t\\) 的 (log) 概率的**最陡升高方向**。它告诉我们：如果我们想要增加/减少在状态 \\(s_t\\) 选取动作 \\(a_t\\) 的对数概率，应该如何改变策略的权重。
+- \\(R(\tau)\\) 是评分函数：
+  - 如果回报很高，它将**推高**（状态，动作）组合的概率。
+  - 反之，如果回报很低，它将**降低**（状态，动作）组合的概率。
 
+我们还可以**收集多个回合（轨迹）**来估计梯度：
 
-We can also **collect multiple episodes (trajectories)** to estimate the gradient:
 <figure class="image table text-center m-0 w-full">
  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_multiple.png" alt="Policy Gradient"/>
 </figure>

@@ -1,74 +1,71 @@
-# The advantages and disadvantages of policy-gradient methods
+# 策略梯度理论的优缺点
 
-At this point, you might ask, "but Deep Q-Learning is excellent! Why use policy-gradient methods?". To answer this question, let's study the **advantages and disadvantages of policy-gradient methods**.
+关于这点，你或许会问，“深度 Q 学习已经棒极了！为什么还使用策略梯度理论？”。为了回答这个问题，让我们先学习一下**策略梯度理论的优缺点**。
 
-## Advantages
+## 优点
 
-There are multiple advantages over value-based methods. Let's see some of them:
+与基于价值的方法相比，他有很多优点。让我们看看其中的一些：
 
-### The simplicity of integration
+### 集成的简单性
 
-We can estimate the policy directly without storing additional data (action values).
+我们可以直接估计策略而不存储额外的数据（动作值）。
 
-### Policy-gradient methods can learn a stochastic policy
+### 策略梯度方法可以学习随机策略
 
-Policy-gradient methods can **learn a stochastic policy while value functions can't**.
+策略梯度方法可以**学习随机策略，而价值函数则不能**。
 
-This has two consequences:
+这导致两个后果：
 
-1. We **don't need to implement an exploration/exploitation trade-off by hand**. Since we output a probability distribution over actions, the agent explores **the state space without always taking the same trajectory.**
+1. 我们**不需要手动实现探索/利用权衡**。由于我们输出动作的概率分布，因此智能体探索**状态空间而不总是采用相同的轨迹**。
+2. 我们也摆脱了**感知混淆**的问题。感知混淆是指两个状态看起来（或确实）相同但需要不同的动作。
 
-2. We also get rid of the problem of **perceptual aliasing**. Perceptual aliasing is when two states seem (or are) the same but need different actions.
-
-Let's take an example: we have an intelligent vacuum cleaner whose goal is to suck the dust and avoid killing the hamsters.
+让我们看一个例子：我们有一个智能真空吸尘器，它的目标是吸走灰尘，避免杀死仓鼠。
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster1.jpg" alt="Hamster 1"/>
 </figure>
 
-Our vacuum cleaner can only perceive where the walls are.
-
-The problem is that the **two rose cases are aliased states because the agent perceives an upper and lower wall for each**.
+我们的真空吸尘器只能感知墙壁的位置。
+问题在于，这**两个位置的情况是具有感知混淆的状态，因为智能体对于每一个位置都感知到了上墙和下墙**。
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster2.jpg" alt="Hamster 1"/>
 </figure>
 
-Under a deterministic policy, the policy either will move right when in a red state or move left. **Either case will cause our agent to get stuck and never suck the dust**.
+在确定性策略下，当处于红色状态时，策略要么向右移动，要么向左移动。**这两种情况都会导致智能体陷入困境，无法清除灰尘**。
 
-Under a value-based Reinforcement learning algorithm, we learn a **quasi-deterministic policy** ("greedy epsilon strategy"). Consequently, our agent can **spend a lot of time before finding the dust**.
+在基于价值的强化学习算法下，我们学习了一种**近似确定性策略**（"贪心 ε 策略"）。因此，我们的智能体在找到灰尘之前可能需要**花费很长时间**。
 
-On the other hand, an optimal stochastic policy **will randomly move left or right in rose states**. Consequently, **it will not be stuck and will reach the goal state with a high probability**.
+另一方面，最优随机策略将在位置状态下**随机向左或向右移动**。因此，**它不会被困住，有很高的概率到达目标状态**。
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster3.jpg" alt="Hamster 1"/>
 </figure>
 
-### Policy-gradient methods are more effective in high-dimensional action spaces and continuous actions spaces
+### 策略梯度方法在高维动作空间和连续动作空间中更有效
 
-The problem with Deep Q-learning is that their **predictions assign a score (maximum expected future reward) for each possible action**, at each time step, given the current state.
+深度 Q 学习的问题在于，在给定当前状态的情况下，他们的**预测会在每个时间步为每个可能的动作分配一个分数（最大预期未来奖励）** 。
 
-But what if we have an infinite possibility of actions?
+但是，如果我们有无限可能的动作呢？
 
-For instance, with a self-driving car, at each state, you can have a (near) infinite choice of actions (turning the wheel at 15°, 17.2°, 19,4°, honking, etc.). **We'll need to output a Q-value for each possible action**! And **taking the max action of a continuous output is an optimization problem itself**!
+例如，对于自动驾驶汽车，在每个状态下，你都可以（几乎）无限地选择动作（将方向盘转动 15°、17.2°、19.4°、鸣喇叭等）。**我们需要为每个可能的动作输出一个 Q 值**！而**采取连续输出的最大动作本身就是一个优化问题**！
 
-Instead, with policy-gradient methods, we output a **probability distribution over actions.**
+相反，使用策略梯度方法，我们输出**动作的概率分布。**
 
-### Policy-gradient methods have better convergence properties
+### 策略梯度方法具有更好的收敛性
 
-In value-based methods, we use an aggressive operator to **change the value function: we take the maximum over Q-estimates**.
-Consequently, the action probabilities may change dramatically for an arbitrarily small change in the estimated action values if that change results in a different action having the maximal value.
+在基于价值的方法中，我们使用激进的操作来**改变价值函数：我们在 Q 估计上取最大值。**因此，对于估计动作值的任意小变化，如果该变化导致具有最大值的不同动作，动作概率可能会发生显着变化。
 
-For instance, if during the training, the best action was left (with a Q-value of 0.22) and the training step after it's right (since the right Q-value becomes 0.23), we dramatically changed the policy since now the policy will take most of the time right instead of left.
+例如，如果在训练期间，最好的动作是左边的（Q 值为 0.22），而在它之后的训练步骤是右边的（因为右边的 Q 值变为 0.23），我们极大地改变了策略，因为现在策略将大部分时间都是靠右而不是靠左。
 
-On the other hand, in policy-gradient methods, stochastic policy action preferences (probability of taking action) **change smoothly over time**.
+另一方面，在策略梯度方法中，随机策略行动偏好（采取行动的概率）**随时间平稳变化**。
 
-## Disadvantages
+## 缺点
 
-Naturally, policy-gradient methods also have some disadvantages:
+当然，策略梯度方法也有一些缺点：
 
-- **Frequently, policy-gradient converges on a local maximum instead of a global optimum.**
-- Policy-gradient goes slower, **step by step: it can take longer to train (inefficient).**
-- Policy-gradient can have high variance. We'll see in actor-critic unit why and how we can solve this problem.
+- **通常，策略梯度收敛于局部最大值而不是全局最优值。**
+- 策略梯度逐步变慢 ：**训练可能需要更长的时间（效率低下）**。
+- 策略梯度可以有很高的方差。我们将在演员评判家单元中看到为什么以及如何解决这个问题。
 
-👉 If you want to go deeper into the advantages and disadvantages of policy-gradient methods, [you can check this video](https://youtu.be/y3oqOjHilio).
+👉 如果您想更深入地了解策略梯度方法的优缺点, [你可以查看此视频](https://youtu.be/y3oqOjHilio).
