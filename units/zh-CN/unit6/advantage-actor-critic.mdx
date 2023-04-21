@@ -16,7 +16,7 @@ On the other hand, your friend (Critic) will also update their way to provide fe
 
 This is the idea behind Actor-Critic. We learn two function approximations:
 
-- *A policy* that **controls how our agent acts**: \\( \pi_{\theta}(s,a) \\)
+- *A policy* that **controls how our agent acts**: \\( \pi_{\theta}(s) \\)
 
 - *A value function* to assist the policy update by measuring how good the action taken is: \\( \hat{q}_{w}(s,a) \\)
 
@@ -24,7 +24,7 @@ This is the idea behind Actor-Critic. We learn two function approximations:
 Now that we have seen the Actor Critic's big picture, let's dive deeper to understand how Actor and Critic improve together during the training.
 
 As we saw, with Actor-Critic methods, there are two function approximations (two neural networks):
-- *Actor*, a **policy function** parameterized by theta: \\( \pi_{\theta}(s,a) \\)
+- *Actor*, a **policy function** parameterized by theta: \\( \pi_{\theta}(s) \\)
 - *Critic*, a **value function** parameterized by w: \\( \hat{q}_{w}(s,a) \\)
 
 Let's see the training process to understand how Actor and Critic are optimized:

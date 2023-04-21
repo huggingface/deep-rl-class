@@ -1,24 +1,23 @@
-# Introduction [[introduction]]
+# 介绍 [[introduction]]
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/thumbnail.png" alt="thumbnail"/>
 
-In the last unit, we learned about Deep Q-Learning. In this value-based deep reinforcement learning algorithm, we **used a deep neural network to approximate the different Q-values for each possible action at a state.**
+在上一单元，我们学习了深度 Q 学习。在这种基于价值的深度强化学习算法下，我们**使用深度神经网络去在每一个状态下对每一个可能动作估计不同的 Q 值。**
 
-Since the beginning of the course, we only studied value-based methods, **where we estimate a value function as an intermediate step towards finding an optimal policy.**
+自从课程开始以来，我们只学习了基于价值的方法，**我们将价值函数估计为寻找最佳策略的中间步骤。**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy" />
 
-In value-based methods, the policy ** \\(π\\) only exists because of the action value estimates since the policy is just a function** (for instance, greedy-policy) that will select the action with the highest value given a state.
+在基于价值的方法中，策略 \\(π\\) **因为只是一个在给定状态下只筛选最高价值的动作的函数**（像，贪婪策略），所以只存在于动作价值估计中。
 
-But, with policy-based methods, we want to optimize the policy directly **without having an intermediate step of learning a value function.**
+但是，通过基于策略的方法，我们可以直接优化策略**而不用通过中间步骤学习价值函数。**
 
-So today, **we'll learn about policy-based methods and study a subset of these methods called policy gradient**. Then we'll implement our first policy gradient algorithm called Monte Carlo **Reinforce** from scratch using PyTorch.
-Then, we'll test its robustness using the CartPole-v1 and PixelCopter environments.
+所以今天，**我们将要学习关于基于策略的方法和其子方法叫做策略梯度**。然后我们将要执行我们第一个策略梯度算法，之后我们再用 CartPole-v1 和 PixelCopter 这两个环境测试他的鲁棒性。
 
-You'll then be able to iterate and improve this implementation for more advanced environments.
+你可以通过更高级的环境迭代和提升这个操作。
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/envs.gif" alt="Environments"/>
 </figure>
 
-Let's get started,
+让我们开始吧，

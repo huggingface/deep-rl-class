@@ -1,61 +1,60 @@
 # Quiz
 
-The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
+学习和[避免自以为是](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)**的最好方法是对自己进行测试。**这将帮助您找到需要**加强知识的地方**。
 
-
-### Q1: What are the advantages of policy-gradient over value-based methods? (Check all that apply)
+### Q1: 策略梯度相比于价值函数方法的优势有哪些？（选择所有适用项）
 
 <Question
 	choices={[
 		{
-			text: "Policy-gradient methods can learn a stochastic policy",
+			text: "策略梯度方法可以学习随机策略",
 			explain: "",
       			correct: true,
 		},
 		{
-			text: "Policy-gradient methods are more effective in high-dimensional action spaces and continuous actions spaces",
+			text: "策略梯度方法在高维动作空间和连续动作空间中更有效",
 			explain: "",
       			correct: true,
 		},
     {
-			text: "Policy-gradient converges most of the time on a global maximum.",
-			explain: "No, frequently, policy-gradient converges on a local maximum instead of a global optimum.",
+			text: "策略梯度算法大部分时间都能收敛到全局最优解。",
+			explain: "不，大部分时候是局部最优而不是全局最优。",
 		},
 	]}
 />
 
-### Q2: What is the Policy Gradient Theorem?
+### Q2: 什么是策略梯度定理?
 
 <details>
-<summary>Solution</summary>
+<summary>参考答案</summary>
 
-*The Policy Gradient Theorem* is a formula that will help us to reformulate the objective function into a differentiable function that does not involve the differentiation of the state distribution.
+*策略梯度定理*是一个公式，它将帮助我们将目标函数重构成一个可微的函数，不涉及状态分布的微分。
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
 
 </details>
 
 
-### Q3: What's the difference between policy-based methods and policy-gradient methods? (Check all that apply)
+### Q3: 基于策略的方法和策略梯度方法的区别是什么？ (选择所有适用选项)
 
 <Question
 	choices={[
     {
-      text: "Policy-based methods are a subset of policy-gradient methods.",
+      text: "基于策略的方法是策略梯度方法的子类",
       explain: "",
     },
     {
-      text: "Policy-gradient methods are a subset of policy-based methods.",
-      explain: "",
-      correct: true,
-    },
-    {
-      text: "In Policy-based methods, we can optimize the parameter θ **indirectly** by maximizing the local approximation of the objective function with techniques like hill climbing, simulated annealing, or evolution strategies.",
+      text: "策略梯度的方法是基于策略的方法的子类",
       explain: "",
       correct: true,
     },
     {
-	text: "In Policy-gradient methods, we optimize the parameter θ **directly** by performing the gradient ascent on the performance of the objective function.",
+      text: "在基于策略的方法中，我们可以通过使用诸如爬山、模拟退火或进化策略等技术来间接地最大化目标函数的局部逼近，从而优化参数 θ。",
+      explain: "",
+      correct: true,
+    },
+    {
+	text: "在策略梯度方法中，我们通过对目标函数表现的梯度上升来直接优化参数 θ。",
 	explain: "",
 	correct: true,
 	},
@@ -63,20 +62,21 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 />
 
 
-### Q4: Why do we use gradient ascent instead of gradient descent to optimize J(θ)?
+### Q4:为什么我们使用梯度上升而不是梯度下降来优化 J(θ)?
 
 <Question
 	choices={[
     {
-      text: "We want to minimize J(θ) and gradient ascent gives us the gives the direction of the steepest increase of J(θ)",
+      text: "我们想要最小化 J(θ)，而梯度上升法提供了 J(θ) 最陡峭上升方向的方向。",
       explain: "",
     },
 		{
-			text: "We want to maximize J(θ) and gradient ascent gives us the gives the direction of the steepest increase of J(θ)",
+			text: "我们希望最大化 J(θ)，而梯度上升给出了 J(θ) 最陡峭的上升方向。",
 			explain: "",
       correct: true
 		},
 	]}
 />
 
-Congrats on finishing this Quiz 🥳, if you missed some elements, take time to read the chapter again to reinforce (😏) your knowledge.
+恭喜你完成测试 🥳, 如果你忘了某些部分，可以回顾相关章节去强化一下相关知识点 (😏) 。
+
