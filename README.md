@@ -10,10 +10,30 @@ This repository contains the Deep Reinforcement Learning Course mdx files and no
 
 - **Sign up here** ➡️➡️➡️ http://eepurl.com/ic5ZUD
 
+
+
+## Citing the project
+
+To cite this repository in publications:
+
+```bibtex
+@misc{deep-rl-course,
+  author = {Simonini, Thomas and Sanseviero, Omar},
+  title = {The Hugging Face Deep Reinforcement Learning Class},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/huggingface/deep-rl-class}},
+}
+```
+
 <br>
 <br>
 <br>
 <br>
+
+
+
 
 # The documentation below is for v1.0 (deprecated)
 
@@ -211,18 +231,3 @@ If it's not the case yet, you can check these free resources:
 
 Yes 🎉. You'll **need to upload the eight models with the eight hands-on.**
 
-
-## Citing the project
-
-To cite this repository in publications:
-
-```bibtex
-@misc{deep-rl-class,
-  author = {Simonini, Thomas and Sanseviero, Omar},
-  title = {The Hugging Face Deep Reinforcement Learning Class},
-  year = {2022},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/huggingface/deep-rl-class}},
-}
-```
