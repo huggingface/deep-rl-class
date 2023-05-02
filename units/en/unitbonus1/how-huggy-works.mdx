@@ -5,7 +5,7 @@ This environment was created using the [Unity game engine](https://unity.com/) a
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%">
 
-In this environment we aim to train Huggy to **fetch the stick we throw. It means he needs to move correctly toward the stick**.
+In this environment we aim to train Huggy to **fetch the stick we throw. This means he needs to move correctly toward the stick**.
 
 ## The State Space, what Huggy perceives. [[state-space]]
 Huggy doesn't "see" his environment. Instead, we provide him information about the environment:
@@ -19,7 +19,7 @@ Given all this information, Huggy can **use his policy to determine which action
 ## The Action Space, what moves Huggy can perform [[action-space]]
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%">
 
-**Joint motors drive Huggy legs**. It means that to get the target, Huggy needs to **learn to rotate the joint motors of each of his legs correctly so he can move**.
+**Joint motors drive Huggy's legs**. This means that to get the target, Huggy needs to **learn to rotate the joint motors of each of his legs correctly so he can move**.
 
 ## The Reward Function [[reward-function]]
 
@@ -63,4 +63,4 @@ Now that you have the big picture of the environment, you're ready to train Hugg
 
 To do that, we're going to use [MLAgents](https://github.com/Unity-Technologies/ml-agents). Don't worry if you have never used it before. In this unit we'll use Google Colab to train Huggy, and then you'll be able to load your trained Huggy and play with him directly in the browser.
 
-In a future unit, we will study more in-depth MLAgents and how it works. But for now, we keep things simple by just using the provided implementation.
+In a future unit, we will study MLAgents more in-depth and see how it works. But for now, we keep things simple by just using the provided implementation.

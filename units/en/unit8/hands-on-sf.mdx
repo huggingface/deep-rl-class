@@ -214,9 +214,9 @@ Now that the setup if complete, we can train the agent. We have chosen here to l
 
 
 
-The objective of this scenario is to **teach the agent how to survive without knowing what makes him survive**. Agent know only that **life is precious** and death is bad so **it must learn what prolongs his existence and that his health is connected with it**.
+The objective of this scenario is to **teach the agent how to survive without knowing what makes it survive**. The Agent know only that **life is precious** and death is bad so **it must learn what prolongs its existence and that its health is connected with survival**.
 
-Map is a rectangle containing walls and with a green, acidic floor which **hurts the player periodically**. Initially there are some medkits spread uniformly over the map. A new medkit falls from the skies every now and then. **Medkits heal some portions of player's health** - to survive agent needs to pick them up. Episode finishes after player's death or on timeout.
+The map is a rectangle containing walls and with a green, acidic floor which **hurts the player periodically**. Initially there are some medkits spread uniformly over the map. A new medkit falls from the skies every now and then. **Medkits heal some portions of player's health** - to survive, the agent needs to pick them up. The episode finishes after the player's death or on timeout.
 
 Further configuration:
 - Living_reward = 1
@@ -232,7 +232,7 @@ There are also a number of more complex scenarios that have been create for ViZD
 
 ## Training the agent
 
-- We're going to train the agent for 4000000 steps it will take approximately 20min
+- We're going to train the agent for 4000000 steps. It will take approximately 20min
 
 ```python
 ## Start the training, this should take around 15 minutes
@@ -288,7 +288,7 @@ To be able to share your model with the community there are three more steps to 
 
 1️⃣ (If it's not already done) create an account to HF ➡ https://huggingface.co/join
 
-2️⃣ Sign in and then, you need to store your authentication token from the Hugging Face website.
+2️⃣ Sign in and get your authentication token from the Hugging Face website.
 - Create a new token (https://huggingface.co/settings/tokens) **with write role**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
@@ -296,7 +296,7 @@ To be able to share your model with the community there are three more steps to 
 - Copy the token
 - Run the cell below and paste the token
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
 
 ```python
 from huggingface_hub import notebook_login
@@ -330,7 +330,7 @@ status = enjoy(cfg)
 
 
 
-This agent's performance was good, but can do better! Let's download and visualize an agent trained for 10B timesteps from the hub.
+This agent's performance was good, but we can do better! Let's download and visualize an agent trained for 10B timesteps from the hub.
 
 ```bash
 #download the agent from the hub
@@ -425,6 +425,6 @@ If you prefer an easier scenario, **why not try training in another ViZDoom scen
 ---
 
 
-This concludes the last unit. But we are not finished yet! 🤗 The following **bonus section include some of the most interesting, advanced and cutting edge work in Deep Reinforcement Learning**.
+This concludes the last unit. But we are not finished yet! 🤗 The following **bonus section include some of the most interesting, advanced, and cutting edge work in Deep Reinforcement Learning**.
 
 ## Keep learning, stay awesome 🤗

@@ -12,9 +12,9 @@ To understand the RL process, let’s imagine an agent learning to play a platfo
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process_game.jpg" alt="The RL process" width="100%">
 
-- Our Agent receives **state  \\(S_0\\)** from the **Environment** — we receive the first frame of our game (Environment).
+- Our Agent receives **state  \\(S_0\\)** from the **Environment** — we receive the first frame of our game (Environment).
 - Based on that **state \\(S_0\\),** the Agent takes **action \\(A_0\\)** — our Agent will move to the right.
-- Environment goes to a **new** **state \\(S_1\\)** — new frame.
+- The environment goes to a **new** **state \\(S_1\\)** — new frame.
 - The environment gives some **reward \\(R_1\\)** to the Agent — we’re not dead *(Positive Reward +1)*.
 
 This RL loop outputs a sequence of **state, action, reward and next state.**
@@ -34,7 +34,7 @@ That’s why in Reinforcement Learning, **to have the best behavior,** we aim 
 
 ## Markov Property [[markov-property]]
 
-In papers, you’ll see that the RL process is called the **Markov Decision Process** (MDP).
+In papers, you’ll see that the RL process is called a **Markov Decision Process** (MDP).
 
 We’ll talk again about the Markov Property in the following units. But if you need to remember something today about it, it's this: the Markov Property implies that our agent needs **only the current state to decide** what action to take and **not the history of all the states and actions** they took before.
 
@@ -58,10 +58,10 @@ In a chess game, we have access to the whole board information, so we receive a 
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
-<figcaption>In Super Mario Bros, we only see a part of the level close to the player, so we receive an observation.</figcaption>
+<figcaption>In Super Mario Bros, we only see the part of the level close to the player, so we receive an observation.</figcaption>
 </figure>
 
-In Super Mario Bros, we only see a part of the level close to the player, so we receive an observation.
+In Super Mario Bros, we only see the part of the level close to the player, so we receive an observation.
 
 In Super Mario Bros, we are in a partially observed environment. We receive an observation **since we only see a part of the level.**
 
@@ -110,7 +110,7 @@ The cumulative reward at each time step **t** can be written as:
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_1.jpg" alt="Rewards">
-<figcaption>The cumulative reward equals to the sum of all rewards of the sequence.
+<figcaption>The cumulative reward equals the sum of all rewards in the sequence.
 </figcaption>
 </figure>
 
@@ -134,7 +134,7 @@ Consequently, **the reward near the cat, even if it is bigger (more cheese), wi
 
 To discount the rewards, we proceed like this:
 
-1. We define a discount rate called gamma. **It must be between 0 and 1.** Most of the time between **0.99 and 0.95**.
+1. We define a discount rate called gamma. **It must be between 0 and 1.** Most of the time between **0.95 and 0.99**.
 - The larger the gamma, the smaller the discount. This means our agent **cares more about the long-term reward.**
 - On the other hand, the smaller the gamma, the bigger the discount. This means our **agent cares more about the short term reward (the nearest cheese).**
 

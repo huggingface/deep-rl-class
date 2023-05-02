@@ -4,7 +4,7 @@
 
 The solution to reducing the variance of the Reinforce algorithm and training our agent faster and better is to use a combination of Policy-Based and Value-Based methods: *the Actor-Critic method*.
 
-To understand the Actor-Critic, imagine you play a video game. You can play with a friend that will provide you with some feedback. You're the Actor and your friend is the Critic.
+To understand the Actor-Critic, imagine you're playing a video game. You can play with a friend that will provide you with some feedback. You're the Actor and your friend is the Critic.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/ac.jpg" alt="Actor Critic"/>
 
@@ -21,13 +21,13 @@ This is the idea behind Actor-Critic. We learn two function approximations:
 - *A value function* to assist the policy update by measuring how good the action taken is: \\( \hat{q}_{w}(s,a) \\)
 
 ## The Actor-Critic Process
-Now that we have seen the Actor Critic's big picture, let's dive deeper to understand how Actor and Critic improve together during the training.
+Now that we have seen the Actor Critic's big picture, let's dive deeper to understand how the Actor and Critic improve together during the training.
 
 As we saw, with Actor-Critic methods, there are two function approximations (two neural networks):
 - *Actor*, a **policy function** parameterized by theta: \\( \pi_{\theta}(s) \\)
 - *Critic*, a **value function** parameterized by w: \\( \hat{q}_{w}(s,a) \\)
 
-Let's see the training process to understand how Actor and Critic are optimized:
+Let's see the training process to understand how the Actor and Critic are optimized:
 - At each timestep, t, we get the current state \\( S_t\\) from the environment and **pass it as input through our Actor and Critic**.
 
 - Our Policy takes the state and **outputs an action**  \\( A_t \\).

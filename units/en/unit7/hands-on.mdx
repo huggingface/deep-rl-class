@@ -1,6 +1,6 @@
 # Hands-on
 
-Now that you learned the bases of multi-agents. You're ready to train our first agents in a multi-agent system: **a 2vs2 soccer team that needs to beat the opponent team**.
+Now that you learned the basics of multi-agents, you're ready to train your first agents in a multi-agent system: **a 2vs2 soccer team that needs to beat the opponent team**.
 
 And you’re going to participate in AI vs. AI challenges where your trained agent will compete against other classmates’ **agents every day and be ranked on a new leaderboard.**
 
@@ -38,11 +38,11 @@ We're going to write a blog post to explain this AI vs. AI tool in detail, but t
 This first AI vs. AI competition **is an experiment**: the goal is to improve the tool in the future with your feedback. So some **breakups can happen during the challenge**. But don't worry
 **all the results are saved in a dataset so we can always restart the calculation correctly without losing information**.
 
-In order that your model to get correctly evaluated against others you need to follow these rules:
+In order for your model to get correctly evaluated against others you need to follow these rules:
 
 1. **You can't change the observation space or action space of the agent.** By doing that your model will not work during evaluation.
-2. You **can't use a custom trainer for now,** you need to use Unity MLAgents ones.
-3. We provide executables to train your agents. You can also use the Unity Editor if you prefer **, but to avoid bugs, we advise you to use our executables**.
+2. You **can't use a custom trainer for now,** you need to use the Unity MLAgents ones.
+3. We provide executables to train your agents. You can also use the Unity Editor if you prefer **, but to avoid bugs, we advise that you use our executables**.
 
 What will make the difference during this challenge are **the hyperparameters you choose**.
 
@@ -50,16 +50,16 @@ The AI vs AI algorithm will run until April the 30th, 2023.
 
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the GitHub Repo](https://github.com/huggingface/deep-rl-class/issues).
 
-### Exchange with your classmates, share advice and ask questions on Discord
+### Chat with your classmates, share advice and ask questions on Discord
 
 - We created a new channel called `ai-vs-ai-challenge` to exchange advice and ask questions.
-- If you didn’t joined yet the discord server you can [join here](https://discord.gg/ydHrjt3WP5)
+- If you didn’t join the discord server yet, you can [join here](https://discord.gg/ydHrjt3WP5)
 
 ## Step 0: Install MLAgents and download the correct executable
 
 ⚠ We're going to use an experimental version of ML-Agents which allows you to push and load your models to/from the Hub. **You need to install the same version.**
 
-⚠ ⚠ ⚠  We’re not going to use the same version than for the Unit 5: Introduction to ML-Agents ⚠ ⚠ ⚠
+⚠ ⚠ ⚠  We’re not going to use the same version from Unit 5: Introduction to ML-Agents ⚠ ⚠ ⚠
 
 We advise you to use [conda](https://docs.conda.io/en/latest/) as a package manager and create a new environment.
 
@@ -70,7 +70,7 @@ conda create --name rl python=3.9
 conda activate rl
 ```
 
-To be able to train correctly our agents and push to the Hub, we need to install an experimental version of ML-Agents (the branch aivsai from Hugging Face ML-Agents fork)
+To be able to train our agents correctly and push to the Hub, we need to install an experimental version of ML-Agents (the branch aivsai from Hugging Face ML-Agents fork)
 
 ```bash
 git clone --branch aivsai https://github.com/huggingface/ml-agents
@@ -107,7 +107,7 @@ Mac: Download [this executable](https://drive.google.com/drive/folders/1h7YB0qwj
 
 The environment is called `SoccerTwos`. The Unity MLAgents Team made it. You can find its documentation [here](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Learning-Environment-Examples.md#soccer-twos)
 
-The goal in this environment **is to get the ball into the opponent's goal while preventing the ball from entering its own goal.**
+The goal in this environment **is to get the ball into the opponent's goal while preventing the ball from entering your own goal.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
@@ -124,7 +124,7 @@ The reward function is:
 
 ### The observation space
 
-The observation space is composed vector size of 336:
+The observation space is composed of vectors of size 336:
 
 - 11 ray-casts forward distributed over 120 degrees (264 state dimensions)
 - 3 ray-casts backward distributed over 90 degrees (72 state dimensions)
@@ -146,7 +146,7 @@ The action space is three discrete branches:
 
 We know how to train agents to play against others: **we can use self-play.** This is a perfect technique for a 1vs1.
 
-But in our case we’re 2vs2, and each team has 2 agents. How then we can **train cooperative behavior for groups of agents?**
+But in our case we’re 2vs2, and each team has 2 agents. How then can we **train cooperative behavior for groups of agents?**
 
 As explained in the [Unity Blog](https://blog.unity.com/technology/ml-agents-v20-release-now-supports-training-complex-cooperative-behaviors), agents typically receive a reward as a group (+1 - penalty) when the team scores a goal. This implies that **every agent on the team is rewarded even if each agent didn’t contribute the same to the win**, which makes it difficult to learn what to do independently.
 
@@ -166,17 +166,17 @@ This allows each agent to **make decisions based only on what it perceives local
 </figure>
 
 
-The solution then is to use Self-Play with an MA-POCA trainer (called poca). The poca trainer will help us to train cooperative behavior and self-play to get an opponent team.
+The solution then is to use Self-Play with an MA-POCA trainer (called poca). The poca trainer will help us to train cooperative behavior and self-play to win against an opponent team.
 
 If you want to dive deeper into this MA-POCA algorithm, you need to read the paper they published [here](https://arxiv.org/pdf/2111.05992.pdf) and the sources we put on the additional readings section.
 
 ## Step 3: Define the config file
 
-We already learned in [Unit 5](https://huggingface.co/deep-rl-course/unit5/introduction) that in ML-Agents, you define **the training hyperparameters into `config.yaml` files.**
+We already learned in [Unit 5](https://huggingface.co/deep-rl-course/unit5/introduction) that in ML-Agents, you define **the training hyperparameters in `config.yaml` files.**
 
-There are multiple hyperparameters. To know them better, you should check for each explanation with **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**
+There are multiple hyperparameters. To understand them better, you should read the explanations for each of them in **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**
 
-The config file we’re going to use here is in  `./config/poca/SoccerTwos.yaml` it looks like this:
+The config file we’re going to use here is in  `./config/poca/SoccerTwos.yaml`. It looks like this:
 
 ```csharp
 behaviors:
@@ -215,7 +215,7 @@ behaviors:
 
 Compared to Pyramids or SnowballTarget, we have new hyperparameters with a self-play part. How you modify them can be critical in getting good results.
 
-The advice I can give you here is to check the explanation and recommended value for each parameters (especially self-play ones) with **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md).**
+The advice I can give you here is to check the explanation and recommended value for each parameters (especially self-play ones) against **[the documentation](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md).**
 
 Now that you’ve modified our config file, you’re ready to train your agents.
 
@@ -230,7 +230,7 @@ We define four parameters:
 3. `-run_id`: the name you want to give to your training run id.
 4. `-no-graphics`: to not launch the visualization during the training.
 
-Depending on your hardware, 5M timesteps (the recommended value but you can also try 10M) will take 5 to 8 hours of training. You can continue using your computer in the meantime, but I advise deactivating the computer standby mode to prevent the training from being stopped.
+Depending on your hardware, 5M timesteps (the recommended value, but you can also try 10M) will take 5 to 8 hours of training. You can continue using your computer in the meantime, but I advise deactivating the computer standby mode to prevent the training from being stopped.
 
 Depending on the executable you use (windows, ubuntu, mac) the training command will look like this (your executable path can be different so don’t hesitate to check before running).
 
@@ -242,7 +242,7 @@ The executable contains 8 copies of SoccerTwos.
 
 ⚠️ It’s normal if you don’t see a big increase of ELO score (and even a decrease below 1200) before 2M timesteps, since your agents will spend most of their time moving randomly on the field before being able to goal.
 
-⚠️ You can stop the training with Ctrl + C but beware of typing only once this command to stop the training since MLAgents needs to generate a final .onnx file before closing the run.
+⚠️ You can stop the training with Ctrl + C but beware of typing this command only once to stop the training since MLAgents needs to generate a final .onnx file before closing the run.
 
 ## Step 5: **Push the agent to the Hugging Face Hub**
 
@@ -250,11 +250,11 @@ Now that we trained our agents, we’re **ready to push them to the Hub to be a
 
 To be able to share your model with the community, there are three more steps to follow:
 
-1️⃣ (If it’s not already done) create an account to HF ➡ https://huggingface.co/join](https://huggingface.co/join
+1️⃣ (If it’s not already done) create an account to HF ➡ [https://huggingface.co/join](https://huggingface.co/join)
 
 2️⃣ Sign in and store your authentication token from the Hugging Face website.
 
-Create a new token (https://huggingface.co/settings/tokens)) **with write role**
+Create a new token (https://huggingface.co/settings/tokens) **with write role**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
 
@@ -272,7 +272,7 @@ And we define four parameters:
 2. `-local-dir`: where the agent was saved, it’s results/<run_id name>, so in my case results/First Training.
 3. `-repo-id`: the name of the Hugging Face repo you want to create or update. It’s always <your huggingface username>/<the repo name>
 If the repo does not exist **it will be created automatically**
-4. `--commit-message`: since HF repos are git repository you need to define a commit message.
+4. `--commit-message`: since HF repos are git repositories you need to give a commit message.
 
 In my case
 
@@ -284,7 +284,7 @@ mlagents-push-to-hf  --run-id="SoccerTwos" --local-dir="./results/SoccerTwos" --
 mlagents-push-to-hf  --run-id= # Add your run id  --local-dir= # Your local dir  --repo-id= # Your repo id --commit-message="First Push"
 ```
 
-If everything worked you should have this at the end of the process(but with a different url 😆) :
+If everything worked you should see this at the end of the process (but with a different url 😆) :
 
 Your model is pushed to the Hub. You can view your model here: https://huggingface.co/ThomasSimonini/poca-SoccerTwos
 
@@ -294,14 +294,14 @@ It's the link to your model. It contains a model card that explains how to use i
 
 Now that your model is pushed to the Hub, **it’s going to be added automatically to the AI vs AI Challenge model pool.** It can take a little bit of time before your model is added to the leaderboard given we do a run of matches every 4h.
 
-But in order that everything works perfectly you need to check:
+But to ensure that everything works perfectly you need to check:
 
 1. That you have this tag in your model: ML-Agents-SoccerTwos. This is the tag we use to select models to be added to the challenge pool. To do that go to your model and check the tags
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify1.png" alt="Verify"/>
 
 
-If it’s not the case you just need to modify readme and add it
+If it’s not the case you just need to modify the readme and add it
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify2.png" alt="Verify"/>
 
@@ -315,10 +315,10 @@ We strongly suggest that you create a new model when you push to the Hub if you 
 
 Now that your model is part of AI vs AI Challenge, **you can visualize how good it is compared to others**: https://huggingface.co/spaces/unity/ML-Agents-SoccerTwos
 
-In order to do that, you just need to go on this demo:
+In order to do that, you just need to go to this demo:
 
-- Select your model as team blue (or team purple if you prefer) and another. The best to compare your model is either with the one who’s on top of the leaderboard. Or use the [baseline model as opponent](https://huggingface.co/unity/MLAgents-SoccerTwos)
+- Select your model as team blue (or team purple if you prefer) and another model to compete against. The best opponents to compare your model to are either whoever is on top of the leaderboard or the [baseline model](https://huggingface.co/unity/MLAgents-SoccerTwos)
 
-This matches you see live are not used to the calculation of your result **but are good way to visualize how good your agent is**.
+The matches you see live are not used in the calculation of your result **but they are a good way to visualize how good your agent is**.
 
-And don't hesitate to share the best score your agent gets on discord in #rl-i-made-this channel 🔥
+And don't hesitate to share the best score your agent gets on discord in the #rl-i-made-this channel 🔥

@@ -4,7 +4,7 @@
 Now that we learned the RL framework, how do we solve the RL problem?
 </Tip>
 
-In other terms, how to build an RL agent that can **select the actions that maximize its expected cumulative reward?**
+In other words, how do we build an RL agent that can **select the actions that maximize its expected cumulative reward?**
 
 ## The Policy π: the agent’s brain [[policy]]
 
@@ -26,7 +26,7 @@ There are two approaches to train our agent to find this optimal policy π\*:
 
 In Policy-Based methods, **we learn a policy function directly.**
 
-This function will define a mapping between each state and the best corresponding action. We can also say that it'll define **a probability distribution over the set of possible actions at that state.**
+This function will define a mapping from each state to the best corresponding action. Alternatively, it could define **a probability distribution over the set of possible actions at that state.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_2.jpg" alt="Policy" />
@@ -69,13 +69,13 @@ If we recap:
 
 In value-based methods, instead of learning a policy function, we **learn a value function** that maps a state to the expected value **of being at that state.**
 
-The value of a state is the **expected discounted return** the agent can get if it **starts in that state, and then act according to our policy.**
+The value of a state is the **expected discounted return** the agent can get if it **starts in that state, and then acts according to our policy.**
 
 “Act according to our policy” just means that our policy is **“going to the state with the highest value”.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_1.jpg" alt="Value based RL" width="100%" />
 
-Here we see that our value function **defined value for each possible state.**
+Here we see that our value function **defined values for each possible state.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_2.jpg" alt="Value based RL"/>

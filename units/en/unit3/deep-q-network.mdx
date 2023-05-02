@@ -5,14 +5,14 @@ This is the architecture of our Deep Q-Learning network:
 
 As input, we take a **stack of 4 frames** passed through the network as a state and output a **vector of Q-values for each possible action at that state**. Then, like with Q-Learning, we just need to use our epsilon-greedy policy to select which action to take.
 
-When the Neural Network is initialized, **the Q-value estimation is terrible**. But during training, our Deep Q-Network agent will associate a situation with appropriate action and **learn to play the game well**.
+When the Neural Network is initialized, **the Q-value estimation is terrible**. But during training, our Deep Q-Network agent will associate a situation with the appropriate action and **learn to play the game well**.
 
 ## Preprocessing the input and temporal limitation [[preprocessing]]
 
 We need to **preprocess the input**. It’s an essential step since we want to **reduce the complexity of our state to reduce the computation time needed for training**.
 
 To achieve this, we **reduce the state space to 84x84 and grayscale it**. We can do this since the colors in Atari environments don't add important information.
-This is an essential saving since we **reduce our three color channels (RGB) to 1**.
+This is a big improvement since we **reduce our three color channels (RGB) to 1**.
 
 We can also **crop a part of the screen in some games** if it does not contain important information.
 Then we stack four frames together.
@@ -30,12 +30,12 @@ No, because one frame is not enough to have a sense of motion! But what if I add
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation-2.jpg" alt="Temporal Limitation"/>
 That’s why, to capture temporal information, we stack four frames together.
 
-Then, the stacked frames are processed by three convolutional layers. These layers **allow us to capture and exploit spatial relationships in images**. But also, because frames are stacked together, **you can exploit some temporal properties across those frames**.
+Then the stacked frames are processed by three convolutional layers. These layers **allow us to capture and exploit spatial relationships in images**. But also, because the frames are stacked together, **we can exploit some temporal properties across those frames**.
 
-If you don't know what are convolutional layers, don't worry. You can check the [Lesson 4 of this free Deep Reinforcement Learning Course by Udacity](https://www.udacity.com/course/deep-learning-pytorch--ud188)
+If you don't know what convolutional layers are, don't worry. You can check out [Lesson 4 of this free Deep Reinforcement Learning Course by Udacity](https://www.udacity.com/course/deep-learning-pytorch--ud188)
 
 Finally, we have a couple of fully connected layers that output a Q-value for each possible action at that state.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/deep-q-network.jpg" alt="Deep Q Network"/>
 
-So, we see that Deep Q-Learning is using a neural network to approximate, given a state, the different Q-values for each possible action at that state. Let’s now study the Deep Q-Learning algorithm.
+So, we see that Deep Q-Learning uses a neural network to approximate, given a state, the different Q-values for each possible action at that state. Now let's study the Deep Q-Learning algorithm.

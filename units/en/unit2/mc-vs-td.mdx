@@ -45,7 +45,7 @@ By running more and more episodes, **the agent will learn to play better and be
 
 For instance, if we train a state-value function using Monte Carlo:
 
-- We just started to train our value function, **so it returns 0 value for each state**
+- We initialize our value function **so that it returns 0 value for each state**
 - Our learning rate (lr) is 0.1 and our discount rate is 1 (= no discount)
 - Our mouse **explores the environment and takes random actions**
 
@@ -82,7 +82,7 @@ The idea with **TD is to update the \\(V(S_t)\\) at each step.**
 
 But because we didn't experience an entire episode, we don't have \\(G_t\\) (expected return). Instead, **we estimate \\(G_t\\) by adding \\(R_{t+1}\\) and the discounted value of the next state.**
 
-This is called bootstrapping. It's called this **because TD bases its update part on an existing estimate \\(V(S_{t+1})\\) and not a complete sample \\(G_t\\).**
+This is called bootstrapping. It's called this **because TD bases its update in part on an existing estimate \\(V(S_{t+1})\\) and not a complete sample \\(G_t\\).**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="Temporal Difference"/>
 
@@ -95,9 +95,9 @@ If we take the same example,
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-2.jpg" alt="Temporal Difference"/>
 
-- We just started to train our value function, so it returns 0 value for each state.
+- We initialize our value function so that it returns 0 value for each state.
 - Our learning rate (lr) is 0.1, and our discount rate is 1 (no discount).
-- Our mouse explore the environment and take a random action: **going to the left**
+- Our mouse begins to explore the environment and takes a random action: **going to the left**
 - It gets a reward  \\(R_{t+1} = 1\\) since **it eats a piece of cheese**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-2p.jpg" alt="Temporal Difference"/>
@@ -119,9 +119,9 @@ Now we **continue to interact with this environment with our updated value func
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-3p.jpg" alt="Temporal Difference"/>
 
-  If we summarize:
+  To summarize:
 
   - With *Monte Carlo*, we update the value function from a complete episode, and so we **use the actual accurate discounted return of this episode.**
-  - With *TD Learning*, we update the value function from a step, so we replace \\(G_t\\) that we don't have with **an estimated return called TD target.**
+  - With *TD Learning*, we update the value function from a step, and we replace \\(G_t\\), which we don't know, with **an estimated return called the TD target.**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Summary.jpg" alt="Summary"/>

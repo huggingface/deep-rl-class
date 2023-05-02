@@ -40,7 +40,7 @@ We're constantly trying to improve our tutorials, so **if you find some issues i
 
 At the end of the notebook, you will:
 
-- Understand **the state space, action space and reward function used to train Huggy**.
+- Understand **the state space, action space, and reward function used to train Huggy**.
 - **Train your own Huggy** to fetch the stick.
 - Be able to play **with your trained Huggy directly in your browser**.
 
@@ -123,7 +123,7 @@ Given all this information, Huggy **can decide which action to take next to fulf
 ### The Action Space: what moves Huggy can do
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%">
 
-**Joint motors drive huggy legs**. It means that to get the target, Huggy needs to **learn to rotate the joint motors of each of his legs correctly so he can move**.
+**Joint motors drive huggy legs**. This means that to get the target, Huggy needs to **learn to rotate the joint motors of each of his legs correctly so he can move**.
 
 ### The Reward Function
 
@@ -144,9 +144,9 @@ Our reward function:
 
 ## Check the Huggy config file
 
-- In ML-Agents, you define the **training hyperparameters into config.yaml files.**
+- In ML-Agents, you define the **training hyperparameters in config.yaml files.**
 
-- For the scope of this notebook, we're not going to modify the hyperparameters, but if you want to try as an experiment, you should also try to modify some other hyperparameters, Unity provides very [good documentation explaining each of them here](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md).
+- For the scope of this notebook, we're not going to modify the hyperparameters, but if you want to try as an experiment, Unity provides very [good documentation explaining each of them here](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md).
 
 - **In the case you want to modify the hyperparameters**, in Google Colab notebook, you can click here to open the config.yaml: `/content/ml-agents/config/ppo/Huggy.yaml`
 
@@ -172,7 +172,7 @@ Train the model and use the `--resume` flag to continue training in case of inte
 
 
 
-The training will take 30 to 45min depending on your machine (don't forget to **set up a GPU**), go take a ☕️you deserve it 🤗.
+The training will take 30 to 45min depending on your machine (don't forget to **set up a GPU**), go take a ☕️ you deserve it 🤗.
 
 ```bash
 mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
@@ -186,7 +186,7 @@ To be able to share your model with the community there are three more steps to 
 
 1️⃣ (If it's not already done) create an account to HF ➡ https://huggingface.co/join
 
-2️⃣ Sign in and then, you need to store your authentication token from the Hugging Face website.
+2️⃣ Sign in and then get your token from the Hugging Face website.
 - Create a new token (https://huggingface.co/settings/tokens) **with write role**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token">
@@ -200,7 +200,7 @@ from huggingface_hub import notebook_login
 notebook_login()
 ```
 
-If you don't want to use a Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
+If you don't want to use Google Colab or a Jupyter Notebook, you need to use this command instead: `huggingface-cli login`
 
 Then, we simply need to run `mlagents-push-to-hf`.
 
@@ -212,13 +212,13 @@ And we define 4 parameters:
 2. `--local-dir`: where the agent was saved, it’s results/<run_id name>, so in my case results/First Training.
 3. `--repo-id`: the name of the Hugging Face repo you want to create or update. It’s always <your huggingface username>/<the repo name>
 If the repo does not exist **it will be created automatically**
-4. `--commit-message`: since HF repos are git repository you need to define a commit message.
+4. `--commit-message`: since HF repos are git repositories you need to give a commit message.
 
 ```bash
 mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --repo-id="ThomasSimonini/ppo-Huggy" --commit-message="Huggy"
 ```
 
-Else, if everything worked you should have this at the end of the process(but with a different url 😆) :
+If everything worked you should see this at the end of the process (but with a different url 😆) :
 
 
 
@@ -230,25 +230,25 @@ It’s the link to your model repository. The repository contains a model card t
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/modelcard.png" alt="ml learn function" width="100%">
 
-But now comes the best: **being able to play with Huggy online 👀.**
+But now comes the best part: **being able to play with Huggy online 👀.**
 
 ## Play with your Huggy 🐕
 
 This step is the simplest:
 
-- Open the game Huggy in your browser: https://huggingface.co/spaces/ThomasSimonini/Huggy
+- Open the Huggy game in your browser: https://huggingface.co/spaces/ThomasSimonini/Huggy
 
 - Click on Play with my Huggy model
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/load-huggy.jpg" alt="load-huggy" width="100%">
 
-1. In step 1, choose your model repository which is the model id (in my case ThomasSimonini/ppo-Huggy).
+1. In step 1, choose your model repository, which is the model id (in my case ThomasSimonini/ppo-Huggy).
 
-2. In step 2, **choose what model you want to replay**:
+2. In step 2, **choose which model you want to replay**:
   - I have multiple ones, since we saved a model every 500000 timesteps.
-  - But since I want the more recent, I choose `Huggy.onnx`
+  - But since I want the most recent one, I choose `Huggy.onnx`
 
-👉 What’s nice **is to try with different models steps to see the improvement of the agent.**
+👉 It's good **to try with different models steps to see the improvement of the agent.**
 
 Congrats on finishing this bonus unit!
 
@@ -257,4 +257,4 @@ You can now sit and enjoy playing with your Huggy 🐶. And don't **forget to sp
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-cover.jpeg" alt="Huggy cover" width="100%">
 
 
-## Keep Learning, Stay  awesome 🤗
+## Keep Learning, Stay awesome 🤗

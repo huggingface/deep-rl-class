@@ -10,12 +10,12 @@ For instance, in a soccer game (where you're going to train the agents in two un
 
 ## Value-based, Policy-based, and Actor-critic methods
 
-We studied in the first unit, that we had two methods to find (most of the time approximate) this optimal policy \\(\pi^{*}\\).
+In the first unit, we saw two methods to find (or, most of the time, approximate) this optimal policy \\(\pi^{*}\\).
 
 - In *value-based methods*, we learn a value function.
   - The idea is that an optimal value function leads to an optimal policy \\(\pi^{*}\\).
   - Our objective is to **minimize the loss between the predicted and target value** to approximate the true action-value function.
-  - We have a policy, but it's implicit since it **was generated directly from the value function**. For instance, in Q-Learning, we defined an epsilon-greedy policy.
+  - We have a policy, but it's implicit since it **is generated directly from the value function**. For instance, in Q-Learning, we used an (epsilon-)greedy policy.
 
 - On the other hand, in *policy-based methods*, we directly learn to approximate \\(\pi^{*}\\) without having to learn a value function.
   - The idea is **to parameterize the policy**. For instance, using a neural network \\(\pi_\theta\\), this policy will output a probability distribution over actions (stochastic policy).
@@ -25,10 +25,10 @@ We studied in the first unit, that we had two methods to find (most of the time 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
 
-- Finally, we'll study the next time *actor-critic* which is a combination of value-based and policy-based methods.
+- Next time, we'll study the *actor-critic* method, which is a combination of value-based and policy-based methods.
 
 Consequently, thanks to policy-based methods, we can directly optimize our policy \\(\pi_\theta\\) to output a probability distribution over actions \\(\pi_\theta(a|s)\\) that leads to the best cumulative return.
-To do that, we define an objective function \\(J(\theta)\\), that is, the expected cumulative reward, and we **want to find \\(\theta\\) that maximizes this objective function**.
+To do that, we define an objective function \\(J(\theta)\\), that is, the expected cumulative reward, and we **want to find the value \\(\theta\\) that maximizes this objective function**.
 
 ## The difference between policy-based and policy-gradient methods
 

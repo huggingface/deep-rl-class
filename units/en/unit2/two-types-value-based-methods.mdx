@@ -31,19 +31,19 @@ Since the policy is not trained/learned, **we need to specify its behavior.** 
   <figcaption>Given a state, our action-value function (that we train) outputs the value of each action at that state. Then, our pre-defined Greedy Policy selects the action that will yield the highest value given a state or a state action pair.</figcaption>
 </figure>
 
-Consequently, whatever method you use to solve your problem, **you will have a policy**. In the case of value-based methods, you don't train the policy: your policy **is just a simple pre-specified function** (for instance, Greedy Policy) that uses the values given by the value-function to select its actions.
+Consequently, whatever method you use to solve your problem, **you will have a policy**. In the case of value-based methods, you don't train the policy: your policy **is just a simple pre-specified function** (for instance, the Greedy Policy) that uses the values given by the value-function to select its actions.
 
 So the difference is:
 
-- In policy-based, **the optimal policy (denoted π\*) is found by training the policy directly.**
-- In value-based, **finding an optimal value function (denoted Q\* or V\*, we'll study the difference after) leads to having an optimal policy.**
+- In policy-based training, **the optimal policy (denoted π\*) is found by training the policy directly.**
+- In value-based training, **finding an optimal value function (denoted Q\* or V\*, we'll study the difference below) leads to having an optimal policy.**
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link between value and policy"/>
 
-In fact, most of the time, in value-based methods, you'll use **an Epsilon-Greedy Policy** that handles the exploration/exploitation trade-off; we'll talk about it when we talk about Q-Learning in the second part of this unit.
+In fact, most of the time, in value-based methods, you'll use **an Epsilon-Greedy Policy** that handles the exploration/exploitation trade-off; we'll talk about this when we talk about Q-Learning in the second part of this unit.
 
 
-So, we have two types of value-based functions:
+As we mentioned above, we have two types of value-based functions:
 
 ## The state-value function [[state-value-function]]
 
@@ -60,7 +60,7 @@ For each state, the state-value function outputs the expected return if the agen
 
 ## The action-value function [[action-value-function]]
 
-In the action-value function, for each state and action pair, the action-value function **outputs the expected return** if the agent starts in that state and takes action, and then follows the policy forever after.
+In the action-value function, for each state and action pair, the action-value function **outputs the expected return** if the agent starts in that state, takes that action, and then follows the policy forever after.
 
 The value of taking action \\(a\\) in state \\(s\\) under a policy \\(π\\) is:
 
@@ -70,8 +70,8 @@ The value of taking action \\(a\\) in state \\(s\\) under a policy \\(π\\) is:
 
 We see that the difference is:
 
-- In state-value function, we calculate **the value of a state \\(S_t\\)**
-- In action-value function, we calculate **the value of the state-action pair ( \\(S_t, A_t\\) ) hence the value of taking that action at that state.**
+- For the state-value function, we calculate **the value of a state \\(S_t\\)**
+- For the action-value function, we calculate **the value of the state-action pair ( \\(S_t, A_t\\) ) hence the value of taking that action at that state.**
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-types.jpg" alt="Two types of value function"/>
@@ -79,8 +79,8 @@ We see that the difference is:
 Note: We didn't fill all the state-action pairs for the example of Action-value function</figcaption>
 </figure>
 
-In either case, whatever value function we choose (state-value or action-value function), **the returned value is the expected return.**
+In either case, whichever value function we choose (state-value or action-value function), **the returned value is the expected return.**
 
-However, the problem is that it implies that **to calculate EACH value of a state or a state-action pair, we need to sum all the rewards an agent can get if it starts at that state.**
+However, the problem is that **to calculate EACH value of a state or a state-action pair, we need to sum all the rewards an agent can get if it starts at that state.**
 
-This can be a computationally expensive process, and that's **where the Bellman equation comes to help us.**
+This can be a computationally expensive process, and that's **where the Bellman equation comes in to help us.**

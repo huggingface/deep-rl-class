@@ -5,7 +5,7 @@ For this section, you're going to watch this excellent introduction to multi-age
 <Youtube id="qgb0gyrpiGk" />
 
 
-In this video, Brian talked about how to design multi-agent systems. He specifically took a vacuum cleaner multi-agents setting and asked how they **can cooperate with each other**?
+In this video, Brian talked about how to design multi-agent systems. He specifically took a multi-agents system of vacuum cleaners and asked: **how can can cooperate with each other**?
 
 We have two solutions to design this multi-agent reinforcement learning system (MARL).
 
@@ -18,7 +18,7 @@ Source: <a href="https://www.youtube.com/watch?v=qgb0gyrpiGk"> Introduction to M
 </figcaption>
 </figure>
 
-In decentralized learning, **each agent is trained independently from others**. In the example given, each vacuum learns to clean as many places as it can **without caring about what other vacuums (agents) are doing**.
+In decentralized learning, **each agent is trained independently from the others**. In the example given, each vacuum learns to clean as many places as it can **without caring about what other vacuums (agents) are doing**.
 
 The benefit is that **since no information is shared between agents, these vacuums can be designed and trained like we train single agents**.
 
@@ -36,22 +36,22 @@ Source: <a href="https://www.youtube.com/watch?v=qgb0gyrpiGk"> Introduction to M
 </figcaption>
 </figure>
 
-In this architecture, **we have a high-level process that collects agents' experiences**: experience buffer. And we'll use these experiences **to learn a common policy**.
+In this architecture, **we have a high-level process that collects agents' experiences**: the experience buffer. And we'll use these experiences **to learn a common policy**.
 
-For instance, in the vacuum cleaner, the observation will be:
+For instance, in the vacuum cleaner example, the observation will be:
 - The coverage map of the vacuums.
 - The position of all the vacuums.
 
-We use that collective experience **to train a policy that will move all three robots in the most beneficial way as a whole**. So each robot is learning from the common experience.
-And we have a stationary environment since all the agents are treated as a larger entity, and they know the change of other agents' policies (since it's the same as theirs).
+We use that collective experience **to train a policy that will move all three robots in the most beneficial way as a whole**. So each robot is learning from their common experience.
+We now have a stationary environment since all the agents are treated as a larger entity, and they know the change of other agents' policies (since it's the same as theirs).
 
 If we recap:
 
-- In *decentralized approach*, we **treat all agents independently without considering the existence of the other agents.**
+- In a *decentralized approach*, we **treat all agents independently without considering the existence of the other agents.**
   - In this case, all agents **consider others agents as part of the environment**.
-  - **It’s a non-stationarity environment condition**, so non-guaranty of convergence.
+  - **It’s a non-stationarity environment condition**, so has no guarantee of convergence.
 
-- In centralized approach:
+- In a *centralized approach*:
   - A **single policy is learned from all the agents**.
-  - Takes as input the present state of an environment and the policy output joint actions.
+  - Takes as input the present state of an environment and the policy outputs joint actions.
   - The reward is global.

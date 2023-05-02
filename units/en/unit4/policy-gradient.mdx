@@ -4,7 +4,7 @@
 
 We just learned that policy-gradient methods aim to find parameters \\( \theta \\) that **maximize the expected return**.
 
-The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called *action preference*.
+The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called the *action preference*.
 
 If we take the example of CartPole-v1:
 - As input, we have a state.
@@ -47,20 +47,20 @@ The *objective function* gives us the **performance of the agent** given a traje
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/objective.jpg" alt="Return"/>
 
-Let's detail a little bit more this formula:
-- The *expected return* (also called expected cumulative reward), is the weighted average (where the weights are given by \\(P(\tau;\theta)\\) of all possible values that the return \\(R(\tau)\\) can take.
+Let's give some more details on this formula:
+- The *expected return* (also called expected cumulative reward), is the weighted average (where the weights are given by \\(P(\tau;\theta)\\) of all possible values that the return \\(R(\tau)\\) can take).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/expected_reward.png" alt="Return"/>
 
 
 - \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
-- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on \\( \theta\\) since it defines the policy that it uses to select the actions of the trajectory which as an impact of the states visited).
+- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on \\( \theta\\) since it defines the policy that it uses to select the actions of the trajectory which has an impact of the states visited).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
-- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given \\(\theta \\), and the return of this trajectory.
+- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given \\(\theta \\) multiplied by the return of this trajectory.
 
-Our objective then is to maximize the expected cumulative reward by finding \\(\theta \\) that will output the best action probability distributions:
+Our objective then is to maximize the expected cumulative reward by finding the \\(\theta \\) that will output the best action probability distributions:
 
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/max_objective.png" alt="Max objective"/>
@@ -68,7 +68,7 @@ Our objective then is to maximize the expected cumulative reward by finding \\(\
 
 ## Gradient Ascent and the Policy-gradient Theorem
 
-Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
+Policy-gradient is an optimization problem: we want to find the values of \\(\theta\\) that maximize our objective function \\(J(\theta)\\), so we need to use **gradient-ascent**. It's the inverse of *gradient-descent* since it gives the direction of the steepest increase of \\(J(\theta)\\).
 
 (If you need a refresher on the difference between gradient descent and gradient ascent [check this](https://www.baeldung.com/cs/gradient-descent-vs-ascent) and [this](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)).
 
@@ -76,13 +76,13 @@ Our update step for gradient-ascent is:
 
 \\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
 
-We can repeatedly apply this update state in the hope that \\(\theta \\) converges to the value that maximizes \\(J(\theta)\\).
+We can repeatedly apply this update in the hopes that \\(\theta \\) converges to the value that maximizes \\(J(\theta)\\).
 
-However, we have two problems to obtain the derivative of \\(J(\theta)\\):
-1. We can't calculate the true gradient of the objective function since it would imply calculating the probability of each possible trajectory which is computationally super expensive.
-We want then to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
+However, there are two problems with computing the derivative of \\(J(\theta)\\):
+1. We can't calculate the true gradient of the objective function since it requires calculating the probability of each possible trajectory, which is computationally super expensive.
+So we want to **calculate a gradient estimation with a sample-based estimate (collect some trajectories)**.
 
-2. We have another problem that I detail in the next optional section. To differentiate this objective function, we need to differentiate the state distribution, called Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
+2. We have another problem that I explain in the next optional section. To differentiate this objective function, we need to differentiate the state distribution, called the Markov Decision Process dynamics. This is attached to the environment. It gives us the probability of the environment going into the next state, given the current state and the action taken by the agent. The problem is that we can't differentiate it because we might not know about it.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
@@ -90,7 +90,7 @@ Fortunately we're going to use a solution called the Policy Gradient Theorem tha
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
 
-If you want to understand how we derivate this formula that we will use to approximate the gradient, check the next (optional) section.
+If you want to understand how we derive this formula for approximating the gradient, check out the next (optional) section.
 
 ## The Reinforce algorithm (Monte Carlo Reinforce)
 
@@ -106,12 +106,12 @@ In a loop:
 
 - Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
 
-The interpretation we can make is this one:
+We can interpret this update as follows:
 - \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action at from state st.
 This tells us **how we should change the weights of policy** if we want to increase/decrease the log probability of selecting action \\(a_t\\) at state \\(s_t\\).
 - \\(R(\tau)\\): is the scoring function:
   - If the return is high, it will **push up the probabilities** of the (state, action) combinations.
-  - Else, if the return is low, it will **push down the probabilities** of the (state, action) combinations.
+  - Otherwise, if the return is low, it will **push down the probabilities** of the (state, action) combinations.
 
 
 We can also **collect multiple episodes (trajectories)** to estimate the gradient:
