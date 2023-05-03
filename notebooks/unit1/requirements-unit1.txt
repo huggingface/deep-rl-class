@@ -1,4 +1,3 @@
-stable-baselines3[extra]
-box2d-py
+stable-baselines3==2.0.0a5
+gymnasium[box2d]
 huggingface_sb3
-pyglet==1.5.1
