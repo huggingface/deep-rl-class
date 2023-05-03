@@ -37,6 +37,9 @@ And you can check your progress here 👉 https://huggingface.co/spaces/ThomasSi
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit4/unit4.ipynb)
 
+We strongly **recommend students use Google Colab for the hands-on exercises** instead of running them on their personal computers. 
+
+By using Google Colab, **you can focus on learning and experimenting without worrying about the technical aspects** of setting up your environments.
 
 # Unit 4: Code your first Deep Reinforcement Learning Algorithm with PyTorch: Reinforce. And test its robustness 💪
 
@@ -133,6 +136,14 @@ The first step is to install the dependencies. We’ll install multiple ones:
 - `gym`
 - `gym-games`: Extra gym environments made with PyGame.
 - `huggingface_hub`: The Hub works as a central place where anyone can share and explore models and datasets. It has versioning, metrics, visualizations, and other features that will allow you to easily collaborate with others.
+
+You may be wondering why we install gym and not gymnasium, a more recent version of gym? **Because the gym-games we are using are not updated yet with gymnasium**. 
+
+The differences you'll encounter here:
+- In `gym` we don't have `terminated` and `truncated` but only `done`.
+- In `gym` using `env.step()` returns `state, reward, done, info`
+
+You can learn more about the differences between Gym and Gymnasium here 👉 https://gymnasium.farama.org/content/migration-guide/
 
 You can see here all the Reinforce models available 👉 https://huggingface.co/models?other=reinforce
 
