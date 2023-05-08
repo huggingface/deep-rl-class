@@ -7,11 +7,12 @@ assignees: ''
 
 ---
 
-**Describe the bug**
+# Describe the bug
+
 A clear and concise description of what the bug is.
 **Please share your notebook link so that we can reproduce the error**
 
-**Material:**
+# Material
 
  - Did you use Google Colab?
 
