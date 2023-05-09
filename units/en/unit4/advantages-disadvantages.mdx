@@ -28,7 +28,7 @@ Let's take an example: we have an intelligent vacuum cleaner whose goal is to su
 
 Our vacuum cleaner can only perceive where the walls are.
 
-The problem is that the **two rose cases are aliased states because the agent perceives an upper and lower wall for each**.
+The problem is that the **two red (colored) states are aliased states because the agent perceives an upper and lower wall for each**.
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster2.jpg" alt="Hamster 1"/>
@@ -38,7 +38,7 @@ Under a deterministic policy, the policy will either always move right when in a
 
 Under a value-based Reinforcement learning algorithm, we learn a **quasi-deterministic policy** ("greedy epsilon strategy"). Consequently, our agent can **spend a lot of time before finding the dust**.
 
-On the other hand, an optimal stochastic policy **will randomly move left or right in rose states**. Consequently, **it will not be stuck and will reach the goal state with a high probability**.
+On the other hand, an optimal stochastic policy **will randomly move left or right in red (colored) states**. Consequently, **it will not be stuck and will reach the goal state with a high probability**.
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/hamster3.jpg" alt="Hamster 1"/>
