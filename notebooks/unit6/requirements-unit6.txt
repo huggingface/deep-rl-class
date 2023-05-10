@@ -1,3 +1,4 @@
 stable-baselines3==2.0.0a4
 huggingface_sb3
 panda-gym
+huggingface_hub
