@@ -200,8 +200,9 @@ from huggingface_hub import (
 )  # To log to our Hugging Face account to be able to upload models to the Hub.
 
 from stable_baselines3 import PPO
-from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.env_util import make_vec_env
+from stable_baselines3.common.evaluation import evaluate_policy
+from stable_baselines3.common.monitor import Monitor
 ```
 
 ## Understand Gymnasium and how it works 🤖
@@ -448,6 +449,7 @@ model.save(model_name)
 
 ## Evaluate the agent 📈
 
+- Remember to wrap the environment in a [Monitor](https://stable-baselines3.readthedocs.io/en/master/common/monitor.html).
 - Now that our Lunar Lander agent is trained 🚀, we need to **check its performance**.
 - Stable-Baselines3 provides a method to do that: `evaluate_policy`.
 - To fill that part you need to [check the documentation](https://stable-baselines3.readthedocs.io/en/master/guide/examples.html#basic-usage-training-saving-loading)
@@ -471,7 +473,7 @@ mean_reward, std_reward =
 
 ```python
 # @title
-eval_env = gym.make("LunarLander-v2")
+eval_env = Monitor(gym.make("LunarLander-v2"))
 mean_reward, std_reward = evaluate_policy(model, eval_env, n_eval_episodes=10, deterministic=True)
 print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
@@ -589,7 +591,7 @@ repo_id = "ThomasSimonini/ppo-LunarLander-v2"  # Change with your repo id, you c
 commit_message = "Upload PPO LunarLander-v2 trained agent"
 
 # Create the evaluation env and set the render_mode="rgb_array"
-eval_env = DummyVecEnv([lambda: gym.make(env_id, render_mode="rgb_array")])
+eval_env = DummyVecEnv([lambda: Monitor(gym.make(env_id, render_mode="rgb_array"))])
 
 # PLACE the package_to_hub function you've just filled here
 package_to_hub(
@@ -660,7 +662,7 @@ Let's evaluate this agent:
 
 ```python
 # @title
-eval_env = gym.make("LunarLander-v2")
+eval_env = Monitor(gym.make("LunarLander-v2"))
 mean_reward, std_reward = evaluate_policy(model, eval_env, n_eval_episodes=10, deterministic=True)
 print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
