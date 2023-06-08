@@ -26,7 +26,7 @@ More precisely, AI vs. AI is three tools:
 
 In addition to these three tools, your classmate cyllum created a 🤗 SoccerTwos Challenge Analytics where you can check the detailed match results of a model: [https://huggingface.co/spaces/cyllum/soccertwos-analytics](https://huggingface.co/spaces/cyllum/soccertwos-analytics)
 
-We're going to write a blog post to explain this AI vs. AI tool in detail, but to give you the big picture it works this way:
+We're [wrote a blog post to explain this AI vs. AI tool in detail](https://huggingface.co/blog/aivsai), but to give you the big picture it works this way:
 
 - Every four hours, our algorithm **fetches all the available models for a given environment (in our case ML-Agents-SoccerTwos).**
 - It creates a **queue of matches with the matchmaking algorithm.**
@@ -46,8 +46,6 @@ In order for your model to get correctly evaluated against others you need to fo
 
 What will make the difference during this challenge are **the hyperparameters you choose**.
 
-The AI vs AI algorithm will run until April the 30th, 2023.
-
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the GitHub Repo](https://github.com/huggingface/deep-rl-class/issues).
 
 ### Chat with your classmates, share advice and ask questions on Discord
@@ -56,10 +54,6 @@ We're constantly trying to improve our tutorials, so **if you find some issues 
 - If you didn’t join the discord server yet, you can [join here](https://discord.gg/ydHrjt3WP5)
 
 ## Step 0: Install MLAgents and download the correct executable
-
-⚠ We're going to use an experimental version of ML-Agents which allows you to push and load your models to/from the Hub. **You need to install the same version.**
-
-⚠ ⚠ ⚠  We’re not going to use the same version from Unit 5: Introduction to ML-Agents ⚠ ⚠ ⚠
 
 We advise you to use [conda](https://docs.conda.io/en/latest/) as a package manager and create a new environment.
 
@@ -70,10 +64,10 @@ conda create --name rl python=3.9
 conda activate rl
 ```
 
-To be able to train our agents correctly and push to the Hub, we need to install an experimental version of ML-Agents (the branch aivsai from Hugging Face ML-Agents fork)
+To be able to train our agents correctly and push to the Hub, we need to install ML-Agents
 
 ```bash
-git clone --branch aivsai https://github.com/huggingface/ml-agents
+git clone https://github.com/Unity-Technologies/ml-agents
 ```
 
 When the cloning is done (it takes 2.63 GB), we go inside the repository and install the package
@@ -164,7 +158,6 @@ This allows each agent to **make decisions based only on what it perceives local
 </figcaption>
 
 </figure>
-
 
 The solution then is to use Self-Play with an MA-POCA trainer (called poca). The poca trainer will help us to train cooperative behavior and self-play to win against an opponent team.
 
