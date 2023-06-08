@@ -16,4 +16,4 @@ jobs:
       additional_args: --not_python_module
       languages: en
     secrets:
-      token: ${{ secrets.HUGGINGFACE_PUSH }}
+      token: ${{ secrets.hf_token }}
