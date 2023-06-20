@@ -18,4 +18,3 @@ jobs:
       path_to_docs: deep-rl-class/units/
       additional_args: --not_python_module
       languages: en
-      hub_base_path: https://moon-ci-docs.huggingface.co
