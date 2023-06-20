@@ -17,4 +17,4 @@ jobs:
       languages: en
     secrets:
       token: ${{ secrets.HUGGINGFACE_PUSH }}
-      hf_token: ${{ secrets.hf_token }}
+      hf_token: ${{ secrets.HF_DOC_PUSH }}
