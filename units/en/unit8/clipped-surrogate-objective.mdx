@@ -60,7 +60,7 @@ To do that, we have two solutions:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/clipped.jpg" alt="PPO"/>
 
-This clipped part is a version where rt(theta) is clipped between  \\( [1 - \epsilon, 1 + \epsilon] \\).
+This clipped part is a version where \\( r_t(\theta) \\) is clipped between  \\( [1 - \epsilon, 1 + \epsilon] \\).
 
 With the Clipped Surrogate Objective function, we have two probability ratios, one non-clipped and one clipped in a range between  \\( [1 - \epsilon, 1 + \epsilon] \\), epsilon is a hyperparameter that helps us to define this clip range (in the paper  \\( \epsilon = 0.2 \\).).
 
