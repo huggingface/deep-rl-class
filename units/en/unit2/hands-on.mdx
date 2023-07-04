@@ -716,13 +716,10 @@ def push_to_hub(repo_id, model, env, video_fps=1, local_repo_path="hub"):
 
   ## Usage
 
-  ```python
-
   model = load_from_hub(repo_id="{repo_id}", filename="q-learning.pkl")
 
   # Don't forget to check if you need to add additional attributes (is_slippery=False etc)
   env = gym.make(model["env_id"])
-  ```
   """
 
     evaluate_agent(env, model["max_steps"], model["n_eval_episodes"], model["qtable"], model["eval_seed"])
