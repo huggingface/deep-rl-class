@@ -14,7 +14,7 @@ jobs:
       package_name: deep-rl-course
       path_to_docs: deep-rl-class/units/
       additional_args: --not_python_module
-      languages: en
+      languages: en ko
     secrets:
       token: ${{ secrets.HUGGINGFACE_PUSH }}
       hf_token: ${{ secrets.HF_DOC_BUILD_PUSH }}
