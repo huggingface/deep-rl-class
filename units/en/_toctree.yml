@@ -172,6 +172,8 @@
     title: Designing Multi-Agents systems
   - local: unit7/self-play
     title: Self-Play
+  - local: unit7/glossary
+    title: Glossary
   - local: unit7/hands-on
     title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
   - local: unit7/conclusion
