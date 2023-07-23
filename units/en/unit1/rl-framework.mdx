@@ -44,7 +44,7 @@ Observations/States are the **information our agent gets from the environment.*
 
 There is a differentiation to make between *observation* and *state*, however:
 
-- *State s*: is **a complete description of the state of the world** (there is no hidden information). In a fully observed environment.
+- *State* is **a complete description of the state of the world** (there is no hidden information).
 
 
 <figure>
@@ -54,14 +54,12 @@ There is a differentiation to make between *observation* and *state*, however:
 
 In a chess game, we have access to the whole board information, so we receive a state from the environment. In other words, the environment is fully observed.
 
-- *Observation o*: is a **partial description of the state.** In a partially observed environment.
+- *Observation* is a **partial description of the state.**
 
 <figure>
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
 <figcaption>In Super Mario Bros, we only see the part of the level close to the player, so we receive an observation.</figcaption>
 </figure>
-
-In Super Mario Bros, we only see the part of the level close to the player, so we receive an observation.
 
 In Super Mario Bros, we are in a partially observed environment. We receive an observation **since we only see a part of the level.**
 
@@ -69,7 +67,6 @@ In Super Mario Bros, we are in a partially observed environment. We receive an 
 In this course, we use the term "state" to denote both state and observation, but we will make the distinction in implementations.
 </Tip>
 
-To recap:
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/obs_space_recap.jpg" alt="Obs space recap" width="100%">
 
 
@@ -97,7 +94,6 @@ In Super Mario Bros, we have a finite set of actions since we have only 4 direct
 </figcaption>
 </figure>
 
-To recap:
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/action_space.jpg" alt="Action space recap" width="100%">
 
 Taking this information into consideration is crucial because it will **have importance when choosing the RL algorithm in the future.**
