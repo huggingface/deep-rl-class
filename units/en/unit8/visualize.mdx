@@ -23,11 +23,6 @@ In situation 2, we have a negative advantage: the action is worse than the avera
 Since the ratio is between intervals, **we can decrease the probability that our policy takes that action at that state.**
 
 ## Case 3 and 4: the ratio is below the range
-<figure class="image table text-center m-0 w-full">
-  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/recap.jpg" alt="PPO"/>
-  <figcaption><a href="https://fse.studenttheses.ub.rug.nl/25709/1/mAI_2021_BickD.pdf">Table from "Towards Delivering a Coherent Self-Contained
-    Explanation of Proximal Policy Optimization" by Daniel Bick</a></figcaption>
-</figure>
 
 If the probability ratio is lower than \\( [1 - \epsilon] \\), the probability of taking that action at that state is much lower than with the old policy.
 
@@ -36,11 +31,6 @@ If, like in situation 3, the advantage estimate is positive (A>0), then **you wa
 But if, like situation 4, the advantage estimate is negative, **we don't want to decrease further** the probability of taking that action at that state. Therefore, the gradient is = 0 (since we're on a flat line), so we don't update our weights.
 
 ## Case 5 and 6: the ratio is above the range
-<figure class="image table text-center m-0 w-full">
-  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/recap.jpg" alt="PPO"/>
-  <figcaption><a href="https://fse.studenttheses.ub.rug.nl/25709/1/mAI_2021_BickD.pdf">Table from "Towards Delivering a Coherent Self-Contained
-    Explanation of Proximal Policy Optimization" by Daniel Bick</a></figcaption>
-</figure>
 
 If the probability ratio is higher than \\( [1 + \epsilon] \\), the probability of taking that action at that state in the current policy is **much higher than in the former policy.**
 
