@@ -122,6 +122,8 @@
     title: Diving deeper into policy-gradient
   - local: unit4/pg-theorem
     title: (Optional) the Policy Gradient Theorem
+  - local: unit4/glossary
+    title: Glossary
   - local: unit4/hands-on
     title: Hands-on
   - local: unit4/quiz
@@ -172,8 +174,6 @@
     title: Designing Multi-Agents systems
   - local: unit7/self-play
     title: Self-Play
-  - local: unit7/glossary
-    title: Glossary
   - local: unit7/hands-on
     title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
   - local: unit7/conclusion
