@@ -388,9 +388,9 @@ def epsilon_greedy_policy(Qtable, state, epsilon):
 ```python
 def epsilon_greedy_policy(Qtable, state, epsilon):
     # Randomly generate a number between 0 and 1
-    random_int = random.uniform(0, 1)
-    # if random_int > greater than epsilon --> exploitation
-    if random_int > epsilon:
+    random_num = random.uniform(0, 1)
+    # if random_num > greater than epsilon --> exploitation
+    if random_num > epsilon:
         # Take the action with the highest value given a state
         # np.argmax can be useful here
         action = greedy_policy(Qtable, state)
@@ -716,13 +716,10 @@ def push_to_hub(repo_id, model, env, video_fps=1, local_repo_path="hub"):
 
   ## Usage
 
-  ```python
-
   model = load_from_hub(repo_id="{repo_id}", filename="q-learning.pkl")
 
   # Don't forget to check if you need to add additional attributes (is_slippery=False etc)
   env = gym.make(model["env_id"])
-  ```
   """
 
     evaluate_agent(env, model["max_steps"], model["n_eval_episodes"], model["qtable"], model["eval_seed"])

@@ -122,6 +122,8 @@
     title: Diving deeper into policy-gradient
   - local: unit4/pg-theorem
     title: (Optional) the Policy Gradient Theorem
+  - local: unit4/glossary
+    title: Glossary
   - local: unit4/hands-on
     title: Hands-on
   - local: unit4/quiz
