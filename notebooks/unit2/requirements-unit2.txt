@@ -1,4 +1,4 @@
-gym==0.24
+gymnasium
 pygame
 numpy
 

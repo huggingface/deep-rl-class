@@ -18,7 +18,6 @@ So, to be able to code it, we're going to use two resources:
 - In addition to the tutorial, to go deeper, you can read the 13 core implementation details: [https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/](https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/)
 
 Then, to test its robustness, we're going to train it in:
-
 - [LunarLander-v2](https://www.gymlibrary.ml/environments/box2d/lunar_lander/)
 
 <figure class="image table text-center m-0 w-full">
@@ -109,13 +108,13 @@ virtual_display.start()
 ```
 
 ## Install dependencies 🔽
-For this exercise, we use `gym==0.21`
+For this exercise, we use `gym==0.21` because the video was recorded with Gym.
 
 ```python
-pip install gym==0.21
+pip install gym==0.22
 pip install imageio-ffmpeg
 pip install huggingface_hub
-pip install box2d
+pip install gym[box2d]==0.22
 ```
 
 ## Let's code PPO from scratch with Costa Huang's tutorial
@@ -1052,6 +1051,8 @@ If you don't want to use Google Colab or a Jupyter Notebook, you need to use thi
 
 ## Let's start the training 🔥
 
+⚠️ ⚠️ ⚠️  Don't use **the same repo id with the one you used for the Unit 1**
+
 - Now that you've coded PPO from scratch and added the Hugging Face Integration, we're ready to start the training 🔥
 
 - First, you need to copy all your code to a file you create called `ppo.py`
@@ -1070,7 +1071,7 @@ If you don't want to use Google Colab or a Jupyter Notebook, you need to use thi
 
 ## Some additional challenges 🏆
 
-The best way to learn **is to try things on your own**! Why not try another environment?
+The best way to learn **is to try things on your own**! Why not try another environment? Or why not trying to modify the implementation to work with Gymnasium?
 
 See you in Unit 8, part 2 where we're going to train agents to play Doom 🔥
 

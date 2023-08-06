@@ -39,7 +39,7 @@ In this notebook, we'll reinforce what we learned in the first Unit by **teachin
 
 ### The library used 📚
 
-- [MLAgents (Hugging Face version)](https://github.com/huggingface/ml-agents)
+- [MLAgents](https://github.com/Unity-Technologies/ml-agents)
 
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the Github Repo](https://github.com/huggingface/deep-rl-class/issues).
 
@@ -71,11 +71,11 @@ Before diving into the notebook, you need to:
 
 ## Clone the repository and install the dependencies 🔽
 
-- We need to clone the repository, that **contains the experimental version of the library that allows you to push your trained agent to the Hub.**
+- We need to clone the repository, that contains ML-Agents.
 
 ```bash
-# Clone this specific repository (can take 3min)
-git clone --depth 1 --branch hf-integration-save https://github.com/huggingface/ml-agents
+# Clone the repository (can take 3min)
+git clone --depth 1 https://github.com/Unity-Technologies/ml-agents
 ```
 
 ```bash
@@ -155,8 +155,46 @@ Our reward function:
 
 - For the scope of this notebook, we're not going to modify the hyperparameters, but if you want to try as an experiment, Unity provides very [good documentation explaining each of them here](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md).
 
-- **In the case you want to modify the hyperparameters**, in Google Colab notebook, you can click here to open the config.yaml: `/content/ml-agents/config/ppo/Huggy.yaml`
+- We need to create a config file for Huggy. 
 
+- Go to `/content/ml-agents/config/ppo`
+
+- Create a new file called `Huggy.yaml`
+
+- Copy and paste the content below 🔽
+
+```
+behaviors:
+  Huggy:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 512
+      num_layers: 3
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.995
+        strength: 1.0
+    checkpoint_interval: 200000
+    keep_checkpoints: 15
+    max_steps: 2e6
+    time_horizon: 1000
+    summary_freq: 50000
+```
+
+- Don't forget to save the file!
+
+- **In the case you want to modify the hyperparameters**, in Google Colab notebook, you can click here to open the config.yaml: `/content/ml-agents/config/ppo/Huggy.yaml`
 
 We’re now ready to train our agent 🔥.
 
