@@ -1,4 +1,4 @@
-stable-baselines3[extra]
+stable-baselines3==2.0.0a4
 huggingface_sb3
-panda_gym==2.0.0
-pyglet==1.5.1
+panda-gym
+huggingface_hub
