@@ -222,6 +222,8 @@
     title: (Automatic) Curriculum Learning for RL
   - local: unitbonus3/envs-to-try
     title: Interesting environments to try
+  - local: unitbonus3/learning-agents
+    title: An introduction to Unreal Learning Agents
   - local: unitbonus3/godotrl
     title: An Introduction to Godot RL
   - local: unitbonus3/rl-documentation
