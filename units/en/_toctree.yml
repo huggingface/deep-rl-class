@@ -213,6 +213,8 @@
   - local: unitbonus3/offline-online
     title: Offline vs. Online Reinforcement Learning
   - local: unitbonus3/rlhf
+    title: Generalisation in Reinforcement Learning
+  - local: unitbonus3/generalisation
     title: Reinforcement Learning from Human Feedback
   - local: unitbonus3/decision-transformers
     title: Decision Transformers and Offline RL
