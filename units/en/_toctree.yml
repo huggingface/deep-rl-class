@@ -228,6 +228,8 @@
     title: An introduction to Unreal Learning Agents
   - local: unitbonus3/godotrl
     title: An Introduction to Godot RL
+  - local: unitbonus3/student-works
+    title: Students projects
   - local: unitbonus3/rl-documentation
     title: Brief introduction to RL documentation
 - title: Certification and congratulations
