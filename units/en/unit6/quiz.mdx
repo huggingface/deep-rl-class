@@ -8,29 +8,29 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 <Question
 	choices={[
 		{
-			text: "The bias-variance tradeoff reflects how my model is able to generalize the knowledge to previously given tagged data we give to the model during training time.",
-			explain: "This is the traditional bias-variance tradeoff, but we don't have previously tagged data in Reinforcement Learning, but only a reward signal.",
+			text: "The bias-variance tradeoff reflects how my model is able to generalize the knowledge to previously tagged data we give to the model during training time.",
+			explain: "This is the traditional bias-variance tradeoff in Machine Learning. In our specific case of Reinforcement Learning, we don't have previously tagged data, but only a reward signal.",
       correct: false,
 		},
     {
-			text: "The bias-variance tradeoff reflects how well the reinforcement signal R (reward) reflects the true reward the agent should agent from the enviromment",
+			text: "The bias-variance tradeoff reflects how well the reinforcement signal reflects the true reward the agent should get from the enviromment",
 			explain: "",
       correct: true,
 		},		
 	]}
 />
 
-### Q2: Which of the following statements are correct?
+### Q2: Which of the following statements are True, when talking about models with bias and/or variance in RL?
 <Question
 	choices={[
 		{
-			text: "A biased reward signal returns rewards similar to the real / expected ones from the environment",
+			text: "An unbiased reward signal returns rewards similar to the real / expected ones from the environment",
 			explain: "",
       correct: true,
 		},
     {
-			text: "An unbiased reward signal returns rewards similar to the real / expected ones from the environment",
-			explain: "If a reward signal is unbiased, it means the reward signal we get is similar to the real reward we should be getting from an environment",
+			text: "A biased reward signal returns rewards similar to the real / expected ones from the environment",
+			explain: "If a reward signal is biased, it means the reward signal we get differs from the real reward we should be getting from an environment",
       correct: false,
 		},
      ,
@@ -41,8 +41,8 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 		},		
     {
 			text: "A reward signal with low variance has much noise in it and gets affected by, for example, stochastic (non constant) elements in the environment"
-			explain: "If a reward signal has low variance, then it's less affected by the noise of the environment, as elements appearing randomly in the trajectory",
-      correct: true,
+			explain: "If a reward signal has low variance, then it's less affected by the noise of the environment and produce similar values regardless the random elements in the environment",
+      correct: false,
 		},
 	]}
 />
@@ -63,7 +63,7 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 		},
      ,
     {
-			text: "To reduce the impact of stochastic elements in Monte-Carlo, we can take n strategies and average them, reducing their impact impact in case of noise"
+			text: "To reduce the impact of stochastic elements in Monte-Carlo, we can take `n` strategies and average them, reducing their impact impact in case of noise"
 			explain: "",
       correct: true,
 		},		    
@@ -74,9 +74,9 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 <details>
 <summary>Solution</summary>
 
-The idea behind Actor-Critic is the following - we learn two function approximations:
-1. A policy that controls how our agent acts (π)
-2. A value function to assist the policy update by measuring how good the action taken is (q)
+The idea behind Actor-Critic is that we learn two function approximations:
+1. A `policy` that controls how our agent acts (π)
+2. A `value` function to assist the policy update by measuring how good the action taken is (q)
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step2.jpg" alt="Actor-Critic, step 2"/>
 
@@ -97,7 +97,7 @@ The idea behind Actor-Critic is the following - we learn two function approximat
 		},
     {
 			text: "It adds resistance to stochasticity and reduces high variance",
-			explain: "Monte-carlo randomly estimates everytime a sample of trajectories. However, even same trajectories can have different reward values if they contain stochastic elements",
+			explain: "",
       correct: true,
 		},	    
 	]}
@@ -105,11 +105,12 @@ The idea behind Actor-Critic is the following - we learn two function approximat
 
 
 
-### Q6: What is Advantege in the A2C method?
+### Q6: What is `Advantege` in the A2C method?
 <details>
 <summary>Solution</summary>
 
-Instead of using directly the Action-Value function of the Critic as it is, we calculate an Advantage function,  the relative advantage of an action compared to the others possible at a state.
+Instead of using directly the Action-Value function of the Critic as it is, we could use an `Advantage` function. The idea behind an `Advantage` function is that we calculate the relative advantage of an action compared to the others possible at a state, averaging them.
+
 In other words: how taking that action at a state is better compared to the average value of the state
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/advantage1.jpg" alt="Advantage in A2C"/>
