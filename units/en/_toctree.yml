@@ -148,6 +148,8 @@
     title: Hands-on
   - local: unit5/bonus
     title: Bonus. Learn to create your own environments with Unity and MLAgents
+  - local: unit5/quiz
+    title: Quiz
   - local: unit5/conclusion
     title: Conclusion
 - title: Unit 6. Actor Critic methods with Robotics environments
