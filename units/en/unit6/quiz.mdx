@@ -3,7 +3,7 @@
 The best way to learn and [to avoid the illusion of competence](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf) **is to test yourself.** This will help you to find **where you need to reinforce your knowledge**.
 
 
-### Q1: What of the following interpretations of bias-variance tradeoff is the most accurate in the field of Reinforcement Learning?
+### Q1: Which of the following interpretations of bias-variance tradeoff is the most accurate in the field of Reinforcement Learning?
 
 <Question
 	choices={[
@@ -20,7 +20,7 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 	]}
 />
 
-### Q2: Which of the following statements are True, when talking about models with bias and/or variance in RL?
+### Q2: Which of the following statements are true, when talking about models with bias and/or variance in RL?
 
 <Question
 	choices={[
@@ -48,29 +48,29 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 />
 
 
-### Q3: Which of the following statements are true about Monte-carlo method?
+### Q3: Which of the following statements are true about Monte Carlo method?
 
 <Question
 	choices={[
 		{
-			text: "It's a sampling mechanism, which means we don't consider analyze all the possible states, but a sample of those",
+			text: "It's a sampling mechanism, which means we don't analyze all the possible states, but a sample of those",
 			explain: "",
       			correct: true,
 		},
     		{
 			text: "It's very resistant to stochasticity (random elements in the trajectory)",
-			explain: "Monte-carlo randomly estimates everytime a sample of trajectories. However, even same trajectories can have different reward values if they contain stochastic elements",
+			explain: "Monte Carlo randomly estimates everytime a sample of trajectories. However, even same trajectories can have different reward values if they contain stochastic elements",
       			correct: false,
 		},
     		{
-			text: "To reduce the impact of stochastic elements in Monte-Carlo, we can take `n` strategies and average them, reducing their impact impact in case of noise",
+			text: "To reduce the impact of stochastic elements in Monte Carlo, we take `n` strategies and average them, reducing their individual impact",
 			explain: "",
 			correct: true,
 		},		    
 	]}
 />
 
-### Q4: What is the Advanced Actor-Critic Method (A2C)?
+### Q4: How would you describe, with your own words, the Actor-Critic Method (A2C)?
 
 <details>
 <summary>Solution</summary>
@@ -83,12 +83,12 @@ The idea behind Actor-Critic is that we learn two function approximations:
 
 </details>
 
-### Q5: Which of the following statemets are True about the Actor-Critic Method?
+### Q5: Which of the following statements are true about the Actor-Critic Method?
 
 <Question
 	choices={[
    		 {
-			text: "The Critic does not learn from the training process",
+			text: "The Critic does not learn any function during the training process",
 			explain: "Both the Actor and the Critic function parameters are updated during training time",
       			correct: false,
 		},
