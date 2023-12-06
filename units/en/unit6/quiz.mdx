@@ -10,12 +10,12 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 		{
 			text: "The bias-variance tradeoff reflects how my model is able to generalize the knowledge to previously tagged data we give to the model during training time.",
 			explain: "This is the traditional bias-variance tradeoff in Machine Learning. In our specific case of Reinforcement Learning, we don't have previously tagged data, but only a reward signal.",
-      correct: false,
+      			correct: false,
 		},
-    {
+   		{
 			text: "The bias-variance tradeoff reflects how well the reinforcement signal reflects the true reward the agent should get from the enviromment",
 			explain: "",
-      correct: true,
+      			correct: true,
 		},		
 	]}
 />
@@ -26,23 +26,22 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 		{
 			text: "An unbiased reward signal returns rewards similar to the real / expected ones from the environment",
 			explain: "",
-      correct: true,
+      			correct: true,
 		},
-    {
+    		{
 			text: "A biased reward signal returns rewards similar to the real / expected ones from the environment",
 			explain: "If a reward signal is biased, it means the reward signal we get differs from the real reward we should be getting from an environment",
-      correct: false,
+      			correct: false,
 		},
-     ,
-    {
+    		{
 			text: "A reward signal with high variance has much noise in it and gets affected by, for example, stochastic (non constant) elements in the environment"
 			explain: "",
-      correct: true,
+      			correct: true,
 		},		
-    {
+    		{
 			text: "A reward signal with low variance has much noise in it and gets affected by, for example, stochastic (non constant) elements in the environment"
 			explain: "If a reward signal has low variance, then it's less affected by the noise of the environment and produce similar values regardless the random elements in the environment",
-      correct: false,
+      			correct: false,
 		},
 	]}
 />
@@ -54,18 +53,17 @@ The best way to learn and [to avoid the illusion of competence](https://www.cour
 		{
 			text: "It's a sampling mechanism, which means we don't consider analyze all the possible states, but a sample of those",
 			explain: "",
-      correct: true,
+      			correct: true,
 		},
-    {
+    		{
 			text: "It's very resistant to stochasticity (random elements in the trajectory)",
 			explain: "Monte-carlo randomly estimates everytime a sample of trajectories. However, even same trajectories can have different reward values if they contain stochastic elements",
-      correct: false,
+      			correct: false,
 		},
-     ,
-    {
+    		{
 			text: "To reduce the impact of stochastic elements in Monte-Carlo, we can take `n` strategies and average them, reducing their impact impact in case of noise"
 			explain: "",
-      correct: true,
+			correct: true,
 		},		    
 	]}
 />
@@ -85,27 +83,27 @@ The idea behind Actor-Critic is that we learn two function approximations:
 ### Q5: Which of the following statemets are True about the Actor-Critic Method?
 <Question
 	choices={[
-    {
+   		 {
 			text: "The Critic does not learn from the training process",
 			explain: "Both the Actor and the Critic function parameters are updated during training time",
-      correct: false,
+      			correct: false,
 		},
 		{
 			text: "The Actor learns a policy function, while the Critic learns a value function",
 			explain: "",
-      correct: true,
+      			correct: true,
 		},
-    {
+    		{
 			text: "It adds resistance to stochasticity and reduces high variance",
 			explain: "",
-      correct: true,
+      			correct: true,
 		},	    
 	]}
 />
 
 
 
-### Q6: What is `Advantege` in the A2C method?
+### Q6: What is `Advantage` in the A2C method?
 <details>
 <summary>Solution</summary>
 
