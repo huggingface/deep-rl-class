@@ -160,6 +160,8 @@
     title: Advantage Actor Critic (A2C)
   - local: unit6/hands-on
     title: Advantage Actor Critic (A2C) using Robotics Simulations with Panda-Gym 🤖
+  - local: unit6/quiz
+    title: Quiz
   - local: unit6/conclusion
     title: Conclusion
   - local: unit6/additional-readings
