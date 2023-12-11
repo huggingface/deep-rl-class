@@ -40,8 +40,8 @@ Experience replay helps by **using the experiences of the training more efficien
 
 ⇒ This allows the agent to **learn from the same experiences multiple times**.
 
-2. **Avoid forgetting previous experiences and reduce the correlation between experiences**.
-- The problem we get if we give sequential samples of experiences to our neural network is that it tends to forget **the previous experiences as it gets new experiences.** For instance, if the agent is in the first level and then in the second, which is different, it can forget how to behave and play in the first level.
+2. **Avoid forgetting previous experiences (aka catastrophic interference, or catastrophic forgetting) and reduce the correlation between experiences**.
+- **[catastrophic forgetting](https://en.wikipedia.org/wiki/Catastrophic_interference)**: The problem we get if we give sequential samples of experiences to our neural network is that it tends to forget **the previous experiences as it gets new experiences.** For instance, if the agent is in the first level and then in the second, which is different, it can forget how to behave and play in the first level.
 
 The solution is to create a Replay Buffer that stores experience tuples while interacting with the environment and then sample a small batch of tuples. This prevents **the network from only learning about what it has done immediately before.**
 
