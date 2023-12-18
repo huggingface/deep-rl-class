@@ -59,12 +59,12 @@ First click on the AssetLib and search for “rl”
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot1.png" alt="Godot">
 
-Then click on Godot RL Agents, click Download and unselect the LICIENSE and [README.md](http://README.md) files. Then click install.
+Then click on Godot RL Agents, click Download and unselect the LICENSE and README .md files. Then click install.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot2.png" alt="Godot">
 
 
-The Godot RL Agents plugin is now downloaded to your machine your machine. Now click on Project → Project settings and enable the addon:
+The Godot RL Agents plugin is now downloaded to your machine. Now click on Project → Project settings and enable the addon:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot3.png" alt="Godot">
 
@@ -156,9 +156,9 @@ func set_action(action) -> void:
 	move_action = clamp(action["move_action"][0], -1.0, 1.0)
 ```
 
-We have now defined the agent’s observation, which is the position and velocity of the ball in its local cooridinate space. We have also defined the action space of the agent, which is a single contuninous value ranging from -1 to +1.
+We have now defined the agent’s observation, which is the position and velocity of the ball in its local coordinate space. We have also defined the action space of the agent, which is a single continuous value ranging from -1 to +1.
 
-The next step is to update the Player’s script to use the actions from the AIController, edit the Player’s script by clicking on the scroll next to the player node, update the code in `Player.gd` to the following the following:
+The next step is to update the Player’s script to use the actions from the AIController, edit the Player’s script by clicking on the scroll next to the player node, update the code in `Player.gd` to the following:
 
 ```python
 extends Node3D
@@ -193,9 +193,9 @@ func _on_area_3d_body_entered(body):
 
 We now need to synchronize between the game running in Godot and the neural network being trained in Python. Godot RL agents provides a node that does just that. Open the train.tscn scene, right click on the root node, and click “Add child node”. Then, search for “sync” and add a Godot RL Agents Sync node. This node handles the communication between Python and Godot over TCP.
 
-You can run training live in the the editor, by first launching the python training with `gdrl`
+You can run training live in the editor, by first launching the python training with `gdrl`.
 
-In this simple example, a reasonable policy is learned in several minutes. You may wish to speed up training, click on the Sync node in the train scene and you will see there is a “Speed Up” property exposed in the editor:
+In this simple example, a reasonable policy is learned in several minutes. You may wish to speed up training, click on the Sync node in the train scene, and you will see there is a “Speed Up” property exposed in the editor:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot6.png" alt="Godot">
 
@@ -204,6 +204,8 @@ Try setting this property up to 8 to speed up training. This can be a great bene
 ### There’s more!
 
 We have only scratched the surface of what can be achieved with Godot RL Agents, the library includes custom sensors and cameras to enrich the information available to the agent. Take a look at the [examples](https://github.com/edbeeching/godot_rl_agents_examples) to find out more!
+
+For the ability to export the trained model to .onnx so that you can run inference directly from Godot without the Python server, and other useful training options, take a look at the [advanced SB3 tutorial](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/ADV_STABLE_BASELINES_3.md).
 
 ## Author
 
