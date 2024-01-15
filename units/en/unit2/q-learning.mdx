@@ -27,7 +27,8 @@ Let's go through an example of a maze.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-1.jpg" alt="Maze example"/>
 
-The Q-table is initialized. That's why all values are = 0. This table **contains, for each state and action, the corresponding state-action values.**
+The Q-table is initialized. That's why all values are = 0. This table **contains, for each state and action, the corresponding state-action values.** 
+For this simple example, the state is only defined by the position of the mouse. Therefore, we have 2*3 rows in our Q-table, one row for each possible position of the mouse. In more complex scenarios, the state could contain more information than the position of the actor.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-2.jpg" alt="Maze example"/>
 
