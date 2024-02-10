@@ -107,7 +107,7 @@ In a loop:
 - Update the weights of the policy: \\(\theta \leftarrow \theta + \alpha \hat{g}\\)
 
 We can interpret this update as follows:
-- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action at from state st.
+- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) is the direction of **steepest increase of the (log) probability** of selecting action \\(a_t\\) from state \\(s_t\\).
 This tells us **how we should change the weights of policy** if we want to increase/decrease the log probability of selecting action \\(a_t\\) at state \\(s_t\\).
 - \\(R(\tau)\\): is the scoring function:
   - If the return is high, it will **push up the probabilities** of the (state, action) combinations.
