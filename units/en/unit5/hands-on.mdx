@@ -288,17 +288,16 @@ Now let's try a more challenging environment called Pyramids.
 - We need to download it and place it into `./training-envs-executables/linux/`
 - We use a linux executable because we're using colab, and the colab machine's OS is Ubuntu (linux)
 
-Download the file Pyramids.zip from https://drive.google.com/uc?export=download&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H using `wget`. Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
+We downloaded the file Pyramids-linux.zip from from https://huggingface.co/spaces/unity/ML-Agents-Pyramids/resolve/main/Pyramids.zip using `wget`
 
 ```python
-!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H" -O ./training-envs-executables/linux/Pyramids.zip && rm -rf /tmp/cookies.txt
+wget "https://huggingface.co/spaces/unity/ML-Agents-Pyramids/resolve/main/Pyramids.zip" -O ./training-envs-executables/linux/Pyramids.zip
 ```
 
 Unzip it
 
 ```python
-%%capture
-!unzip -d ./training-envs-executables/linux/ ./training-envs-executables/linux/Pyramids.zip
+unzip -d ./training-envs-executables/linux/ ./training-envs-executables/linux/Pyramids.zip
 ```
 
 Make sure your file is accessible
