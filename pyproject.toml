@@ -1,0 +1,8 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "hugging_face_rl"
+authors = [{name = "Jialin Yi", email = "jialinyi@sas.upenn.edu"}]
+dynamic = ["0.1", "hugging_face_rl"]
