@@ -2,7 +2,7 @@
 
 ## Getting the big picture
 
-We just learned that policy-gradient methods aim to find parameters \\( \theta \\) that **maximize the expected return**.
+We just learned that policy-gradient methods aim to find parameters  \\( \theta \\) that **maximize the expected return**.
 
 The idea is that we have a *parameterized stochastic policy*. In our case, a neural network outputs a probability distribution over actions. The probability of taking each action is also called the *action preference*.
 
@@ -20,7 +20,7 @@ But **how are we going to optimize the weights using the expected return**?
 The idea is that we're going to **let the agent interact during an episode**. And if we win the episode, we consider that each action taken was good and must be more sampled in the future
 since they lead to win.
 
-So for each state-action pair, we want to increase the \\(P(a|s)\\): the probability of taking that action at that state. Or decrease if we lost.
+So for each state-action pair, we want to increase the  \\(P(a|s)\\): the probability of taking that action at that state. Or decrease if we lost.
 
 The Policy-gradient algorithm (simplified) looks like this:
 <figure class="image table text-center m-0 w-full">
@@ -31,13 +31,13 @@ Now that we got the big picture, let's dive deeper into policy-gradient methods.
 
 ## Diving deeper into policy-gradient methods
 
-We have our stochastic policy \\(\pi\\) which has a parameter \\(\theta\\). This \\(\pi\\), given a state, **outputs a probability distribution of actions**.
+We have our stochastic policy  \\(\pi\\) which has a parameter  \\(\theta\\). This  \\(\pi\\), given a state, **outputs a probability distribution of actions**.
 
 <figure class="image table text-center m-0 w-full">
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="Policy"/>
 </figure>
 
-Where  \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action \\(a_t\\) from state \\(s_t\\) given our policy.
+Where  \\(\pi_\theta(a_t|s_t)\\) is the probability of the agent selecting action  \\(a_t\\) from state  \\(s_t\\) given our policy.
 
 **But how do we know if our policy is good?** We need to have a way to measure it. To know that, we define a score/objective function called  \\(J(\theta)\\).
 
@@ -55,11 +55,11 @@ Let's give some more details on this formula:
 
 - \\(R(\tau)\\) :  Return from an arbitrary trajectory. To take this quantity and use it to calculate the expected return, we need to multiply it by the probability of each possible trajectory.
 
-- \\(P(\tau;\theta)\\) : Probability of each possible trajectory \\(\tau\\) (that probability depends on  \\(\theta\\) since it defines the policy that it uses to select the actions of the trajectory which has an impact of the states visited).
+- \\(P(\tau;\theta)\\) : Probability of each possible trajectory  \\(\tau\\) (that probability depends on  \\(\theta\\) since it defines the policy that it uses to select the actions of the trajectory which has an impact of the states visited).
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
 
-- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given \\(\theta \\) multiplied by the return of this trajectory.
+- \\(J(\theta)\\) : Expected return, we calculate it by summing for all trajectories, the probability of taking that trajectory given  \\(\theta \\) multiplied by the return of this trajectory.
 
 Our objective then is to maximize the expected cumulative reward by finding the  \\(\theta \\) that will output the best action probability distributions:
 
