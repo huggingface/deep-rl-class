@@ -233,7 +233,9 @@
   - local: unitbonus3/learning-agents
     title: An introduction to Unreal Learning Agents
   - local: unitbonus3/godotrl
-    title: An Introduction to Godot RL
+    title: An introduction to Godot RL
+  - local: unitbonus3/datapredict
+    title: An introduction to DataPredict for Reinforcement Learning in Roblox
   - local: unitbonus3/student-works
     title: Students projects
   - local: unitbonus3/rl-documentation
