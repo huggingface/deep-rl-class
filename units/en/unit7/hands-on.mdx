@@ -78,6 +78,12 @@ pip install -e ./ml-agents-envs
 pip install -e ./ml-agents
 ```
 
+ Mac users on Apple Silicon may encounter troubles with the installation (e.g. ONNX wheel build failing), you should first try to install grpcio:
+```bash
+conda install grpcio
+```
+[This github issue](https://github.com/Unity-Technologies/ml-agents/issues/6019) in the official ml-agent repo might also help you.
+
 Finally, you need to install git-lfs: https://git-lfs.com/
 
 Now that it’s installed, we need to add the environment training executable. Based on your operating system you need to download one of them, unzip it and place it in a new folder inside `ml-agents` that you call `training-envs-executables`
@@ -221,8 +227,14 @@ Depending on your hardware, 5M timesteps (the recommended value, but you can als
 
 Depending on the executable you use (windows, ubuntu, mac) the training command will look like this (your executable path can be different so don’t hesitate to check before running).
 
+For Windows, it might look like this:
 ```bash
 mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos.exe --run-id="SoccerTwos" --no-graphics
+```
+
+For Mac, it might look like this:
+```bash
+mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos/SoccerTwos.app --run-id="SoccerTwos" --no-graphics
 ```
 
 The executable contains 8 copies of SoccerTwos.
