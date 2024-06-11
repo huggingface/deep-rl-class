@@ -6,7 +6,7 @@
 
 DIAMBRA Arena Environments usage follows the standard RL interaction framework: the agent sends an action to the environment, which process it and performs a transition accordingly, from the starting state to the new state, returning the observation and the reward to the agent to close the interaction loop. The figure below shows this typical interaction scheme and data flow.
 
-<img src="https://docs.diambra.ai/images/envs/basicUsage.png" alt="diambraArena"/>
+<img src="https://raw.githubusercontent.com/diambra/arena/main/img/basicUsage.png" alt="diambraArena"/>
 
 The shortest snippet for a complete basic execution of an environment consists of just a few lines of code, and is presented in the code block below:
 
@@ -90,7 +90,7 @@ Some of them are shared among all environments while others are specific to the 
 
 Actions of the interfaced games can be grouped in two categories: move actions (Up, Left, etc.) and attack ones (Punch, Kick, etc.). DIAMBRA Arena provides two different action spaces: [Discrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/discrete.py) and [MultiDiscrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/multi_discrete.py). The former is a single list composed by the union of move and attack actions (of type `gymnasium.spaces.Discrete`), while the latter consists of two sets combined, for move and attack actions respectively (of type `gymnasium.spaces.MultiDiscrete`). The complete visual description of available action spaces is shown in the figure below, where both choices are presented via the correspondent gamepad buttons configuration for Dead Or Alive ++.
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/diambraarena.png" alt="diambraArena"/>
+<img src="https://docs.diambra.ai/images/envs/actionSpaces.png" alt="diambraArena"/>
 
 Each game has specific action spaces since attack buttons (and their combinations) are, in general, game-dependent.
 
@@ -116,9 +116,13 @@ Environment observations are composed by two main elements: a visual one (the ga
 
 The detailed observation space description can be found in the official documentation at [this page](https://docs.diambra.ai/envs/#observation-space) for the shared observations, and at [this page](https://docs.diambra.ai/envs/games/sfiii3n/#observation-space) for the Street Fighter specific ones.
 
-<img src="https://docs.diambra.ai/images/envs/sfiii3nData.png" alt="diambraArena"/>
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+    <img src="https://docs.diambra.ai/images/envs/sfiii3nData.png" alt="diambraArena"/>
+</div>
 
-<img src="https://docs.diambra.ai/images/envs/sfiii3nData2.png" alt="diambraArena"/>
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+    <img src="https://docs.diambra.ai/images/envs/sfiii3nData2.png" alt="diambraArena"/>
+</div>
 
 ### Reward Function
 
