@@ -1,11 +1,55 @@
 # Introduction
 
-<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/thumbnail.png" alt="Unit bonus 3 thumbnail"/>
+## DIAMBRA Arena Overview
 
+DIAMBRA Arena is a software package featuring a collection of high-quality environments for Reinforcement Learning research and experimentation. It provides a standard interface to popular arcade emulated video games, offering a Python API fully compliant with OpenAI Gym/Gymnasium format, that makes its adoption smooth and straightforward.
 
-Congratulations on finishing this course! **You now have a solid background in Deep Reinforcement Learning**.
-But this course was just the beginning of your Deep Reinforcement Learning journey, there are so many subsections to discover. In this optional unit, we **give you resources to explore multiple concepts and research topics in Reinforcement Learning**.
+It supports all major Operating Systems (Linux, Windows and MacOS) and can be easily installed via Python PIP. Following the [installation instructions here](https://docs.diambra.ai/#installation) listed in the official documentation, you will obtain both the `diambra` command line interface (CLI) and `diambra-arena` package, which provides our environments.
 
-Contrary to other units, this unit is a collective work of multiple people from Hugging Face. We mention the author for each unit.
+### Main Features
 
-Sound fun? Let's get started 🔥,
+All environments are episodic Reinforcement Learning tasks, with discrete actions (gamepad buttons) and observations composed by screen pixels plus additional numerical data (RAM states like characters health bars or characters stage side).
+
+They all support both single player (1P) as well as two players (2P) mode, making them the perfect resource to explore Standard RL (both online and offline) together with a wide number of Reinforcement Learning subfields, like Competitive Multi-Agent, Competitive Human-Agent, Self-Play, Imitation Learning and Human-in-the-Loop.
+
+Interfaced games have been selected among the most popular fighting retro-games. While sharing the same fundamental mechanics, they provide different challenges, with specific features such as different type and number of characters, how to perform combos, health bars recharging, etc. Whenever possible, games are released with all hidden/bonus characters unlocked.
+
+### Post-Installation Steps
+
+#### Download Game ROM(s) and Check Validity
+
+After completing the installation, the user needs to download the Game ROM(s) of his interest and check their validity according to the following steps.
+
+First, it is possible to check available games with the dedicated CLI command:
+
+```shell
+diambra arena list-roms
+```
+
+which will produce an output similar to the following:
+
+```shell
+[...]
+ Title: Street Fighter III - game_id: sfiii3n
+   Difficulty levels: Min 1 - Max 8
+   SHA256 sum: 7239b5eb005488db22ace477501c574e9420c0ab70aeeb0795dfeb474284d416
+   Original ROM name: sfiii3n.zip
+   Search keywords: ['STREET FIGHTER III 3RD STRIKE: FIGHT FOR THE FUTUR [JAPAN] (CLONE)', 'street-fighter-iii-3rd-strike-fight-for-the-futur-japan-clone', '106255', 'wowroms']
+[...]
+```
+
+Then, you can search ROMs on the web using *Search Keywords* provided by the game list command reported above. Follow game-specific notes reported there, and store all ROMs in the same folder, whose absolute path will be referred in the following as `/absolute/path/to/roms/folder/`.
+
+Finally, you should check ROM(s) validity running:
+
+```shell
+diambra arena check-roms /absolute/path/to/roms/folder/romFileName.zip
+```
+
+The output for a valid ROM file would look like the following:
+
+```shell
+Correct ROM file for Street Fighter III, sha256 = 7239b5eb005488db22ace477501c574e9420c0ab70aeeb0795dfeb474284d416
+```
+
+After completing these steps, you can proceed and execute the first test agent in the environments as explained in the next stections.

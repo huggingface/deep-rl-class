@@ -210,33 +210,47 @@
     title: PPO with Sample Factory and Doom
   - local: unit8/conclusion-sf
     title: Conclusion
-- title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
+- title: Bonus Unit 3. Train your AI to Play Street Fighter III with DIAMBRA Arena
   sections:
   - local: unitbonus3/introduction
     title: Introduction
-  - local: unitbonus3/model-based
+  - local: unitbonus3/environment
+    title: Environment and Wrappers
+  - local: unitbonus3/training
+    title: Reinforcement Learning Training
+  - local: unitbonus3/agent-submission
+    title: Submit your Agent on DIAMBRA Competition Platform
+  - local: unitbonus3/other-games
+    title: Train on Other Games
+  - local: unitbonus3/references
+    title: References
+- title: Bonus Unit 4. Advanced Topics in Reinforcement Learning
+  sections:
+  - local: unitbonus4/introduction
+    title: Introduction
+  - local: unitbonus4/model-based
     title: Model-Based Reinforcement Learning
-  - local: unitbonus3/offline-online
+  - local: unitbonus4/offline-online
     title: Offline vs. Online Reinforcement Learning
-  - local: unitbonus3/generalisation
-    title: Generalisation Reinforcement Learning
-  - local: unitbonus3/rlhf
+  - local: unitbonus4/generalization
+    title: Generalization Reinforcement Learning
+  - local: unitbonus4/rlhf
     title: Reinforcement Learning from Human Feedback
-  - local: unitbonus3/decision-transformers
+  - local: unitbonus4/decision-transformers
     title: Decision Transformers and Offline RL
-  - local: unitbonus3/language-models
+  - local: unitbonus4/language-models
     title: Language models in RL
-  - local: unitbonus3/curriculum-learning
+  - local: unitbonus4/curriculum-learning
     title: (Automatic) Curriculum Learning for RL
-  - local: unitbonus3/envs-to-try
+  - local: unitbonus4/envs-to-try
     title: Interesting environments to try
-  - local: unitbonus3/learning-agents
+  - local: unitbonus4/learning-agents
     title: An introduction to Unreal Learning Agents
-  - local: unitbonus3/godotrl
+  - local: unitbonus4/godotrl
     title: An Introduction to Godot RL
-  - local: unitbonus3/student-works
+  - local: unitbonus4/student-works
     title: Students projects
-  - local: unitbonus3/rl-documentation
+  - local: unitbonus4/rl-documentation
     title: Brief introduction to RL documentation
 - title: Certification and congratulations
   sections:
