@@ -90,7 +90,7 @@ Some of them are shared among all environments while others are specific to the 
 
 Actions of the interfaced games can be grouped in two categories: move actions (Up, Left, etc.) and attack ones (Punch, Kick, etc.). DIAMBRA Arena provides two different action spaces: [Discrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/discrete.py) and [MultiDiscrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/multi_discrete.py). The former is a single list composed by the union of move and attack actions (of type `gymnasium.spaces.Discrete`), while the latter consists of two sets combined, for move and attack actions respectively (of type `gymnasium.spaces.MultiDiscrete`). The complete visual description of available action spaces is shown in the figure below, where both choices are presented via the correspondent gamepad buttons configuration for Dead Or Alive ++.
 
-<img src="https://docs.diambra.ai/images/envs/actionSpaces.png" alt="diambraArena"/>
+<img src="https://docs.diambra.ai/images/envs/actionSpaces.png" alt="Description" style={{ width: '300px', height: 'auto', backgroundColor: '#d0d0d5' }} />
 
 Each game has specific action spaces since attack buttons (and their combinations) are, in general, game-dependent.
 
