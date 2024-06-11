@@ -1,9 +1,100 @@
-# Introduction
+# DIAMBRA Competition Platform
 
 <img src="https://raw.githubusercontent.com/diambra/.github/master/img/platform.jpg" alt="Unit bonus 3 thumbnail"/>
 
+Our competition platform allows you to submit your agents and compete with other coders around the globe in epic video games tournaments!
 
-#### Agent Script for Competition
+It features a public global leaderboard where users are ranked by the best score achieved by their agents in our different environments.
+
+It also offers you the possibility to unlock cool achievements depending on the performances of your agent.
+
+Submitted agents are evaluated and their episodes are streamed on our Twitch channel.
+
+We aimed at making the submission process as smooth as possible, try it now! You find all the details in the sub-pages linked below.
+
+## Basic Agent Script
+
+The central element of a submission is the agent python script. Its structure is always composed by two main parts: the preparation step, where the agent and the environment setup is completed, and the interaction loop, where the classical agent-environment interaction happens.
+
+After a first call to the reset method, you start iterating alternating action selection and environment stepping, resetting the environment when the episode is done. That's it, we take care of the rest.
+
+There is one thing that is worth noticing: since we want your submission to be the same no matter how many episodes are needed to evaluate it, you need to implement the while loop in a way that it keeps iterating indefinitely (`while True:`) and only exits (the `break` statement) when the value `info["env_done"]` is true. This value is set by us and used to let the agent know that the evaluation has been completed. In this way, the same script can be used to run evaluations made of 3, 5, 10 or whatever number of episodes you want, without changing a single line.
+
+```python
+#!/usr/bin/env python3
+import diambra.arena
+from diambra.arena import SpaceTypes, Roles, EnvironmentSettings
+
+# Settings
+settings = EnvironmentSettings()
+settings.step_ratio = 6
+settings.frame_shape = (128, 128, 1)
+settings.role = Roles.P2
+settings.difficulty = 4
+settings.action_space = SpaceTypes.MULTI_DISCRETE
+
+env = diambra.arena.make("sfiii3n", settings)
+observation, info = env.reset()
+
+while True:
+    action = env.action_space.sample()
+    observation, reward, terminated, truncated, info = env.step(action)
+
+    if terminated or truncated:
+        observation, info = env.reset()
+        if info["env_done"]:
+            break
+
+# Close the environment
+env.close()
+```
+
+## How To Submit An Agent
+
+The basic process to submit an agent consists in the following steps:
+
+1. Write a python script in which your agent interact with the environment exactly as if you were performing evaluation in your local machine
+2. Store your trained agent's scripts and weights (if any) in a private repository and create a personal access token to the repository (in our examples we will use GitHub).
+3. Submit the agent using our Command Line Interface specifying your private repository files path, your secret token and one of the public pre-built dependencies images we provide
+
+{{% notice tip %}}
+In our <a href="https://github.com/diambra/agents" target="_blank">DIAMBRA Agents repo</a> we provide many examples, ranging from a trivial random agent to RL agents trained with state-of-the-art RL libraries.
+{{% /notice %}}
+
+In the subsections linked below, we guide you through this process, starting from the easiest use case and building upon it to show you how to leverage the most advanced features.
+
+### Submit Pre-Built Agents
+
+To get the feeling of how an agent submission works, you can leverage our pre-built agents. In <a href="https://github.com/diambra/agents" target="_blank">DIAMBRA Agents repo</a>, together with different source code examples, we also provide <a href="https://github.com/orgs/diambra/packages?repo_name=agents" target="_blank">pre-built docker images (packages)</a> for some of them.
+
+For example, <a href="https://github.com/diambra/agents/pkgs/container/agent-random-1" target="_blank">here</a> you find the pre-built docker image for the random agent correspondent to <a href="https://github.com/diambra/agents/blob/main/basic/random_1/agent.py" target="_blank">this</a> source code. As indicated by the python script settings, this random agent will play using a "Random" character in a random game.
+
+Using this pre-built docker image you can easily perform your first submission ever on DIAMBRA platform, and appear in the official online leaderboard by simply typing in your preferred shell the following command:
+
+```shell
+diambra agent submit diambra/agent-random-1:main
+```
+{{% notice note %}}
+If you want to specify the game on which to run the random agent, use the `--gameId` command line argument that our pre-built image accepts, when submitting the docker image as follows: `diambra agent submit diambra/agent-random-1:main --gameId tektagt`. Additional similar use cases are covered in the <a href="../../argumentsandcommands/">"Arguments and Commands"</a> page.
+{{% /notice %}}
+
+After running the command, you will receive a submission confirmation, its identification number as well as the url where to see the results, something similar to the following:
+
+```
+diambra agent submit diambra/agent-random-1:main
+🖥️  (178) Agent submitted: https://diambra.ai/submission/178
+```
+
+{{% notice note %}}
+By default, the submission will select the lowest difficulty level (`Easy`) of the three available (`Easy`, `Medium`, `Hard`). To change this, you can add the `--submission.difficulty` argument: `diambra agent submit --submission.difficulty Medium diambra/agent-random-1:main`
+{{% /notice %}}
+
+
+{{% notice warning %}}
+As shown here, it is possible to embed your agent files (i.e. scripts and weights) in the dependencies docker image and submit only that. Keep in mind that this image needs to be public and will be visible on the platform, so every user will be able to use it for his own submissions.
+{{% /notice %}}
+
+### Submit Your Own Agent
 
 Finally, after the agent training is completed, besides running it locally in your own machine, you may want to submit it to our <a href="../../competitionplatform">Competition Platform!</a> To do so, you can use the following script that provides a ready to use, flexible example that can accommodate different models, games and settings.
 
