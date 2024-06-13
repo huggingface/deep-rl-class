@@ -2,7 +2,7 @@
 
 <img src="https://github.com/diambra/agents/blob/main/img/agents.jpg?raw=true" alt="DIAMBRA Agents"/>
 
-For training our model, we will rely on already implemented RL algorithms, leveraging state-of-the-art Reinforcement Learning libraries. There are multiple advantages in doing so: this libraries provide high quality algorithms, efficiently implemented and continuously tested, they allow to focus efforts on higher level aspects such as policy network architecture, features selection, and hyper-parameters tuning, they provide native solutions to parallelize environment execution, and, in some cases, they even support distributed training using multiple GPUs in a single workstation or in cluster contexts.
+For training our model, we will rely on already implemented RL algorithms, leveraging state-of-the-art Reinforcement Learning libraries. There are multiple advantages in doing so: these libraries provide high quality algorithms, efficiently implemented and continuously tested, they allow to focus efforts on higher level aspects such as policy network architecture, features selection, and hyper-parameters tuning, they provide native solutions to parallelize environment execution, and, in some cases, they even support distributed training using multiple GPUs in a single workstation or in cluster contexts.
 
 DIAMBRA Arena natively supports three of the most important RL libraries: [Stable Baselines 3](https://stable-baselines3.readthedocs.io/en/master/), [Ray RLlib](https://docs.ray.io/en/latest/rllib/index.html) and [SheepRL](https://github.com/Eclectic-Sheep/sheeprl/tree/main).
 
@@ -384,8 +384,6 @@ from diambra.arena.stable_baselines3.make_sb3_env import make_sb3_env, Environme
 from diambra.arena.stable_baselines3.sb3_utils import linear_schedule, AutoSave
 from stable_baselines3 import PPO
 
-# diambra run -s 8 python stable_baselines3/training.py --cfgFile $PWD/stable_baselines3/cfg_files/sfiii3n/sr6_128x4_das_nc.yaml
-
 def main(cfg_file):
     # Read the cfg file
     yaml_file = open(cfg_file)
@@ -530,4 +528,4 @@ ppo_settings:
   time_steps: 512
 ```
 
-Finally, after the agent training is completed, besides running it locally in your own machine, you may want to submit it to **DIAMBRA Competition Platform!** The next section provides a step by step guide to do exactly that.
+Finally, after the agent training is completed, besides running it locally in your own machine, you may want to submit it to **DIAMBRA Competition Platform to compete with other coders around the globe in epic video games tournaments!** The next section provides a step by step guide to do exactly that.

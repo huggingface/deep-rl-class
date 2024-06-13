@@ -51,7 +51,7 @@ To run a python script using the CLI, one can just execute the following command
 diambra run -r /absolute/path/to/roms/folder/ python diambra_arena_gist.py
 ```
 
-More information on the CLI can be found in the official documentation on [this page](https://docs.diambra.ai/gettingstarted/#diambra-command-line-interface-cli").
+More information on the CLI can be found in the official documentation on [this page](https://docs.diambra.ai/gettingstarted/#diambra-command-line-interface-cli).
 
 ### Settings
 
@@ -61,7 +61,7 @@ All environments have different options that can be specified using a dedicated 
     - **Game settings**: they specify features of the game (e.g. difficulty level)
     - **Player settings**: they specify player-related aspects (e.g. selected character and its outfits)
 
-Settings specifications when instantiating the environment is done by passing the `EnvironmentSettings` class, properly filled, to the environment `make` call as follows:
+Settings specification when instantiating the environment is done by passing the `EnvironmentSettings` class, properly filled, to the environment `make` call as follows:
 
 ```python
 from diambra.arena import EnvironmentSettings
@@ -164,7 +164,7 @@ env = diambra.arena.make("sfiii3n", settings, wrapper_settings)
 
 For the purpose of this tutorial, we will experiment with a lot of them:
 - **No Attack Buttons Combinations**: restricts the number of attack actions to single buttons, removing attack buttons combinations
-- **Stack Frames With Optional Dilation**: Stacks latest _N_ frames together along the third dimension and builds frame stacks adding one every _N_ frames
+- **Stack Frames With Optional Dilation**: Stacks latest _N_ frames together along the third dimension
 - **Add Last Action to Observation**: Adds latest action to the observation space dictionary, under the key `action`
 - **Stack Actions**: Stacks latest *N* actions together
 - **Scale Observation**: Activates observation scaling, optionally preventing scaling to be applied on the game frame and on discrete binary observations
