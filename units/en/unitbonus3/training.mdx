@@ -10,7 +10,7 @@ DIAMBRA Arena natively supports three of the most important RL libraries: [Stabl
 
 The classical way to create an agent able to play a game is to hand-code the rules governing its behavior. These rules can vary from very simple heuristics to very complex behavioral trees, but they all have in common the need of an expert coder that knows the game and is able to distill the key elements of it to craft the scripted bot.
 
-The following are two examples of (very simple) scripted agents interfaced with our environments, and they are available here: <a href="https://github.com/diambra/agents/tree/main/basic" target="_blank">DIAMBRA Agents - Basic</a>.
+The following are two examples of (very simple) scripted agents interfaced with our environments, and they are available here: [DIAMBRA Agents - Basic](https://github.com/diambra/agents/tree/main/basic).
 
 ### No-Action Agent
 
@@ -178,7 +178,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 How to run it:
@@ -531,20 +530,4 @@ ppo_settings:
   time_steps: 512
 ```
 
-#### Agent Script for Competition
-
-Finally, after the agent training is completed, besides running it locally in your own machine, you may want to submit it to our <a href="../../competitionplatform">Competition Platform!</a> To do so, you can use the following script that provides a ready to use, flexible example that can accommodate different models, games and settings.
-
-{{% notice tip %}}
-To submit your trained agent to our platform, compete for the first leaderboard positions, and unlock our achievements, follow the simple steps described in the <a href="../../competitionplatform/howtosubmitanagent/">"How to Submit an Agent"</a> section.
-{{% /notice %}}
-
-{{< github_code "https://raw.githubusercontent.com/diambra/agents/main/stable_baselines3/agent.py" >}}
-
-How to run it locally:
-
-```shell
-diambra run python agent.py --cfgFile /absolute/path/to/config.yaml --trainedModel "model_name"
-```
-
-and the configuration file to be used is the same that was used for training it, like the one reported in the previous paragraph.
+Finally, after the agent training is completed, besides running it locally in your own machine, you may want to submit it to **DIAMBRA Competition Platform!** The next section provides a step by step guide to do exactly that.
