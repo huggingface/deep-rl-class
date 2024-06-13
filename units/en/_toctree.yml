@@ -220,8 +220,6 @@
     title: Reinforcement Learning Training
   - local: unitbonus3/agent-submission
     title: Submit your Agent on DIAMBRA Competition Platform
-  - local: unitbonus3/other-games
-    title: Train on Other Games
   - local: unitbonus3/references
     title: References
 - title: Bonus Unit 4. Advanced Topics in Reinforcement Learning
