@@ -1,0 +1,53 @@
+# Train our robot
+
+<Tip>
+In order to start training, we’ll first need to install the <a href="https://imitation.readthedocs.io/en/latest/getting-started/installation.html">imitation</a> library in the same venv / conda env where you installed Godot RL Agents by using: <code>pip install imitation</code>
+</Tip>
+
+### Download a copy of the [imitation learning](https://github.com/edbeeching/godot_rl_agents/blob/main/examples/sb3_imitation.py) script from the Godot RL Repository.
+
+### Run training using the arguments below:
+
+```python
+sb3_imitation.py --env_path="path_to_ILTutorial_executable" --bc_epochs=100 --gail_timesteps=1450000 --demo_files "path_to_expert_demos.json" --n_parallel=4 --speedup=20 --onnx_export_path=model.onnx --experiment_name=ILTutorial
+```
+
+**Set the env path to the exported game, and demo files path to the recorded demos. If you have multiple demo files add them with a space in between, e.g. `--demo_files demos.json demos2.json`.**
+
+You can also set a large amount of timesteps for `--gail_timesteps` and then manually stop training with `CTRL+C`. I used this method to stop training when the reward started to approach 3, which was at `total_timesteps | 1.38e+06`. That took ~41 minutes, and the BC pre-training took ~5.5 minutes on my PC using CPU for training.
+
+To observe the environment while training, add the `--viz` argument. For the duration of the BC training, the env will be frozen as this stage doesn’t use the env except to get some information about the observation and action spaces. During the GAIL training stage, the env rendering will update.
+
+Here are the `ep_rew_mean` and `ep_rew_wrapped_mean` stats from the logs displayed using [tensorboard](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/TRAINING_STATISTICS.md), we can see that they are closely matching in this case:
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/
+en/unit13/training_results.png" alt="training results"/>
+
+
+<Tip>
+You can find the logs in `logs/ILTutorial` relative to the path you started training from. If making multiple runs, change the `--experiment_name` argument between each.
+</Tip>
+
+Even though setting the env rewards is not necessary and not used for the training here, a simple sparse reward was implemented to track success. Falling outside the map, in water, or traps sets `reward += -1`, while activating the lever, collecting the key, and opening the chest each set `reward += 1`. If the `ep_rew_mean` approaches 3, we are getting a good result. `ep_rew_wrapped_mean` is the reward from the GAIL discriminator, which does not directly tell us how successful the agent is at solving the environment.
+
+### Let’s test the trained agent
+
+After training, you’ll find a `model.onnx` file in the folder you started the training script from (you can also find the full path to the `.onnx` file in the training log in the console, near the end). **Copy it to the Godot game project folder.**
+
+### Open the onnx inference scene
+
+This scene, like the demo record scene, uses only one copy of the level. It also has it’s `Sync` node mode set to `Onnx Inference`. 
+
+**Click on the `Sync` node and set the `Onnx Model Path` property to `model.onnx`.** 
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/
+en/unit13/onnx_inference_scene.jpg" alt="onnx inference scene"/>
+
+**Press F6 to start the scene and let’s see what the agent has learned!**
+
+Video of the trained agent:
+<video src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/onnx_inference_test.mp4" type="video/mp4" controls autoplay loop mute />
+
+It seems the agent is capable of collecting the key from both positions (left platform or right platform) and replicates the recorded behavior well. **If you’re getting similar results, well done, you’ve successfully completed this tutorial!** 🏆👏
+
+If your results are significantly different, note that the amount and quality of recorded demos can affect the results, and adjusting the number of steps for BC/GAIL stages as well as modifying the hyper-parameters in the Python script can potentially help. There’s also some run-to-run variation, so sometimes the results can be slightly different even with the same settings.

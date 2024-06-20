@@ -238,6 +238,20 @@
     title: Students projects
   - local: unitbonus3/rl-documentation
     title: Brief introduction to RL documentation
+- title: Bonus Unit 5. Imitation Learning with Godot RL Agents
+  sections:
+  - local: unitbonus5/introduction
+    title: Introduction
+  - local: unitbonus5/the-environment
+    title: The environment
+  - local: unitbonus5/getting-started
+    title: Getting started
+  - local: unitbonus5/train-our-robot
+    title: Train our robot
+  - local: unitbonus5/customize-the-environment
+    title: (Optional) Customize the environment
+  - local: unitbonus5/conclusion
+    title: Conclusion
 - title: Certification and congratulations
   sections:
   - local: communication/conclusion
