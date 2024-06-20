@@ -93,7 +93,7 @@ func get_reward() -> float:
 	return reward
 ```
 
-In `get_obs()`, we first get the obs from the two Raycast sensors added to the `AIController3D` node in the inspector, and add them to the obs, then we get the relative position vectors to chest, lever, key, and raft, which we separate into normalized directions and distances, and then we add them to the obs as well.
+In `get_obs()`, we first get the obs from the two Raycast sensors added to the `AIController3D` node in the inspector, and add them to the obs, then we get the relative position vectors to chest, lever, key, and raft, which we separate into directions and distances, and then we add them to the obs as well.
 
 We also add other game state info to the obs: 
 
@@ -103,7 +103,7 @@ We also add other game state info to the obs:
 - is the player on floor (also determines whether the player can jump),
 - the normalized local velocity of the player.
 
-The goal of normalizing the obs is to get them all into the -1.0 to 1.0 value range, which can help with training the model. For boolean values such as `_is_lever_pulled`, we convert them to floats (0 or 1).
+We convert boolean values such as `_is_lever_pulled` to floats (0 or 1).
 
 In `get_reward()`, we only need to return the current reward.
 
