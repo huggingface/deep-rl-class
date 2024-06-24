@@ -230,7 +230,8 @@
     title: Model-Based Reinforcement Learning
   - local: unitbonus4/offline-online
     title: Offline vs. Online Reinforcement Learning
-  - local: unitbonus4/generalization
+  - local: unitbonus4/generalisation
+
     title: Generalization Reinforcement Learning
   - local: unitbonus4/rlhf
     title: Reinforcement Learning from Human Feedback
