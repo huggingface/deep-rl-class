@@ -1,0 +1,190 @@
+# DIAMBRA Competition Platform
+
+<img src="https://raw.githubusercontent.com/diambra/.github/master/img/platform.jpg" alt="Unit bonus 3 thumbnail"/>
+
+DIAMBRA Competition Platform allows you to submit your agents and compete with other coders around the globe in epic video games tournaments!
+
+It features a public global leaderboard where users are ranked by the best score achieved by their agents in the different environments. It also offers you the possibility to unlock cool achievements depending on the performances of your agent. Submitted agents are evaluated and their episodes are streamed on DIAMBRA Twitch channel.
+
+All the details explaining how to perform a submission are described in the next sections.
+
+## Basic Agent Script
+
+The central element of a submission is the agent python script. An example is provided in the next code block. Its structure is always composed by two main parts: the preparation step, where the agent and the environment setup is completed, and the interaction loop, where the classical agent-environment interaction happens.
+
+After a first call to the reset method, you start iterating alternating action selection and environment stepping, resetting the environment when the episode is done.
+
+There is one thing that is worth noticing: since your submission needs to be the same no matter how many episodes are needed to evaluate it, you need to implement the while loop in a way that it keeps iterating indefinitely (`while True:`) and only exits (the `break` statement) when the value `info["env_done"]` is true. This value is set by the evaluation procedure and used to let the agent know that it completed. In this way, the same script can be used to run evaluations made of 3, 5, 10 or whatever number of episodes are needed, without changing a single line in the agent script.
+
+```python
+#!/usr/bin/env python3
+import diambra.arena
+from diambra.arena import SpaceTypes, Roles, EnvironmentSettings
+
+# Settings
+settings = EnvironmentSettings()
+settings.step_ratio = 6
+settings.frame_shape = (128, 128, 1)
+settings.role = Roles.P2
+settings.difficulty = 4
+settings.action_space = SpaceTypes.MULTI_DISCRETE
+
+env = diambra.arena.make("sfiii3n", settings)
+observation, info = env.reset()
+
+while True:
+    action = env.action_space.sample()
+    observation, reward, terminated, truncated, info = env.step(action)
+
+    if terminated or truncated:
+        observation, info = env.reset()
+        if info["env_done"]:
+            break
+
+# Close the environment
+env.close()
+```
+
+## How To Submit An Agent
+
+The basic process to submit an agent consists in the following steps:
+
+1. Write a python script in which your agent interact with the environment exactly as if you were performing evaluation in your local machine
+2. Store your trained agent's scripts and weights (if any) in a private repository and create a personal access token to the repository (in our examples we will use Hugging Face repository).
+3. Submit the agent using DIAMBRA Command Line Interface specifying your private repository files path, your secret token and one of the public pre-built dependencies images DIAMBRA provides
+
+### Submit Pre-Built Agents
+
+To get the feeling of how an agent submission works, you can leverage DIAMBRA pre-built agents. In [DIAMBRA Agents repo](https://github.com/diambra/agents), together with different source code examples, DIAMBRA also provides [pre-built docker images (packages)](https://github.com/orgs/diambra/packages?repo_name=agents) for some of them.
+
+For example, [here](https://github.com/diambra/agents/pkgs/container/agent-random-1) you find the pre-built docker image for the random agent correspondent to [this](https://github.com/diambra/agents/blob/main/basic/random_1/agent.py) source code. As indicated by the python script settings, this random agent will play using a "Random" character in the game of choice, or in a random game if none is provided.
+
+Using this pre-built docker image you can easily perform your first submission ever on DIAMBRA platform, and appear in the official online leaderboard by simply typing in your preferred shell the following command:
+
+```shell
+diambra agent submit diambra/agent-random-1:main --gameId sfiii3n
+```
+
+After running the command, you will receive a submission confirmation, its identification number as well as the url where to see the results, something similar to the following:
+
+```
+diambra agent submit diambra/agent-random-1:main --gameId sfiii3n
+🖥️  (178) Agent submitted: https://diambra.ai/submission/178
+```
+
+### Submit Your Own Agent
+
+After finishing model training as explained in the [Reinforcement Learning Training](https://huggingface.co/learn/deep-rl-course/unitbonus3/training) section, you can create your agent script for submission as the one reported in the next code block, which will make use of the same configuration file used for training it.
+
+```python
+import os
+import yaml
+import json
+import argparse
+from diambra.arena import Roles, SpaceTypes, load_settings_flat_dict
+from diambra.arena.stable_baselines3.make_sb3_env import make_sb3_env, EnvironmentSettings, WrappersSettings
+from stable_baselines3 import PPO
+
+def main(cfg_file, trained_model):
+    # Read the cfg file
+    yaml_file = open(cfg_file)
+    params = yaml.load(yaml_file, Loader=yaml.FullLoader)
+    print("Config parameters = ", json.dumps(params, sort_keys=True, indent=4))
+    yaml_file.close()
+
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    model_folder = os.path.join(base_path, params["folders"]["parent_dir"], params["settings"]["game_id"],
+                                params["folders"]["model_name"], "model")
+
+    # Settings
+    params["settings"]["action_space"] = SpaceTypes.DISCRETE if params["settings"]["action_space"] == "discrete" else SpaceTypes.MULTI_DISCRETE
+    settings = load_settings_flat_dict(EnvironmentSettings, params["settings"])
+    settings.role = Roles.P1
+
+    # Wrappers Settings
+    wrappers_settings = load_settings_flat_dict(WrappersSettings, params["wrappers_settings"])
+    wrappers_settings.normalize_reward = False
+
+    # Create environment
+    env, num_envs = make_sb3_env(settings.game_id, settings, wrappers_settings, no_vec=True)
+    print("Activated {} environment(s)".format(num_envs))
+
+    # Load the trained agent
+    model_path = os.path.join(model_folder, trained_model)
+    agent = PPO.load(model_path)
+
+    # Print policy network architecture
+    print("Policy architecture:")
+    print(agent.policy)
+
+    obs, info = env.reset()
+
+    while True:
+        action, _ = agent.predict(obs, deterministic=False)
+
+        obs, reward, terminated, truncated, info = env.step(action.tolist())
+
+        if terminated or truncated:
+            obs, info = env.reset()
+            if info["env_done"]:
+                break
+
+    # Close the environment
+    env.close()
+
+    # Return success
+    return 0
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cfgFile", type=str, required=True, help="Configuration file")
+    parser.add_argument("--trainedModel", type=str, default="model", help="Model checkpoint")
+    opt = parser.parse_args()
+    print(opt)
+
+    main(opt.cfgFile, opt.trainedModel)
+```
+
+Here are the steps needed to finalize the submission:
+1. Store your agent files (e.g. scripts, config files and weights) in a private model
+2. Create your personal access token ([official docs here](https://huggingface.co/docs/hub/security-tokens)):
+   - Log into the Hugging Face platform with your credentials.
+   - Click on your profile image and go to "Settings".
+   - On the left side bar menu, click the "Access Token" option.
+   - Click on "New token" to create a new token, give it a name and assign it the "Read" permissions
+   - Give your token a name, select the necessary scopes (e.g., "repo" for accessing private repositories), and click "Generate token."
+   - Store the generated token in your local machine ([official docs here](https://huggingface.co/docs/huggingface_hub/en/quick-start#login-command)):
+     - Install the Hugging Face hub library: `pip install -U huggingface_hub`
+     - From the terminal run the `login()` command: `huggingface-cli login`, which will tell you if you are already logged in and prompt you for your token. The token is then validated and saved in your `HF_HOME` directory (defaults to `~/.cache/huggingface/token`).
+3. Submit your AI agent:
+   - Choose the appropriate dependencies docker image for your submission. We provide [different pre-built ones](https://github.com/orgs/diambra/packages?repo_name=arena) giving access to various common third party libraries
+   - Submit your agent via DIAMBRA CLI as shown below
+
+Assuming your agent uses Stable Baselines 3 as described so far, the `arena-stable-baselines3-on3.10-bullseye` dependencies image needs to be specified as a base. You have to create a file named `submission-manifest.yaml` with the following content:
+
+```yaml
+mode: AIvsCOM
+image: diambra/arena-stable-baselines3-on3.10-bullseye:main
+command:
+  - python
+  - "/sources/agent.py"
+  - "/sources/config.cfg"
+  - "/sources/models/model.zip"
+sources:
+  .: git+https://username:{{.Secrets.hf_token}}@huggingface.co/username/repository_name.git#ref=branch_name
+```
+
+Replace `username` and `repository_name.git#ref=branch_name` with the appropriate values, and change `image` and `command` fields according to your specific use case.
+
+Then, submit your agent using the manifest file:
+
+```sh
+diambra agent submit --submission.secrets-from=huggingface --submission.manifest submission-manifest.yaml
+```
+
+This will automatically retrieve the Hugging Face token you saved earlier and will create a new submission on [DIAMBRA Competition Platform](https://diambra.ai).
+
+You will be able to see it on your dashboard just logging in with your credentials, and watch it being streamed on Twitch!
+
+
+
