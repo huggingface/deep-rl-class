@@ -94,9 +94,9 @@ But, with experience replay, **we create a replay buffer that saves experience s
 
   When we compute the Q target, we use two networks to decouple the action selection from the target Q value generation. We:
 
-  - Use our *DQN network* to **select the best action to take for the next state** (the action with the highest Q value).
+  - Use our *DQN network* to **select the best action to take at the current state** (the action with the highest Q value)
 
-  - Use our *Target network* to calculate **the target Q value of taking that action at the next state**.
+  - Use our *Target network* to calculate **the target Q value of this _(state, action)_ pair**: as the sum of the immediate reward and of an estimation of the Q-value of the next state, given by this target network.
 
 </details>
 
