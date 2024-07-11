@@ -1,0 +1,266 @@
+# Getting started:
+
+To get started, download the project from [here](https://huggingface.co/ivan267/imitation-learning-tutorial-godot-project/tree/main) (click on the download icon next to `GDRL-IL-Project.zip`). The zip file features both the “Starter” and “Complete” projects.
+
+The game code is already implemented in the starter project and the nodes are configured. We will focus on: 
+
+- Implementing the code for the AIController node,
+- Recording expert demonstrations,
+- Training the agent and exporting an .onnx file which we can use for inference in Godot.
+
+### Open the starter project in Godot
+
+Extract the zip file, open Godot, click “Import” and navigate to the `Starter\Godot` folder of the extracted archive.
+
+### Open the robot scene
+
+<Tip>
+You can search for “robot” in the FileSystem search.
+</Tip>
+
+This scene contains a couple of different nodes, including the `robot` node, which contains the visual shape of the robot, `CameraXRotation` node which is used to rotate the camera “up-down” using the mouse in human control modes. The AI agent does not control this node since it is not necessary for learning the task. `RaycastSensors` node contains two Raycast sensors that help the agent to “sense” parts of the game world, including walls, floors, etc.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/open-robot-scene.jpg" alt="open robot scene"/>
+
+### Click on the scroll next to AIController3D to open the script for editing
+
+<Tip>
+You might have to collapse the “robot” branch to find it more easily, or you can type `aicontroller` in the Filter box above the `Robot` node.
+</Tip>
+
+### Replace the `get_obs()` and `get_reward()` methods with the implementation below:
+
+```python
+func get_obs() -> Dictionary:
+	var observations: Array[float] = []
+	for raycast_sensor in raycast_sensors:
+		observations.append_array(raycast_sensor.get_observation())
+
+	var level_size = 16.0
+
+	var chest_local = to_local(chest.global_position)
+	var chest_direction = chest_local.normalized()
+	var chest_distance = clampf(chest_local.length(), 0.0, level_size)
+	
+	var lever_local = to_local(lever.global_position)
+	var lever_direction = lever_local.normalized()
+	var lever_distance = clampf(lever_local.length(), 0.0, level_size)
+		
+	var key_local = to_local(key.global_position)
+	var key_direction = key_local.normalized()
+	var key_distance = clampf(key_local.length(), 0.0, level_size)
+	
+	var raft_local = to_local(raft.global_position)
+	var raft_direction = raft_local.normalized()
+	var raft_distance = clampf(raft_local.length(), 0.0, level_size)
+	
+	var player_speed = player.global_basis.inverse() * player.velocity.limit_length(5.0) / 5.0
+
+	(
+		observations
+		.append_array(
+			[
+				chest_direction.x,
+				chest_direction.y,
+				chest_direction.z,
+				chest_distance,
+				lever_direction.x,
+				lever_direction.y,
+				lever_direction.z,
+				lever_distance,
+				key_direction.x,
+				key_direction.y,
+				key_direction.z,
+				key_distance,
+				raft_direction.x,
+				raft_direction.y,
+				raft_direction.z,
+				raft_distance,
+				raft.movement_direction_multiplier,
+				float(player._is_lever_pulled),
+				float(player._is_chest_opened),
+				float(player._is_key_collected),
+				float(player.is_on_floor()),
+				player_speed.x,
+				player_speed.y,
+				player_speed.z,
+			]
+		)
+	)
+	return {"obs": observations}
+
+func get_reward() -> float:
+	return reward
+```
+
+In `get_obs()`, we first get the obs from the two Raycast sensors added to the `AIController3D` node in the inspector, and add them to the obs, then we get the relative position vectors to chest, lever, key, and raft, which we separate into directions and distances, and then we add them to the obs as well.
+
+We also add other game state info to the obs: 
+
+- has the lever has been pulled,
+- was the key collected,
+- was the chest opened,
+- is the player on floor (also determines whether the player can jump),
+- the normalized local velocity of the player.
+
+We convert boolean values such as `_is_lever_pulled` to floats (0 or 1).
+
+In `get_reward()`, we only need to return the current reward.
+
+### Replace the `_physics_process()` and `reset()` methods with the implementation below:
+
+```python
+func _physics_process(delta: float) -> void:
+	# Reset on timeout, this is implemented in parent class to set needs_reset to true,
+	# we are re-implementing here to call player.game_over() that handles the game reset.
+	n_steps += 1
+	if n_steps > reset_after:
+		player.game_over()
+
+	# In training or onnx inference modes, this method will be called by sync node with actions provided,
+	# For expert demo recording mode, it will be called without any actions (as we set the actions based on human input),
+	# For human control mode the method will not be called, so we call it here without any actions provided.
+	if control_mode == ControlModes.HUMAN:
+		set_action()
+
+	# Reset the game faster if the lever is not pulled.
+	steps_without_lever_pulled += 1
+	if steps_without_lever_pulled > 200 and (not player._is_lever_pulled):
+		player.game_over()
+
+func reset():
+	super.reset()
+	steps_without_lever_pulled = 0
+```
+
+### **Replace the `get_action_space()`, `get_action()`, and `set_action()` methods with the implementation below:**
+
+```python
+# Defines the actions for the AI agent ("size": 2 means 2 floats for this action)
+func get_action_space() -> Dictionary:
+	return {
+		"movement": {"size": 2, "action_type": "continuous"},
+		"rotation": {"size": 1, "action_type": "continuous"},
+		"jump": {"size": 1, "action_type": "continuous"},
+		"use_action": {"size": 1, "action_type": "continuous"}
+	}
+
+# We return the action values in the same order as defined in get_action_space() (important), but all in one array
+# For actions of size 1, we return 1 float in the array, for size 2, 2 floats in the array, etc.
+# set_action is called just before get_action by the sync node, so we can read the newly set values
+func get_action():
+	return [
+		# "movement" action values
+		player.requested_movement.x,
+		player.requested_movement.y,
+		# "rotation" action value
+		player.requested_rotation.x,
+		# "jump" action value (-1 if not requested, 1 if requested)
+		-1.0 + 2.0 * float(player.jump_requested),
+		# "use_action" action value (-1 if not requested, 1 if requested)
+		-1.0 + 2.0 * float(player.use_action_requested)
+	]
+
+# Here we set human control and AI control actions to the robot
+func set_action(action = null) -> void:
+	# If there's no action provided, it means that AI is not controlling the robot (human control),
+	if not action:
+		# Only rotate if the mouse has moved since the last set_action call
+		if previous_mouse_movement == mouse_movement:
+			mouse_movement = Vector2.ZERO
+
+		player.requested_movement = Input.get_vector(
+			"move_left", "move_right", "move_forward", "move_back"
+		)
+		player.requested_rotation = mouse_movement
+
+		var use_action = Input.is_action_pressed("requested_action")
+		var jump = Input.is_action_pressed("requested_jump")
+
+		player.use_action_requested = use_action
+		player.jump_requested = jump
+
+		previous_mouse_movement = mouse_movement	
+	else:
+		# If there is action provided, we set the actions received from the AI agent 
+		player.requested_movement = Vector2(action.movement[0], action.movement[1])
+		# The agent only rotates the robot along the Y axis, no need to rotate the camera along X axis
+		player.requested_rotation = Vector2(action.rotation[0], 0.0)
+		player.jump_requested = bool(action.jump[0] > 0)
+		player.use_action_requested = bool(action.use_action[0] > 0)
+```
+
+For `get_action()` (only needed if using the demo record mode), we need to provide the actions that we want the agent to send when it encounters the same state. It is important for the values to be in the correct range (`-1.0 to 1.0`), which is why we have the `-1 + 2 * variable` for boolean states, and in the correct order, as defined in `get_action_space()`. 
+
+In demo record mode, `set_action()` is called without providing actions, as we need to set the action values based on human input. In training/inference modes, the method is called with an `action` argument containing values for all of the actions provided by the RL model, so we have an `if/else` to handle both cases.
+
+More info is included in the code comments.
+
+### Replace the `_input` method with the implementation below:
+
+```python
+# Record mouse movement for human and demo_record modes
+# We don't directly rotate in input to allow for frame skipping (action_repeat setting) which
+# will also be applied to the AI agent in training/inference modes.
+func _input(event):
+	if not (heuristic == "human" or heuristic == "demo_record"):
+		return
+
+	if event is InputEventMouseMotion:
+		var movement_scale: float = 0.005
+		mouse_movement.y = clampf(event.relative.y * movement_scale, -1.0, 1.0)
+		mouse_movement.x = clampf(event.relative.x * movement_scale, -1.0, 1.0)
+```
+
+This code part records mouse movement in case of human control and demo record modes.
+
+**Finally, save the script. We are ready for the next step.**
+
+### Open the demo record scene, and click on AIController3D node
+
+<Tip>
+You can search for “demo” in the FileSystem search, and you can search for “aicontroller” in the scene's filter box.
+</Tip>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/demo_record_scene.jpg" alt="open robot scene"/>
+
+
+You don’t need to make any changes as everything is preset, but let’s go over the things you would need to set in your own env:
+
+The scene contains modified `Level > Robot > AIController3D` node settings:
+
+- `Control Mode` is set to `Record Expert Demos`
+- `Expert Demo Save Path` is filled out
+- `Action Repeat` is set to the same value as is set for the `Sync` node in `training_scene` and `onnx_inference_scene`. This means that every action set by the agent is repeated for 3 physics frames. The setting in `AIController` adds the same action repeat to the human input (which introduces some lag) to match the same behavior. This is a fairly low value which doesn’t introduce much lag. If you change this value, make sure to change it in all 3 places.
+- `Remove Last Episode` key allows us to set a key that can be used to remove a failed episode during recording, without having to restart the entire session. E.g. if the robot falls in the water and the game resets, we can use this key to remove the previously recorded episode while recording the next one. It is set to `R`, but you can change it to any key by clicking on it, and then clicking on the `Configure` button.
+
+Another way to make episode recording easier in challenging environments is to slow down the environment during recording. This can easily be done by clicking on the `Sync` node in the scene, and adjusting the `Speed Up` property (set to 1 by default).
+
+### Let’s record some demos:
+
+<Tip>
+Note that the demos will only be saved if we have recorded at least one complete episode and closed the game window by clicking on "X" or pressing ALT+F4. Using the stop button in Godot editor will not save the demos. It’s best to try recording just one episode first, then check if you see "expert_demos.json" in the filesystem or in the Godot project folder.
+</Tip>
+
+Make sure that you are still in the `demo_record_scene`, `press F6` and the demo recording will start.  
+
+Controls:
+
+- mouse controls the camera (if you need to adjust mouse sensitivity, open the `robot` scene, click on the `Robot` node and adjust the `Rotation Speed`, keep it the same value for recording demos, training and inference),
+- `WASD` controls the player movement,
+- `SPACE` jumps,
+- `E` activates the lever and opens the chest
+
+You can take a few practice first to get familiar with the env. If you wish to skip recording demos, you can also find the pre-recorded demos in the completed project and use the `expert_demos.json` file from there.
+
+The recorded demos should include at least 22-24 complete successful episodes. Multiple demo files can also be used in the training stage, so you don’t have to record all demos in one go (you can change the file name using the `Expert Demo Save Path` property mentioned before).
+
+Recording 23 episodes took me ~10 minutes (as the key has 2 alternating spawning positions, 22 or 24 would provide an equal distribution of key positions in the demos, but it is fairly close). When approaching the lever or chest, I pressed and held the `E` key slightly longer to ensure the action is recorded for multiple steps when near those objects. I also removed a couple of episodes that I didn’t complete successfully by pressing the `R` key during the following episode. 
+
+Here’s a sped-up video of the demo recording process:
+
+<video src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/demo_record.mp4" type="video/mp4" controls autoplay loop mute />
+
+### Export the game for training:
+
+You can export the game from Godot using `Project > Export`.

@@ -5,7 +5,7 @@
 
       <CourseFloatingBanner classNames="absolute z-10 right-0 top-0"
       notebooks={[
-        {label: "Google Colab", value: "https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/unit1/unit1.ipynb"}
+        {label: "Google Colab", value: "https://colab.research.google.com/github/huggingface/deep-rl-class/blob/main/notebooks/unit1/unit1.ipynb"}
         ]}
         askForHelpUrl="http://hf.co/join/discord" />
 
@@ -158,7 +158,7 @@ Hence the following cell will install virtual screen libraries and create and ru
 
 ```bash
 sudo apt-get update
-apt install python-opengl
+apt install python3-opengl
 apt install ffmpeg
 apt install xvfb
 pip3 install pyvirtualdisplay
@@ -332,7 +332,7 @@ The action space (the set of possible actions the agent can take) is discrete wi
 - Action 2: Fire the main engine,
 - Action 3: Fire right orientation engine.
 
-Reward function (the function that will gives a reward at each timestep) 💰:
+Reward function (the function that will give a reward at each timestep) 💰:
 
 After every step a reward is granted. The total reward of an episode is the **sum of the rewards for all the steps within that episode**.
 
@@ -478,7 +478,7 @@ mean_reward, std_reward = evaluate_policy(model, eval_env, n_eval_episodes=10, d
 print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
 
-- In my case, I got a mean reward is `200.20 +/- 20.80` after training for 1 million steps, which means that our lunar lander agent is ready to land on the moon 🌛🥳.
+- In my case, I got a mean reward of `200.20 +/- 20.80` after training for 1 million steps, which means that our lunar lander agent is ready to land on the moon 🌛🥳.
 
 ## Publish our trained model on the Hub 🔥
 Now that we saw we got good results after the training, we can publish our trained model on the hub 🤗 with one line of code.

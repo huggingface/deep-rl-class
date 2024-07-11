@@ -113,12 +113,10 @@ mkdir ./training-envs-executables
 mkdir ./training-envs-executables/linux
 ```
 
-Download the file SnowballTarget.zip from https://drive.google.com/file/d/1YHHLjyj6gaZ3Gemx1hQgqrPgSS2ZhmB5 using `wget`.
-
-Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
+We downloaded the file SnowballTarget.zip from https://github.com/huggingface/Snowball-Target using `wget`
 
 ```bash
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1YHHLjyj6gaZ3Gemx1hQgqrPgSS2ZhmB5' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1YHHLjyj6gaZ3Gemx1hQgqrPgSS2ZhmB5" -O ./training-envs-executables/linux/SnowballTarget.zip && rm -rf /tmp/cookies.txt
+wget "https://github.com/huggingface/Snowball-Target/raw/main/SnowballTarget.zip" -O ./training-envs-executables/linux/SnowballTarget.zip
 ```
 
 We unzip the executable.zip file
@@ -263,21 +261,22 @@ But now comes the best: **being able to visualize your agent online 👀.**
 
 This step it's simple:
 
-1. Remember your repo-id
+1. Go here: https://huggingface.co/spaces/ThomasSimonini/ML-Agents-SnowballTarget
 
-2. Go here: https://huggingface.co/spaces/ThomasSimonini/ML-Agents-SnowballTarget
-
-3. Launch the game and put it in full screen by clicking on the bottom right button
+2. Launch the game and put it in full screen by clicking on the bottom right button
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget_load.png" alt="Snowballtarget load"/>
 
-1. In step 1, choose your model repository, which is the model id (in my case ThomasSimonini/ppo-SnowballTarget).
+1. In step 1, type your username (your username is case sensitive: for instance, my username is ThomasSimonini not thomassimonini or ThOmasImoNInI) and click on the search button.
 
-2. In step 2, **choose what model you want to replay**:
-  - I have multiple ones since we saved a model every 500000 timesteps.
-  - But if I want the more recent I choose `SnowballTarget.onnx`
+2. In step 2, select your model repository.
 
-👉 It's nice to **try different model stages to see the improvement of the agent.**
+3. In step 3, **choose which model you want to replay**:
+  - I have multiple ones, since we saved a model every 500000 timesteps.
+  - But since I want the most recent one, I choose `SnowballTarget.onnx`
+
+👉 It's good **to try with different models steps to see the improvement of the agent.**
+
 
 And don't hesitate to share the best score your agent gets on discord in the #rl-i-made-this channel 🔥
 
@@ -290,17 +289,16 @@ Now let's try a more challenging environment called Pyramids.
 - We need to download it and place it into `./training-envs-executables/linux/`
 - We use a linux executable because we're using colab, and the colab machine's OS is Ubuntu (linux)
 
-Download the file Pyramids.zip from https://drive.google.com/uc?export=download&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H using `wget`. Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
+We downloaded the file Pyramids.zip from from https://huggingface.co/spaces/unity/ML-Agents-Pyramids/resolve/main/Pyramids.zip using `wget`
 
 ```python
-!wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1UiFNdKlsH0NTu32xV-giYUEVKV4-vc7H" -O ./training-envs-executables/linux/Pyramids.zip && rm -rf /tmp/cookies.txt
+wget "https://huggingface.co/spaces/unity/ML-Agents-Pyramids/resolve/main/Pyramids.zip" -O ./training-envs-executables/linux/Pyramids.zip
 ```
 
 Unzip it
 
 ```python
-%%capture
-!unzip -d ./training-envs-executables/linux/ ./training-envs-executables/linux/Pyramids.zip
+unzip -d ./training-envs-executables/linux/ ./training-envs-executables/linux/Pyramids.zip
 ```
 
 Make sure your file is accessible

@@ -89,12 +89,11 @@ pip3 install -e ./ml-agents
 mkdir ./trained-envs-executables
 mkdir ./trained-envs-executables/linux
 ```
+We downloaded the file Huggy.zip from https://github.com/huggingface/Huggy using `wget`
 
 ```bash
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF" -O ./trained-envs-executables/linux/Huggy.zip && rm -rf /tmp/cookies.txt
+wget "https://github.com/huggingface/Huggy/raw/main/Huggy.zip" -O ./trained-envs-executables/linux/Huggy.zip
 ```
-
-Download the file Huggy.zip from https://drive.google.com/uc?export=download&id=1zv3M95ZJTWHUVOWT6ckq_cm98nft8gdF using `wget`. Check out the full solution to download large files from GDrive [here](https://bcrf.biochem.wisc.edu/2021/02/05/download-google-drive-files-using-wget/)
 
 ```bash
 %%capture
@@ -203,7 +202,7 @@ With ML Agents, we run a training script. We define four parameters:
 
 1. `mlagents-learn <config>`: the path where the hyperparameter config file is.
 2. `--env`: where the environment executable is.
-3. `--run_id`: the name you want to give to your training run id.
+3. `--run-id`: the name you want to give to your training run id.
 4. `--no-graphics`: to not launch the visualization during the training.
 
 Train the model and use the `--resume` flag to continue training in case of interruption.
@@ -282,9 +281,11 @@ This step is the simplest:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/load-huggy.jpg" alt="load-huggy" width="100%">
 
-1. In step 1, choose your model repository, which is the model id (in my case ThomasSimonini/ppo-Huggy).
+1. In step 1, type your username (your username is case sensitive: for instance, my username is ThomasSimonini not thomassimonini or ThOmasImoNInI) and click on the search button.
 
-2. In step 2, **choose which model you want to replay**:
+2. In step 2, select your model repository.
+
+3. In step 3, **choose which model you want to replay**:
   - I have multiple ones, since we saved a model every 500000 timesteps.
   - But since I want the most recent one, I choose `Huggy.onnx`
 
