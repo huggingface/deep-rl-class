@@ -321,3 +321,70 @@ In order to do that, you just need to go to this demo:
 The matches you see live are not used in the calculation of your result **but they are a good way to visualize how good your agent is**.
 
 And don't hesitate to share the best score your agent gets on discord in the #rl-i-made-this channel 🔥
+
+# README for Training and Pushing Unity ML-Agents on Google Colab
+
+This guide will walk you through setting up and training a Unity ML-Agent environment on Google Colab and pushing the results to Hugging Face.
+
+## Table of Contents
+1. [Clone ML-Agents Repository](#clone-ml-agents-repository)
+2. [Install Dependencies](#install-dependencies)
+3. [Download and Setup Environment](#download-and-setup-environment)
+4. [Train the Agent](#train-the-agent)
+5. [Push to Hugging Face](#push-to-hugging-face)
+
+## Clone ML-Agents Repository
+
+First, clone the ML-Agents repository from GitHub.
+
+```python
+!git clone https://github.com/Unity-Technologies/ml-agents
+!cd ml-agents
+```
+
+## Install Dependencies
+
+Install the required Python packages for ML-Agents and additional dependencies.
+
+```python
+!pip install -e /content/ml-agents/ml-agents-envs
+!pip install -e /content/ml-agents/ml-agents
+!pip install grpcio
+!pip install gdown
+```
+
+## Download and Setup Environment
+
+Download the SoccerTwos environment executable and set it up.
+
+```python
+# Linux version for Google Colab
+!gdown "https://drive.google.com/uc?export=download&id=1KuqBKYiXiIcU4kNMqEzhgypuFP5_45CL" -O SoccerTwos.zip
+!unzip SoccerTwos.zip -d SoccerTwos
+!mkdir -p /content/ml-agents/training-envs-executables
+!mv /content/SoccerTwos /content/ml-agents/training-envs-executables/
+!chmod -R 755 /content/ml-agents/training-envs-executables/
+```
+
+## Train the Agent
+
+Use the `mlagents-learn` command to start training the agent with the provided configuration file.
+
+```python
+!mlagents-learn /content/ml-agents/config/poca/SoccerTwos.yaml --env="/content/ml-agents/training-envs-executables/SoccerTwos/SoccerTwos.x86_64" --run-id="SoccerTwos" --no-graphics --force
+```
+
+## Push to Hugging Face
+
+Log in to your Hugging Face account and push the training results.
+
+```python
+!huggingface-cli login --token "_enter_token_key_"
+!mlagents-push-to-hf  --run-id="SoccerTwos" --local-dir="./results/SoccerTwos" --repo-id="USERNAME/poco-SoccerTwos" --commit-message="First Push"
+```
+
+Replace `_enter_token_key_` with your actual Hugging Face token.
+
+## Conclusion
+
+Following these steps will allow you to set up, train, and push your Unity ML-Agent models on Google Colab. Happy training!
