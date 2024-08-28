@@ -1,0 +1,195 @@
+# Environment and Wrappers
+
+## Environment
+
+### Interaction Basics
+
+DIAMBRA Arena Environments usage follows the standard RL interaction framework: the agent sends an action to the environment, which process it and performs a transition accordingly, from the starting state to the new state, returning the observation and the reward to the agent to close the interaction loop. The figure below shows this typical interaction scheme and data flow.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/diambra/arena/main/img/basicUsage.png" alt="diambraArena" style="width:600px; height:auto;" />
+</p>
+
+The shortest snippet for a complete basic execution of an environment consists of just a few lines of code, and is presented in the code block below:
+
+```python
+import diambra.arena
+
+# Environment creation
+env = diambra.arena.make("sfiii3n", render_mode="human")
+
+# Environment reset
+observation, info = env.reset(seed=42)
+
+# Agent-Environment interaction loop
+while True:
+    # (Optional) Environment rendering
+    env.render()
+
+    # Action random sampling
+    actions = env.action_space.sample()
+
+    # Environment stepping
+    observation, reward, terminated, truncated, info = env.step(actions)
+
+    # Episode end (Done condition) check
+    if terminated or truncated:
+        observation, info = env.reset()
+        break
+
+# Environment shutdown
+env.close()
+```
+
+#### DIAMBRA Command Line Interface (CLI)
+
+DIAMBRA Arena comes with a very handy tool: the DIAMBRA Command Line Interface (DIAMBRA CLI). It provides different useful commands, with related options, that contribute to make running DIAMBRA Arena environments super easy.
+
+To run a python script using the CLI, one can just execute the following command:
+
+```shell
+diambra run -r /absolute/path/to/roms/folder/ python diambra_arena_gist.py
+```
+
+More information on the CLI can be found in the official documentation on [this page](https://docs.diambra.ai/gettingstarted/#diambra-command-line-interface-cli).
+
+### Settings
+
+All environments have different options that can be specified using a dedicated `EnvironmentSettings` class. They are nested as follows:
+- **Environment settings**: defined only when the environment is instantiated, they never change throughout the agent-environment interaction (e.g. the action space or the frame size)
+  - **Episode settings**: defined first when the environment is instantiated, they can be changed each time a new episode starts, i.e. at every environment `reset` call, passing a dictionary containing the key-value pairs for the settings of interest through the `options` keyword argument. These settings are further divided in:
+    - **Game settings**: they specify features of the game (e.g. difficulty level)
+    - **Player settings**: they specify player-related aspects (e.g. selected character and its outfits)
+
+Settings specification when instantiating the environment is done by passing the `EnvironmentSettings` class, properly filled, to the environment `make` call as follows:
+
+```python
+from diambra.arena import EnvironmentSettings
+
+# Settings specification
+settings = EnvironmentSettings()
+settings.setting_1 = value_1
+settings.setting_2 = value_2
+
+env = diambra.arena.make("sfiii3n", settings)
+```
+
+The first argument is the `game_id` string, it specifies the game to execute among those available. Episode settings specification at reset is done by passing the `episode_settings` dictionary to the environment `reset` call as follows:
+
+```python
+# Episode settings
+episode_settings = {
+  setting_1: value_1,
+  setting_2: value_2,
+}
+
+env.reset(options=episode_settings)
+```
+
+Some of them are shared among all environments while others are specific to the selected game. The detailed settings description can be found in the official documentation at [this page](https://docs.diambra.ai/envs/#settings) for the shared settings, and at [this page](https://docs.diambra.ai/envs/games/sfiii3n/#game-settings) for the Street Fighter specific ones.
+
+### Action Space(s)
+
+Actions of the interfaced games can be grouped in two categories: move actions (Up, Left, etc.) and attack ones (Punch, Kick, etc.). DIAMBRA Arena provides two different action spaces: [Discrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/discrete.py) and [MultiDiscrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/multi_discrete.py). The former is a single list composed by the union of move and attack actions (of type `gymnasium.spaces.Discrete`), while the latter consists of two sets combined, for move and attack actions respectively (of type `gymnasium.spaces.MultiDiscrete`). The complete visual description of available action spaces is shown in the figure below, where both choices are presented via the correspondent gamepad buttons configuration for Dead Or Alive ++.
+
+<p align="center">
+<img src="https://docs.diambra.ai/images/envs/actionSpaces.png" alt="Description" style="width:500px; height:auto; background-color:#d0d0d5 !important;" />
+</p>
+
+Each game has specific action spaces since attack buttons (and their combinations) are, in general, game-dependent.
+
+In [Discrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/discrete.py) action spaces:
+
+- There is only one ”no-op” action, that covers both the ”no-move” and ”no-attack” actions.
+- The total number of actions available is N<sub>m</sub> + N<sub>a</sub> − 1 where N<sub>m</sub> is the number of move actions (no-move included) and N<sub>a</sub> is the number of attack actions (no-attack included).
+- Only one action, either move or attack, can be sent for each environment step.
+
+In [MultiDiscrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/multi_discrete.py) action spaces:
+
+- There is only one ”no-op” action, that covers both the ”no-move” and ”no-attack” actions.
+- The total number of actions available is N<sub>m</sub> × N<sub>a</sub>.
+- Both move and attack actions can be sent at the same time for each environment step.
+
+For Street Fighter III 3rd Strike, the available actions spaces are:
+- [Discrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/discrete.py): 9 (moves) + 10 (attacks) - 1 (no-op counted twice) = 18
+- [MultiDiscrete](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/multi_discrete.py): 9 (moves) X 10 (attacks) = 90
+
+### Observation Space
+
+Environment observations are composed by two main elements: a visual one (the game frame) and an aggregation of numerical values called RAM states (stage number, health values, etc.). Both of them are exposed through an observation space of type [`gym.spaces.Dict`](https://github.com/Farama-Foundation/Gymnasium/blob/main/gymnasium/spaces/dict.py). It consists of global elements and player-specific ones, that also vary depending on the specific game selected. The following images show the Street Fighter III specific ones, where RAM States are highlighted, superimposed on the game frame.
+
+The detailed observation space description can be found in the official documentation at [this page](https://docs.diambra.ai/envs/#observation-space) for the shared observations, and at [this page](https://docs.diambra.ai/envs/games/sfiii3n/#observation-space) for the Street Fighter specific ones.
+
+<p align="center">
+    <img src="https://docs.diambra.ai/images/envs/sfiii3nData.png" alt="diambraArena"/>
+</p>
+
+<p align="center">
+    <img src="https://docs.diambra.ai/images/envs/sfiii3nData2.png" alt="diambraArena"/>
+</p>
+
+### Reward Function
+
+The default reward is defined as a function of characters health values so that, qualitatively, damage suffered by the agent corresponds to a negative reward, and damage inflicted to the opponent corresponds to a positive reward. The quantitative, general and formal reward function definition is as follows:
+
+R_t = \sum_i^{0,N_c}\left(\bar{H_i}^{t^-} - \bar{H_i}^{t} - \left(\hat{H_i}^{t^-} - \hat{H_i}^{t}\right)\right)
+
+Where:
+
+- \bar{H} and \hat{H} are health values for opponent’s character(s) and agent’s one(s) respectively;
+- t^- and t are used to indicate conditions at ”state-time” and at ”new state-time” (i.e. before and after environment step);
+- N_c is the number of characters taking part in a round. Usually is N_c = 1 but there are some games where multiple characters are used, with the additional possible option of alternating them during gameplay, like Tekken Tag Tournament where 2 characters have to be selected and two opponents are faced every round (thus N_c = 2);
+
+Additional details (e.g. lower and upper bounds for the total cumulative reward in both 1 and 2 player modes) can be found on the official documentation [dedicated section](https://docs.diambra.ai/envs/#reward-function).
+
+## Wrappers
+
+DIAMBRA Arena comes with a large number of ready-to-use wrappers and examples showing how to apply them. They cover a wide spectrum of use cases, and also provide reference templates to develop custom ones.
+
+Environmet wrappers are widely used to tweak the observation and action spaces. In order to activate them, one needs to properly set the `WrapperSettings` class attributes and provide them as input to the environment creation method, as shown in the next code block.
+
+```python
+from diambra.arena import EnvironmentSettings, WrapperSettings
+
+# Settings specification
+settings = EnvironmentSettings()
+
+# Wrapper settings specification
+wrapper_settings = WrapperSettings()
+wrapper_settings.setting_1 = value_1
+wrapper_settings.setting_2 = value_2
+
+env = diambra.arena.make("sfiii3n", settings, wrapper_settings)
+```
+
+For the purpose of this tutorial, we will experiment with a lot of them:
+- **No Attack Buttons Combinations**: restricts the number of attack actions to single buttons, removing attack buttons combinations
+- **Stack Frames With Optional Dilation**: Stacks latest _N_ frames together along the third dimension
+- **Add Last Action to Observation**: Adds latest action to the observation space dictionary, under the key `action`
+- **Stack Actions**: Stacks latest *N* actions together
+- **Scale Observation**: Activates observation scaling, optionally preventing scaling to be applied on the game frame and on discrete binary observations
+- **Role-relative Observation**: Renames observation depending on the role played by the agent
+- **Flatten and Filter Observation**: Activates observation dictionary flattening, removing nested dictionaries and creating new keys joining original ones using "`_`" across nesting levels and defines the list of RAM states to keep in the observation space
+- **Normalize Reward**: Activates reward normalization and defines the normalization factor multiplying the delta between maximum and minium health bar value for the given game
+
+To activate them you would use the following code:
+
+```python
+wrapper_settings = WrapperSettings()
+
+wrappers_settings.no_attack_buttons_combinations = True
+wrappers_settings.stack_frame = 4
+wrappers_settings.dilation = 1
+wrappers_settings.add_last_action = True
+wrappers_settings.stack_actions = 12
+wrappers_settings.scale = True
+wrappers_settings.exclude_image_scaling = True
+wrappers_settings.role_relative = True
+wrappers_settings.flatten = True
+wrappers_settings.filter_keys = ["action", "own_health", "opp_health", "own_side", "opp_side", "opp_character", "stage"]
+wrappers_settings.normalize_reward = True
+```
+
+Additional details and wrappers can be found on the official documentation, at [this page](https://docs.diambra.ai/wrappers/).
+
+Having properly defined all environment and wrappers settings, the environment is now ready to be use for training a Deep Learning model using Reinforcement Learning.
