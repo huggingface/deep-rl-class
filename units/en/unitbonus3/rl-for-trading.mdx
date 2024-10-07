@@ -85,11 +85,23 @@ df = YahooDownloader(start_date='2009-01-01', end_date='2020-07-01', ticker_list
 2. **Environment Configuration: **Create a trading environment using FinRL's StockTradingEnv class.
 
 ```python
+# Default list of technical indicators
+# ['macd', 'boll_ub', 'boll_lb', 'rsi_30', 'cci_30', 'dx_30', 'close_30_sma', 'close_60_sma']
 from finrl.config import INDICATORS
 from finrl.meta.env_stock_trading.env_stocktrading import StockTradingEnv
 
-# This is only for illustration.
-# Values such as state_space, stock_dimension should be derived in the notebook before using them here.
+# Number of unique shares 
+stock_dimension = len(df_train.tic.unique())
+
+# state_space = 1 + 2*stock_dimension + len(INDICATORS)*stock_dimension
+state_space = 1 +    # (remaining balance in the trading account) 
+2 * stock_dimension +    # (prices of stocks and the share holdings of the stocks, so totally 2 * stock_dimension)
+len(INDICATORS) * stock_dimension
+
+buy_cost_list = [0.001] * stock_dimension
+sell_cost_list = buy_cost_list
+num_stock_shares = [0] * stock_dimension
+
 env_kwargs = {
     "hmax": 100,
     "initial_amount": 1000000,
@@ -121,6 +133,7 @@ trained_ppo.save("trained_models/agent_ppo")
 Create a new environment using df_test to simulate test scenario.
 
 ```python
+from stable_baselines3 import PPO
 trained_ppo = PPO.load("trained_models/agent_ppo.zip")
 
 # This is only for illustration.
@@ -140,7 +153,7 @@ env_test = StockTradingEnv(df=df_test, **env_kwargs)
 
 df_account_value_ppo, df_actions_ppo = DRLAgent.DRL_prediction(
                                                 model=trained_ppo, 
-                                                environment = e_test)
+                                                environment = env_test)
 ```
 
 df_account_value_ppo, df_actions_ppo are further used for portfolio analysis.
@@ -152,10 +165,9 @@ Their [tutorial series](https://finrl.readthedocs.io/en/latest/tutorial/Guide.ht
 
 For more information, we recommend you to check out the following resources:
 
-- [Deep Reinforcement Learning Approach for
-Trading Automation in The Stock Market](https://arxiv.org/abs/2208.07165)
-- [Deep Reinforcement Learning for Automated
-Stock Trading: An Ensemble Strategy](https://openfin.engineering.columbia.edu/sites/default/files/content/publications/ensemble.pdf)
+- [Deep Reinforcement Learning Approach for Trading Automation in The Stock Market](https://arxiv.org/abs/2208.07165)
+- [Deep Reinforcement Learning for Automated Stock Trading: An Ensemble Strategy](https://openfin.engineering.columbia.edu/sites/default/files/content/publications/ensemble.pdf)
+- [Gym Trading Env](https://gym-trading-env.readthedocs.io/en/latest/)
 
 ## Author
 
