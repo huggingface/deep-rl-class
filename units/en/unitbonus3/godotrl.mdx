@@ -201,6 +201,51 @@ In this simple example, a reasonable policy is learned in several minutes. You m
 
 Try setting this property up to 8 to speed up training. This can be a great benefit on more complex environments, like the multi-player FPS we will learn about in the next chapter.
 
+### Export model
+
+[Reference doc](https://github.com/edbeeching/godot_rl_agents/tree/main?tab=readme-ov-file#exporting-and-loading-your-trained-agent-in-onnx-format)
+
+Let's put aside the Godot editor for now. We'll need to use terminals to run some commands in order to save models we trained.
+
+The latest version of the Godot RL library provides experimental support for onnx models with the Stable Baselines 3, rllib, and CleanRL training frameworks.
+
+For example, let's use the Stable Baselines 3 as the framework. Train your agent using the [sb3 example](https://github.com/edbeeching/godot_rl_agents/blob/main/examples/stable_baselines3_example.py) ([instructions for using the script](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/ADV_STABLE_BASELINES_3.md#train-a-model-from-scratch)), enabling the option `--onnx_export_path=model.onnx`
+
+Below is an example command line to execute:
+
+```bash
+cd <....> # go into this Godot project directory
+python stable_baselines3_example.py --timesteps=100_000 --onnx_export_path=model.onnx --save_model_path=model.zip --save_checkpoint_frequency=20_000 --experiment_name=exp1
+```
+
+If things work correctly, you should see messages printed out in the terminal like below:
+
+```
+No game binary has been provided, please press PLAY in the Godot editor
+waiting for remote GODOT connection on port 11008
+```
+
+> If you encounter failures about import error in stable_baselines3_example script: "ImportError: cannot import name 'export_model_as_onnx' from 'godot_rl.wrappers.onnx.stable_baselines_export'", follow the answer in [this issue](https://github.com/edbeeching/godot_rl_agents/issues/203) here.
+
+Now it's time to switch back to the Godot editor, and hit PLAY on the top right corner. Once you hit that, the game scene will pop up showing AI training. In the meantime, the terminal will start to print out metrics. Wait for the training to finish, and if things work correctly, you should be able to find the file `model.onnx` in the Godot project directory.
+
+### Apply AI in the game!
+
+Now let's apply this trained model to the game!
+
+In the Godot editor, find the Sync node in `train.tscn`:
+
+* change the control mode to `Onnx Inference` from the dropdown
+* set `Onnx Model Path` to the model file name, in our case here it's `model.onnx`
+
+To run this game, we need the mono version (i.e., the .NET version) of the Godot editor, you can download it from the Godot official page. We need to install [.NET](https://dotnet.microsoft.com/en-us/download) as well.
+
+Most likely you wil encounter errors in the first attempt. Below are the scenarios to help you resolve the errors.
+
+1. issue about `Invalid Call. Nonexistent function 'new' in base 'CSharpScript'`: [solution](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/TROUBLESHOOTING.md)
+2. errors about `onnxruntime` on MacOS: [solution](https://github.com/microsoft/onnxruntime/issues/9707)
+
+
 ### There’s more!
 
 We have only scratched the surface of what can be achieved with Godot RL Agents, the library includes custom sensors and cameras to enrich the information available to the agent. Take a look at the [examples](https://github.com/edbeeching/godot_rl_agents_examples) to find out more!
