@@ -1,0 +1,174 @@
+# Reinforcement Learning for Trading
+
+Reinforcement Learning (RL) is being applied in stock trading with varying degrees of success. Its effectiveness depends on several factors, including the complexity of the trading environment, the quality of the data and the dynamic nature of financial markets. Addressing these challenges is crucial for maximizing the benefits of RL in trading. 
+Rewards in this environment can be easily visualized since it is profits / losses that we incur, in a transaction.
+
+In this section, we will be covering a couple of popular RL based open-source projects for trading.
+
+## Gym-Anytrading
+
+[Gym-Anytrading](https://github.com/AminHP/gym-anytrading) is an extension of the OpenAI Gym framework, specifically designed for creating and testing RL algorithms in trading environments. Trading algorithms are mostly implemented in two markets: FOREX and Stock.
+
+AnyTrading aims to provide Gym environments to improve and facilitate the procedure of developing and testing RL-based algorithms in this area. This is achieved by implementing three Gym environments: TradingEnv, ForexEnv, and StocksEnv. TradingEnv is an abstract environment which is defined to support all kinds of trading environments. ForexEnv and StocksEnv are simply two environments that inherit and extend TradingEnv.
+
+
+To begin with, gym_anytrading should be installed along with gym and other necessary packages.
+```bash
+pip install gym-anytrading
+```
+
+### Create an environment
+
+```python
+import gymnasium as gym
+import gym_anytrading
+
+env = gym.make('forex-v0')
+# env = gym.make('stocks-v0')
+```
+
+This will create a default environment.
+
+### Create an environment with custom parameters
+
+You can change parameters such as dataset, frame_bound, etc while creating the environment.
+To try out and explore, you can use two default datasets available in the GitHub repository - [*FOREX*](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/datasets/data/FOREX_EURUSD_1H_ASK.csv) and [*Stocks*](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/datasets/data/STOCKS_GOOGL.csv), but you can use your own as well.
+
+
+```python
+from gym_anytrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
+
+custom_env = gym.make(
+    'forex-v0',
+    df=FOREX_EURUSD_1H_ASK,
+    window_size=10,
+    frame_bound=(10, 300),
+    unit_side='right'
+)
+
+# custom_env = gym.make(
+#     'stocks-v0',
+#     df=STOCKS_GOOGL,
+#     window_size=10,
+#     frame_bound=(10, 300)
+# )
+```
+
+- It is to be noted that the first element of `frame_bound` should be greater than or equal to `window_size`.
+
+Remaining steps to create, train and further evaluate a Stable Baselines3 model are very similar to that as in other environments. 
+To follow along, here is a sample [notebook tutorial](https://github.com/AminHP/gym-anytrading/blob/master/examples/SB3_a2c_ppo.ipynb) available in Gym-Anytrading official GitHub repository.
+
+## FinRL for Trading
+[FinRL](https://github.com/AI4Finance-Foundation/FinRL) (Financial Reinforcement Learning) is an open-source framework designed to facilitate the application of RL in quantitative finance, particularly for automated stock trading. FinRL consists of three main layers: market environments, agents, and applications. This structure allows for the interaction between an agent and a market environment, enabling the agent to make sequential decisions.
+
+<figure>
+<img src="https://github.com/user-attachments/assets/60e0173b-c88a-4981-8da8-fb81e9f0e0b4" alt="FinRL Framework"/>
+<figcaption>Source: [FinRL GitHub repository](https://github.com/AI4Finance-Foundation/FinRL)</figcaption>
+</figure>
+
+1. **Market Environments: **FinRL provides gym-style market environments that simulate various stock markets, such as NASDAQ-100, DJIA, S&P 500, HSI, SSE 50, and CSI 300. These environments are configured with historical stock market datasets.
+2. **Agents: **The framework includes state-of-the-art deep reinforcement learning (DRL) algorithms like DQN, DDPG, PPO, SAC, A2C, and TD3. These agents are trained using neural networks to make trading decisions.
+3. **Applications: **FinRL supports various trading tasks, including single stock trading, multiple stock trading, and portfolio allocation. It also incorporates important trading constraints such as transaction costs, market liquidity, and risk aversion.
+
+### Example Workflow
+
+1. **Data Preparation:** Download historical stock data using libraries like Yahoo Finance API.
+
+```python
+from finrl.meta.preprocessor.yahoodownloader import YahooDownloader
+df = YahooDownloader(start_date='2009-01-01', end_date='2020-07-01', ticker_list=['AAPL', 'AMZN']).fetch_data()
+
+# Split df into df_train and df_test 
+```
+
+2. **Environment Configuration: **Create a trading environment using FinRL's StockTradingEnv class.
+
+```python
+# Default list of technical indicators
+# ['macd', 'boll_ub', 'boll_lb', 'rsi_30', 'cci_30', 'dx_30', 'close_30_sma', 'close_60_sma']
+from finrl.config import INDICATORS
+from finrl.meta.env_stock_trading.env_stocktrading import StockTradingEnv
+
+# Number of unique shares 
+stock_dimension = len(df_train.tic.unique())
+
+# state_space = 1 + 2*stock_dimension + len(INDICATORS)*stock_dimension
+state_space = 1 +    # (remaining balance in the trading account) 
+2 * stock_dimension +    # (prices of stocks and the share holdings of the stocks, so totally 2 * stock_dimension)
+len(INDICATORS) * stock_dimension
+
+buy_cost_list = [0.001] * stock_dimension
+sell_cost_list = buy_cost_list
+num_stock_shares = [0] * stock_dimension
+
+env_kwargs = {
+    "hmax": 100,
+    "initial_amount": 1000000,
+    "num_stock_shares": num_stock_shares,
+    "state_space": state_space,
+    "stock_dim": stock_dimension,
+    "tech_indicator_list": INDICATORS,
+    "action_space": stock_dimension,
+    "reward_scaling": 1e-4
+}
+
+env_train = StockTradingEnv(df=df_train, **env_kwargs)
+```
+
+3. **Agent Training: **Train a DRL agent using algorithms like DDPG or PPO from stable-baselines.
+
+There is also an option to train agent using ensemble strategy.
+
+```python
+from finrl.agents.stablebaselines3.models import DRLAgent
+agent = DRLAgent(env=env_train)
+agent.get_model('ppo')
+trained_ppo = agent.train_model()
+trained_ppo.save("trained_models/agent_ppo")
+```
+
+4. **Backtesting and Evaluation: **Evaluate the trained agent's performance using backtesting.
+
+Create a new environment using df_test to simulate test scenario.
+
+```python
+from stable_baselines3 import PPO
+trained_ppo = PPO.load("trained_models/agent_ppo.zip")
+
+# This is only for illustration.
+# Values such as state_space, stock_dimension should be derived in the notebook before using them here.
+env_kwargs = {
+    "hmax": 100,
+    "initial_amount": 1000000,
+    "num_stock_shares": num_stock_shares,
+    "state_space": state_space,
+    "stock_dim": stock_dimension,
+    "tech_indicator_list": INDICATORS,
+    "action_space": stock_dimension,
+    "reward_scaling": 1e-4
+}
+
+env_test = StockTradingEnv(df=df_test, **env_kwargs)
+
+df_account_value_ppo, df_actions_ppo = DRLAgent.DRL_prediction(
+                                                model=trained_ppo, 
+                                                environment = env_test)
+```
+
+df_account_value_ppo, df_actions_ppo are further used for portfolio analysis.
+
+Their [tutorial series](https://finrl.readthedocs.io/en/latest/tutorial/Guide.html) is very exhaustive and beginner friendly. One can choose to start at various levels depending on familiarity (introduction, advance, practical, optimization, others).
+
+
+## Additional readings
+
+For more information, we recommend you to check out the following resources:
+
+- [Deep Reinforcement Learning Approach for Trading Automation in The Stock Market](https://arxiv.org/abs/2208.07165)
+- [Deep Reinforcement Learning for Automated Stock Trading: An Ensemble Strategy](https://openfin.engineering.columbia.edu/sites/default/files/content/publications/ensemble.pdf)
+- [Gym Trading Env](https://gym-trading-env.readthedocs.io/en/latest/)
+
+## Author
+
+This section was written by <a href="https://github.com/ra9hur"> Raghu Ramarao </a>
