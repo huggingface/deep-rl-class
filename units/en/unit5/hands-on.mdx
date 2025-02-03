@@ -81,19 +81,67 @@ Before diving into the notebook, you need to:
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step2.jpg" alt="GPU Step 2">
 
-## Clone the repository and install the dependencies 🔽
-- We need to clone the repository that **contains the experimental version of the library that allows you to push your trained agent to the Hub.**
+## Clone the repository 🔽
+
+- We need to clone the repository, that contains **ML-Agents.**
 
 ```bash
-# Clone the repository
+# Clone the repository (can take 3min)
 git clone --depth 1 https://github.com/Unity-Technologies/ml-agents
 ```
 
+## Setup the Virtual Environment 🔽
+
+- In order for the **ML-Agents** to run successfully in Colab,  Colab's Python version must meet the library's Python requirements.
+
+- We can check for the supported Python version under the `python_requires` parameter in the `setup.py` files. These files are required to set up the **ML-Agents** library for use and can be found in the following locations:
+  - `/content/ml-agents/ml-agents/setup.py`
+  - `/content/ml-agents/ml-agents-envs/setup.py`
+
+- Colab's Current Python version(can be checked using `!python --version`) doesn't match the library's `python_requires` parameter, as a result installation may silently fail and lead to errors like these, when executing the same commands later:
+  - `/bin/bash: line 1: mlagents-learn: command not found`
+  - `/bin/bash: line 1: mlagents-push-to-hf: command not found`
+
+- To resolve this, we'll create a virtual environment with a Python version compatible with the **ML-Agents** library.
+
+`Note:` *For future compatibility, always check the `python_requires` parameter in the installation files and set your virtual environment to the maximum supported Python version in the given below script if the Colab's Python version is not compatible*
+
 ```bash
-# Go inside the repository and install the package
-cd ml-agents
-pip install -e ./ml-agents-envs
-pip install -e ./ml-agents
+# Colab's Current Python Version (Incompatible with ML-Agents)
+!python --version
+```
+
+```bash
+# Install virtualenv and create a virtual environment
+!pip install virtualenv
+!virtualenv myenv
+
+# Download and install Miniconda
+!wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+!chmod +x Miniconda3-latest-Linux-x86_64.sh
+!./Miniconda3-latest-Linux-x86_64.sh -b -f -p /usr/local
+
+# Activate Miniconda and install Python ver 3.10.12
+!source /usr/local/bin/activate
+!conda install -q -y --prefix /usr/local python=3.10.12 ujson  # Specify the version here
+
+# Set environment variables for Python and conda paths
+!export PYTHONPATH=/usr/local/lib/python3.10/site-packages/
+!export CONDA_PREFIX=/usr/local/envs/myenv
+```
+
+```bash
+# Python Version in New Virtual Environment (Compatible with ML-Agents)
+!python --version
+```
+
+## Installing the dependencies 🔽
+
+```bash
+# Go inside the repository and install the package (can take 3min)
+%cd ml-agents
+pip3 install -e ./ml-agents-envs
+pip3 install -e ./ml-agents
 ```
 
 ## SnowballTarget ⛄
