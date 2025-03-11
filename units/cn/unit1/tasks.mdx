@@ -1,0 +1,26 @@
+# 任务类型 [[tasks]]
+
+任务是强化学习问题的**一个实例**。我们可以有两种类型的任务：**情节性**和**持续性**。
+
+## 情节性任务 [[episodic-task]]
+
+在这种情况下，我们有一个起点和一个终点**(一个终止状态)。这创建了一个情节**：状态、动作、奖励和新状态的列表。
+
+例如，想想超级马里奥兄弟：一个情节从启动新的马里奥关卡开始，**当你被杀死或到达关卡末尾时结束。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="马里奥"  />
+<figcaption>新情节的开始。</figcaption>
+</figure>
+
+
+## 持续性任务 [[continuing-tasks]]
+
+这些是永远持续的任务（**没有终止状态**）。在这种情况下，智能体必须**学习如何选择最佳动作并同时与环境交互。**
+
+例如，一个进行自动股票交易的智能体。对于这个任务，没有起点和终止状态。**智能体会一直运行，直到我们决定停止它。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/stock.jpg" alt="股票市场" width="100%" />
+
+总结：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/tasks.jpg" alt="任务总结" width="100%" />

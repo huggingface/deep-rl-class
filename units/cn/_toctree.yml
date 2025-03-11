@@ -1,0 +1,260 @@
+- title: Unit 0. Welcome to the course
+  sections:
+  - local: unit0/introduction
+    title: Welcome to the course 🤗
+  - local: unit0/setup
+    title: Setup
+  - local: unit0/discord101
+    title: Discord 101
+- title: Unit 1. Introduction to Deep Reinforcement Learning
+  sections:
+  - local: unit1/introduction
+    title: Introduction
+  - local: unit1/what-is-rl
+    title: What is Reinforcement Learning?
+  - local: unit1/rl-framework
+    title: The Reinforcement Learning Framework
+  - local: unit1/tasks
+    title: The type of tasks
+  - local: unit1/exp-exp-tradeoff
+    title: The Exploration/ Exploitation tradeoff
+  - local: unit1/two-methods
+    title: The two main approaches for solving RL problems
+  - local: unit1/deep-rl
+    title: The “Deep” in Deep Reinforcement Learning
+  - local: unit1/summary
+    title: Summary
+  - local: unit1/glossary
+    title: Glossary
+  - local: unit1/hands-on
+    title: Hands-on
+  - local: unit1/quiz
+    title: Quiz
+  - local: unit1/conclusion
+    title: Conclusion
+  - local: unit1/additional-readings
+    title: Additional Readings
+- title: Bonus Unit 1. Introduction to Deep Reinforcement Learning with Huggy
+  sections:
+  - local: unitbonus1/introduction
+    title: Introduction
+  - local: unitbonus1/how-huggy-works
+    title: How Huggy works?
+  - local: unitbonus1/train
+    title: Train Huggy
+  - local: unitbonus1/play
+    title: Play with Huggy
+  - local: unitbonus1/conclusion
+    title: Conclusion
+- title: Live 1. How the course work, Q&A, and playing with Huggy
+  sections:
+  - local: live1/live1
+    title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
+- title: Unit 2. Introduction to Q-Learning
+  sections:
+  - local: unit2/introduction
+    title: Introduction
+  - local: unit2/what-is-rl
+    title: What is RL? A short recap
+  - local: unit2/two-types-value-based-methods
+    title: The two types of value-based methods
+  - local: unit2/bellman-equation
+    title: The Bellman Equation, simplify our value estimation
+  - local: unit2/mc-vs-td
+    title: Monte Carlo vs Temporal Difference Learning
+  - local: unit2/mid-way-recap
+    title: Mid-way Recap
+  - local: unit2/mid-way-quiz
+    title: Mid-way Quiz
+  - local: unit2/q-learning
+    title: Introducing Q-Learning
+  - local: unit2/q-learning-example
+    title: A Q-Learning example
+  - local: unit2/q-learning-recap
+    title: Q-Learning Recap
+  - local: unit2/glossary
+    title: Glossary
+  - local: unit2/hands-on
+    title: Hands-on
+  - local: unit2/quiz2
+    title: Q-Learning Quiz
+  - local: unit2/conclusion
+    title: Conclusion
+  - local: unit2/additional-readings
+    title: Additional Readings
+- title: Unit 3. Deep Q-Learning with Atari Games
+  sections:
+  - local: unit3/introduction
+    title: Introduction
+  - local: unit3/from-q-to-dqn
+    title: From Q-Learning to Deep Q-Learning
+  - local: unit3/deep-q-network
+    title: The Deep Q-Network (DQN)
+  - local: unit3/deep-q-algorithm
+    title: The Deep Q Algorithm
+  - local: unit3/glossary
+    title: Glossary
+  - local: unit3/hands-on
+    title: Hands-on
+  - local: unit3/quiz
+    title: Quiz
+  - local: unit3/conclusion
+    title: Conclusion
+  - local: unit3/additional-readings
+    title: Additional Readings
+- title: Bonus Unit 2. Automatic Hyperparameter Tuning with Optuna
+  sections:
+  - local: unitbonus2/introduction
+    title: Introduction
+  - local: unitbonus2/optuna
+    title: Optuna
+  - local: unitbonus2/hands-on
+    title: Hands-on
+- title: Unit 4. Policy Gradient with PyTorch
+  sections:
+  - local: unit4/introduction
+    title: Introduction
+  - local: unit4/what-are-policy-based-methods
+    title: What are the policy-based methods?
+  - local: unit4/advantages-disadvantages
+    title: The advantages and disadvantages of policy-gradient methods
+  - local: unit4/policy-gradient
+    title: Diving deeper into policy-gradient
+  - local: unit4/pg-theorem
+    title: (Optional) the Policy Gradient Theorem
+  - local: unit4/glossary
+    title: Glossary
+  - local: unit4/hands-on
+    title: Hands-on
+  - local: unit4/quiz
+    title: Quiz
+  - local: unit4/conclusion
+    title: Conclusion
+  - local: unit4/additional-readings
+    title: Additional Readings
+- title: Unit 5. Introduction to Unity ML-Agents
+  sections:
+  - local: unit5/introduction
+    title: Introduction
+  - local: unit5/how-mlagents-works
+    title: How ML-Agents works?
+  - local: unit5/snowball-target
+    title: The SnowballTarget environment
+  - local: unit5/pyramids
+    title: The Pyramids environment
+  - local: unit5/curiosity
+    title: (Optional) What is curiosity in Deep Reinforcement Learning?
+  - local: unit5/hands-on
+    title: Hands-on
+  - local: unit5/bonus
+    title: Bonus. Learn to create your own environments with Unity and MLAgents
+  - local: unit5/quiz
+    title: Quiz
+  - local: unit5/conclusion
+    title: Conclusion
+- title: Unit 6. Actor Critic methods with Robotics environments
+  sections:
+  - local: unit6/introduction
+    title: Introduction
+  - local: unit6/variance-problem
+    title: The Problem of Variance in Reinforce
+  - local: unit6/advantage-actor-critic
+    title: Advantage Actor Critic (A2C)
+  - local: unit6/hands-on
+    title: Advantage Actor Critic (A2C) using Robotics Simulations with Panda-Gym 🤖
+  - local: unit6/quiz
+    title: Quiz
+  - local: unit6/conclusion
+    title: Conclusion
+  - local: unit6/additional-readings
+    title: Additional Readings
+- title: Unit 7. Introduction to Multi-Agents and AI vs AI
+  sections:
+  - local: unit7/introduction
+    title: Introduction
+  - local: unit7/introduction-to-marl
+    title: An introduction to Multi-Agents Reinforcement Learning (MARL)
+  - local: unit7/multi-agent-setting
+    title: Designing Multi-Agents systems
+  - local: unit7/self-play
+    title: Self-Play
+  - local: unit7/hands-on
+    title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
+  - local: unit7/quiz
+    title: Quiz
+  - local: unit7/conclusion
+    title: Conclusion
+  - local: unit7/additional-readings
+    title: Additional Readings
+- title: Unit 8. Part 1 Proximal Policy Optimization (PPO)
+  sections:
+  - local: unit8/introduction
+    title: Introduction
+  - local: unit8/intuition-behind-ppo
+    title: The intuition behind PPO
+  - local: unit8/clipped-surrogate-objective
+    title: Introducing the Clipped Surrogate Objective Function
+  - local: unit8/visualize
+    title: Visualize the Clipped Surrogate Objective Function
+  - local: unit8/hands-on-cleanrl
+    title: PPO with CleanRL
+  - local: unit8/conclusion
+    title: Conclusion
+  - local: unit8/additional-readings
+    title: Additional Readings
+- title: Unit 8. Part 2 Proximal Policy Optimization (PPO) with Doom
+  sections:
+  - local: unit8/introduction-sf
+    title: Introduction
+  - local: unit8/hands-on-sf
+    title: PPO with Sample Factory and Doom
+  - local: unit8/conclusion-sf
+    title: Conclusion
+- title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
+  sections:
+  - local: unitbonus3/introduction
+    title: Introduction
+  - local: unitbonus3/model-based
+    title: Model-Based Reinforcement Learning
+  - local: unitbonus3/offline-online
+    title: Offline vs. Online Reinforcement Learning
+  - local: unitbonus3/generalisation
+    title: Generalisation Reinforcement Learning
+  - local: unitbonus3/rlhf
+    title: Reinforcement Learning from Human Feedback
+  - local: unitbonus3/decision-transformers
+    title: Decision Transformers and Offline RL
+  - local: unitbonus3/language-models
+    title: Language models in RL
+  - local: unitbonus3/curriculum-learning
+    title: (Automatic) Curriculum Learning for RL
+  - local: unitbonus3/envs-to-try
+    title: Interesting environments to try
+  - local: unitbonus3/learning-agents
+    title: An introduction to Unreal Learning Agents
+  - local: unitbonus3/godotrl
+    title: An Introduction to Godot RL
+  - local: unitbonus3/student-works
+    title: Students projects
+  - local: unitbonus3/rl-documentation
+    title: Brief introduction to RL documentation
+- title: Bonus Unit 5. Imitation Learning with Godot RL Agents
+  sections:
+  - local: unitbonus5/introduction
+    title: Introduction
+  - local: unitbonus5/the-environment
+    title: The environment
+  - local: unitbonus5/getting-started
+    title: Getting started
+  - local: unitbonus5/train-our-robot
+    title: Train our robot
+  - local: unitbonus5/customize-the-environment
+    title: (Optional) Customize the environment
+  - local: unitbonus5/conclusion
+    title: Conclusion
+- title: Certification and congratulations
+  sections:
+  - local: communication/conclusion
+    title: Congratulations
+  - local: communication/certification
+    title: Get your certificate of completion

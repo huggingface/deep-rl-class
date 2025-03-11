@@ -1,0 +1,88 @@
+# 值得尝试的有趣环境
+
+这里我们提供了一些你可以尝试训练智能体的有趣环境列表：
+
+## DIAMBRA Arena
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/diambraarena.png" alt="diambraArena"/>
+
+
+DIAMBRA Arena是一个软件包，提供了一系列高质量的环境，用于强化学习研究和实验。它为流行的街机模拟视频游戏提供了标准接口，提供完全兼容OpenAI Gym/Gymnasium格式的Python API，使其采用变得平滑和直接。
+
+它支持所有主要操作系统（Linux、Windows和MacOS），可以通过[Python PIP](https://pypi.org/project/diambra-arena/)轻松安装。它完全免费使用，用户只需在[官方网站](https://diambra.ai/register/)上注册。
+
+此外，其[GitHub仓库](https://github.com/diambra/)提供了涵盖主要用例的示例集合，只需几个步骤即可运行。
+
+#### 主要特点
+
+所有环境都是情节性强化学习任务，具有离散动作（游戏手柄按钮）和由屏幕像素加上额外数值数据（如角色生命条或角色舞台位置等RAM值）组成的观察。
+
+它们都支持单人（1P）和双人（2P）模式，使它们成为探索标准强化学习、竞争性多智能体、竞争性人机交互、自我对弈、模仿学习和人在环中学习的完美资源。
+
+[接口游戏](https://docs.diambra.ai/envs/games/)是从最流行的格斗复古游戏中选择的。虽然它们共享相同的基本机制，但提供了不同的挑战，具有特定功能，如不同类型和数量的角色、如何执行连击、生命条充能等。
+
+DIAMBRA Arena的构建目的是最大化与所有主要强化学习库的兼容性。它原生提供与两个最重要的包的接口：[Stable Baselines 3](https://stable-baselines3.readthedocs.io/en/master/)和[Ray RLlib](https://docs.ray.io/en/latest/rllib/index.html)，而Stable Baselines也可用但已弃用。它们的使用在[官方文档](https://docs.diambra.ai/)和[DIAMBRA Agents示例仓库](https://github.com/diambra/agents)中有说明。它可以以类似的方式轻松地与任何其他包接口。
+
+### 竞赛平台
+
+DIAMBRA还提供了一个与Hugging Face Hub完全集成的竞赛平台，你可以在其中提交你训练的智能体，并与全球其他编码者在史诗级视频游戏锦标赛中竞争！
+
+它提供了一个公共排行榜，用户根据其智能体在我们不同环境中取得的最佳分数进行排名。
+
+它还提供了根据你的智能体表现解锁酷炫成就的可能性。
+
+提交的智能体会被评估，其游戏情节会在[DIAMBRA Twitch频道](https://www.twitch.tv/diambra_ai)上直播。
+
+#### 参考资料
+
+要开始使用这个环境，请查看这些资源：
+- [官方文档](https://docs.diambra.ai/)
+- [竞赛平台](https://diambra.ai)
+- [GitHub](https://github.com/diambra/)
+- [Discord](https://diambra.ai/discord)
+
+## MineRL
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/minerl.jpg" alt="MineRL"/>
+
+
+MineRL是一个Python库，提供了与Minecraft视频游戏交互的Gym接口，并附带人类游戏数据集。
+每年都有使用这个库的挑战。查看[网站](https://minerl.io/)
+
+要开始使用这个环境，请查看这些资源：
+- [什么是MineRL？](https://www.youtube.com/watch?v=z6PTrGifupU)
+- [MineRL的第一步](https://www.youtube.com/watch?v=8yIrWcyWGek)
+- [MineRL文档和教程](https://minerl.readthedocs.io/en/latest/)
+
+## DonkeyCar模拟器
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/donkeycar.jpg" alt="Donkey Car"/>
+Donkey是一个用于业余遥控汽车的自动驾驶汽车平台。
+这个模拟器版本是基于Unity游戏平台构建的。它使用Unity内部的物理和图形系统，并连接到donkey Python进程，使用我们训练的模型来控制模拟的Donkey（汽车）。
+
+
+要开始使用这个环境，请查看这些资源：
+- [DonkeyCar模拟器文档](https://docs.donkeycar.com/guide/deep_learning/simulator/)
+- [学习平稳驾驶（Antonin Raffin的教程）第1部分](https://www.youtube.com/watch?v=ngK33h00iBE)
+- [学习平稳驾驶（Antonin Raffin的教程）第2部分](https://www.youtube.com/watch?v=DUqssFvcSOY)
+- [学习平稳驾驶（Antonin Raffin的教程）第3部分](https://www.youtube.com/watch?v=v8j2bpcE4Rg)
+
+- 预训练智能体：
+  - https://huggingface.co/araffin/tqc-donkey-mountain-track-v0
+  - https://huggingface.co/araffin/tqc-donkey-avc-sparkfun-v0
+  - https://huggingface.co/araffin/tqc-donkey-minimonaco-track-v0
+
+
+## 星际争霸II
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/alphastar.jpg" alt="Alphastar"/>
+
+星际争霸II是一款著名的*即时战略游戏*。DeepMind使用这款游戏进行了他们的深度强化学习研究，开发了[Alphastar](https://www.deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii)
+
+要开始使用这个环境，请查看这些资源：
+- [星际争霸gym](http://starcraftgym.com/)
+- [A.I.学习玩星际争霸2（强化学习）教程](https://www.youtube.com/watch?v=q59wap1ELQ4)
+
+## 作者
+
+本节由<a href="https://twitter.com/ThomasSimonini">Thomas Simonini</a>撰写

@@ -1,0 +1,90 @@
+# 解决强化学习问题的两种主要方法 [[two-methods]]
+
+<Tip>
+现在我们已经学习了强化学习框架，如何解决强化学习问题呢？
+</Tip>
+
+换句话说，我们如何构建一个强化学习智能体，使其能够**选择最大化其期望累积奖励的动作？**
+
+## 策略π：智能体的大脑 [[policy]]
+
+策略**π**是**我们智能体的大脑**，它是一个函数，告诉我们在给定状态下**采取什么动作。**因此，它**定义了智能体在给定时间的行为**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="策略" />
+<figcaption>将策略视为我们智能体的大脑，这个函数会告诉我们在给定状态下采取什么动作</figcaption>
+</figure>
+
+这个策略**是我们想要学习的函数**，我们的目标是找到最优策略π\*，即当智能体按照它行动时**最大化期望回报**的策略。我们通过**训练**找到这个π\*。
+
+有两种方法来训练我们的智能体以找到这个最优策略π\*：
+
+- **直接地**，通过教导智能体学习在给定当前状态下**采取什么动作**：**基于策略的方法。**
+- 间接地，**教导智能体学习哪个状态更有价值**，然后采取**导向更有价值状态的动作**：基于价值的方法。
+
+## 基于策略的方法 [[policy-based]]
+
+在基于策略的方法中，**我们直接学习一个策略函数。**
+
+这个函数将定义从每个状态到最佳相应动作的映射。或者，它可以定义**在该状态下可能动作集合上的概率分布。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_2.jpg" alt="策略" />
+<figcaption>正如我们在这里看到的，策略（确定性）<b>直接指示每一步要采取的动作。</b></figcaption>
+</figure>
+
+
+我们有两种类型的策略：
+
+
+- *确定性*：在给定状态下的策略**将始终返回相同的动作。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_3.jpg" alt="策略"/>
+<figcaption>action = policy(state)</figcaption>
+</figure>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_4.jpg" alt="策略" width="100%"/>
+
+- *随机性*：输出**动作的概率分布。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_5.jpg" alt="策略"/>
+<figcaption>policy(actions | state) = 在给定当前状态下，对可能动作集合的概率分布</figcaption>
+</figure>
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy-based.png" alt="基于策略"/>
+<figcaption>给定一个初始状态，我们的随机策略将输出该状态下可能动作的概率分布。</figcaption>
+</figure>
+
+
+如果我们总结一下：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_1.jpg" alt="基于策略方法总结" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/pbm_2.jpg" alt="基于策略方法总结" width="100%" />
+
+
+## 基于价值的方法 [[value-based]]
+
+在基于价值的方法中，我们不是学习一个策略函数，而是**学习一个价值函数**，它将状态映射到**处于该状态的期望价值。**
+
+状态的价值是智能体如果**从该状态开始，然后按照我们的策略行动**所能获得的**期望折扣回报**。
+
+"按照我们的策略行动"只是意味着我们的策略是**"前往价值最高的状态"。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_1.jpg" alt="基于价值的强化学习" width="100%" />
+
+这里我们看到我们的价值函数**为每个可能的状态定义了价值。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/value_2.jpg" alt="基于价值的强化学习"/>
+<figcaption>多亏了我们的价值函数，在每一步我们的策略将选择价值函数定义的价值最大的状态：-7，然后-6，然后-5（依此类推）以达到目标。</figcaption>
+</figure>
+
+多亏了我们的价值函数，在每一步我们的策略将选择价值函数定义的价值最大的状态：-7，然后-6，然后-5（依此类推）以达到目标。
+
+如果我们总结一下：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_1.jpg" alt="基于价值方法总结" width="100%" />
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/vbm_2.jpg" alt="基于价值方法总结" width="100%" />

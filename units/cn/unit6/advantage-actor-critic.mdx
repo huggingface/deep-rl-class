@@ -1,0 +1,70 @@
+# 优势Actor-Critic (A2C) [[advantage-actor-critic]]
+
+## 使用Actor-Critic方法减少方差
+
+减少Reinforce算法方差并更快更好地训练我们的智能体的解决方案是使用基于策略和基于价值方法的组合：*Actor-Critic方法*。
+
+要理解Actor-Critic，想象你正在玩一个视频游戏。你可以和一个会给你提供反馈的朋友一起玩。你是Actor（演员），你的朋友是Critic（评论家）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/ac.jpg" alt="Actor Critic"/>
+
+一开始你不知道如何玩，**所以你随机尝试一些动作**。Critic观察你的动作并**提供反馈**。
+
+从这些反馈中学习，**你将更新你的策略并变得更擅长玩这个游戏。**
+
+另一方面，你的朋友（Critic）也会更新他们提供反馈的方式，使其下次能做得更好。
+
+这就是Actor-Critic背后的思想。我们学习两种函数近似：
+
+- *一个策略*，**控制我们的智能体如何行动**：\\( \pi_{\theta}(s) \\)
+
+- *一个价值函数*，通过衡量所采取动作的好坏来辅助策略更新：\\( \hat{q}_{w}(s,a) \\)
+
+## Actor-Critic过程
+现在我们已经了解了Actor Critic的大致情况，让我们深入了解Actor和Critic如何在训练过程中一起改进。
+
+如我们所见，使用Actor-Critic方法，有两种函数近似（两个神经网络）：
+- *Actor*，一个由theta参数化的**策略函数**：\\( \pi_{\theta}(s) \\)
+- *Critic*，一个由w参数化的**价值函数**：\\( \hat{q}_{w}(s,a) \\)
+
+让我们看看训练过程，以了解Actor和Critic是如何优化的：
+- 在每个时间步t，我们从环境中获取当前状态\\( S_t\\)，并**将其作为输入传递给我们的Actor和Critic**。
+
+- 我们的策略接收状态并**输出一个动作** \\( A_t \\)。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step1.jpg" alt="Actor Critic步骤1"/>
+
+- Critic也将该动作作为输入，并使用\\( S_t\\)和\\( A_t \\)，**计算在该状态下采取该动作的价值：Q值**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step2.jpg" alt="Actor Critic步骤2"/>
+
+- 在环境中执行的动作\\( A_t\\)输出一个新状态\\( S_{t+1}\\)和一个奖励\\( R_{t+1} \\)。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step3.jpg" alt="Actor Critic步骤3"/>
+
+- Actor使用Q值更新其策略参数。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step4.jpg" alt="Actor Critic步骤4"/>
+
+- 通过其更新的参数，Actor产生下一个要在给定新状态\\( S_{t+1} \\)下采取的动作\\( A_{t+1} \\)。
+
+- 然后Critic更新其价值参数。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step5.jpg" alt="Actor Critic步骤5"/>
+
+## 在Actor-Critic中添加优势(A2C)
+我们可以通过**使用优势函数作为Critic而不是动作价值函数**来进一步稳定学习。
+
+这个想法是优势函数计算一个动作相对于在状态下可能的其他动作的相对优势：**在一个状态下采取该动作比该状态的平均价值好多少**。它从状态-动作对中减去状态的平均价值：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/advantage1.jpg" alt="优势函数"/>
+
+换句话说，这个函数计算**如果我们在该状态下采取这个动作，相比于在该状态下获得的平均奖励，我们获得的额外奖励**。
+
+额外奖励是超出该状态预期价值的部分。
+- 如果A(s,a) > 0：我们的梯度**被推向那个方向**。
+- 如果A(s,a) < 0（我们的动作比该状态的平均价值差），**我们的梯度被推向相反方向**。
+
+实现这个优势函数的问题是它需要两个价值函数——\\( Q(s,a)\\)和\\( V(s)\\)。幸运的是，**我们可以使用TD误差作为优势函数的良好估计器。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/advantage2.jpg" alt="优势函数"/>

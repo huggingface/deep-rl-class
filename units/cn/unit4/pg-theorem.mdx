@@ -1,0 +1,86 @@
+# (可选) 策略梯度定理
+
+在这个可选部分中，我们将**研究如何对我们将用来近似策略梯度的目标函数进行微分**。
+
+让我们首先回顾一下我们的不同公式：
+
+1. 目标函数
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/expected_reward.png" alt="Return"/>
+
+
+2. 轨迹的概率（假设动作来自 \\(\pi_\theta\\)）：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
+
+所以我们有：
+
+\\(\nabla_\theta J(\theta) =  \nabla_\theta \sum_{\tau}P(\tau;\theta)R(\tau)\\)
+
+
+我们可以将和的梯度重写为梯度的和：
+
+\\( =  \sum_{\tau} \nabla_\theta (P(\tau;\theta)R(\tau)) = \sum_{\tau} \nabla_\theta P(\tau;\theta)R(\tau) \\) 因为 \\(R(\tau)\\) 不依赖于 \\(\theta\\)
+
+然后我们将和中的每一项乘以 \\(\frac{P(\tau;\theta)}{P(\tau;\theta)}\\)（这是可能的，因为它等于1）
+
+\\( = \sum_{\tau} \frac{P(\tau;\theta)}{P(\tau;\theta)}\nabla_\theta P(\tau;\theta)R(\tau) \\)
+
+
+我们可以进一步简化，因为 \\( \frac{P(\tau;\theta)}{P(\tau;\theta)}\nabla_\theta P(\tau;\theta) =  P(\tau;\theta)\frac{\nabla_\theta P(\tau;\theta)}{P(\tau;\theta)}  \\)。
+
+因此，我们可以将和重写为
+
+\\( P(\tau;\theta)\frac{\nabla_\theta P(\tau;\theta)}{P(\tau;\theta)}= \sum_{\tau} P(\tau;\theta) \frac{\nabla_\theta P(\tau;\theta)}{P(\tau;\theta)}R(\tau) \\)
+
+然后我们可以使用*对数导数技巧*（也称为*似然比技巧*或*REINFORCE技巧*），这是微积分中的一个简单规则，意味着 \\( \nabla_x log f(x) = \frac{\nabla_x f(x)}{f(x)} \\)
+
+所以鉴于我们有 \\(\frac{\nabla_\theta P(\tau;\theta)}{P(\tau;\theta)} \\)，我们将其转换为 \\(\nabla_\theta log P(\tau|\theta) \\)
+
+
+
+所以这是我们的似然策略梯度：
+
+\\( \nabla_\theta J(\theta) = \sum_{\tau} P(\tau;\theta)  \nabla_\theta log P(\tau;\theta) R(\tau) \\)
+
+
+
+
+
+感谢这个新公式，我们可以使用轨迹样本来估计梯度（如果你喜欢，我们可以用基于样本的估计来近似似然比策略梯度）。
+
+\\(\nabla_\theta J(\theta) = \frac{1}{m} \sum^{m}_{i=1} \nabla_\theta log P(\tau^{(i)};\theta)R(\tau^{(i)})\\) 其中每个 \\(\tau^{(i)}\\) 是一个采样的轨迹。
+
+
+但我们在这里仍然有一些数学工作要做：我们需要简化 \\(  \nabla_\theta log P(\tau|\theta) \\)
+
+我们知道：
+
+\\(\nabla_\theta log P(\tau^{(i)};\theta)= \nabla_\theta log[ \mu(s_0) \prod_{t=0}^{H} P(s_{t+1}^{(i)}|s_{t}^{(i)}, a_{t}^{(i)}) \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)})]\\)
+
+其中 \\(\mu(s_0)\\) 是初始状态分布，\\( P(s_{t+1}^{(i)}|s_{t}^{(i)}, a_{t}^{(i)})  \\) 是MDP的状态转移动态。
+
+我们知道乘积的对数等于对数的和：
+
+\\(\nabla_\theta log P(\tau^{(i)};\theta)= \nabla_\theta \left[log \mu(s_0) + \sum\limits_{t=0}^{H}log P(s_{t+1}^{(i)}|s_{t}^{(i)} a_{t}^{(i)}) + \sum\limits_{t=0}^{H}log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)})\right] \\)
+
+我们还知道和的梯度等于梯度的和：
+
+\\( \nabla_\theta log P(\tau^{(i)};\theta)=\nabla_\theta log\mu(s_0) + \nabla_\theta \sum\limits_{t=0}^{H} log P(s_{t+1}^{(i)}|s_{t}^{(i)} a_{t}^{(i)}) + \nabla_\theta \sum\limits_{t=0}^{H} log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)}) \\)
+
+
+由于初始状态分布和MDP的状态转移动态都不依赖于 \\(\theta\\)，两项的导数都为0。所以我们可以删除它们：
+
+因为：
+\\(\nabla_\theta \sum_{t=0}^{H} log P(s_{t+1}^{(i)}|s_{t}^{(i)}  a_{t}^{(i)}) = 0 \\) 且 \\( \nabla_\theta \mu(s_0) = 0\\)
+
+\\(\nabla_\theta log P(\tau^{(i)};\theta) =   \nabla_\theta \sum_{t=0}^{H} log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)})\\)
+
+我们可以将和的梯度重写为梯度的和：
+
+\\( \nabla_\theta log P(\tau^{(i)};\theta)=    \sum_{t=0}^{H} \nabla_\theta log \pi_\theta(a_{t}^{(i)}|s_{t}^{(i)}) \\)
+
+所以，估计策略梯度的最终公式是：
+
+\\( \nabla_{\theta} J(\theta) = \hat{g} = \frac{1}{m} \sum^{m}_{i=1} \sum^{H}_{t=0} \nabla_\theta \log \pi_\theta(a^{(i)}_{t} | s_{t}^{(i)})R(\tau^{(i)}) \\)

@@ -1,0 +1,69 @@
+# 引入裁剪替代目标函数
+## 回顾：策略目标函数
+
+让我们回顾一下Reinforce中要优化的目标：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/lpg.jpg" alt="Reinforce"/>
+
+其思想是通过对这个函数进行梯度上升步骤（等同于对这个函数的负值进行梯度下降），我们将**推动我们的智能体采取能够获得更高奖励的行动并避免有害行动。**
+
+然而，问题来自于步长：
+- 太小，**训练过程太慢**
+- 太大，**训练中的变异性太大**
+
+在PPO中，思想是使用一个称为*裁剪替代目标函数*的新目标函数来约束我们的策略更新，**该函数将使用裁剪将策略变化限制在一个小范围内。**
+
+这个新函数**旨在避免破坏性的大权重更新**：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/ppo-surrogate.jpg" alt="PPO surrogate function"/>
+
+让我们研究每个部分以了解它是如何工作的。
+
+## 比率函数
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/ratio1.jpg" alt="Ratio"/>
+
+这个比率计算如下：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/ratio2.jpg" alt="Ratio"/>
+
+它是当前策略中在状态 \\( s_t \\) 下采取行动 \\( a_t \\) 的概率，除以前一个策略中相同情况的概率。
+
+如我们所见，\\( r_t(\theta) \\) 表示当前策略和旧策略之间的概率比率：
+
+- 如果 \\( r_t(\theta) > 1 \\)，**在当前策略中，在状态 \\( s_t \\) 下采取行动 \\( a_t \\) 的可能性比旧策略更大。**
+- 如果 \\( r_t(\theta) \\) 在0和1之间，**该行动在当前策略中的可能性比旧策略小**。
+
+因此，这个概率比率是**估计旧策略和当前策略之间差异的简单方法。**
+
+## 裁剪替代目标函数的非裁剪部分
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/unclipped1.jpg" alt="PPO"/>
+
+这个比率**可以替代我们在策略目标函数中使用的对数概率**。这给了我们新目标函数的左侧部分：将比率乘以优势。
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/unclipped2.jpg" alt="PPO"/>
+  <figcaption><a href="https://arxiv.org/pdf/1707.06347.pdf">近端策略优化算法</a></figcaption>
+</figure>
+
+然而，如果没有约束，如果在我们当前策略中采取的行动比我们以前的策略更有可能，**这将导致显著的策略梯度步骤**，因此，**过度的策略更新。**
+
+## 裁剪替代目标函数的裁剪部分
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/clipped.jpg" alt="PPO"/>
+
+因此，我们需要通过惩罚导致比率远离1的变化来约束这个目标函数（在论文中，比率只能从0.8变化到1.2）。
+
+**通过裁剪比率，我们确保不会有太大的策略更新，因为当前策略不能与旧策略相差太大。**
+
+为此，我们有两种解决方案：
+
+- *TRPO（信任区域策略优化）*在目标函数之外使用KL散度约束来约束策略更新。但这种方法**实现复杂，计算时间更长。**
+- *PPO*直接在目标函数中用其**裁剪替代目标函数**裁剪概率比率。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/clipped.jpg" alt="PPO"/>
+
+这个裁剪部分是一个版本，其中 \\( r_t(\theta) \\) 被裁剪在 \\( [1 - \epsilon, 1 + \epsilon] \\) 之间。
+
+使用裁剪替代目标函数，我们有两个概率比率，一个非裁剪的和一个在 \\( [1 - \epsilon, 1 + \epsilon] \\) 范围内裁剪的，epsilon是一个超参数，帮助我们定义这个裁剪范围（在论文中 \\( \epsilon = 0.2 \\)）。
+
+然后，我们取裁剪和非裁剪目标的最小值，**所以最终目标是非裁剪目标的下界（悲观界）。**
+
+取裁剪和非裁剪目标的最小值意味着**我们将根据比率和优势情况选择裁剪或非裁剪目标**。

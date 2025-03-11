@@ -1,0 +1,348 @@
+# 让我们训练并与Huggy互动 🐶 [[train]]
+
+
+
+
+          <CourseFloatingBanner classNames="absolute z-10 right-0 top-0"
+          notebooks={[
+          {label: "Google Colab", value: "https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/bonus-unit1/bonus-unit1.ipynb"}
+          ]}
+            askForHelpUrl="http://hf.co/join/discord" />
+
+
+
+我们强烈**建议学生使用Google Colab进行动手练习**，而不是在个人电脑上运行它们。
+
+通过使用Google Colab，**你可以专注于学习和实验，而不必担心设置环境的技术方面**。
+
+
+## 让我们训练Huggy 🐶
+
+**要开始训练Huggy，点击"Open In Colab"按钮** 👇 :
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/deep-rl-class/blob/master/notebooks/bonus-unit1/bonus-unit1.ipynb)
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit2/thumbnail.png" alt="Bonus Unit 1Thumbnail" />
+
+在这个笔记本中，我们将通过**教导小狗Huggy捡回棍子，然后直接在浏览器中与它互动**来强化我们在第一单元中学到的知识
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy"/>
+
+### 环境 🎮
+
+- Huggy小狗，一个由[Thomas Simonini](https://twitter.com/ThomasSimonini)基于[Puppo The Corgi](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)创建的环境
+
+### 使用的库 📚
+
+- [MLAgents](https://github.com/Unity-Technologies/ml-agents)
+
+我们一直在努力改进我们的教程，所以**如果你在这个笔记本中发现一些问题**，请[在Github仓库上提出issue](https://github.com/huggingface/deep-rl-class/issues)。
+
+## 本笔记本的目标 🏆
+
+在完成本笔记本后，你将：
+
+- 理解**用于训练Huggy的状态空间、动作空间和奖励函数**。
+- **训练你自己的Huggy**去捡回棍子。
+- 能够**直接在浏览器中与你训练好的Huggy互动**。
+
+
+## 先决条件 🏗️
+
+在深入学习本笔记本之前，你需要：
+
+🔲 📚 通过完成第1单元**了解强化学习的基础知识**（MC、TD、奖励假设...）
+
+🔲 📚 通过完成奖励单元1**阅读Huggy的介绍**
+
+## 设置GPU 💪
+- 为了**加速代理的训练，我们将使用GPU**。要做到这一点，请转到`Runtime > Change Runtime type`
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step1.jpg" alt="GPU Step 1" />
+
+- `Hardware Accelerator > GPU`
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/gpu-step2.jpg" alt="GPU Step 2" />
+
+## 克隆仓库 🔽
+
+- 我们需要克隆包含**ML-Agents**的仓库。
+
+```bash
+# 克隆仓库（可能需要3分钟）
+git clone --depth 1 https://github.com/Unity-Technologies/ml-agents
+```
+
+## 设置虚拟环境 🔽
+
+- 为了让**ML-Agents**在Colab中成功运行，Colab的Python版本必须满足库的Python要求。
+
+- 我们可以在`setup.py`文件的`python_requires`参数下检查支持的Python版本。这些文件是设置**ML-Agents**库所必需的，可以在以下位置找到：
+  - `/content/ml-agents/ml-agents/setup.py`
+  - `/content/ml-agents/ml-agents-envs/setup.py`
+
+- Colab当前的Python版本（可以使用`!python --version`检查）与库的`python_requires`参数不匹配，因此安装可能会悄无声息地失败，并在稍后执行相同命令时导致如下错误：
+  - `/bin/bash: line 1: mlagents-learn: command not found`
+  - `/bin/bash: line 1: mlagents-push-to-hf: command not found`
+
+- 为了解决这个问题，我们将创建一个与**ML-Agents**库兼容的Python版本的虚拟环境。
+
+`注意：` *为了未来的兼容性，请始终检查安装文件中的`python_requires`参数，如果Colab的Python版本不兼容，请在下面给出的脚本中将虚拟环境设置为支持的最大Python版本*
+
+```bash
+# Colab当前的Python版本（与ML-Agents不兼容）
+!python --version
+```
+
+```bash
+# 安装virtualenv并创建虚拟环境
+!pip install virtualenv
+!virtualenv myenv
+
+# 下载并安装Miniconda
+!wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+!chmod +x Miniconda3-latest-Linux-x86_64.sh
+!./Miniconda3-latest-Linux-x86_64.sh -b -f -p /usr/local
+
+# 激活Miniconda并安装Python 3.10.12版本
+!source /usr/local/bin/activate
+!conda install -q -y --prefix /usr/local python=3.10.12 ujson  # 在这里指定版本
+
+# 设置Python和conda路径的环境变量
+!export PYTHONPATH=/usr/local/lib/python3.10/site-packages/
+!export CONDA_PREFIX=/usr/local/envs/myenv
+```
+
+```bash
+# 新虚拟环境中的Python版本（与ML-Agents兼容）
+!python --version
+```
+
+## 安装依赖项 🔽
+
+```bash
+# 进入仓库并安装包（可能需要3分钟）
+%cd ml-agents
+pip3 install -e ./ml-agents-envs
+pip3 install -e ./ml-agents
+```
+
+## 下载环境zip文件并移动到`./trained-envs-executables/linux/`
+
+- 我们的环境可执行文件在一个zip文件中。
+- 我们需要下载它并将其放置到`./trained-envs-executables/linux/`
+
+```bash
+mkdir ./trained-envs-executables
+mkdir ./trained-envs-executables/linux
+```
+我们使用`wget`从https://github.com/huggingface/Huggy下载Huggy.zip文件
+
+```bash
+wget "https://github.com/huggingface/Huggy/raw/main/Huggy.zip" -O ./trained-envs-executables/linux/Huggy.zip
+```
+
+```bash
+%%capture
+unzip -d ./trained-envs-executables/linux/ ./trained-envs-executables/linux/Huggy.zip
+```
+
+确保你的文件可访问
+
+```bash
+chmod -R 755 ./trained-envs-executables/linux/Huggy
+```
+
+## 让我们回顾一下这个环境是如何工作的
+
+### 状态空间：Huggy感知到什么。
+
+Huggy并不"看到"他的环境。相反，我们提供给他关于环境的信息：
+
+- 目标（棍子）的位置
+- 他自己与目标之间的相对位置
+- 他腿部的方向。
+
+有了所有这些信息，Huggy**可以决定采取什么行动来实现他的目标**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%" />
+
+
+### 动作空间：Huggy可以做哪些动作
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%" />
+
+**关节电机驱动Huggy的腿部**。这意味着要获取目标，Huggy需要**学会正确旋转他每条腿的关节电机，这样他才能移动**。
+
+### 奖励函数
+
+奖励函数的设计使得**Huggy将实现他的目标**：捡回棍子。
+
+记住强化学习的基础之一是*奖励假设*：一个目标可以被描述为**预期累积奖励的最大化**。
+
+在这里，我们的目标是让Huggy**朝着棍子走去，但不要过度旋转**。因此，我们的奖励函数必须转化这个目标。
+
+我们的奖励函数：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/reward.jpg" alt="Huggy reward function" width="100%" />
+
+- *方向奖励*：我们**奖励他靠近目标**。
+- *时间惩罚*：每次行动都给予固定的时间惩罚，**迫使他尽快到达棍子**。
+- *旋转惩罚*：如果**他旋转过多并且转得太快**，我们会惩罚Huggy。
+- *到达目标奖励*：我们奖励Huggy**到达目标**。
+
+## 检查Huggy配置文件
+
+- 在ML-Agents中，你在config.yaml文件中**定义训练超参数**。
+
+- 在本笔记本的范围内，我们不会修改超参数，但如果你想尝试作为实验，Unity提供了非常[好的文档在这里解释每个参数](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-Configuration-File.md)。
+
+- 我们需要为Huggy创建一个配置文件。
+
+- 转到`/content/ml-agents/config/ppo`
+
+- 创建一个名为`Huggy.yaml`的新文件
+
+- 复制并粘贴下面的内容 🔽
+
+```
+behaviors:
+  Huggy:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 512
+      num_layers: 3
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.995
+        strength: 1.0
+    checkpoint_interval: 200000
+    keep_checkpoints: 15
+    max_steps: 2e6
+    time_horizon: 1000
+    summary_freq: 50000
+```
+
+- 不要忘记保存文件！
+
+- **如果你想修改超参数**，在Google Colab笔记本中，你可以点击这里打开config.yaml：`/content/ml-agents/config/ppo/Huggy.yaml`
+
+我们现在准备好训练我们的代理了 🔥。
+
+## 训练我们的代理
+
+要训练我们的代理，我们只需要**启动mlagents-learn并选择包含环境的可执行文件**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/mllearn.png" alt="ml learn function" width="100%" />
+
+使用ML Agents，我们运行一个训练脚本。我们定义四个参数：
+
+1. `mlagents-learn <config>`：超参数配置文件的路径。
+2. `--env`：环境可执行文件的位置。
+3. `--run-id`：你想给训练运行ID起的名字。
+4. `--no-graphics`：在训练期间不启动可视化。
+
+训练模型并使用`--resume`标志在中断的情况下继续训练。
+
+> 第一次使用`--resume`时会失败，尝试再次运行代码块以绕过错误。
+
+
+
+训练将根据你的机器需要30到45分钟（不要忘记**设置GPU**），去喝杯☕️，你值得 🤗。
+
+```bash
+mlagents-learn ./config/ppo/Huggy.yaml --env=./trained-envs-executables/linux/Huggy/Huggy --run-id="Huggy" --no-graphics
+```
+
+## 将代理推送到🤗 Hub
+
+- 现在我们已经训练了我们的代理，我们**准备将它推送到Hub，以便能够在浏览器上与Huggy互动🔥**。
+
+要能够与社区分享你的模型，还有三个步骤需要遵循：
+
+1️⃣ （如果还没有完成）在HF创建一个账户 ➡ https://huggingface.co/join
+
+2️⃣ 登录然后从Hugging Face网站获取你的令牌。
+- 创建一个新的令牌（https://huggingface.co/settings/tokens）**具有写入权限**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="Create HF Token" />
+
+- 复制令牌
+- 运行下面的单元格并粘贴令牌
+
+```python
+from huggingface_hub import notebook_login
+
+notebook_login()
+```
+
+如果你不想使用Google Colab或Jupyter Notebook，你需要使用这个命令代替：`huggingface-cli login`
+
+然后，我们只需要运行`mlagents-push-to-hf`。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/mlpush.png" alt="ml learn function" width="100%" />
+
+我们定义4个参数：
+
+1. `--run-id`：训练运行ID的名称。
+2. `--local-dir`：代理保存的位置，它是results/\<run_id name\>，所以在我的例子中是results/First Training。
+3. `--repo-id`：你想创建或更新的Hugging Face仓库的名称。它总是\<你的huggingface用户名\>/\<仓库名称\>
+如果仓库不存在，**它将自动创建**
+4. `--commit-message`：由于HF仓库是git仓库，你需要提供一个提交消息。
+
+```bash
+mlagents-push-to-hf --run-id="HuggyTraining" --local-dir="./results/Huggy" --repo-id="ThomasSimonini/ppo-Huggy" --commit-message="Huggy"
+```
+
+如果一切正常，你应该在过程结束时看到这个（但URL不同 😆）：
+
+
+
+```
+Your model is pushed to the hub. You can view your model here: https://huggingface.co/ThomasSimonini/ppo-Huggy
+```
+
+这是你的模型仓库的链接。该仓库包含一个解释如何使用模型的模型卡片，你的Tensorboard日志和你的配置文件。**最棒的是它是一个git仓库，这意味着你可以有不同的提交，用新的推送更新你的仓库，打开Pull Requests等**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/modelcard.png" alt="ml learn function" width="100%" />
+
+但现在是最好的部分：**能够在线与Huggy互动 👀**。
+
+## 与你的Huggy互动 🐕
+
+这一步是最简单的：
+
+- 在浏览器中打开Huggy游戏：https://huggingface.co/spaces/ThomasSimonini/Huggy
+
+- 点击"Play with my Huggy model"（使用我的Huggy模型玩）
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/load-huggy.jpg" alt="load-huggy" width="100%" />
+
+1. 在第1步中，输入你的用户名（你的用户名区分大小写：例如，我的用户名是ThomasSimonini而不是thomassimonini或ThOmasImoNInI）并点击搜索按钮。
+
+2. 在第2步中，选择你的模型仓库。
+
+3. 在第3步中，**选择你想要回放的模型**：
+  - 我有多个模型，因为我们每500000个时间步保存一个模型。
+  - 但由于我想要最新的一个，我选择`Huggy.onnx`
+
+👉 **尝试不同的模型步骤来观察代理的改进情况**是很好的做法。
+
+恭喜你完成这个奖励单元！
+
+你现在可以坐下来享受与你的Huggy互动的乐趣 🐶。不要**忘记通过与你的朋友分享Huggy来传播爱 🤗**。如果你在社交媒体上分享它，**请标记我们@huggingface和我@simoninithomas**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-cover.jpeg" alt="Huggy cover" width="100%" />
+
+
+## 持续学习，保持精彩 🤗
