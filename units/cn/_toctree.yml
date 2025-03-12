@@ -1,260 +1,260 @@
-- title: Unit 0. Welcome to the course
+- title: 单元 0. 欢迎来到课程
   sections:
   - local: unit0/introduction
-    title: Welcome to the course 🤗
+    title: 欢迎来到课程 🤗
   - local: unit0/setup
-    title: Setup
+    title: 环境配置
   - local: unit0/discord101
-    title: Discord 101
-- title: Unit 1. Introduction to Deep Reinforcement Learning
+    title: Discord 使用指南
+- title: 单元 1. 深度强化学习简介
   sections:
   - local: unit1/introduction
-    title: Introduction
+    title: 介绍
   - local: unit1/what-is-rl
-    title: What is Reinforcement Learning?
+    title: 什么是强化学习？
   - local: unit1/rl-framework
-    title: The Reinforcement Learning Framework
+    title: 强化学习框架
   - local: unit1/tasks
-    title: The type of tasks
+    title: 任务类型
   - local: unit1/exp-exp-tradeoff
-    title: The Exploration/ Exploitation tradeoff
+    title: 探索与利用的权衡
   - local: unit1/two-methods
-    title: The two main approaches for solving RL problems
+    title: 解决强化学习问题的两种主要方法
   - local: unit1/deep-rl
-    title: The “Deep” in Deep Reinforcement Learning
+    title: 深度强化学习中的"深度"
   - local: unit1/summary
-    title: Summary
+    title: 总结
   - local: unit1/glossary
-    title: Glossary
+    title: 术语表
   - local: unit1/hands-on
-    title: Hands-on
+    title: 实践练习
   - local: unit1/quiz
-    title: Quiz
+    title: 测验
   - local: unit1/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit1/additional-readings
-    title: Additional Readings
-- title: Bonus Unit 1. Introduction to Deep Reinforcement Learning with Huggy
+    title: 扩展阅读
+- title: 奖励单元 1. 与Huggy一起深度强化学习入门
   sections:
   - local: unitbonus1/introduction
-    title: Introduction
+    title: 介绍
   - local: unitbonus1/how-huggy-works
-    title: How Huggy works?
+    title: Huggy是如何工作的？
   - local: unitbonus1/train
-    title: Train Huggy
+    title: 训练Huggy
   - local: unitbonus1/play
-    title: Play with Huggy
+    title: 与Huggy互动
   - local: unitbonus1/conclusion
-    title: Conclusion
-- title: Live 1. How the course work, Q&A, and playing with Huggy
+    title: 结论
+- title: 直播 1. 课程工作方式，问答，以及与Huggy互动
   sections:
   - local: live1/live1
-    title: Live 1. How the course work, Q&A, and playing with Huggy 🐶
-- title: Unit 2. Introduction to Q-Learning
+    title: 直播 1. 课程工作方式，问答，以及与Huggy互动 🐶
+- title: 单元 2. Q-Learning入门
   sections:
   - local: unit2/introduction
-    title: Introduction
+    title: 介绍
   - local: unit2/what-is-rl
-    title: What is RL? A short recap
+    title: 什么是强化学习？简要回顾
   - local: unit2/two-types-value-based-methods
-    title: The two types of value-based methods
+    title: 基于价值的方法的两种类型
   - local: unit2/bellman-equation
-    title: The Bellman Equation, simplify our value estimation
+    title: Bellman方程，简化我们的价值估计
   - local: unit2/mc-vs-td
-    title: Monte Carlo vs Temporal Difference Learning
+    title: 蒙特卡洛与时序差分学习
   - local: unit2/mid-way-recap
-    title: Mid-way Recap
+    title: 中途回顾
   - local: unit2/mid-way-quiz
-    title: Mid-way Quiz
+    title: 中途测验
   - local: unit2/q-learning
-    title: Introducing Q-Learning
+    title: Q-Learning介绍
   - local: unit2/q-learning-example
-    title: A Q-Learning example
+    title: Q-Learning示例
   - local: unit2/q-learning-recap
-    title: Q-Learning Recap
+    title: Q-Learning回顾
   - local: unit2/glossary
-    title: Glossary
+    title: 术语表
   - local: unit2/hands-on
-    title: Hands-on
+    title: 实践练习
   - local: unit2/quiz2
-    title: Q-Learning Quiz
+    title: Q-Learning测验
   - local: unit2/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit2/additional-readings
-    title: Additional Readings
-- title: Unit 3. Deep Q-Learning with Atari Games
+    title: 扩展阅读
+- title: 单元 3. 使用Atari游戏的深度Q-Learning
   sections:
   - local: unit3/introduction
-    title: Introduction
+    title: 介绍
   - local: unit3/from-q-to-dqn
-    title: From Q-Learning to Deep Q-Learning
+    title: 从Q-Learning到深度Q-Learning
   - local: unit3/deep-q-network
-    title: The Deep Q-Network (DQN)
+    title: 深度Q网络(DQN)
   - local: unit3/deep-q-algorithm
-    title: The Deep Q Algorithm
+    title: 深度Q算法
   - local: unit3/glossary
-    title: Glossary
+    title: 术语表
   - local: unit3/hands-on
-    title: Hands-on
+    title: 实践练习
   - local: unit3/quiz
-    title: Quiz
+    title: 测验
   - local: unit3/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit3/additional-readings
-    title: Additional Readings
-- title: Bonus Unit 2. Automatic Hyperparameter Tuning with Optuna
+    title: 扩展阅读
+- title: 奖励单元 2. 使用Optuna进行自动超参数调优
   sections:
   - local: unitbonus2/introduction
-    title: Introduction
+    title: 介绍
   - local: unitbonus2/optuna
     title: Optuna
   - local: unitbonus2/hands-on
-    title: Hands-on
-- title: Unit 4. Policy Gradient with PyTorch
+    title: 实践练习
+- title: 单元 4. 使用PyTorch的策略梯度
   sections:
   - local: unit4/introduction
-    title: Introduction
+    title: 介绍
   - local: unit4/what-are-policy-based-methods
-    title: What are the policy-based methods?
+    title: 什么是基于策略的方法？
   - local: unit4/advantages-disadvantages
-    title: The advantages and disadvantages of policy-gradient methods
+    title: 策略梯度方法的优缺点
   - local: unit4/policy-gradient
-    title: Diving deeper into policy-gradient
+    title: 深入策略梯度
   - local: unit4/pg-theorem
-    title: (Optional) the Policy Gradient Theorem
+    title: (可选) 策略梯度定理
   - local: unit4/glossary
-    title: Glossary
+    title: 术语表
   - local: unit4/hands-on
-    title: Hands-on
+    title: 实践练习
   - local: unit4/quiz
-    title: Quiz
+    title: 测验
   - local: unit4/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit4/additional-readings
-    title: Additional Readings
-- title: Unit 5. Introduction to Unity ML-Agents
+    title: 扩展阅读
+- title: 单元 5. Unity ML-Agents入门
   sections:
   - local: unit5/introduction
-    title: Introduction
+    title: 介绍
   - local: unit5/how-mlagents-works
-    title: How ML-Agents works?
+    title: ML-Agents是如何工作的？
   - local: unit5/snowball-target
-    title: The SnowballTarget environment
+    title: SnowballTarget环境
   - local: unit5/pyramids
-    title: The Pyramids environment
+    title: Pyramids环境
   - local: unit5/curiosity
-    title: (Optional) What is curiosity in Deep Reinforcement Learning?
+    title: (可选) 深度强化学习中的好奇心是什么？
   - local: unit5/hands-on
-    title: Hands-on
+    title: 实践练习
   - local: unit5/bonus
-    title: Bonus. Learn to create your own environments with Unity and MLAgents
+    title: 奖励. 学习使用Unity和MLAgents创建自己的环境
   - local: unit5/quiz
-    title: Quiz
+    title: 测验
   - local: unit5/conclusion
-    title: Conclusion
-- title: Unit 6. Actor Critic methods with Robotics environments
+    title: 结论
+- title: 单元 6. 使用机器人环境的Actor-Critic方法
   sections:
   - local: unit6/introduction
-    title: Introduction
+    title: 介绍
   - local: unit6/variance-problem
-    title: The Problem of Variance in Reinforce
+    title: Reinforce中的方差问题
   - local: unit6/advantage-actor-critic
-    title: Advantage Actor Critic (A2C)
+    title: 优势Actor-Critic (A2C)
   - local: unit6/hands-on
-    title: Advantage Actor Critic (A2C) using Robotics Simulations with Panda-Gym 🤖
+    title: 使用Panda-Gym进行机器人模拟的优势Actor-Critic (A2C) 🤖
   - local: unit6/quiz
-    title: Quiz
+    title: 测验
   - local: unit6/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit6/additional-readings
-    title: Additional Readings
-- title: Unit 7. Introduction to Multi-Agents and AI vs AI
+    title: 扩展阅读
+- title: 单元 7. 多智能体和AI对战AI入门
   sections:
   - local: unit7/introduction
-    title: Introduction
+    title: 介绍
   - local: unit7/introduction-to-marl
-    title: An introduction to Multi-Agents Reinforcement Learning (MARL)
+    title: 多智能体强化学习(MARL)简介
   - local: unit7/multi-agent-setting
-    title: Designing Multi-Agents systems
+    title: 设计多智能体系统
   - local: unit7/self-play
-    title: Self-Play
+    title: 自我对弈
   - local: unit7/hands-on
-    title: Let's train our soccer team to beat your classmates' teams (AI vs. AI)
+    title: 训练我们的足球队击败你同学的队伍(AI对战AI)
   - local: unit7/quiz
-    title: Quiz
+    title: 测验
   - local: unit7/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit7/additional-readings
-    title: Additional Readings
-- title: Unit 8. Part 1 Proximal Policy Optimization (PPO)
+    title: 扩展阅读
+- title: 单元 8. 第1部分 近端策略优化(PPO)
   sections:
   - local: unit8/introduction
-    title: Introduction
+    title: 介绍
   - local: unit8/intuition-behind-ppo
-    title: The intuition behind PPO
+    title: PPO背后的直觉
   - local: unit8/clipped-surrogate-objective
-    title: Introducing the Clipped Surrogate Objective Function
+    title: 引入截断替代目标函数
   - local: unit8/visualize
-    title: Visualize the Clipped Surrogate Objective Function
+    title: 可视化截断替代目标函数
   - local: unit8/hands-on-cleanrl
-    title: PPO with CleanRL
+    title: 使用CleanRL实现PPO
   - local: unit8/conclusion
-    title: Conclusion
+    title: 结论
   - local: unit8/additional-readings
-    title: Additional Readings
-- title: Unit 8. Part 2 Proximal Policy Optimization (PPO) with Doom
+    title: 扩展阅读
+- title: 单元 8. 第2部分 使用Doom的近端策略优化(PPO)
   sections:
   - local: unit8/introduction-sf
-    title: Introduction
+    title: 介绍
   - local: unit8/hands-on-sf
-    title: PPO with Sample Factory and Doom
+    title: 使用Sample Factory和Doom实现PPO
   - local: unit8/conclusion-sf
-    title: Conclusion
-- title: Bonus Unit 3. Advanced Topics in Reinforcement Learning
+    title: 结论
+- title: 奖励单元 3. 强化学习高级主题
   sections:
   - local: unitbonus3/introduction
-    title: Introduction
+    title: 介绍
   - local: unitbonus3/model-based
-    title: Model-Based Reinforcement Learning
+    title: 基于模型的强化学习
   - local: unitbonus3/offline-online
-    title: Offline vs. Online Reinforcement Learning
+    title: 离线与在线强化学习
   - local: unitbonus3/generalisation
-    title: Generalisation Reinforcement Learning
+    title: 泛化强化学习
   - local: unitbonus3/rlhf
-    title: Reinforcement Learning from Human Feedback
+    title: 基于人类反馈的强化学习
   - local: unitbonus3/decision-transformers
-    title: Decision Transformers and Offline RL
+    title: 决策Transformers和离线强化学习
   - local: unitbonus3/language-models
-    title: Language models in RL
+    title: 强化学习中的语言模型
   - local: unitbonus3/curriculum-learning
-    title: (Automatic) Curriculum Learning for RL
+    title: 强化学习的(自动)课程学习
   - local: unitbonus3/envs-to-try
-    title: Interesting environments to try
+    title: 值得尝试的有趣环境
   - local: unitbonus3/learning-agents
-    title: An introduction to Unreal Learning Agents
+    title: Unreal Learning Agents简介
   - local: unitbonus3/godotrl
-    title: An Introduction to Godot RL
+    title: Godot RL简介
   - local: unitbonus3/student-works
-    title: Students projects
+    title: 学生项目
   - local: unitbonus3/rl-documentation
-    title: Brief introduction to RL documentation
-- title: Bonus Unit 5. Imitation Learning with Godot RL Agents
+    title: 强化学习文档简介
+- title: 奖励单元 5. 使用Godot RL Agents的模仿学习
   sections:
   - local: unitbonus5/introduction
-    title: Introduction
+    title: 介绍
   - local: unitbonus5/the-environment
-    title: The environment
+    title: 环境
   - local: unitbonus5/getting-started
-    title: Getting started
+    title: 入门指南
   - local: unitbonus5/train-our-robot
-    title: Train our robot
+    title: 训练我们的机器人
   - local: unitbonus5/customize-the-environment
-    title: (Optional) Customize the environment
+    title: (可选) 自定义环境
   - local: unitbonus5/conclusion
-    title: Conclusion
-- title: Certification and congratulations
+    title: 结论
+- title: 认证与祝贺
   sections:
   - local: communication/conclusion
-    title: Congratulations
+    title: 恭喜
   - local: communication/certification
-    title: Get your certificate of completion
+    title: 获取你的完成证书
