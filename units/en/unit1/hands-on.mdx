@@ -47,7 +47,7 @@ In this notebook, you'll train your **first Deep Reinforcement Learning agent** 
 
 ### The environment 🎮
 
-- [LunarLander-v2](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
+- [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 
 ### The library used 📚
 
@@ -138,7 +138,7 @@ For more information about the certification process, check this section 👉 ht
 
 The first step is to install the dependencies, we’ll install multiple ones.
 
-- `gymnasium[box2d]`: Contains the LunarLander-v2 environment 🌛
+- `gymnasium[box2d]`: Contains the LunarLander-v3 environment 🌛
 - `stable-baselines3[extra]`: The deep reinforcement learning library.
 - `huggingface_sb3`: Additional code for Stable-baselines3 to load and upload models from the Hugging Face 🤗 Hub.
 
@@ -256,8 +256,8 @@ If the episode is terminated:
 ```python
 import gymnasium as gym
 
-# First, we create our environment called LunarLander-v2
-env = gym.make("LunarLander-v2")
+# First, we create our environment called LunarLander-v3
+env = gym.make("LunarLander-v3")
 
 # Then we reset this environment
 observation, info = env.reset()
@@ -301,7 +301,7 @@ Let's see what the Environment looks like:
 
 ```python
 # We create our environment with gym.make("<name_of_the_environment>")
-env = gym.make("LunarLander-v2")
+env = gym.make("LunarLander-v3")
 env.reset()
 print("_____OBSERVATION SPACE_____ \n")
 print("Observation Space Shape", env.observation_space.shape)
@@ -355,7 +355,7 @@ An episode is **considered a solution if it scores at least 200 points.**
 
 ```python
 # Create the environment
-env = make_vec_env("LunarLander-v2", n_envs=16)
+env = make_vec_env("LunarLander-v3", n_envs=16)
 ```
 
 ## Create the Model 🤖
@@ -390,7 +390,7 @@ Stable-Baselines3 is easy to set up:
 
 ```
 # Create environment
-env = gym.make('LunarLander-v2')
+env = gym.make('LunarLander-v3')
 
 # Instantiate the agent
 model = PPO('MlpPolicy', env, verbose=1)
@@ -433,7 +433,7 @@ model = PPO(
 # TODO: Train it for 1,000,000 timesteps
 
 # TODO: Specify file name for model and save the model to file
-model_name = "ppo-LunarLander-v2"
+model_name = "ppo-LunarLander-v3"
 ```
 
 #### Solution
@@ -443,7 +443,7 @@ model_name = "ppo-LunarLander-v2"
 # Train it for 1,000,000 timesteps
 model.learn(total_timesteps=1000000)
 # Save the model
-model_name = "ppo-LunarLander-v2"
+model_name = "ppo-LunarLander-v3"
 model.save(model_name)
 ```
 
@@ -473,7 +473,7 @@ mean_reward, std_reward =
 
 ```python
 # @title
-eval_env = Monitor(gym.make("LunarLander-v2"))
+eval_env = Monitor(gym.make("LunarLander-v3"))
 mean_reward, std_reward = evaluate_policy(model, eval_env, n_eval_episodes=10, deterministic=True)
 print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
@@ -521,7 +521,7 @@ Let's fill the `package_to_hub` function:
 - `model`: our trained model.
 - `model_name`: the name of the trained model that we defined in `model_save`
 - `model_architecture`: the model architecture we used, in our case PPO
-- `env_id`: the name of the environment, in our case `LunarLander-v2`
+- `env_id`: the name of the environment, in our case `LunarLander-v3`
 - `eval_env`: the evaluation environment defined in eval_env
 - `repo_id`: the name of the Hugging Face Hub Repository that will be created/updated `(repo_id = {username}/{repo_name})`
 
@@ -537,7 +537,7 @@ from stable_baselines3.common.env_util import make_vec_env
 from huggingface_sb3 import package_to_hub
 
 ## TODO: Define a repo_id
-## repo_id is the id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v2
+## repo_id is the id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v3
 repo_id = 
 
 # TODO: Define the name of the environment
@@ -559,7 +559,7 @@ package_to_hub(model=model, # Our trained model
                model_architecture=model_architecture, # The model architecture we used: in our case PPO
                env_id=env_id, # Name of the environment
                eval_env=eval_env, # Evaluation Environment
-               repo_id=repo_id, # id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v2
+               repo_id=repo_id, # id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v3
                commit_message=commit_message)
 ```
 
@@ -577,18 +577,18 @@ from huggingface_sb3 import package_to_hub
 
 # PLACE the variables you've just defined two cells above
 # Define the name of the environment
-env_id = "LunarLander-v2"
+env_id = "LunarLander-v3"
 
 # TODO: Define the model architecture we used
 model_architecture = "PPO"
 
 ## Define a repo_id
-## repo_id is the id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v2
+## repo_id is the id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v3
 ## CHANGE WITH YOUR REPO ID
-repo_id = "ThomasSimonini/ppo-LunarLander-v2"  # Change with your repo id, you can't push with mine 😄
+repo_id = "ThomasSimonini/ppo-LunarLander-v3"  # Change with your repo id, you can't push with mine 😄
 
 ## Define the commit message
-commit_message = "Upload PPO LunarLander-v2 trained agent"
+commit_message = "Upload PPO LunarLander-v3 trained agent"
 
 # Create the evaluation env and set the render_mode="rgb_array"
 eval_env = DummyVecEnv([lambda: Monitor(gym.make(env_id, render_mode="rgb_array"))])
@@ -600,7 +600,7 @@ package_to_hub(
     model_architecture=model_architecture,  # The model architecture we used: in our case PPO
     env_id=env_id,  # Name of the environment
     eval_env=eval_env,  # Evaluation Environment
-    repo_id=repo_id,  # id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v2
+    repo_id=repo_id,  # id of the model repository from the Hugging Face Hub (repo_id = {organization}/{repo_name} for instance ThomasSimonini/ppo-LunarLander-v3
     commit_message=commit_message,
 )
 ```
@@ -613,7 +613,7 @@ Congrats 🥳 you've just trained and uploaded your first Deep Reinforcement Lea
 
 Under the hood, the Hub uses git-based repositories (don't worry if you don't know what git is), which means you can update the model with new versions as you experiment and improve your agent.
 
-Compare the results of your LunarLander-v2 with your classmates using the leaderboard 🏆 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
+Compare the results of your LunarLander-v3 with your classmates using the leaderboard 🏆 👉 https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard
 
 ## Load a saved LunarLander model from the Hub 🤗
 Thanks to [ironbar](https://github.com/ironbar) for the contribution.
@@ -641,7 +641,7 @@ Shimmy Documentation: https://github.com/Farama-Foundation/Shimmy
 from huggingface_sb3 import load_from_hub
 
 repo_id = "Classroom-workshop/assignment2-omar"  # The repo_id
-filename = "ppo-LunarLander-v2.zip"  # The model filename.zip
+filename = "ppo-LunarLander-v3.zip"  # The model filename.zip
 
 # When the model was trained on Python 3.8 the pickle protocol is 5
 # But Python 3.6, 3.7 use protocol 4
@@ -662,7 +662,7 @@ Let's evaluate this agent:
 
 ```python
 # @title
-eval_env = Monitor(gym.make("LunarLander-v2"))
+eval_env = Monitor(gym.make("LunarLander-v3"))
 mean_reward, std_reward = evaluate_policy(model, eval_env, n_eval_episodes=10, deterministic=True)
 print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 ```
@@ -678,7 +678,7 @@ Here are some ideas to achieve so:
 * Check the [Stable-Baselines3 documentation](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) and try another model such as DQN.
 * **Push your new trained model** on the Hub 🔥
 
-**Compare the results of your LunarLander-v2 with your classmates** using the [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) 🏆
+**Compare the results of your LunarLander-v3 with your classmates** using the [leaderboard](https://huggingface.co/spaces/huggingface-projects/Deep-Reinforcement-Learning-Leaderboard) 🏆
 
 Is moon landing too boring for you? Try to **change the environment**, why not use MountainCar-v0, CartPole-v1 or CarRacing-v0? Check how they work [using the gym documentation](https://www.gymlibrary.dev/) and have fun 🎉.
 
