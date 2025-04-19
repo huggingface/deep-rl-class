@@ -1,0 +1,25 @@
+# 什么是RL？简短回顾 [[what-is-rl]]
+
+在RL中，我们构建一个能够**做出智能决策**的智能体。例如，一个**学习玩视频游戏的智能体。**或者一个交易智能体，通过决定**购买什么股票以及何时出售**来**学习最大化其收益。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/rl-process.jpg" alt="RL process"/>
+
+
+为了做出智能决策，我们的智能体将通过**与环境进行试错交互**并接收奖励（正面或负面）**作为唯一反馈**来从环境中学习。
+
+其目标**是最大化其预期累积奖励**（因为奖励假设）。
+
+**智能体的决策过程称为策略π：**给定一个状态，策略将输出一个动作或动作的概率分布。也就是说，给定环境的观察，策略将提供智能体应该采取的动作（或每个动作的多个概率）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/policy.jpg" alt="Policy"/>
+
+**我们的目标是找到一个最优策略π* **，即一个能够带来最佳预期累积奖励的策略。
+
+为了找到这个最优策略（从而解决RL问题），**有两种主要类型的RL方法**：
+
+- *基于策略的方法*：**直接训练策略**，学习给定状态下应采取的动作。
+- *基于价值的方法*：**训练一个价值函数**，学习**哪个状态更有价值**，并使用这个价值函数**采取导向它的动作。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-approaches.jpg" alt="Two RL approaches"/>
+
+在本单元中，**我们将深入研究基于价值的方法。**

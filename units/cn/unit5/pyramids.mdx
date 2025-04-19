@@ -1,0 +1,39 @@
+# 金字塔环境
+
+这个环境的目标是训练我们的智能体**获取金字塔顶部的金砖。为了做到这一点，它需要按下按钮生成金字塔，导航到金字塔，将其推倒，并移动到顶部的金砖**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids.png" alt="金字塔环境"/>
+
+
+## 奖励函数
+
+奖励函数是：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids-reward.png" alt="金字塔环境"/>
+
+在代码方面，它看起来像这样
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids-reward-code.png" alt="金字塔奖励"/>
+
+为了训练这个寻找按钮然后寻找金字塔以摧毁的新智能体，我们将使用两种类型奖励的组合：
+
+- 环境给予的*外部奖励*（上图所示）。
+- 还有一个称为**好奇心**的*内部奖励*。这第二个奖励将**推动我们的智能体变得好奇，或者换句话说，更好地探索其环境**。
+
+如果你想了解更多关于好奇心的信息，下一节（可选）将解释基础知识。
+
+## 观察空间
+
+在观察方面，我们**使用148个射线，每个射线都可以检测物体**（开关、砖块、金砖和墙壁）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids_raycasts.png"/>
+
+我们还使用一个**表示开关状态的布尔变量**（我们是否打开或关闭开关来生成金字塔）和一个**包含智能体速度的向量**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids-obs-code.png" alt="金字塔观察代码"/>
+
+
+## 动作空间
+
+动作空间是**离散的**，有四种可能的动作：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/pyramids-action.png" alt="金字塔环境"/>

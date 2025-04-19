@@ -1,0 +1,53 @@
+# 训练我们的机器人
+
+<Tip>
+为了开始训练，我们首先需要在安装Godot RL Agents的同一个venv / conda环境中安装<a href="https://imitation.readthedocs.io/en/latest/getting-started/installation.html">imitation</a>库，使用：<code>pip install imitation</code>
+</Tip>
+
+### 从Godot RL仓库下载[模仿学习](https://github.com/edbeeching/godot_rl_agents/blob/main/examples/sb3_imitation.py)脚本的副本。
+
+### 使用以下参数运行训练：
+
+```python
+sb3_imitation.py --env_path="path_to_ILTutorial_executable" --bc_epochs=100 --gail_timesteps=1450000 --demo_files "path_to_expert_demos.json" --n_parallel=4 --speedup=20 --onnx_export_path=model.onnx --experiment_name=ILTutorial
+```
+
+**将env_path设置为导出的游戏路径，将demo_files路径设置为记录的演示。如果你有多个演示文件，请用空格分隔添加，例如`--demo_files demos.json demos2.json`。**
+
+你也可以为`--gail_timesteps`设置大量的时间步数，然后手动使用`CTRL+C`停止训练。我使用这种方法在奖励开始接近3时停止训练，这是在`total_timesteps | 1.38e+06`时。在我的电脑上使用CPU进行训练，这花了约41分钟，而BC预训练花了约5.5分钟。
+
+要在训练时观察环境，添加`--viz`参数。在BC训练期间，环境将被冻结，因为这个阶段不使用环境，除了获取关于观察和动作空间的一些信息。在GAIL训练阶段，环境渲染将更新。
+
+以下是使用[tensorboard](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/TRAINING_STATISTICS.md)显示的日志中的`ep_rew_mean`和`ep_rew_wrapped_mean`统计数据，我们可以看到在这种情况下它们非常接近：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/
+en/unit13/training_results.png" alt="训练结果"/>
+
+
+<Tip>
+你可以在相对于开始训练的路径的`logs/ILTutorial`中找到日志。如果进行多次运行，请在每次之间更改`--experiment_name`参数。
+</Tip>
+
+尽管设置环境奖励不是必需的，也不用于这里的训练，但实现了一个简单的稀疏奖励来跟踪成功。掉出地图、掉入水中或陷阱设置`reward += -1`，而激活杠杆、收集钥匙和打开宝箱各设置`reward += 1`。如果`ep_rew_mean`接近3，我们就获得了一个好结果。`ep_rew_wrapped_mean`是来自GAIL判别器的奖励，它不直接告诉我们智能体在解决环境方面有多成功。
+
+### 让我们测试训练好的智能体
+
+训练后，你会在开始训练脚本的文件夹中找到一个`model.onnx`文件（你也可以在控制台的训练日志中找到`.onnx`文件的完整路径，接近结尾）。**将其复制到Godot游戏项目文件夹。**
+
+### 打开onnx推理场景
+
+这个场景，就像演示记录场景一样，只使用关卡的一个副本。它的`Sync`节点模式也设置为`Onnx Inference`。
+
+**点击`Sync`节点并将`Onnx Model Path`属性设置为`model.onnx`。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/
+en/unit13/onnx_inference_scene.jpg" alt="onnx推理场景"/>
+
+**按F6启动场景，让我们看看智能体学到了什么！**
+
+训练好的智能体视频：
+<video src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/onnx_inference_test.mp4" type="video/mp4" controls autoplay loop mute />
+
+看起来智能体能够从两个位置（左平台或右平台）收集钥匙，并很好地复制了记录的行为。**如果你获得了类似的结果，做得好，你已成功完成本教程！** 🏆👏
+
+如果你的结果有显著差异，请注意记录的演示的数量和质量可能会影响结果，调整BC/GAIL阶段的步数以及修改Python脚本中的超参数可能会有所帮助。运行之间也存在一些变化，所以即使使用相同的设置，结果有时也可能略有不同。

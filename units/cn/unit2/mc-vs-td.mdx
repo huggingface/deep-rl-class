@@ -1,0 +1,135 @@
+# 蒙特卡洛与时序差分学习 [[mc-vs-td]]
+
+在深入研究Q-Learning之前，我们需要讨论的最后一件事是两种学习策略。
+
+记住，RL智能体**通过与环境交互来学习。**其理念是**根据经验和收到的奖励，智能体将更新其价值函数或策略。**
+
+蒙特卡洛和时序差分学习是**如何训练我们的价值函数或策略函数的两种不同策略。**它们**都使用经验来解决RL问题。**
+
+一方面，蒙特卡洛使用**整个回合的经验才开始学习。**另一方面，时序差分仅使用**一个步骤（\\(S_t, A_t, R_{t+1}, S_{t+1}\\)）来学习。**
+
+我们将**使用基于价值的方法示例**来解释这两种方法。
+
+## 蒙特卡洛：在回合结束时学习 [[monte-carlo]]
+
+蒙特卡洛等待回合结束，计算\\(G_t\\)（回报），并将其用作**更新\\(V(S_t)\\)的目标。**
+
+因此，它需要**完整的交互回合才能更新我们的价值函数。**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/monte-carlo-approach.jpg" alt="Monte Carlo"/>
+
+
+如果我们举个例子：
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-2.jpg" alt="Monte Carlo"/>
+
+
+- 我们总是**在同一个起点开始回合。**
+- **智能体使用策略采取行动**。例如，使用Epsilon贪婪策略，这是一种在探索（随机行动）和利用之间交替的策略。
+- 我们获得**奖励和下一个状态。**
+- 如果猫吃掉老鼠或老鼠移动>10步，我们终止回合。
+
+- 在回合结束时，**我们有一个状态、动作、奖励和下一个状态元组的列表**
+例如[[底部第3块状态，向左走，+1，底部第2块状态]，[底部第2块状态，向左走，+0，底部第1块状态]...]
+
+- **智能体将总结所有奖励\\(G_t\\)**（看看它表现如何）。
+- 然后**根据公式更新\\(V(s_t)\\)**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-3.jpg" alt="Monte Carlo"/>
+
+- 然后**带着这些新知识开始新的游戏**
+
+通过运行越来越多的回合，**智能体将学会越来越好地玩游戏。**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-3p.jpg" alt="Monte Carlo"/>
+
+例如，如果我们使用蒙特卡洛训练状态价值函数：
+
+- 我们初始化我们的价值函数，**使其为每个状态返回0值**
+- 我们的学习率(lr)是0.1，折扣率是1（=无折扣）
+- 我们的老鼠**探索环境并采取随机行动**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-4.jpg" alt="Monte Carlo"/>
+
+
+- 老鼠走了超过10步，所以回合结束。
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-4p.jpg" alt="Monte Carlo"/>
+
+
+
+- 我们有一个状态、动作、奖励、下一个状态的列表，**我们需要计算回报\\(G{t=0}\\)**
+
+\\(G_t = R_{t+1} + R_{t+2} + R_{t+3} ...\\)（为简单起见，我们不折扣奖励）
+
+\\(G_0 = R_{1} + R_{2} + R_{3}…\\)
+
+\\(G_0 = 1 + 0 + 0 + 0 + 0 + 0 + 1 + 1 + 0 + 0\\)
+
+\\(G_0 = 3\\)
+
+- 我们现在可以计算**新的**\\(V(S_0)\\)：
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-5.jpg" alt="Monte Carlo"/>
+
+\\(V(S_0) = V(S_0) + lr * [G_0 — V(S_0)]\\)
+
+\\(V(S_0) = 0 + 0.1 * [3 – 0]\\)
+
+\\(V(S_0) = 0.3\\)
+
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-5p.jpg" alt="Monte Carlo"/>
+
+
+## 时序差分学习：在每一步学习 [[td-learning]]
+
+**另一方面，时序差分只等待一次交互（一步）\\(S_{t+1}\\)**来形成TD目标并使用\\(R_{t+1}\\)和\\(\gamma * V(S_{t+1})\\)更新\\(V(S_t)\\)。
+
+**TD的理念是在每一步更新\\(V(S_t)\\)。**
+
+但因为我们没有经历整个回合，所以我们没有\\(G_t\\)（预期回报）。相反，**我们通过添加\\(R_{t+1}\\)和下一个状态的折扣值来估计\\(G_t\\)。**
+
+这被称为自举。之所以这样称呼，**是因为TD部分基于现有估计\\(V(S_{t+1})\\)而不是完整样本\\(G_t\\)来更新。**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="Temporal Difference"/>
+
+
+这种方法被称为TD(0)或**单步TD（在任何单个步骤后更新价值函数）。**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1p.jpg" alt="Temporal Difference"/>
+
+如果我们采用相同的例子，
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-2.jpg" alt="Temporal Difference"/>
+
+- 我们初始化我们的价值函数，使其为每个状态返回0值。
+- 我们的学习率(lr)是0.1，折扣率是1（无折扣）。
+- 我们的老鼠开始探索环境并采取随机行动：**向左走**
+- 它获得奖励\\(R_{t+1} = 1\\)，因为**它吃了一块奶酪**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-2p.jpg" alt="Temporal Difference"/>
+
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-3.jpg" alt="Temporal Difference"/>
+
+我们现在可以更新\\(V(S_0)\\)：
+
+新\\(V(S_0) = V(S_0) + lr * [R_1 + \gamma * V(S_1) - V(S_0)]\\)
+
+新\\(V(S_0) = 0 + 0.1 * [1 + 1 * 0–0]\\)
+
+新\\(V(S_0) = 0.1\\)
+
+所以我们刚刚更新了状态0的价值函数。
+
+现在我们**继续使用我们更新的价值函数与这个环境交互。**
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-3p.jpg" alt="Temporal Difference"/>
+
+  总结：
+
+  - 使用*蒙特卡洛*，我们从完整的回合更新价值函数，因此**使用这个回合的实际准确折扣回报。**
+  - 使用*TD学习*，我们从一个步骤更新价值函数，并用**称为TD目标的估计回报**替换我们不知道的\\(G_t\\)。
+
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Summary.jpg" alt="Summary"/>
