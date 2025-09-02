@@ -3,7 +3,7 @@ pygame
 numpy
 
 huggingface_hub
-pickle5
+pickle
 pyyaml==6.0
 imageio
 imageio_ffmpeg
