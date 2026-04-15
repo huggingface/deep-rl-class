@@ -4,7 +4,7 @@ numpy
 
 huggingface_hub
 pickle5
-pyyaml==6.0
+pyyaml>=6.0.1
 imageio
 imageio_ffmpeg
 pyglet==1.5.1
