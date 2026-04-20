@@ -1,0 +1,68 @@
+# Unity ML-Agents是如何工作的？ [[how-mlagents-works]]
+
+在训练我们的智能体之前，我们需要了解**什么是ML-Agents以及它是如何工作的**。
+
+## 什么是Unity ML-Agents？ [[what-is-mlagents]]
+
+[Unity ML-Agents](https://github.com/Unity-Technologies/ml-agents)是Unity游戏引擎的一个工具包，**允许我们使用Unity创建环境或使用预制环境来训练我们的智能体**。
+
+它由[Unity Technologies](https://unity.com/)开发，Unity Technologies是Unity的开发者，Unity是最著名的游戏引擎之一，被Firewatch、Cuphead和Cities: Skylines等游戏的创作者使用。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/firewatch.jpeg" alt="Firewatch"/>
+<figcaption>Firewatch是用Unity制作的</figcaption>
+</figure>
+
+## 六个组件 [[six-components]]
+
+使用Unity ML-Agents，你有六个基本组件：
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/mlagents-1.png" alt="MLAgents"/>
+<figcaption>来源：<a href="https://unity-technologies.github.io/ml-agents/">Unity ML-Agents文档</a> </figcaption>
+</figure>
+
+- 第一个是*学习环境*，它包含**Unity场景（环境）和环境元素**（游戏角色）。
+- 第二个是*Python低级API*，它包含**用于与环境交互和操作环境的低级Python接口**。它是我们用来启动训练的API。
+- 然后，我们有*外部通信器*，它**连接学习环境（用C#制作）和低级Python API（Python）**。
+- *Python训练器*：**用PyTorch制作的强化学习算法（PPO、SAC等）**。
+- *Gym包装器*：将RL环境封装在gym包装器中。
+- *PettingZoo包装器*：PettingZoo是gym包装器的多智能体版本。
+
+## 学习组件内部 [[inside-learning-component]]
+
+在学习组件内部，我们有**两个重要元素**：
+
+- 第一个是*智能体组件*，场景的参与者。我们将**通过优化其策略来训练智能体**（这将告诉我们在每个状态下采取什么动作）。该策略被称为*大脑*。
+- 最后，还有*学院*。这个组件**协调智能体及其决策过程**。可以将这个学院视为处理Python API请求的老师。
+
+为了更好地理解其角色，让我们回顾一下RL过程。这可以被建模为一个这样工作的循环：
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process.jpg" alt="RL过程" width="100%" />
+<figcaption>RL过程：状态、动作、奖励和下一个状态的循环</figcaption>
+<figcaption>来源：<a href="http://incompleteideas.net/book/RLbook2020.pdf">强化学习导论，Richard Sutton和Andrew G. Barto</a></figcaption>
+</figure>
+
+现在，让我们想象一个学习玩平台游戏的智能体。RL过程看起来像这样：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process_game.jpg" alt="RL过程" width="100%" />
+
+- 我们的智能体从**环境**接收**状态 \\(S_0\\)** — 我们接收游戏的第一帧（环境）。
+- 基于**状态 \\(S_0\\)**，智能体采取**动作 \\(A_0\\)** — 我们的智能体将向右移动。
+- 环境进入**新状态 \\(S_1\\)** — 新帧。
+- 环境给智能体一些**奖励 \\(R_1\\)** — 我们没有死亡*（正奖励+1）*。
+
+这个RL循环输出一个**状态、动作、奖励和下一个状态**的序列。智能体的目标是**最大化预期累积奖励**。
+
+学院将是**向我们的智能体发送命令并确保智能体同步**的角色：
+
+- 收集观察
+- 使用你的策略选择你的动作
+- 采取动作
+- 如果你达到最大步数或完成任务，则重置。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/academy.png" alt="MLAgents学院" width="100%" />
+
+
+现在我们了解了ML-Agents是如何工作的，**我们准备训练我们的智能体了。**

@@ -1,0 +1,85 @@
+# 基于价值的方法的两种类型 [[two-types-value-based-methods]]
+
+在基于价值的方法中，**我们学习一个价值函数**，它**将状态映射到处于该状态的预期价值。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/vbm-1.jpg" alt="Value Based Methods"/>
+
+状态的价值是**智能体如果从该状态开始，然后按照我们的策略行动所能获得的预期折扣回报。**
+
+<Tip>
+但是，按照我们的策略行动是什么意思呢？毕竟，在基于价值的方法中，我们没有策略，因为我们训练的是价值函数而不是策略。
+</Tip>
+
+记住，**RL智能体的目标是找到最优策略π\*。**
+
+为了找到最优策略，我们学习了两种不同的方法：
+
+- *基于策略的方法：* **直接训练策略**，以选择给定状态下应采取的动作（或在该状态下动作的概率分布）。在这种情况下，我们**没有价值函数。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-approaches-2.jpg" alt="Two RL approaches"/>
+
+策略以状态作为输入，并输出在该状态下应采取的动作（确定性策略：输出给定状态下的一个动作的策略，与输出动作概率分布的随机策略相反）。
+
+因此，**我们不手动定义策略的行为；是训练过程定义它。**
+
+- *基于价值的方法：* **间接地，通过训练一个价值函数**，输出状态或状态-动作对的价值。给定这个价值函数，我们的策略**将采取行动。**
+
+由于策略没有被训练/学习，**我们需要指定其行为。**例如，如果我们想要一个策略，给定价值函数，总是采取导致最大奖励的动作，**我们将创建一个贪婪策略。**
+
+<figure>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-approaches-3.jpg" alt="Two RL approaches"/>
+  <figcaption>给定一个状态，我们的动作价值函数（我们训练的）输出该状态下每个动作的价值。然后，我们预定义的贪婪策略选择给定状态或状态-动作对下产生最高价值的动作。</figcaption>
+</figure>
+
+因此，无论你使用哪种方法来解决问题，**你都会有一个策略**。在基于价值的方法中，你不训练策略：你的策略**只是一个简单的预先指定的函数**（例如，贪婪策略），它使用价值函数给出的值来选择其动作。
+
+所以区别是：
+
+- 在基于策略的训练中，**通过直接训练策略找到最优策略（表示为π\*）。**
+- 在基于价值的训练中，**找到一个最优价值函数（表示为Q\*或V\*，我们将在下面研究区别）导致拥有一个最优策略。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link between value and policy"/>
+
+事实上，在基于价值的方法中，大多数时候，你会使用**Epsilon贪婪策略**，它处理探索/利用权衡；我们将在本单元第二部分讨论Q-Learning时谈论这一点。
+
+
+正如我们上面提到的，我们有两种类型的基于价值的函数：
+
+## 状态价值函数 [[state-value-function]]
+
+我们这样写策略π下的状态价值函数：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/state-value-function-1.jpg" alt="State value function"/>
+
+对于每个状态，状态价值函数输出如果智能体**从该状态开始**，然后永远按照策略行动（如果你喜欢，对于所有未来时间步）所能获得的预期回报。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/state-value-function-2.jpg" alt="State value function"/>
+  <figcaption>如果我们取值为-7的状态：这是从该状态开始并按照我们的策略（贪婪策略）采取行动所能获得的预期回报，即右、右、右、下、下、右、右。</figcaption>
+</figure>
+
+## 动作价值函数 [[action-value-function]]
+
+在动作价值函数中，对于每个状态和动作对，动作价值函数**输出预期回报**，如果智能体从该状态开始，采取该动作，然后永远按照策略行动。
+
+在策略\\(π\\)下，在状态\\(s\\)采取动作\\(a\\)的价值是：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/action-state-value-function-1.jpg" alt="Action State value function"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/action-state-value-function-2.jpg" alt="Action State value function"/>
+
+
+我们看到区别是：
+
+- 对于状态价值函数，我们计算**状态\\(S_t\\)的价值**
+- 对于动作价值函数，我们计算**状态-动作对（\\(S_t, A_t\\)）的价值，因此是在该状态采取该动作的价值。**
+
+<figure>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/two-types.jpg" alt="Two types of value function"/>
+  <figcaption>注意：我们没有填写动作价值函数示例的所有状态-动作对</figcaption>
+</figure>
+
+无论我们选择哪种价值函数（状态价值或动作价值函数），**返回的值都是预期回报。**
+
+然而，问题是**要计算状态或状态-动作对的每个值，我们需要对智能体从该状态开始可能获得的所有奖励进行求和。**
+
+这可能是一个计算成本高昂的过程，**这就是贝尔曼方程的用武之地。**

@@ -1,0 +1,50 @@
+# (可选) 什么是深度强化学习中的好奇心？
+
+这是对好奇心的(可选)介绍。如果你想了解更多，可以阅读两篇额外的文章，我们在其中深入探讨了数学细节：
+
+- [通过下一状态预测的好奇心驱动学习](https://medium.com/data-from-the-trenches/curiosity-driven-learning-through-next-state-prediction-f7f4e2f592fa)
+- [随机网络蒸馏：好奇心驱动学习的新方法](https://medium.com/data-from-the-trenches/curiosity-driven-learning-through-random-network-distillation-488ffd8e5938)
+
+## 现代RL中的两个主要问题
+
+要理解什么是好奇心，我们首先需要了解RL中的两个主要问题：
+
+首先是*稀疏奖励问题：*即**大多数奖励不包含信息，因此被设置为零**。
+
+记住，RL基于*奖励假设*，这个想法是每个目标都可以被描述为奖励的最大化。因此，奖励作为RL智能体的反馈；**如果它们没有收到任何反馈，它们对哪些动作适当（或不适当）的知识就无法改变**。
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/curiosity1.png" alt="好奇心"/>
+<figcaption>来源：多亏了奖励，我们的智能体知道在那个状态下的这个动作是好的</figcaption>
+</figure>
+
+
+例如，在[Vizdoom](https://vizdoom.cs.put.edu.pl/)中，一组基于游戏Doom的"DoomMyWayHome"环境，你的智能体**只有在找到背心时才会得到奖励**。
+然而，背心离你的起点很远，所以你的大多数奖励将是零。因此，如果我们的智能体没有收到有用的反馈（密集奖励），它将需要更长的时间来学习最优策略，并且**它可能会花时间原地打转而不找到目标**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/curiosity2.png" alt="好奇心"/>
+
+第二个大问题是**外部奖励函数是人为制定的；在每个环境中，都需要人类实现一个奖励函数**。但我们如何在大型和复杂的环境中扩展这一点呢？
+
+## 那么什么是好奇心？
+
+解决这些问题的一个方法是**开发一个智能体内在的奖励函数，即由智能体自身生成的**。智能体将作为一个自学习者，因为它将既是学生又是自己的反馈主人。
+
+**这种内在奖励机制被称为好奇心**，因为这种奖励推动智能体探索新颖/不熟悉的状态。为了实现这一点，我们的智能体在探索新轨迹时将获得高奖励。
+
+这种奖励的灵感来自人类的行为方式。**我们自然有一种内在的欲望去探索环境并发现新事物**。
+
+计算这种内在奖励有不同的方法。经典方法（通过下一状态预测的好奇心）是将好奇心**计算为我们的智能体在预测下一个状态时的误差，给定当前状态和采取的动作**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/curiosity3.png" alt="好奇心"/>
+
+因为好奇心的想法是**鼓励我们的智能体执行能够减少智能体预测其行动后果能力的不确定性的动作**（在智能体花费较少时间或具有复杂动态的区域中，不确定性将更高）。
+
+如果智能体在这些状态上花费大量时间，它将善于预测下一个状态（低好奇心）。另一方面，如果它处于一个新的、未探索的状态，预测下一个状态将很困难（高好奇心）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/curiosity4.png" alt="好奇心"/>
+
+使用好奇心将推动我们的智能体偏好具有高预测误差的转换（在智能体花费较少时间或具有复杂动态的区域中，这种误差将更高），**从而更好地探索我们的环境**。
+
+还有**其他好奇心计算方法**。ML-Agents使用一种更高级的方法，称为通过随机网络蒸馏的好奇心。这超出了本教程的范围，但如果你感兴趣，[我写了一篇文章详细解释它](https://medium.com/data-from-the-trenches/curiosity-driven-learning-through-random-network-distillation-488ffd8e5938)。

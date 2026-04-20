@@ -1,0 +1,24 @@
+# Q-Learning回顾 [[q-learning-recap]]
+
+
+*Q-Learning* **是一种RL算法，它**：
+
+- 训练一个*Q函数*，一个**动作价值函数**，在内部存储器中由*Q表*编码，**包含所有状态-动作对的值。**
+
+- 给定一个状态和动作，我们的Q函数**将在其Q表中搜索相应的值。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function-2.jpg" alt="Q function"  width="100%"/>
+
+- 当训练完成后，**我们拥有一个最优Q函数，或者等效地，一个最优Q表。**
+
+- 如果我们**拥有一个最优Q函数**，我们就拥有一个最优策略，因为我们**知道对于每个状态，最佳的动作是什么。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/link-value-policy.jpg" alt="Link value policy"  width="100%"/>
+
+但是，在开始时，我们的**Q表是没用的，因为它为每个状态-动作对给出了任意值（大多数情况下，我们将Q表初始化为0值）**。但是，随着我们探索环境并更新我们的Q表，它将给我们越来越好的近似。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit2/q-learning.jpeg" alt="q-learning.jpeg" width="100%"/>
+
+这是Q-Learning的伪代码：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-learning-2.jpg" alt="Q-Learning" width="100%"/>

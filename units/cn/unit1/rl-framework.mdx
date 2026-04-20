@@ -1,0 +1,141 @@
+# 强化学习框架 [[the-reinforcement-learning-framework]]
+
+## 强化学习过程 [[the-rl-process]]
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process.jpg" alt="强化学习过程" width="100%" />
+<figcaption>强化学习过程：状态、动作、奖励和下一状态的循环</figcaption>
+<figcaption>来源：<a href="http://incompleteideas.net/book/RLbook2020.pdf">强化学习：简介，Richard Sutton和Andrew G. Barto</a></figcaption>
+</figure>
+
+为了理解强化学习过程，让我们想象一个智能体学习玩平台游戏：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process_game.jpg" alt="强化学习过程" width="100%" />
+
+- 我们的智能体从**环境**接收**状态 \\(S_0\\)**——我们接收游戏的第一帧（环境）。
+- 基于该**状态 \\(S_0\\)**，智能体采取**动作 \\(A_0\\)**——我们的智能体将向右移动。
+- 环境转换到一个**新状态 \\(S_1\\)**——新的帧。
+- 环境给智能体一些**奖励 \\(R_1\\)**——我们没有死亡*（正奖励+1）*。
+
+这个强化学习循环输出一个**状态、动作、奖励和下一状态**的序列。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/sars.jpg" alt="状态、动作、奖励、下一状态" width="100%" />
+
+智能体的目标是_最大化_其累积奖励，**称为期望回报。**
+
+## 奖励假设：强化学习的核心思想 [[reward-hypothesis]]
+
+⇒ 为什么智能体的目标是最大化期望回报？
+
+因为强化学习基于**奖励假设**，即所有目标都可以描述为**期望回报（期望累积奖励）的最大化**。
+
+这就是为什么在强化学习中，**为了获得最佳行为，**我们的目标是学习采取**最大化期望累积奖励的动作。**
+
+
+## 马尔可夫性质 [[markov-property]]
+
+在论文中，你会看到强化学习过程被称为**马尔可夫决策过程**（MDP）。
+
+我们将在接下来的单元中再次讨论马尔可夫性质。但如果你今天需要记住关于它的一点，那就是：马尔可夫性质意味着我们的智能体**只需要当前状态就能决定**采取什么动作，而**不需要之前所有状态和动作的历史**。
+
+## 观察/状态空间 [[obs-space]]
+
+观察/状态是**我们的智能体从环境中获得的信息。**在视频游戏的情况下，它可以是一帧（屏幕截图）。在交易智能体的情况下，它可以是某只股票的价值等。
+
+我们需要区分*观察*和*状态*：
+
+- *状态s*：是**世界状态的完整描述**（没有隐藏信息）。在完全观察的环境中。
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/chess.jpg" alt="国际象棋" />
+<figcaption>在国际象棋游戏中，我们从环境接收一个状态，因为我们可以访问整个棋盘信息。</figcaption>
+</figure>
+
+在国际象棋游戏中，我们可以访问整个棋盘信息，所以我们从环境接收一个状态。换句话说，环境是完全观察的。
+
+- *观察o*：是**状态的部分描述。**在部分观察的环境中。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="马里奥" />
+<figcaption>在超级马里奥兄弟中，我们只能看到靠近玩家的部分关卡，所以我们接收一个观察。</figcaption>
+</figure>
+
+在超级马里奥兄弟中，我们只能看到靠近玩家的部分关卡，所以我们接收一个观察。
+
+在超级马里奥兄弟中，我们处于部分观察的环境中。我们接收一个观察**因为我们只能看到关卡的一部分。**
+
+<Tip>
+在本课程中，我们使用术语"状态"来表示状态和观察，但我们将在实现中做出区分。
+</Tip>
+
+总结：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/obs_space_recap.jpg" alt="观察空间总结" width="100%" />
+
+
+## 动作空间 [[action-space]]
+
+动作空间是环境中**所有可能动作的集合。**
+
+动作可以来自*离散*或*连续*空间：
+
+- *离散空间*：可能动作的数量是**有限的**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="马里奥" />
+<figcaption>在超级马里奥兄弟中，我们只有4种可能的动作：左、右、上（跳跃）和下（蹲下）。</figcaption>
+
+</figure>
+
+同样，在超级马里奥兄弟中，我们有一个有限的动作集，因为我们只有4个方向。
+
+- *连续空间*：可能动作的数量是**无限的**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/self_driving_car.jpg" alt="自动驾驶汽车" />
+<figcaption>自动驾驶汽车智能体有无限多种可能的动作，因为它可以向左转20°、21.1°、21.2°、鸣喇叭、向右转20°……</figcaption>
+</figure>
+
+总结：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/action_space.jpg" alt="动作空间总结" width="100%" />
+
+考虑这些信息至关重要，因为它在未来选择强化学习算法时**将具有重要性**。
+
+## 奖励和折扣 [[rewards]]
+
+奖励在强化学习中是基础的，因为它是智能体的**唯一反馈**。多亏了它，我们的智能体知道**所采取的动作是好是坏。**
+
+每个时间步**t**的累积奖励可以写为：
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_1.jpg" alt="奖励" />
+<figcaption>累积奖励等于序列中所有奖励的总和。</figcaption>
+</figure>
+
+这等同于：
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_2.jpg" alt="奖励" />
+<figcaption>累积奖励 = rt+1 (rt+k+1 = rt+1+1 = rt+2)+ rt+2 (rt+k+1 = rt+2+1 = rt+3) + ...</figcaption>
+</figure>
+
+然而，在现实中，**我们不能就这样简单地把它们加起来。**更早到来的奖励（在游戏开始时）**更有可能发生**，因为它们比长期未来奖励更可预测。
+
+假设你的智能体是这只小老鼠，每个时间步可以移动一个格子，而你的对手是猫（也可以移动）。老鼠的目标是**在被猫吃掉之前吃掉最多的奶酪。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_3.jpg" alt="奖励" width="100%" />
+
+正如我们在图中所看到的，**吃掉靠近我们的奶酪比吃掉靠近猫的奶酪更有可能**（我们越靠近猫，就越危险）。
+
+因此，**靠近猫的奖励，即使它更大（更多奶酪），也会被更多地折扣**，因为我们不确定我们能否吃到它。
+
+为了折扣奖励，我们这样做：
+
+1. 我们定义一个称为gamma的折扣率。**它必须在0和1之间。**大多数时候在**0.95和0.99之间**。
+- gamma越大，折扣越小。这意味着我们的智能体**更关心长期奖励。**
+- 另一方面，gamma越小，折扣越大。这意味着我们的**智能体更关心短期奖励（最近的奶酪）。**
+
+2. 然后，每个奖励将被gamma的时间步幂次折扣。随着时间步的增加，猫越来越靠近我们，**所以未来的奖励越来越不可能发生。**
+
+我们的折扣期望累积奖励是：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_4.jpg" alt="奖励" width="100%" />

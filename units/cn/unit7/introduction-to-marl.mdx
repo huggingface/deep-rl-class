@@ -1,0 +1,55 @@
+# 多智能体强化学习（MARL）简介
+
+## 从单智能体到多智能体
+
+在第一单元中，我们学习了在单智能体系统中训练智能体。当我们的智能体在环境中是独立的时候：**它没有与其他智能体合作或协作**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/patchwork.jpg" alt="拼贴画"/>
+<figcaption>
+自课程开始以来，你训练过的所有环境的拼贴画
+</figcaption>
+</figure>
+
+当我们进行多智能体强化学习（MARL）时，我们面对的是多个智能体**共享并在同一环境中交互**的情况。
+
+例如，你可以想象一个仓库，**多个机器人需要导航来装载和卸载包裹**。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/warehouse.jpg" alt="仓库"/>
+<figcaption> [图片来源：upklyak](https://www.freepik.com/free-vector/robots-warehouse-interior-automated-machines_32117680.htm#query=warehouse robot&position=17&from_view=keyword) on Freepik </figcaption>
+</figure>
+
+或者一条有**多辆自动驾驶汽车**的道路。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/selfdrivingcar.jpg" alt="自动驾驶汽车"/>
+<figcaption>
+[图片来源：jcomp](https://www.freepik.com/free-vector/autonomous-smart-car-automatic-wireless-sensor-driving-road-around-car-autonomous-smart-car-goes-scans-roads-observe-distance-automatic-braking-system_26413332.htm#query=self driving cars highway&position=34&from_view=search&track=ais) on Freepik
+</figcaption>
+</figure>
+
+在这些例子中，我们有**多个智能体在环境中相互交互**。这意味着需要定义一个多智能体系统。但首先，让我们了解不同类型的多智能体环境。
+
+## 不同类型的多智能体环境
+
+鉴于在多智能体系统中，智能体与其他智能体交互，我们可以有不同类型的环境：
+
+- *合作环境*：你的智能体需要**最大化共同利益**。
+
+例如，在仓库中，**机器人必须协作以尽可能高效地（尽可能快地）装载和卸载包裹**。
+
+- *竞争/对抗环境*：在这种情况下，你的智能体**希望通过最小化对手的利益来最大化自己的利益**。
+
+例如，在网球比赛中，**每个智能体都想击败另一个智能体**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/tennis.png" alt="网球"/>
+
+- *对抗和合作的混合*：就像我们的SoccerTwos环境一样，两个智能体是一个团队的一部分（蓝色或紫色）：它们需要相互合作并击败对方团队。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
+<figcaption>这个环境由<a href="https://github.com/Unity-Technologies/ml-agents">Unity MLAgents团队</a>制作</figcaption>
+</figure>
+
+所以现在我们可能会想：如何设计这些多智能体系统？换句话说，**如何在多智能体设置中训练智能体**？

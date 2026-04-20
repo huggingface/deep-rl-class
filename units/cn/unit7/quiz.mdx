@@ -1,0 +1,139 @@
+# 测验
+
+学习的最佳方式，也是[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法，**就是测试自己。** 这将帮助你找出**需要加强知识的地方**。
+
+
+### 问题1：在比较不同类型的多智能体环境时，选择最合适的选项
+
+- 你的智能体在____环境中旨在最大化共同利益
+- 你的智能体在____环境中旨在最大化共同利益的同时最小化对手的利益
+
+<Question
+	choices={[
+		{
+			text: "竞争性，合作性",
+			explain: "你在合作性环境中最大化共同利益，而在竞争性环境中，你还旨在降低对手的分数",
+   			correct: false,
+		},
+   		{
+			text: "合作性，竞争性",
+			explain: "",
+   			correct: true,
+		},
+	]}
+/>
+
+### 问题2：关于`去中心化`学习，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+		{
+			text: "每个智能体都是独立于其他智能体进行训练的",
+			explain: "",
+      		correct: true,
+		},
+    	{
+			text: "来自其他智能体的输入仅被视为环境数据",
+			explain: "",
+			correct: true,
+		},
+		{
+			text: "将其他智能体视为环境的一部分使环境变得平稳",
+			explain: "在去中心化学习中，智能体忽略其他智能体的存在，并将它们视为环境的一部分。然而，这意味着环境处于不断变化中，变得非平稳。",
+			correct: false,
+		},
+	]}
+/>
+
+
+### 问题3：关于`中心化`学习，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+		{
+			text: "它基于所有智能体交互的学习来学习一个共同的策略",
+			explain: "",
+      		correct: true,
+		},
+    	{
+			text: "奖励是全局性的",
+			explain: "",
+			correct: true,
+		},
+		{
+			text: "使用这种方法的环境是平稳的",
+			explain: "",
+			correct: true,
+		},
+	]}
+/>
+
+### 问题4：用你自己的话解释什么是`自我对弈`方法
+
+<details>
+<summary>解决方案</summary>
+
+`自我对弈`是一种方法，它实例化与你的策略相同的智能体副本作为对手，这样你的智能体就可以从具有相同训练水平的智能体中学习。
+
+</details>
+
+### 问题5：在配置`自我对弈`时，有几个重要参数。你能通过它们的定义识别出我们在谈论哪个参数吗？
+
+- 与当前自我对弈与从池中选择对手的概率
+- 你可能面对的对手训练水平的多样性（分散度）
+- 在生成新对手之前的训练步骤数
+- 对手更换率
+
+<Question
+	choices={[
+   		 {
+			text: "window, play_against_latest_model_ratio, save_steps, swap_steps+team_change",
+			explain: "",
+      		correct: false,
+		},
+		{
+			text: "play_against_latest_model_ratio, save_steps, window, swap_steps+team_change",
+			explain: "",
+			correct: false,
+		},
+		{
+			text: "play_against_latest_model_ratio, window, save_steps, swap_steps+team_change",
+			explain: "",
+			correct: true,
+		},
+    	{
+			text: "swap_steps+team_change, save_steps, play_against_latest_model_ratio, window",
+			explain: "",
+      		correct: false,
+		},
+	]}
+/>
+
+### 问题6：使用ELO评分系统的主要动机是什么？
+
+<Question
+	choices={[
+   		 {
+			text: "评分考虑了你和你的对手之间的技能差异",
+			explain: "",
+      		correct: true,
+		},
+		{
+			text: "虽然根据比赛结果和智能体的水平可能会交换更多的分数，但总和始终相同",
+			explain: "",
+			correct: true,
+		},
+		{
+			text: "对于智能体来说，保持高分率很容易",
+			explain: "这被称为`评分通缩`：随着时间的推移，保持高评分需要很高的技能",
+			correct: false,
+		},
+    	{
+			text: "它在计算团队中每个玩家的个人贡献方面效果很好",
+			explain: "ELO使用整个团队获得的分数，但不计算个人贡献",
+      		correct: false,
+		},
+	]}
+/>
+
+恭喜你完成了这个测验 🥳，如果你错过了一些要点，请花时间再次阅读本章，以加强（😏）你的知识。

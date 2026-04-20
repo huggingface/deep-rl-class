@@ -1,0 +1,66 @@
+# Huggy的工作原理 [[how-huggy-works]]
+
+Huggy是由Hugging Face创建的深度强化学习环境，基于[Unity MLAgents团队的项目Puppo the Corgi](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)。
+这个环境是使用[Unity游戏引擎](https://unity.com/)和[MLAgents](https://github.com/Unity-Technologies/ml-agents)创建的。ML-Agents是Unity游戏引擎的工具包，允许我们**使用Unity创建环境或使用预制环境来训练我们的智能体**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy.jpg" alt="Huggy" width="100%" />
+
+在这个环境中，我们的目标是训练Huggy**去取我们扔出的棍子。这意味着他需要正确地向棍子移动**。
+
+## 状态空间，Huggy感知的内容 [[state-space]]
+Huggy并不"看见"他的环境。相反，我们提供给他关于环境的信息：
+
+- 目标（棍子）的位置
+- 他自己与目标之间的相对位置
+- 他腿部的方向
+
+有了所有这些信息，Huggy可以**使用他的策略来决定下一步采取什么行动来实现他的目标**。
+
+## 动作空间，Huggy可以执行的动作 [[action-space]]
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-action.jpg" alt="Huggy action" width="100%" />
+
+**关节电机驱动Huggy的腿部**。这意味着要获取目标，Huggy需要**学会正确旋转他每条腿的关节电机，这样他才能移动**。
+
+## 奖励函数 [[reward-function]]
+
+奖励函数的设计使得**Huggy将实现他的目标**：取回棍子。
+
+记住强化学习的基础之一是*奖励假设*：目标可以被描述为**预期累积奖励的最大化**。
+
+在这里，我们的目标是让Huggy**朝着棍子前进，但不要旋转太多**。因此，我们的奖励函数必须转化这个目标。
+
+我们的奖励函数：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/reward.jpg" alt="Huggy reward function" width="100%" />
+
+- *方向奖励*：我们**奖励他接近目标**。
+- *时间惩罚*：每次行动都给予固定的时间惩罚，**迫使他尽快到达棍子**。
+- *旋转惩罚*：如果**他旋转太多并且转得太快**，我们会惩罚Huggy。
+- *到达目标奖励*：我们奖励Huggy**到达目标**。
+
+如果你想看看这个奖励函数在数学上是什么样子，请查看[Puppo the Corgi的介绍](https://blog.unity.com/technology/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit)。
+
+## 训练Huggy
+
+Huggy的目标是**学习正确地跑动并尽可能快地朝向目标**。为此，在每一步，根据环境观察，他需要决定如何旋转他腿部的每个关节电机，以正确移动（不要旋转太多）并朝向目标。
+
+训练循环看起来像这样：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/huggy-loop.jpg" alt="Huggy loop" width="100%" />
+
+
+训练环境看起来像这样：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/unit-bonus1/training-env.jpg" alt="Huggy training env" width="100%" />
+
+
+这是一个**随机生成棍子**的地方。当Huggy到达棍子后，棍子会在其他地方重新生成。
+我们为训练**构建了环境的多个副本**。这通过提供更多样化的经验来帮助加速训练。
+
+
+
+现在你已经了解了环境的大致情况，你已经准备好训练Huggy去取棍子了。
+
+为此，我们将使用[MLAgents](https://github.com/Unity-Technologies/ml-agents)。如果你以前从未使用过它，不用担心。在这个单元中，我们将使用Google Colab来训练Huggy，然后你将能够加载你训练好的Huggy，并直接在浏览器中与他一起玩耍。
+
+在未来的单元中，我们将更深入地研究MLAgents，了解它是如何工作的。但现在，我们通过仅使用提供的实现来保持简单。

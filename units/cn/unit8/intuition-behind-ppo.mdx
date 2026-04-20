@@ -1,0 +1,16 @@
+# PPO背后的直觉 [[the-intuition-behind-ppo]]
+
+
+近端策略优化(PPO)的理念是，我们希望通过限制每个训练周期中对策略的改变来提高策略训练的稳定性：**我们希望避免策略更新过大。**
+
+这有两个原因：
+- 我们从经验上知道，训练期间较小的策略更新**更有可能收敛到最优解。**
+- 策略更新中过大的步骤可能导致"跌下悬崖"（得到一个糟糕的策略），**需要很长时间恢复，甚至可能无法恢复。**
+
+<figure class="image table text-center m-0 w-full">
+  <img class="center" src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/cliff.jpg" alt="Policy Update cliff"/>
+  <figcaption>采取较小的策略更新以提高训练稳定性</figcaption>
+  <figcaption>修改自RL — 近端策略优化(PPO) <a href="https://jonathan-hui.medium.com/rl-proximal-policy-optimization-ppo-explained-77f014ec3f12">由Jonathan Hui解释</a></figcaption>
+</figure>
+
+**因此，使用PPO，我们保守地更新策略**。为此，我们需要使用当前策略与前一策略之间的比率计算来衡量当前策略相对于前一策略的变化程度。我们将这个比率裁剪在范围 \\( [1 - \epsilon, 1 + \epsilon] \\) 内，这意味着我们**消除了当前策略远离旧策略的激励（因此称为近端策略）。**

@@ -1,0 +1,322 @@
+# 实践练习
+
+现在你已经学习了多智能体的基础知识，你已经准备好在多智能体系统中训练你的第一批智能体：**一个需要击败对手队伍的2对2足球队**。
+
+你将参与AI对抗AI的挑战，在这里你训练的智能体将**每天与其他同学的智能体竞争，并在新的排行榜上进行排名。**
+
+要在认证过程中验证这个实践练习，你只需要推送一个训练好的模型。**验证它不需要达到最低结果要求。**
+
+有关认证过程的更多信息，请查看此部分 👉 [https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process](https://huggingface.co/deep-rl-course/en/unit0/introduction#certification-process)
+
+这个实践练习会有所不同，因为**要获得正确的结果，你需要训练你的智能体4到8小时**。考虑到Colab超时的风险，我们建议你在自己的电脑上进行训练。你不需要超级计算机：一台普通的笔记本电脑对这个练习来说已经足够了。
+
+让我们开始吧！🔥
+
+## 什么是AI对抗AI？
+
+AI对抗AI是我们在Hugging Face开发的一个开源工具，用于让Hub上的智能体在多智能体环境中相互竞争。这些模型随后会在排行榜上进行排名。
+
+这个工具的理念是提供一个稳健的评估工具：**通过与许多其他智能体进行评估，你将对你的策略质量有一个很好的了解。**
+
+更准确地说，AI对抗AI包含三个工具：
+
+- 一个*匹配过程*，定义比赛（哪个模型对抗哪个）并使用Space中的后台任务运行模型对抗。
+- 一个*排行榜*，获取比赛历史结果并显示模型的ELO评分：[https://huggingface.co/spaces/huggingface-projects/AIvsAI-SoccerTwos](https://huggingface.co/spaces/huggingface-projects/AIvsAI-SoccerTwos)
+- 一个*Space演示*，用于可视化你的智能体与其他智能体的对抗：[https://huggingface.co/spaces/unity/ML-Agents-SoccerTwos](https://huggingface.co/spaces/unity/ML-Agents-SoccerTwos)
+
+除了这三个工具外，你的同学cyllum创建了一个🤗 SoccerTwos挑战分析工具，你可以在那里查看模型的详细比赛结果：[https://huggingface.co/spaces/cyllum/soccertwos-analytics](https://huggingface.co/spaces/cyllum/soccertwos-analytics)
+
+我们[写了一篇博客文章详细解释这个AI对抗AI工具](https://huggingface.co/blog/aivsai)，但简单来说它的工作方式如下：
+
+- 每四小时，我们的算法**获取给定环境（在我们的例子中是ML-Agents-SoccerTwos）的所有可用模型。**
+- 它使用匹配算法**创建一个比赛队列。**
+- 我们在Unity无头进程中模拟比赛并**收集比赛结果**（如果第一个模型获胜则为1，如果平局则为0.5，如果第二个模型获胜则为0）到一个数据集中。
+- 然后，当比赛队列中的所有比赛完成后，**我们更新每个模型的ELO分数并更新排行榜。**
+
+### 比赛规则
+
+这第一个AI对抗AI比赛**是一个实验**：目标是根据你的反馈在未来改进这个工具。所以在挑战期间**可能会发生一些中断**。但不用担心，
+**所有结果都保存在数据集中，所以我们总是可以正确重新启动计算而不会丢失信息**。
+
+为了让你的模型能够正确地与其他模型进行评估，你需要遵循以下规则：
+
+1. **你不能更改智能体的观察空间或动作空间。** 这样做会导致你的模型在评估过程中无法工作。
+2. **目前你不能使用自定义训练器，** 你需要使用Unity MLAgents提供的训练器。
+3. 我们提供可执行文件来训练你的智能体。如果你愿意，也可以使用Unity编辑器，**但为了避免错误，我们建议你使用我们的可执行文件**。
+
+在这个挑战中，**你选择的超参数**将会产生差异。
+
+我们一直在努力改进我们的教程，所以**如果你在这个笔记本中发现一些问题**，请[在GitHub仓库上提出issue](https://github.com/huggingface/deep-rl-class/issues)。
+
+### 在Discord上与你的同学聊天，分享建议并提问
+
+- 我们创建了一个名为`ai-vs-ai-challenge`的新频道，用于交流建议和提问。
+- 如果你还没有加入discord服务器，你可以[在这里加入](https://discord.gg/ydHrjt3WP5)
+
+## 步骤0：安装MLAgents并下载正确的可执行文件
+
+我们建议你使用[conda](https://docs.conda.io/en/latest/)作为包管理器并创建一个新环境。
+
+使用conda，我们创建一个名为rl的新环境，使用**Python 3.10.12**：
+
+```bash
+conda create --name rl python=3.10.12
+conda activate rl
+```
+
+为了能够正确训练我们的智能体并推送到Hub，我们需要安装ML-Agents
+
+```bash
+git clone https://github.com/Unity-Technologies/ml-agents
+```
+
+当克隆完成后（它占用2.63 GB），我们进入仓库并安装包
+
+```bash
+cd ml-agents
+pip install -e ./ml-agents-envs
+pip install -e ./ml-agents
+```
+
+ 使用Apple Silicon的Mac用户可能会遇到安装问题（例如ONNX wheel构建失败），你应该首先尝试安装grpcio：
+```bash
+conda install grpcio
+```
+[官方ml-agent仓库中的这个github issue](https://github.com/Unity-Technologies/ml-agents/issues/6019)也可能对你有所帮助。
+
+最后，你需要安装git-lfs：https://git-lfs.com/
+
+现在安装完成后，我们需要添加环境训练可执行文件。根据你的操作系统，你需要下载其中一个，解压缩并将其放在`ml-agents`内的一个新文件夹中，命名为`training-envs-executables`
+
+最终你的可执行文件应该位于`ml-agents/training-envs-executables/SoccerTwos`
+
+Windows：下载[这个可执行文件](https://drive.google.com/file/d/1sqFxbEdTMubjVktnV4C6ICjp89wLhUcP/view?usp=sharing)
+
+Linux (Ubuntu)：下载[这个可执行文件](https://drive.google.com/file/d/1KuqBKYiXiIcU4kNMqEzhgypuFP5_45CL/view?usp=sharing)
+
+Mac：下载[这个可执行文件](https://drive.google.com/drive/folders/1h7YB0qwjoxxghApQdEUQmk95ZwIDxrPG?usp=share_link)
+⚠ 对于Mac，你还需要调用`xattr -cr training-envs-executables/SoccerTwos/SoccerTwos.app`才能运行SoccerTwos
+
+## 步骤1：理解环境
+
+这个环境叫做`SoccerTwos`。它是由Unity MLAgents团队制作的。你可以在[这里](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Learning-Environment-Examples.md#soccer-twos)找到它的文档
+
+这个环境的目标**是将球送入对手的球门，同时防止球进入你自己的球门。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccertwos.gif" alt="SoccerTwos"/>
+
+<figcaption>这个环境由<a href="https://github.com/Unity-Technologies/ml-agents">Unity MLAgents团队</a>制作</figcaption>
+
+</figure>
+
+### 奖励函数
+
+奖励函数是：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/soccerreward.png" alt="SoccerTwos Reward"/>
+
+### 观察空间
+
+观察空间由大小为336的向量组成：
+
+- 向前分布在120度范围内的11个射线投射（264个状态维度）
+- 向后分布在90度范围内的3个射线投射（72个状态维度）
+- 这些射线投射可以检测6种物体：
+    - 球
+    - 蓝色球门
+    - 紫色球门
+    - 墙
+    - 蓝色智能体
+    - 紫色智能体
+
+### 动作空间
+
+动作空间是三个离散分支：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/socceraction.png" alt="SoccerTwos Action"/>
+
+## 步骤2：理解MA-POCA
+
+我们知道如何训练智能体与其他智能体对抗：**我们可以使用自我对弈。** 这对于1对1来说是一个完美的技术。
+
+但在我们的情况下是2对2，每个队伍有2个智能体。那么我们**如何为智能体组训练合作行为？**
+
+正如[Unity博客](https://blog.unity.com/technology/ml-agents-v20-release-now-supports-training-complex-cooperative-behaviors)中所解释的，智能体通常在团队进球时作为一个整体接收奖励（+1 - 惩罚）。这意味着**即使每个智能体对胜利的贡献不同，团队中的每个智能体都会得到奖励**，这使得独立学习该做什么变得困难。
+
+Unity MLAgents团队在一个名为*MA-POCA（多智能体事后信用分配，Multi-Agent POsthumous Credit Assignment）*的新多智能体训练器中开发了解决方案。
+
+这个想法简单但强大：一个中央评论家**处理团队中所有智能体的状态，以估计每个智能体的表现如何**。把这个评论家想象成一个教练。
+
+这允许每个智能体**仅基于其本地感知做出决策**，并**同时评估其行为在整个团队环境中的好坏**。
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/mapoca.png" alt="MA POCA"/>
+
+<figcaption>这说明了MA-POCA的中央化学习和去中心化执行。来源：<a href="https://blog.unity.com/technology/ml-agents-plays-dodgeball">MLAgents Plays Dodgeball</a></figcaption>
+
+</figure>
+
+解决方案是使用带有MA-POCA训练器（称为poca）的自我对弈。poca训练器将帮助我们训练合作行为，而自我对弈则帮助我们战胜对手队伍。
+
+如果你想深入了解这个MA-POCA算法，你需要阅读他们在[这里](https://arxiv.org/pdf/2111.05992.pdf)发表的论文，以及我们在额外阅读部分提供的资源。
+
+## 步骤3：定义配置文件
+
+我们在[单元5](https://huggingface.co/deep-rl-course/unit5/introduction)中已经学习过，在ML-Agents中，你**在`config.yaml`文件中定义训练超参数。**
+
+有多种超参数。要更好地理解它们，你应该阅读**[文档](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**中对每个超参数的解释
+
+我们将在这里使用的配置文件位于`./config/poca/SoccerTwos.yaml`。它看起来像这样：
+
+```csharp
+behaviors:
+  SoccerTwos:
+    trainer_type: poca
+    hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      learning_rate_schedule: constant
+    network_settings:
+      normalize: false
+      hidden_units: 512
+      num_layers: 2
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+    keep_checkpoints: 5
+    max_steps: 5000000
+    time_horizon: 1000
+    summary_freq: 10000
+    self_play:
+      save_steps: 50000
+      team_change: 200000
+      swap_steps: 2000
+      window: 10
+      play_against_latest_model_ratio: 0.5
+      initial_elo: 1200.0
+```
+
+与Pyramids或SnowballTarget相比，我们有新的超参数，包含自我对弈部分。你如何修改它们对获得好结果可能至关重要。
+
+我在这里给你的建议是查看**[文档](https://github.com/Unity-Technologies/ml-agents/blob/release_20_docs/docs/Training-Configuration-File.md)**中对每个参数（特别是自我对弈参数）的解释和推荐值。
+
+现在你已经修改了我们的配置文件，你已经准备好训练你的智能体了。
+
+## 步骤4：开始训练
+
+要训练智能体，我们需要**启动mlagents-learn并选择包含环境的可执行文件。**
+
+我们定义四个参数：
+
+1. `mlagents-learn <config>`：超参数配置文件的路径。
+2. `-env`：环境可执行文件的位置。
+3. `-run_id`：你想给训练运行ID起的名称。
+4. `-no-graphics`：在训练期间不启动可视化。
+
+根据你的硬件，5M时间步（推荐值，但你也可以尝试10M）将需要5到8小时的训练。你可以在此期间继续使用你的电脑，但我建议停用电脑待机模式，以防止训练被停止。
+
+根据你使用的可执行文件（windows、ubuntu、mac），训练命令将如下所示（你的可执行文件路径可能不同，所以运行前不要犹豫检查一下）。
+
+对于Windows，它可能看起来像这样：
+```bash
+mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos.exe --run-id="SoccerTwos" --no-graphics
+```
+
+对于Mac，它可能看起来像这样：
+```bash
+mlagents-learn ./config/poca/SoccerTwos.yaml --env=./training-envs-executables/SoccerTwos/SoccerTwos.app --run-id="SoccerTwos" --no-graphics
+```
+
+该可执行文件包含8个SoccerTwos的副本。
+
+⚠️ 如果在2M时间步之前你没有看到ELO分数的大幅增加（甚至降至1200以下）是正常的，因为你的智能体在能够进球之前会花费大部分时间在场上随机移动。
+
+⚠️ 你可以用Ctrl + C停止训练，但要注意只输入一次这个命令来停止训练，因为MLAgents需要在关闭运行前生成最终的.onnx文件。
+
+## 步骤5：**将智能体推送到Hugging Face Hub**
+
+现在我们已经训练了我们的智能体，我们**准备将它们推送到Hub，以便能够参与AI对抗AI挑战并在浏览器中可视化它们的比赛🔥。**
+
+为了能够与社区分享你的模型，还有三个步骤需要遵循：
+
+1️⃣ （如果还没有完成）创建一个HF账户 ➡ [https://huggingface.co/join](https://huggingface.co/join)
+
+2️⃣ 登录并从Hugging Face网站存储你的认证令牌。
+
+创建一个新令牌（https://huggingface.co/settings/tokens）**具有写入权限**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/notebooks/create-token.jpg" alt="创建HF令牌" />
+
+复制令牌，运行以下命令，并粘贴令牌
+
+```bash
+huggingface-cli login
+```
+
+然后，我们需要运行`mlagents-push-to-hf`。
+
+我们定义四个参数：
+
+1. `-run-id`：训练运行ID的名称。
+2. `-local-dir`：智能体保存的位置，它是results/\<run_id名称\>，所以在我的例子中是results/First Training。
+3. `-repo-id`：你想创建或更新的Hugging Face仓库的名称。它总是\<你的huggingface用户名\>/\<仓库名称\>
+如果仓库不存在，**它将自动创建**
+4. `--commit-message`：由于HF仓库是git仓库，你需要提供一个提交消息。
+
+在我的例子中
+
+```bash
+mlagents-push-to-hf  --run-id="SoccerTwos" --local-dir="./results/SoccerTwos" --repo-id="ThomasSimonini/poca-SoccerTwos" --commit-message="First Push"`
+```
+
+```bash
+mlagents-push-to-hf  --run-id= # 添加你的运行ID  --local-dir= # 你的本地目录  --repo-id= # 你的仓库ID --commit-message="First Push"
+```
+
+如果一切正常，你应该在过程结束时看到这个（但URL不同😆）：
+
+你的模型已推送到Hub。你可以在这里查看你的模型：https://huggingface.co/ThomasSimonini/poca-SoccerTwos
+
+这是你模型的链接。它包含一个解释如何使用它的模型卡片，你的Tensorboard和你的配置文件。**最棒的是它是一个git仓库，这意味着你可以有不同的提交，用新的推送更新你的仓库等。**
+
+## 步骤6：验证你的模型已准备好参加AI对抗AI挑战
+
+现在你的模型已推送到Hub，**它将自动添加到AI对抗AI挑战模型池中。** 鉴于我们每4小时进行一次比赛，你的模型可能需要一点时间才能添加到排行榜中。
+
+但为了确保一切完美运行，你需要检查：
+
+1. 你的模型中有这个标签：ML-Agents-SoccerTwos。这是我们用来选择要添加到挑战池的模型的标签。为此，请转到你的模型并检查标签
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify1.png" alt="验证"/>
+
+
+如果不是这样，你只需要修改readme并添加它
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify2.png" alt="验证"/>
+
+2. 你有一个`SoccerTwos.onnx`文件
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/verify3.png" alt="验证"/>
+
+如果你想再次训练它或训练新版本，我们强烈建议你在推送到Hub时创建一个新模型。
+
+## 步骤7：在我们的演示中可视化一些比赛
+
+现在你的模型已成为AI对抗AI挑战的一部分，**你可以可视化它与其他模型相比有多好**：https://huggingface.co/spaces/unity/ML-Agents-SoccerTwos
+
+为此，你只需要进入这个演示：
+
+- 选择你的模型作为蓝队（或者如果你喜欢的话，选择紫队）和另一个模型进行对抗。比较你的模型的最佳对手是排行榜上的顶级模型或[基准模型](https://huggingface.co/unity/MLAgents-SoccerTwos)
+
+你实时看到的比赛不会用于计算你的结果，**但它们是可视化你的智能体有多好的好方法**。
+
+不要犹豫在discord的#rl-i-made-this频道分享你的智能体获得的最佳分数🔥

@@ -1,0 +1,31 @@
+# 决策Transformer
+
+决策Transformer模型由Chen L.等人在["决策Transformer：通过序列建模实现强化学习"](https://arxiv.org/abs/2106.01345)中提出。它将强化学习抽象为条件序列建模问题。
+
+主要思想是，不是使用强化学习方法（如拟合价值函数）来训练一个策略，告诉我们采取什么行动来最大化回报（累积奖励），**而是使用序列建模算法（Transformer），在给定期望回报、过去状态和行动的情况下，生成未来行动以实现这个期望回报**。
+这是一个自回归模型，以期望回报、过去状态和行动为条件，生成实现期望回报的未来行动。
+
+这是强化学习范式的一个完全转变，因为我们使用生成式轨迹建模（建模状态、行动和奖励序列的联合分布）来替代传统的强化学习算法。这意味着在决策Transformer中，我们不是最大化回报，而是生成一系列未来行动来实现期望的回报。
+
+🤗 Transformers团队将决策Transformer（一种离线强化学习方法）集成到了库中，并添加到了Hugging Face Hub。
+
+## 了解决策Transformers
+
+要了解更多关于决策Transformers的信息，你应该阅读我们写的博客文章[在Hugging Face上介绍决策Transformers](https://huggingface.co/blog/decision-transformers)
+
+## 训练你的第一个决策Transformers
+
+现在，通过[在Hugging Face上介绍决策Transformers](https://huggingface.co/blog/decision-transformers)，你已经了解了决策Transformers的工作原理，你已经准备好学习从头开始训练你的第一个离线决策Transformer模型，使半猎豹机器人奔跑。
+
+在这里开始教程 👉 https://huggingface.co/blog/train-decision-transformers
+
+## 进一步阅读
+
+如需更多信息，我们建议你查看以下资源：
+
+- [决策Transformer：通过序列建模实现强化学习](https://arxiv.org/abs/2106.01345)
+- [在线决策Transformer](https://arxiv.org/abs/2202.05607)
+
+## 作者
+
+本节由<a href="https://twitter.com/edwardbeeching">Edward Beeching</a>撰写

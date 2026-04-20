@@ -1,0 +1,34 @@
+# 从Q学习到深度Q学习 [[from-q-to-dqn]]
+
+我们了解到**Q学习是一种用来训练Q函数的算法**，Q函数是一个**动作-价值函数**，它确定在特定状态下采取特定动作的价值。
+
+<figure>
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Q-function.jpg" alt="Q-function"/>
+</figure>
+
+**Q来源于"该状态下该动作的质量（Quality）"。**
+
+在内部，我们的Q函数由**Q表编码，这是一个表格，其中每个单元格对应一个状态-动作对的值。** 把这个Q表想象为**我们Q函数的记忆或备忘单**。
+
+问题是Q学习是一种*表格方法*。如果状态和动作空间**不够小，无法通过数组和表格有效表示**，这就成为一个问题。换句话说：它**不具有可扩展性**。
+Q学习在小状态空间环境中表现良好，如：
+
+- FrozenLake，我们有16个状态。
+- Taxi-v3，我们有500个状态。
+
+但想想我们今天要做的事情：我们将训练一个智能体学习玩太空入侵者，这是一个更复杂的游戏，使用帧作为输入。
+
+正如**[Nikita Melkozerov提到的](https://twitter.com/meln1k)，Atari环境**的观察空间形状为(210, 160, 3)*，包含从0到255的值，所以这给我们带来了\\(256^{210 \times 160 \times 3} = 256^{100800}\\)个可能的观察（相比之下，我们在可观测宇宙中大约有\\(10^{80}\\)个原子）。
+
+* Atari中的单个帧由210x160像素的图像组成。由于图像是彩色的（RGB），所以有3个通道。这就是为什么形状是(210, 160, 3)。对于每个像素，值可以从0到255。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari.jpg" alt="Atari State Space"/>
+
+因此，状态空间是巨大的；由于这一点，为该环境创建和更新Q表将不会是有效的。在这种情况下，最好的想法是使用参数化Q函数\\(Q_{\theta}(s,a)\\)来近似Q值。
+
+这个神经网络将近似，给定一个状态，该状态下每个可能动作的不同Q值。这正是深度Q学习所做的。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/deep.jpg" alt="Deep Q Learning"/>
+
+
+现在我们理解了深度Q学习，让我们深入了解深度Q网络。

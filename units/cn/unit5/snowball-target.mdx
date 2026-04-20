@@ -1,0 +1,57 @@
+# SnowballTarget环境
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget.gif" alt="SnowballTarget"/>
+
+SnowballTarget是我们在Hugging Face使用[Kay Lousberg](https://kaylousberg.com/)的资源创建的环境。本单元末尾有一个可选部分，**如果你想学习使用Unity并创建自己的环境**。
+
+## 智能体的目标
+
+你将要训练的第一个智能体叫做Julien熊🐻。Julien被训练**用雪球击中目标**。
+
+这个环境中的目标是让Julien**在有限的时间内（1000个时间步）尽可能多地击中目标**。为此，它需要**正确地放置自己相对于目标的位置并射击**。
+
+此外，为了避免"雪球狂轰滥炸"（即每个时间步都发射一个雪球），**Julien有一个"冷却"系统**（它需要在射击后等待0.5秒才能再次射击）。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/cooloffsystem.gif" alt="冷却系统"/>
+<figcaption>智能体需要等待0.5秒才能再次发射雪球</figcaption>
+</figure>
+
+## 奖励函数和奖励工程问题
+
+奖励函数很简单。**每当智能体的雪球击中目标时，环境给予+1的奖励**。因为智能体的目标是最大化预期累积奖励，**它将尝试击中尽可能多的目标**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget_reward.png" alt="奖励系统"/>
+
+我们可以有一个更复杂的奖励函数（例如，加入惩罚以促使智能体更快行动）。但当你设计一个环境时，你需要避免*奖励工程问题*，即使用过于复杂的奖励函数来强制你的智能体按照你希望的方式行动。
+为什么？因为这样做，**你可能会错过智能体用更简单的奖励函数找到的有趣策略**。
+
+在代码方面，它看起来像这样：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget-reward-code.png" alt="奖励"/>
+
+
+## 观察空间
+
+关于观察，我们不使用普通视觉（帧），而是**使用射线投射（raycasts）**。
+
+把射线投射想象成激光，它们会检测是否穿过物体。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit5/raycasts.png" alt="射线投射"/>
+<figcaption>来源：<a href="https://github.com/Unity-Technologies/ml-agents">ML-Agents文档</a></figcaption>
+</figure>
+
+
+在这个环境中，我们的智能体有多组射线投射：
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowball_target_raycasts.png" alt="射线投射"/>
+
+除了射线投射外，智能体还获得一个"我能射击吗"的布尔值作为观察。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget-obs-code.png" alt="观察"/>
+
+## 动作空间
+
+动作空间是离散的：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit7/snowballtarget_action_space.png" alt="动作空间"/>

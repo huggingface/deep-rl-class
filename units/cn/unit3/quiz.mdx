@@ -1,0 +1,104 @@
+# 测验 [[quiz]]
+
+学习的最佳方式和[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法**是测试自己。**这将帮助你找出**需要加强知识的地方**。
+
+### 问题1：我们提到Q学习是一种表格方法。什么是表格方法？
+
+<details>
+<summary>解答</summary>
+
+*表格方法*是一种问题类型，其中状态和动作空间足够小，可以将近似值函数**表示为数组和表格**。例如，**Q学习是一种表格方法**，因为我们使用表格来表示状态和动作值对。
+
+
+</details>
+
+### 问题2：为什么我们不能使用经典的Q学习来解决Atari游戏？
+
+<Question
+	choices={[
+		{
+			text: "Atari环境对Q学习来说太快了",
+			explain: ""
+		},
+		{
+			text: "Atari环境有一个很大的观察空间。因此创建和更新Q表将不会高效",
+			explain: "",
+      correct: true
+		}
+	]}
+/>
+
+
+### 问题3：为什么在深度Q学习中使用帧作为输入时，我们要将四个帧堆叠在一起？
+
+<details>
+<summary>解答</summary>
+
+我们将帧堆叠在一起是因为它帮助我们**处理时间限制问题**：一个帧不足以捕获时间信息。
+例如，在乒乓球游戏中，如果我们的智能体**只获得一个帧，它将无法知道球的方向**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation.jpg" alt="Temporal limitation"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/temporal-limitation-2.jpg" alt="Temporal limitation"/>
+
+
+</details>
+
+
+### 问题4：深度Q学习的两个阶段是什么？
+
+<Question
+	choices={[
+		{
+			text: "采样",
+			explain: "我们执行动作并将观察到的经验元组存储在回放记忆中。",
+      correct: true,
+		},
+		{
+			text: "洗牌",
+			explain: "",
+		},
+    {
+      text: "重新排序",
+      explain: "",
+    },
+    {
+			text: "训练",
+			explain: "我们随机选择小批量的元组，并使用梯度下降更新步骤从中学习。",
+      correct: true,
+		}
+	]}
+/>
+
+### 问题5：为什么我们在深度Q学习中创建回放记忆？
+
+<details>
+   <summary>解答</summary>
+
+**1. 在训练期间更有效地利用经验**
+
+通常，在在线强化学习中，智能体与环境交互，获得经验（状态、动作、奖励和下一个状态），从中学习（更新神经网络），然后丢弃它们。这不是高效的。
+但是，通过经验回放，**我们创建一个回放缓冲区，保存可以在训练期间重复使用的经验样本**。
+
+**2. 避免忘记以前的经验并减少经验之间的相关性**
+
+如果我们向神经网络提供连续的经验样本，我们会遇到的问题是，它**倾向于忘记以前的经验，因为它覆盖了新的经验**。例如，如果我们在第一关，然后是不同的第二关，我们的智能体可能会忘记如何在第一关中行为和游戏。
+
+
+</details>
+
+### 问题6：我们如何使用双深度Q学习？
+
+
+<details>
+  <summary>解答</summary>
+
+  当我们计算Q目标时，我们使用两个网络来解耦动作选择和目标Q值生成。我们：
+
+  - 使用我们的*DQN网络***选择下一个状态的最佳动作**（具有最高Q值的动作）。
+
+  - 使用我们的*目标网络*计算**在下一个状态采取该动作的目标Q值**。
+
+</details>
+
+
+恭喜你完成这个测验 🥳，如果你错过了一些要点，花点时间重新阅读本章以加强（😏）你的知识。
