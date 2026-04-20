@@ -3,7 +3,7 @@ pygame
 numpy
 
 huggingface_hub
-pickle5
+pickle5; python_version < "3.8"
 pyyaml==6.0
 imageio
 imageio_ffmpeg
