@@ -5,16 +5,16 @@ The Bellman equation **simplifies our state value or state-action value calcula
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman.jpg" alt="Bellman equation"/>
 
-With what we have learned so far, we know that if we calculate \\(V(S_t)\\) (the value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(The policy we defined in the following example is a Greedy Policy; for simplification, we don't discount the reward).**
+With what we have learned so far, we know that if we calculate  \\(V(S_t)\\) (the value of a state), we need to calculate the return starting at that state and then follow the policy forever after. **(The policy we defined in the following example is a Greedy Policy; for simplification, we don't discount the reward).**
 
-So to calculate \\(V(S_t)\\), we need to calculate the sum of the expected rewards. Hence:
+So to calculate  \\(V(S_t)\\), we need to calculate the sum of the expected rewards. Hence:
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman2.jpg" alt="Bellman equation"/>
   <figcaption>To calculate the value of State 1: the sum of rewards if the agent started in that state and then followed the greedy policy (taking actions that leads to the best states values) for all the time steps.</figcaption>
 </figure>
 
-Then, to calculate the \\(V(S_{t+1})\\), we need to calculate the return starting at that state \\(S_{t+1}\\).
+Then, to calculate the  \\(V(S_{t+1})\\), we need to calculate the return starting at that state  \\(S_{t+1}\\).
 
 <figure>
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman3.jpg" alt="Bellman equation"/>
