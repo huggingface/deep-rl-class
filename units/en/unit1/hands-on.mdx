@@ -480,6 +480,44 @@ print(f"mean_reward={mean_reward:.2f} +/- {std_reward}")
 
 - In my case, I got a mean reward of `200.20 +/- 20.80` after training for 1 million steps, which means that our lunar lander agent is ready to land on the moon 🌛🥳.
 
+## Pre-registering your evaluation claim (optional) 📜
+
+When you report your agent's score, you are making a **claim**. The claim has a shape: "agent **X** achieves mean episode reward **Y** on environment **Z**, threshold for success **T**, after **N** evaluation episodes, with seed **S**."
+
+If you decide **T** *after* you see **Y** — i.e. you adjust what counts as success once you know what your agent scored — your claim is no longer falsifiable. You are reporting a number that was always going to be reported as a success.
+
+This is not a trust problem. It is a **serialisation** problem. The fix is to commit those fields to a hash *before* the evaluation runs.
+
+[PRML (Pre-Registered ML Manifest)](https://spec.falsify.dev/v0.1) is one open spec for doing this. Eight YAML fields, hashed with SHA-256:
+
+```yaml
+prml_version: "0.1"
+metric: "mean_episode_reward"
+threshold: 200.0
+threshold_direction: ">="
+dataset: "LunarLander-v2"
+dataset_hash: "sha256:..."
+model_version: "ppo-lunarlander-yourname"
+sample_size: 10
+seed: 42
+pre_registered: "2026-05-08T20:00:00Z"
+```
+
+You can compute the hash and verify later with the reference CLI:
+
+```bash
+pip install falsify
+falsify lock manifest.yaml          # compute hash
+# ... run your eval ...
+falsify verify manifest.yaml --hash # re-derive and compare
+```
+
+The point is small: you can't move the goalpost after the ball lands without breaking the hash.
+
+The point is also limited: PRML can't make you publish *every* score you commit to. What it does close is the post-hoc threshold tuning gap — and for self-learners reporting RL agent scores in notebooks or blog posts, that's the gap that matters most.
+
+The spec is CC BY 4.0. Reference implementations exist in Python, JavaScript, Go, and Rust under MIT. This subsection introduces the concept; you are free to use a different pre-registration spec or none at all.
+
 ## Publish our trained model on the Hub 🔥
 Now that we saw we got good results after the training, we can publish our trained model on the hub 🤗 with one line of code.
 
