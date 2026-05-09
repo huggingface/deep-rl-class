@@ -10,7 +10,7 @@ In Reinforce, we want to **increase the probability of actions in a trajectory p
 
 This return \\(R(\tau)\\) is calculated using a *Monte-Carlo sampling*. We collect a trajectory and calculate the discounted return, **and use this score to increase or decrease the probability of every action taken in that trajectory**. If the return is good, all actions will be “reinforced” by increasing their likelihood of being taken.
 
-\\(R(\tau) = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...\\)
+\\(R(\tau) = R_{\tau+1} + \gamma R_{\tau+2} + \gamma^2 R_{\tau+3} + ...\\)
 
 The advantage of this method is that **it’s unbiased. Since we’re not estimating the return**, we use only the true return we obtain.
 
