@@ -2,4 +2,4 @@ git+https://github.com/ntasfi/PyGame-Learning-Environment.git
 git+https://github.com/simoninithomas/gym-games
 huggingface_hub
 imageio-ffmpeg
-pyyaml==6.0
+

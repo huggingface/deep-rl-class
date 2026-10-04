@@ -152,6 +152,9 @@ And you can find all the Deep Reinforcement Learning models here 👉 https://hu
 
 ```bash
 !pip install -r https://raw.githubusercontent.com/huggingface/deep-rl-class/main/notebooks/unit4/requirements-unit4.txt
+!echo 'Cython < 3.0' > /temp.txt
+!PIP_CONSTRAINT=/temp.txt pip wheel pyyaml==6.0
+!pip install 'pyyaml==6.0'
 ```
 
 ## Import the packages 📦
