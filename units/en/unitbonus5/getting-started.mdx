@@ -14,9 +14,8 @@ Extract the zip file, open Godot, click “Import” and navigate to the `Starte
 
 ### Open the robot scene
 
-<Tip>
-You can search for “robot” in the FileSystem search.
-</Tip>
+> [!TIP]
+> You can search for “robot” in the FileSystem search.
 
 This scene contains a couple of different nodes, including the `robot` node, which contains the visual shape of the robot, `CameraXRotation` node which is used to rotate the camera “up-down” using the mouse in human control modes. The AI agent does not control this node since it is not necessary for learning the task. `RaycastSensors` node contains two Raycast sensors that help the agent to “sense” parts of the game world, including walls, floors, etc.
 
@@ -24,9 +23,8 @@ This scene contains a couple of different nodes, including the `robot` node, whi
 
 ### Click on the scroll next to AIController3D to open the script for editing
 
-<Tip>
-You might have to collapse the “robot” branch to find it more easily, or you can type `aicontroller` in the Filter box above the `Robot` node.
-</Tip>
+> [!TIP]
+> You might have to collapse the “robot” branch to find it more easily, or you can type `aicontroller` in the Filter box above the `Robot` node.
 
 ### Replace the `get_obs()` and `get_reward()` methods with the implementation below:
 
@@ -218,9 +216,8 @@ This code part records mouse movement in case of human control and demo record m
 
 ### Open the demo record scene, and click on AIController3D node
 
-<Tip>
-You can search for “demo” in the FileSystem search, and you can search for “aicontroller” in the scene's filter box.
-</Tip>
+> [!TIP]
+> You can search for “demo” in the FileSystem search, and you can search for “aicontroller” in the scene's filter box.
 
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit13/demo_record_scene.jpg" alt="open robot scene"/>
 
@@ -238,9 +235,8 @@ Another way to make episode recording easier in challenging environments is to s
 
 ### Let’s record some demos:
 
-<Tip>
-Note that the demos will only be saved if we have recorded at least one complete episode and closed the game window by clicking on "X" or pressing ALT+F4. Using the stop button in Godot editor will not save the demos. It’s best to try recording just one episode first, then check if you see "expert_demos.json" in the filesystem or in the Godot project folder.
-</Tip>
+> [!TIP]
+> Note that the demos will only be saved if we have recorded at least one complete episode and closed the game window by clicking on "X" or pressing ALT+F4. Using the stop button in Godot editor will not save the demos. It’s best to try recording just one episode first, then check if you see "expert_demos.json" in the filesystem or in the Godot project folder.
 
 Make sure that you are still in the `demo_record_scene`, `press F6` and the demo recording will start.  
 

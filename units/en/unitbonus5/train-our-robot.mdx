@@ -1,8 +1,7 @@
 # Train our robot
 
-<Tip>
-In order to start training, we’ll first need to install the <a href="https://imitation.readthedocs.io/en/latest/getting-started/installation.html">imitation</a> library in the same venv / conda env where you installed Godot RL Agents by using: <code>pip install imitation</code>
-</Tip>
+> [!TIP]
+> In order to start training, we’ll first need to install the <a href="https://imitation.readthedocs.io/en/latest/getting-started/installation.html">imitation</a> library in the same venv / conda env where you installed Godot RL Agents by using: <code>pip install imitation</code>
 
 ### Download a copy of the [imitation learning](https://github.com/edbeeching/godot_rl_agents/blob/main/examples/sb3_imitation.py) script from the Godot RL Repository.
 
@@ -24,9 +23,8 @@ Here are the `ep_rew_mean` and `ep_rew_wrapped_mean` stats from the logs display
 en/unit13/training_results.png" alt="training results"/>
 
 
-<Tip>
-You can find the logs in `logs/ILTutorial` relative to the path you started training from. If making multiple runs, change the `--experiment_name` argument between each.
-</Tip>
+> [!TIP]
+> You can find the logs in `logs/ILTutorial` relative to the path you started training from. If making multiple runs, change the `--experiment_name` argument between each.
 
 Even though setting the env rewards is not necessary and not used for the training here, a simple sparse reward was implemented to track success. Falling outside the map, in water, or traps sets `reward += -1`, while activating the lever, collecting the key, and opening the chest each set `reward += 1`. If the `ep_rew_mean` approaches 3, we are getting a good result. `ep_rew_wrapped_mean` is the reward from the GAIL discriminator, which does not directly tell us how successful the agent is at solving the environment.
 
