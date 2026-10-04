@@ -1,0 +1,16 @@
+- title: 0단원. 강의에 오신 걸 환영합니다
+  sections:
+  - local: unit0/introduction
+    title: 강의에 오신 걸 환영합니다 🤗
+  - local: unit0/setup
+    title: 설정
+  - local: unit0/discord101
+    title: 디스코드 가이드 
+- title: 1단원. 딥러닝을 이용한 강화학습 소개
+  sections:
+  - local: unit1/introduction
+    title: 단원 소개 
+  - local: unit1/what-is-rl
+    title: 강화학습이 무엇인가요?
+  - local: unit1/rl-framework
+    title: 강화학습 프레임워크

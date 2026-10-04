@@ -1,0 +1,145 @@
+# 강화학습 프레임워크 [[the-reinforcement-learning-framework]]
+
+## 강화학습 과정 [[the-rl-process]]
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process.jpg" alt="The RL process" width="100%">
+<figcaption>The RL Process: a loop of state, action, reward and next state</figcaption>
+<figcaption>Source: <a href="http://incompleteideas.net/book/RLbook2020.pdf">Reinforcement Learning: An Introduction, Richard Sutton and Andrew G. Barto</a></figcaption>
+</figure>
+
+강화학습의 과정을 이해하기 위해, 에이전트가 게임하는 상황을 상상해봅시다. 
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/RL_process_game.jpg" alt="The RL process" width="100%">
+
+- 우리의 에이전트는 **환경(Environment)**으로부터 **상태(state)  \\(S_0\\)**를 전달받습니다 — 게임(환경)의 첫 화면이 보입니다.
+- 그 **상태(state) \\(S_0\\)**를 기반으로, 에이전트는 **행동(action) \\(A_0\\)**을 취합니다 — 에이전트가 오른쪽으로 움직입니다.
+- 환경은 **새로운** **상태(state) \\(S_1\\)**를 전달합니다 — 게임의 새로운 화면이 보입니다.
+- 환경은 에이전트에게 **보상(reward) \\(R_1\\)**을 줍니다 — 게임 캐릭터가 아직 죽지 않았습니다 *(긍정적인 보상 +1)*.
+
+이러한 강화학습 순환구조는 **상태(state), 행동(action), 보상(reward) 그리고 다음 상태(next state)**를 계속해서 반환합니다.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/sars.jpg" alt="State, Action, Reward, Next State" width="100%">
+
+에이전트의 목표는 **기대 결과값(expected return)이라고 불리는**, 보상의 총 합을 _최대화_하는 것입니다. 
+
+## 보상 가설(Reward hypothesis): 강화학습의 주요 아이디어 [[reward-hypothesis]]
+
+⇒ 왜 에이전트의 목표는 보상의 총 합을 최대화하는 것일까?
+
+강화학습은 **보상 가설**을 기반으로 하기 때문이다. 보상 가설은 모든 목표는 **기대 결과값의 최대화** (보상 총 합의 기댓값)로 설명할 수 있다고 본다.
+
+그렇기 때문에 강화학습에서 **최고의 행동을 취하려면,** **보상 총 합의 기댓값을 최대화**할 수 있는 행동을 취하는 방법을 배워야 한다. 
+
+
+## 마르코프 특성 (Markov Property) [[markov-property]]
+
+논문에서 강화학습 과정이 **마르코프 결정 과정(Markov Decision Process)** (MDP)으로 불리는 걸 볼 수 있습니다.
+
+마르코프 특성(Markov Property)은 다음 단원에서 다루겠습니다. 하지만 오늘 마르코프 특성에 대해 하나 기억해야 한다면, 이 사실을 기억하세요: 마르코프 특성은 에이전트가 어떤 행동을 취해야 할지 결정하는데 **이전에 거쳐온 모든 상태와 행동을 알 필요 없이, 오직 현재 상태만** 알면 된다는 의미입니다. 
+
+
+## 관측(Observations)/상태 공간(States Space) [[obs-space]]
+
+관측(Observations)/상태(States)는 **에이전트가 환경으로부터 얻는 정보**입니다. 게임하는 에이전트에겐 게임 화면이 관측/상태입니다. 주식 거래하는 에이전트에겐 특정 주식의 가격 등이 관측/상태가 될 수 있습니다.
+
+하지만 *관측(observation)*과 *상태(state)*에 차이점이 있습니다:
+
+- *상태(State) s*: 는 **이 세계의 상태에 대한 완전한 설명**입니다 (숨겨진 정보가 없습니다). 환경을 완전히 관측할 수 있는 경우입니다.
+
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/chess.jpg" alt="Chess">
+<figcaption>In chess game, we receive a state from the environment since we have access to the whole check board information.</figcaption>
+</figure>
+
+체스 게임에서, 우리는 전체 보드에 대한 정보를 얻을 수 있습니다. 따라서 환경에서 상태(state)를 얻을 수 있습니다. 다르게 말하면, 환경을 완벽하게 관측할 수 있습니다.
+
+- *관측(Observation) o*: 는 **상태에 대한 부분적인 설명**입니다. 환경을 부분적으로 관측할 수 있는 경우입니다.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
+<figcaption>In Super Mario Bros, we only see the part of the level close to the player, so we receive an observation.</figcaption>
+</figure>
+
+슈퍼 마리오 게임에서, 우리는 게임 캐릭터와 가까이 있는 부분만 볼 수 있습니다. 따라서 상태가 아니라 관측을 얻을 수 있습니다.
+
+슈퍼 마리오 게임에서, 우리는 부분적으로 관측할 수 있는 환경에 있습니다. 우리는 **일부분만 볼 수 있으므로** 관측을 얻습니다. 
+
+<Tip>
+이 강의에서, "상태"라는 용어는 상태와 관측 모두를 의미할 수 있습니다. 하지만 구현할 땐 상태와 관측을 구분할 것입니다.
+</Tip>
+
+요약하자면:
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/obs_space_recap.jpg" alt="Obs space recap" width="100%">
+
+
+## 행동 공간 [[action-space]]
+
+행동 공간은 **환경에서 취할 수 있는 모든 가능한 행동들**의 집합입니다.
+
+행동들은 *이산적* 또는 *연속적 공간*에 위치할 수 있습니다:
+
+- *이산적 공간*: 취할 수 있는 행동의 개수가 **유한**하다.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/mario.jpg" alt="Mario">
+<figcaption>In Super Mario Bros, we have only 4 possible actions: left, right, up (jumping) and down (crouching).</figcaption>
+
+</figure>
+
+다시 슈퍼 마리오 게임을 예로 들면, 우린 4가지 방향으로만 움직일 수 있으므로 취할 수 있는 행동의 개수가 유한합니다.
+
+- *연속적 공간*: 취할 수 있는 행동의 개수가 **무한**하다.
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/self_driving_car.jpg" alt="Self Driving Car">
+<figcaption>A Self Driving Car agent has an infinite number of possible actions since it can turn left 20°, 21,1°, 21,2°, honk, turn right 20°…
+</figcaption>
+</figure>
+
+요약하자면:
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/action_space.jpg" alt="Action space recap" width="100%">
+
+이러한 정보를 고려하는 것은 **나중에 어떤 강화학습 알고리즘을 선택할지 결정할 때 중요한 역할**을 합니다. 
+
+## 보상(Rewards)과 감가(Discounting) [[rewards]]
+
+보상은 에이전트가 받는 **유일한 피드백**이므로 강화학습에서 매우 중요합니다. 보상 덕분에, 에이전트는 **선택한 행동이 좋았는지 나빴는지** 알 수 있습니다.
+
+각 시점 **t**에서 누적 보상(cumulative reward)은 다음과 같이 쓸 수 있습니다:
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_1.jpg" alt="Rewards">
+<figcaption>The cumulative reward equals the sum of all rewards in the sequence.
+</figcaption>
+</figure>
+
+이는 다음과 같습니다:
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_2.jpg" alt="Rewards">
+<figcaption>The cumulative reward = rt+1 (rt+k+1 = rt+0+1 = rt+1)+ rt+2 (rt+k+1 = rt+1+1 = rt+2) + ...
+</figcaption>
+</figure>
+
+하지만 실제로는 **단순히 더하면 안 됩니다.** (게임을 시작할 때처럼) 이른 시기에 받는 보상은 **훨씬 더 받기 쉽습니다**. 먼 미래의 보상을 예측하는 것보다 당장의 보상을 예측하는 것이 더 쉽기 때문입니다.
+
+여러분의 에이전트가 각 시점마다 한 타일씩 움직이는 생쥐라고 생각해봅시다. 그리고 반대편엔 고양이가 있습니다 (고양이도 움직일 수 있습니다). 생쥐의 목표는 **고양이에게 먹히기 전에 최대한 많은 치즈를 먹는 것**입니다.
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_3.jpg" alt="Rewards" width="100%">
+
+다이어그램에서 볼 수 있듯이, **고양이 가까이에 있는 치즈보다 생쥐 가까이에 있는 치즈를 먹을 확률이 더 높아보입니다** (생쥐가 고양이에 더 가까울수록, 더 위험하기 때문이죠).
+
+따라서, **고양이 가까이 있는 보상은, 더 크더라도 (치즈가 더 많더라도), 더 감가됩니다.** 에이전트가 그 치즈를 먹을 수 있을지 확실치 않기 때문입니다.
+
+보상을 감가하려면, 다음과 같이 처리합니다:
+
+1. 감마(gamma)라고 불리는 감가율을 정의합니다. **0과 1 사이의 값이어야 합니다.** 대부분 **0.95와 0.99 사이**의 값입니다.
+- 감마가 더 클수록, 보상은 더 적게 감가됩니다. 이는 에이전트가 **장기적 보상을 더 중요시한다**는 의미입니다.
+- 반대로, 감마가 더 작을수록, 보상은 더 크게 감가됩니다. 이는 에이전트가 **단기적 보상(가장 가까운 치즈)을 더 중요시한다**는 의미입니다. 
+
+2. 그리고, 보상은 감마의 각 시점의 지수승만큼 감가됩니다. 시간이 지날수록, 고양이는 생쥐와 더 가까워지고, **따라서 미래의 보상을 받을 수 있는 확률이 점점 희박해지기 때문입니다.**  
+
+감가된 누적 보상의 기댓값은 다음과 같습니다:
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rewards_4.jpg" alt="Rewards" width="100%">
