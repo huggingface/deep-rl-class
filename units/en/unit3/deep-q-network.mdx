@@ -39,3 +39,5 @@ Finally, we have a couple of fully connected layers that output a Q-value for ea
 <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/deep-q-network.jpg" alt="Deep Q Network"/>
 
 So, we see that Deep Q-Learning uses a neural network to approximate, given a state, the different Q-values for each possible action at that state. Now let's study the Deep Q-Learning algorithm.
+
+NOTE: We are using same network to calculate predicting (Q_current) and targeting (Q_target). This will cause some issues of Unstable training since the target is moving every time network’s parameters is updated. 
