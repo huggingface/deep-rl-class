@@ -182,7 +182,10 @@ import imageio
 import os
 import tqdm
 
-import pickle5 as pickle
+try:
+    import pickle5 as pickle
+except ImportError:
+    import pickle
 from tqdm.notebook import tqdm
 ```
 
