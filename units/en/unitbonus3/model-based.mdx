@@ -14,7 +14,7 @@ The dynamics model usually models the environment transition dynamics, \\( s_{t+
 
 ## Academic definition
 
-Model-based reinforcement learning (MBRL) follows the framework of an agent interacting in an environment, **learning a model of said environment**, and then **leveraging the model for control (making decisions).
+Model-based reinforcement learning (MBRL) follows the framework of an agent interacting in an environment, **learning a model of said environment**, and then **leveraging the model for control** (making decisions).
 
 Specifically, the agent acts in a Markov Decision Process (MDP) governed by a transition function \\( s_{t+1} = f (s_t , a_t) \\) and returns a reward at each step \\( r(s_t, a_t) \\). With a collected dataset \\( D :={ s_i, a_i, s_{i+1}, r_i} \\), the agent learns a model, \\( s_{t+1} = f_\theta (s_t , a_t) \\) **to minimize the negative log-likelihood of the transitions**.
 
