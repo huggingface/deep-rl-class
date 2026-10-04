@@ -3,8 +3,8 @@ pygame
 numpy
 
 huggingface_hub
-pickle5
-pyyaml==6.0
+# pickle5 # `pickle5` installation fails on colab. according to https://github.com/huggingface/deep-rl-class/issues/616 using native `pickle` works fine
+pyyaml==6.0.2
 imageio
 imageio_ffmpeg
 pyglet==1.5.1
