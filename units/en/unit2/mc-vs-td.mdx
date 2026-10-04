@@ -32,8 +32,8 @@ If we take an example:
 - At the end of the episode, **we have a list of State, Actions, Rewards, and Next States tuples**
 For instance [[State tile 3 bottom, Go Left, +1, State tile 2 bottom], [State tile 2 bottom, Go Left, +0, State tile 1 bottom]...]
 
-- **The agent will sum the total rewards \\(G_t\\)** (to see how well it did).
-- It will then **update \\(V(s_t)\\) based on the formula**
+- **The agent will sum the total rewards  \\(G_t\\)** (to see how well it did).
+- It will then **update  \\(V(s_t)\\) based on the formula**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-3.jpg" alt="Monte Carlo"/>
 
@@ -58,7 +58,7 @@ For instance, if we train a state-value function using Monte Carlo:
 
 
 
-- We have a list of state, action, rewards, next_state, **we need to calculate the return \\(G{t=0}\\)**
+- We have a list of state, action, rewards, next_state, **we need to calculate the return  \\(G{t=0}\\)**
 
 \\(G_t = R_{t+1} + R_{t+2} + R_{t+3} ...\\) (for simplicity, we don't discount the rewards)
 
@@ -68,7 +68,7 @@ For instance, if we train a state-value function using Monte Carlo:
 
 \\(G_0 = 3\\)
 
-- We can now compute the **new** \\(V(S_0)\\):
+- We can now compute the **new**  \\(V(S_0)\\):
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/MC-5.jpg" alt="Monte Carlo"/>
 
@@ -86,11 +86,11 @@ For instance, if we train a state-value function using Monte Carlo:
 
 **Temporal Difference, on the other hand, waits for only one interaction (one step) \\(S_{t+1}\\)** to form a TD target and update \\(V(S_t)\\) using \\(R_{t+1}\\) and \\( \gamma * V(S_{t+1})\\).
 
-The idea with **TD is to update the \\(V(S_t)\\) at each step.**
+The idea with **TD is to update the  \\(V(S_t)\\) at each step.**
 
-But because we didn't experience an entire episode, we don't have \\(G_t\\) (expected return). Instead, **we estimate \\(G_t\\) by adding \\(R_{t+1}\\) and the discounted value of the next state.**
+But because we didn't experience an entire episode, we don't have  \\(G_t\\) (expected return). Instead, **we estimate  \\(G_t\\) by adding \\(R_{t+1}\\) and the discounted value of the next state.**
 
-This is called bootstrapping. It's called this **because TD bases its update in part on an existing estimate \\(V(S_{t+1})\\) and not a complete sample \\(G_t\\).**
+This is called bootstrapping. It's called this **because TD bases its update in part on an existing estimate  \\(V(S_{t+1})\\) and not a complete sample  \\(G_t\\).**
 
   <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="Temporal Difference"/>
 
@@ -117,9 +117,9 @@ We can now update  \\(V(S_0)\\):
 
 New  \\(V(S_0) = V(S_0) + lr * [R_1 + \gamma * V(S_1) - V(S_0)]\\)
 
-New \\(V(S_0) = 0 + 0.1 * [1 + 1 * 0–0]\\)
+New  \\(V(S_0) = 0 + 0.1 * [1 + 1 * 0–0]\\)
 
-New \\(V(S_0) = 0.1\\)
+New  \\(V(S_0) = 0.1\\)
 
 So we just updated our value function for State 0.
 
