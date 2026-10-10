@@ -1,0 +1,19 @@
+# 深度Q学习 [[deep-q-learning]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/thumbnail.jpg" alt="Unit 3 thumbnail" width="100%" />
+
+
+
+在上一单元中，我们学习了第一个强化学习算法：Q学习，**从头实现了它**，并在两个环境中进行了训练，FrozenLake-v1 ☃️ 和 Taxi-v3 🚕。
+
+我们用这个简单的算法获得了出色的结果，但这些环境相对简单，因为**状态空间是离散且较小的**（FrozenLake-v1有16个不同的状态，Taxi-v3有500个）。相比之下，Atari游戏中的状态空间可能**包含 \\(10^{9}\\) 到 \\(10^{11}\\) 个状态**。
+
+但正如我们将看到的，在大型状态空间环境中，**生成和更新Q表可能变得效率低下。**
+
+因此在本单元中，**我们将学习我们的第一个深度强化学习智能体**：深度Q学习。深度Q学习不使用Q表，而是使用神经网络，该网络接收状态并基于该状态为每个动作近似Q值。
+
+**我们将使用[RL-Zoo](https://github.com/DLR-RM/rl-baselines3-zoo)训练它来玩太空入侵者和其他Atari环境**，RL-Zoo是一个使用Stable-Baselines的强化学习训练框架，提供了训练、评估智能体、调整超参数、绘制结果和录制视频的脚本。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit4/atari-envs.gif" alt="Environments"/>
+
+让我们开始吧！🚀

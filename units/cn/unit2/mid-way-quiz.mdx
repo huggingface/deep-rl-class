@@ -1,0 +1,106 @@
+# 中途测验 [[mid-way-quiz]]
+
+学习的最佳方式，也是[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法，**就是测试自己。**这将帮助你找出**需要加强知识的地方**。
+
+
+### 问题1：寻找最优策略的两种主要方法是什么？
+
+
+<Question
+	choices={[
+		{
+			text: "基于策略的方法",
+			explain: "使用基于策略的方法，我们直接训练策略来学习给定状态下应采取的行动。",
+      correct: true
+		},
+		{
+			text: "基于随机的方法",
+			explain: ""
+		},
+    {
+			text: "基于价值的方法",
+			explain: "使用基于价值的方法，我们训练一个价值函数来学习哪个状态更有价值，并使用这个价值函数来采取导向该状态的行动。",
+      correct: true
+		},
+		{
+			text: "进化策略方法",
+      explain: ""
+		}
+	]}
+/>
+
+
+### 问题2：什么是贝尔曼方程？
+
+<details>
+<summary>解答</summary>
+
+**贝尔曼方程是一个递归方程**，其工作原理如下：我们不必为每个状态从头开始计算回报，而是可以将任何状态的价值视为：
+
+Rt+1 + gamma * V(St+1)
+
+即时奖励 + 后续状态的折扣价值
+
+</details>
+
+### 问题3：定义贝尔曼方程的每个部分
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman4-quiz.jpg" alt="Bellman equation quiz"/>
+
+
+<details>
+<summary>解答</summary>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/bellman4.jpg" alt="Bellman equation solution"/>
+
+</details>
+
+### 问题4：蒙特卡洛和时序差分学习方法之间的区别是什么？
+
+<Question
+	choices={[
+		{
+			text: "使用蒙特卡洛方法，我们从完整的回合更新价值函数",
+			explain: "",
+      correct: true
+		},
+    {
+			text: "使用蒙特卡洛方法，我们从一个步骤更新价值函数",
+			explain: ""
+		},
+    {
+			text: "使用TD学习方法，我们从完整的回合更新价值函数",
+			explain: ""
+		},
+    {
+			text: "使用TD学习方法，我们从一个步骤更新价值函数",
+			explain: "",
+      correct: true
+		},
+	]}
+/>
+
+### 问题5：定义时序差分学习公式的每个部分
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/td-ex.jpg" alt="TD Learning exercise"/>
+
+<details>
+<summary>解答</summary>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/TD-1.jpg" alt="TD Exercise"/>
+
+</details>
+
+
+### 问题6：定义蒙特卡洛学习公式的每个部分
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/mc-ex.jpg" alt="MC Learning exercise"/>
+
+<details>
+<summary>解答</summary>
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/monte-carlo-approach.jpg" alt="MC Exercise"/>
+
+</details>
+
+恭喜你完成这个测验 🥳，如果你错过了一些要点，请花时间重新阅读前面的章节，以加强（😏）你的知识。

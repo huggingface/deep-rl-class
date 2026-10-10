@@ -1,0 +1,257 @@
+# Godot RL Agents
+
+[Godot RL Agents](https://github.com/edbeeching/godot_rl_agents)是一个开源包，允许视频游戏创作者、AI研究人员和爱好者有机会**为他们的非玩家角色或代理学习复杂行为**。
+
+该库提供：
+
+- 在[Godot引擎](https://godotengine.org/)中创建的游戏与在Python中运行的机器学习算法之间的接口
+- 四个知名rl框架的封装：[StableBaselines3](https://stable-baselines3.readthedocs.io/en/master/)、[CleanRL](https://docs.cleanrl.dev/)、[Sample Factory](https://www.samplefactory.dev/)和[Ray RLLib](https://docs.ray.io/en/latest/rllib-algorithms.html)
+- 支持基于LSTM或注意力机制接口的记忆型代理
+- 支持*2D和3D游戏*
+- 一套*AI传感器*，增强代理观察游戏世界的能力
+- Godot和Godot RL Agents**完全免费，在非常宽松的MIT许可下开源**。没有附加条件，没有版税，什么都没有。
+
+你可以在他们的[GitHub页面](https://github.com/edbeeching/godot_rl_agents)或AAAI-2022研讨会[论文](https://arxiv.org/abs/2112.03636)上了解更多关于Godot RL agents的信息。该库的创建者[Ed Beeching](https://edbeeching.github.io/)是Hugging Face的研究科学家。
+
+安装该库很简单：`pip install godot-rl`
+
+## 使用Godot RL Agents创建自定义RL环境
+
+在本节中，你将**学习如何在Godot游戏引擎中创建自定义环境**，然后实现一个使用深度强化学习学习游戏的AI控制器。
+
+我们今天创建的示例游戏很简单，**但展示了Godot引擎和Godot RL Agents库的许多功能**。然后你可以深入研究更复杂环境和行为的示例。
+
+我们今天要构建的环境叫做Ring Pong，这是一个乒乓球游戏，但球场是一个环形，球拍在环上移动。**目标是保持球在环内弹跳**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/ringpong.gif" alt="Ring Pong" />
+
+### 安装Godot游戏引擎
+
+[Godot游戏引擎](https://godotengine.org/)是一个开源工具，用于**创建视频游戏、工具和用户界面**。
+
+Godot引擎是一个功能丰富的跨平台游戏引擎，旨在从统一界面创建2D和3D游戏。它提供了一套全面的通用工具，因此用户**可以专注于制作游戏，而不必重新发明轮子**。游戏可以一键导出到多个平台，包括主要的桌面平台（Linux、macOS、Windows）以及移动（Android、iOS）和基于网络的（HTML5）平台。
+
+虽然我们将指导你完成实现代理的步骤，但你可能希望了解更多关于Godot游戏引擎的信息。他们的[文档](https://docs.godotengine.org/en/latest/index.html)非常详尽，YouTube上也有许多教程，我们也推荐[GDQuest](https://www.gdquest.com/)、[KidsCanCode](https://kidscancode.org/godot_recipes/4.x/)和[Bramwell](https://www.youtube.com/channel/UCczi7Aq_dTKrQPF5ZV5J3gg)作为信息来源。
+
+为了在Godot中创建游戏，**你必须首先下载编辑器**。Godot RL Agents支持最新版本的Godot，即Godot 4.0。
+
+可以在以下链接下载：
+
+- [Windows](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_win64.exe.zip)
+- [Mac](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_macos.universal.zip)
+- [Linux](https://downloads.tuxfamily.org/godotengine/4.0.1/Godot_v4.0.1-stable_linux.x86_64.zip)
+
+### 加载初始项目
+
+我们提供两个版本的代码库：
+- [初始项目，下载并跟随本教程](https://drive.google.com/file/d/1C7xd3TibJHlxFEJPBgBLpksgxrFZ3D8e/view?usp=share_link)
+- [项目的最终版本，用于比较和调试](https://drive.google.com/file/d/1k-b2Bu7uIA6poApbouX4c3sq98xqogpZ/view?usp=share_link)
+
+要加载项目，在Godot项目管理器中点击**导入**，导航到文件所在位置并加载**project.godot**文件。
+
+如果你按F5或在编辑器中播放，你应该能够在人类模式下玩游戏。有几个游戏实例在运行，这是因为我们想通过许多并行环境加速训练我们的AI代理。
+
+### 安装Godot RL Agents插件
+
+Godot RL Agents插件可以从Github仓库安装，也可以在编辑器中使用Godot Asset Lib安装。
+
+首先点击AssetLib并搜索"rl"
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot1.png" alt="Godot" />
+
+然后点击Godot RL Agents，点击下载并取消选择LICENSE和README .md文件。然后点击安装。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot2.png" alt="Godot" />
+
+
+Godot RL Agents插件现已下载到你的机器上。现在点击项目→项目设置并启用插件：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot3.png" alt="Godot" />
+
+
+### 添加AI控制器
+
+我们现在想为我们的游戏添加一个AI控制器。打开player.tscn场景，在左侧你应该看到一个节点层次结构，如下所示：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot4.png" alt="Godot" />
+
+右键点击**Player**节点并点击**添加子节点**。这里列出了许多节点，搜索AIController3D并创建它。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot5.png" alt="Godot" />
+
+AI控制器节点应该已添加到场景树中，旁边有一个滚动条。点击它打开附加到AIController的脚本。Godot游戏引擎使用一种称为GDScript的脚本语言，其语法类似于python。该脚本包含需要实现的方法，以使我们的AI控制器工作。
+
+```python
+#-- Methods that need implementing using the "extend script" option in Godot --#
+func get_obs() -> Dictionary:
+	assert(false, "the get_obs method is not implemented when extending from ai_controller")
+	return {"obs":[]}
+
+func get_reward() -> float:
+	assert(false, "the get_reward method is not implemented when extending from ai_controller")
+	return 0.0
+
+func get_action_space() -> Dictionary:
+	assert(false, "the get get_action_space method is not implemented when extending from ai_controller")
+	return {
+		"example_actions_continous" : {
+			"size": 2,
+			"action_type": "continuous"
+		},
+		"example_actions_discrete" : {
+			"size": 2,
+			"action_type": "discrete"
+		},
+		}
+
+func set_action(action) -> void:
+	assert(false, "the get set_action method is not implemented when extending from ai_controller")
+# -----------------------------------------------------------------------------#
+```
+
+为了实现这些方法，我们需要创建一个继承自AIController3D的类。这在Godot中很容易做到，称为"扩展"一个类。
+
+右键点击AIController3D节点并点击"扩展脚本"，将新脚本命名为`controller.gd`。你现在应该有一个几乎空的脚本文件，如下所示：
+
+```python
+extends AIController3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+```
+
+我们现在将实现4个缺失的方法，删除这段代码，并用以下内容替换：
+
+```python
+extends AIController3D
+
+# Stores the action sampled for the agent's policy, running in python
+var move_action : float = 0.0
+
+func get_obs() -> Dictionary:
+	# get the balls position and velocity in the paddle's frame of reference
+	var ball_pos = to_local(_player.ball.global_position)
+	var ball_vel = to_local(_player.ball.linear_velocity)
+	var obs = [ball_pos.x, ball_pos.z, ball_vel.x/10.0, ball_vel.z/10.0]
+
+	return {"obs":obs}
+
+func get_reward() -> float:
+	return reward
+
+func get_action_space() -> Dictionary:
+	return {
+		"move_action" : {
+			"size": 1,
+			"action_type": "continuous"
+		},
+		}
+
+func set_action(action) -> void:
+	move_action = clamp(action["move_action"][0], -1.0, 1.0)
+```
+
+我们现在已经定义了代理的观察，即球在其局部坐标空间中的位置和速度。我们还定义了代理的动作空间，这是一个范围从-1到+1的单一连续值。
+
+下一步是更新Player的脚本以使用AIController的动作，通过点击player节点旁边的滚动条编辑Player的脚本，将`Player.gd`中的代码更新为以下内容：
+
+```python
+extends Node3D
+
+@export var rotation_speed = 3.0
+@onready var ball = get_node("../Ball")
+@onready var ai_controller = $AIController3D
+
+func _ready():
+	ai_controller.init(self)
+
+func game_over():
+	ai_controller.done = true
+	ai_controller.needs_reset = true
+
+func _physics_process(delta):
+	if ai_controller.needs_reset:
+		ai_controller.reset()
+		ball.reset()
+		return
+
+	var movement : float
+	if ai_controller.heuristic == "human":
+		movement = Input.get_axis("rotate_anticlockwise", "rotate_clockwise")
+	else:
+		movement = ai_controller.move_action
+	rotate_y(movement*delta*rotation_speed)
+
+func _on_area_3d_body_entered(body):
+	ai_controller.reward += 1.0
+```
+
+我们现在需要在Godot中运行的游戏和在Python中训练的神经网络之间进行同步。Godot RL agents提供了一个节点来完成这个任务。打开train.tscn场景，右键点击根节点，然后点击"添加子节点"。然后，搜索"sync"并添加一个Godot RL Agents Sync节点。这个节点通过TCP处理Python和Godot之间的通信。
+
+你可以通过首先使用`gdrl`启动python训练，在编辑器中实时运行训练。
+
+在这个简单的例子中，几分钟内就能学习到一个合理的策略。你可能希望加速训练，点击train场景中的Sync节点，你会看到编辑器中暴露了一个"Speed Up"属性：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/godot6.png" alt="Godot" />
+
+尝试将此属性设置为最高8以加速训练。这对更复杂的环境（如我们将在下一章学习的多人FPS）可能是一个很大的好处。
+
+### 导出模型
+
+[参考文档](https://github.com/edbeeching/godot_rl_agents/tree/main?tab=readme-ov-file#exporting-and-loading-your-trained-agent-in-onnx-format)
+
+现在让我们暂时放下Godot编辑器。我们需要使用终端运行一些命令来保存我们训练的模型。
+
+Godot RL库的最新版本为Stable Baselines 3、rllib和CleanRL训练框架提供了onnx模型的实验性支持。
+
+例如，让我们使用Stable Baselines 3作为框架。使用[sb3示例](https://github.com/edbeeching/godot_rl_agents/blob/main/examples/stable_baselines3_example.py)训练你的代理（[使用脚本的说明](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/ADV_STABLE_BASELINES_3.md#train-a-model-from-scratch)），启用选项`--onnx_export_path=model.onnx`
+
+以下是要执行的命令行示例：
+
+```bash
+cd <....> # 进入这个Godot项目目录
+python stable_baselines3_example.py --timesteps=100_000 --onnx_export_path=model.onnx --save_model_path=model.zip --save_checkpoint_frequency=20_000 --experiment_name=exp1
+```
+
+如果一切正常，你应该在终端中看到如下消息：
+
+```
+No game binary has been provided, please press PLAY in the Godot editor
+waiting for remote GODOT connection on port 11008
+```
+
+> 如果你在stable_baselines3_example脚本中遇到导入错误："ImportError: cannot import name 'export_model_as_onnx' from 'godot_rl.wrappers.onnx.stable_baselines_export'"，请参考[此问题](https://github.com/edbeeching/godot_rl_agents/issues/203)中的答案。
+
+现在是时候回到Godot编辑器，并点击右上角的PLAY。一旦你点击它，游戏场景将弹出显示AI训练。同时，终端将开始打印指标。等待训练完成，如果一切正常，你应该能够在Godot项目目录中找到文件`model.onnx`。
+
+### 在游戏中应用AI！
+
+现在让我们将这个训练好的模型应用到游戏中！
+
+在Godot编辑器中，找到`train.tscn`中的Sync节点：
+
+* 从下拉菜单中将控制模式更改为`Onnx Inference`
+* 将`Onnx Model Path`设置为模型文件名，在我们的例子中是`model.onnx`
+
+要运行这个游戏，我们需要mono版本（即.NET版本）的Godot编辑器，你可以从Godot官方页面下载。我们还需要安装[.NET](https://dotnet.microsoft.com/en-us/download)。
+
+在第一次尝试时，你很可能会遇到错误。以下是帮助你解决错误的场景。
+
+1. 关于`Invalid Call. Nonexistent function 'new' in base 'CSharpScript'`的问题：[解决方案](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/TROUBLESHOOTING.md)
+2. 关于MacOS上`onnxruntime`的错误：[解决方案](https://github.com/microsoft/onnxruntime/issues/9707)
+
+
+### 还有更多！
+
+我们只是触及了Godot RL Agents可以实现的表面，该库包括自定义传感器和摄像机，以丰富代理可用的信息。查看[示例](https://github.com/edbeeching/godot_rl_agents_examples)了解更多！
+
+关于将训练好的模型导出为.onnx的能力，以便你可以直接从Godot运行推理而无需Python服务器，以及其他有用的训练选项，请查看[高级SB3教程](https://github.com/edbeeching/godot_rl_agents/blob/main/docs/ADV_STABLE_BASELINES_3.md)。
+
+## 作者
+
+本节由<a href="https://twitter.com/edwardbeeching">Edward Beeching</a>撰写

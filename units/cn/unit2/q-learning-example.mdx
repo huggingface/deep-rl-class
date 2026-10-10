@@ -1,0 +1,83 @@
+# Q-Learning示例 [[q-learning-example]]
+
+为了更好地理解Q-Learning，让我们看一个简单的例子：
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Maze-Example-2.jpg" alt="Maze-Example"/>
+
+- 你是这个小迷宫中的一只老鼠。你总是**从同一个起点开始。**
+- 目标是**吃掉右下角的大堆奶酪**并避开毒药。毕竟，谁不喜欢奶酪呢？
+- 如果我们吃了毒药，**吃了大堆奶酪**，或者我们走了超过五步，回合就结束了。
+- 学习率是0.1
+- 折扣率（gamma）是0.99
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-1.jpg" alt="Maze-Example"/>
+
+
+奖励函数如下：
+
+- **+0：**进入没有奶酪的状态。
+- **+1：**进入有小奶酪的状态。
+- **+10：**进入有大堆奶酪的状态。
+- **-10：**进入有毒药的状态并因此死亡。
+- **+0** 如果我们走了超过五步。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-2.jpg" alt="Maze-Example"/>
+
+为了训练我们的智能体获得最优策略（即向右、向右、向下的策略），**我们将使用Q-Learning算法**。
+
+## 步骤1：初始化Q表 [[step1]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Example-1.jpg" alt="Maze-Example"/>
+
+所以，目前，**我们的Q表是没用的**；我们需要**使用Q-Learning算法训练我们的Q函数。**
+
+让我们进行2个训练时间步：
+
+训练时间步1：
+
+## 步骤2：使用Epsilon贪婪策略选择动作 [[step2]]
+
+因为epsilon很大（= 1.0），我采取随机动作。在这种情况下，我向右走。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-3.jpg" alt="Maze-Example"/>
+
+
+## 步骤3：执行动作At，获取Rt+1和St+1 [[step3]]
+
+通过向右走，我得到一小块奶酪，所以\\(R_{t+1} = 1\\)，我进入一个新状态。
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-4.jpg" alt="Maze-Example"/>
+
+
+## 步骤4：更新Q(St, At) [[step4]]
+
+我们现在可以使用我们的公式更新\\(Q(S_t, A_t)\\)。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-5.jpg" alt="Maze-Example"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/Example-4.jpg" alt="Maze-Example"/>
+
+训练时间步2：
+
+## 步骤2：使用Epsilon贪婪策略选择动作 [[step2-2]]
+
+**我再次采取随机动作，因为epsilon=0.99仍然很大**。（注意我们稍微衰减了epsilon，因为随着训练的进行，我们希望越来越少的探索）。
+
+我采取了"向下"的动作。**这不是一个好动作，因为它会导致我吃到毒药。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-6.jpg" alt="Maze-Example"/>
+
+
+## 步骤3：执行动作At，获取Rt+1和St+1 [[step3-3]]
+
+因为我吃了毒药，**我得到\\(R_{t+1} = -10\\)，然后我死了。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-7.jpg" alt="Maze-Example"/>
+
+## 步骤4：更新Q(St, At) [[step4-4]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit3/q-ex-8.jpg" alt="Maze-Example"/>
+
+因为我们死了，所以我们开始一个新的回合。但我们在这里看到的是，**通过两个探索步骤，我的智能体变得更聪明了。**
+
+随着我们继续探索和利用环境并使用TD目标更新Q值，**Q表将给我们越来越好的近似。在训练结束时，我们将获得最优Q函数的估计。**

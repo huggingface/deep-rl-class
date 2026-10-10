@@ -1,0 +1,123 @@
+# 测验
+
+学习的最佳方式，也是[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法，**就是测试自己**。这将帮助你找出**需要加强知识的地方**。
+
+
+### 问题1：在强化学习领域中，以下哪种对偏差-方差权衡的解释最准确？
+
+<Question
+	choices={[
+		{
+			text: "偏差-方差权衡反映了我的模型如何能够将知识泛化到我们在训练时提供给模型的先前标记数据。",
+			explain: "这是机器学习中传统的偏差-方差权衡。在我们强化学习的特定情况下，我们没有先前标记的数据，只有一个奖励信号。",
+      			correct: false,
+		},
+   		{
+			text: "偏差-方差权衡反映了强化信号如何准确地反映智能体应该从环境中获得的真实奖励",
+			explain: "",
+      			correct: true,
+		},		
+	]}
+/>
+
+### 问题2：在讨论强化学习中具有偏差和/或方差的模型时，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+		{
+			text: "无偏的奖励信号返回与环境中真实/预期奖励相似的奖励",
+			explain: "",
+      			correct: true,
+		},
+    		{
+			text: "有偏的奖励信号返回与环境中真实/预期奖励相似的奖励",
+			explain: "如果奖励信号有偏差，这意味着我们获得的奖励信号与我们应该从环境中获得的真实奖励不同",
+      			correct: false,
+		},
+    		{
+			text: "具有高方差的奖励信号包含很多噪音，并受到例如环境中随机（非恒定）元素的影响",
+			explain: "",
+      			correct: true,
+		},		
+    		{
+			text: "具有低方差的奖励信号包含很多噪音，并受到例如环境中随机（非恒定）元素的影响",
+			explain: "如果奖励信号具有低方差，那么它受环境噪音的影响较小，无论环境中的随机元素如何，都会产生相似的值",
+      			correct: false,
+		},
+	]}
+/>
+
+
+### 问题3：关于蒙特卡洛方法，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+		{
+			text: "这是一种采样机制，意味着我们不分析所有可能的状态，而是分析其中的一个样本",
+			explain: "",
+      			correct: true,
+		},
+    		{
+			text: "它对随机性（轨迹中的随机元素）非常有抵抗力",
+			explain: "蒙特卡洛每次随机估计轨迹样本。然而，即使相同的轨迹，如果它们包含随机元素，也可能有不同的奖励值",
+      			correct: false,
+		},
+    		{
+			text: "为了减少蒙特卡洛中随机元素的影响，我们采取`n`种策略并对它们取平均值，减少它们的个体影响",
+			explain: "",
+			correct: true,
+		},		    
+	]}
+/>
+
+### 问题4：用你自己的话描述Actor-Critic方法（A2C）。
+
+<details>
+<summary>解决方案</summary>
+
+Actor-Critic背后的理念是我们学习两种函数近似：
+1. 一个`策略`，控制我们的智能体如何行动（π）
+2. 一个`价值`函数，通过衡量所采取的动作有多好来辅助策略更新（q）
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/step2.jpg" alt="Actor-Critic，步骤2"/>
+
+</details>
+
+### 问题5：关于Actor-Critic方法，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+   		 {
+			text: "Critic在训练过程中不学习任何函数",
+			explain: "Actor和Critic的函数参数都在训练时更新",
+      			correct: false,
+		},
+		{
+			text: "Actor学习一个策略函数，而Critic学习一个价值函数",
+			explain: "",
+      			correct: true,
+		},
+    		{
+			text: "它增加了对随机性的抵抗力并减少了高方差",
+			explain: "",
+      			correct: true,
+		},	    
+	]}
+/>
+
+
+
+### 问题6：A2C方法中的`优势`是什么？
+
+<details>
+<summary>解决方案</summary>
+
+我们可以使用`优势`函数，而不是直接使用Critic的动作价值函数。优势函数背后的理念是我们计算一个动作相对于在某状态下其他可能动作的相对优势，对它们取平均值。
+
+换句话说：在某状态下采取该动作比该状态的平均价值好多少
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit8/advantage1.jpg" alt="A2C中的优势"/>
+
+</details>
+
+恭喜你完成这个测验🥳，如果你错过了一些要点，花时间再次阅读本章以加强（😏）你的知识。

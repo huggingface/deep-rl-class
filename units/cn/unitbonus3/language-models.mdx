@@ -1,0 +1,45 @@
+# 强化学习中的语言模型
+## 语言模型为代理编码有用的知识
+
+**语言模型**（LMs）在处理文本时可以展现出令人印象深刻的能力，如问答甚至是逐步推理。此外，它们在海量文本语料库上的训练使它们**编码了各种类型的知识，包括关于我们世界物理规则的抽象知识**（例如可以用物体做什么，旋转物体时会发生什么等）。
+
+最近研究的一个自然问题是，这种知识是否可以使像机器人这样的代理在尝试解决日常任务时受益。虽然这些工作显示了有趣的结果，但所提出的代理缺乏任何学习方法。**这一限制阻止了这些代理适应环境（例如修正错误的知识）或学习新技能。**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/language.png" alt="Language" />
+<figcaption>来源：<a href="https://ai.googleblog.com/2022/08/towards-helpful-robots-grounding.html">Towards Helpful Robots: Grounding Language in Robotic Affordances</a></figcaption>
+</figure>
+
+## 语言模型与强化学习
+
+因此，语言模型可以带来关于世界的知识，而强化学习可以通过与环境交互来调整和纠正这些知识，两者之间存在潜在的协同作用。从强化学习的角度来看，这尤其有趣，因为强化学习领域主要依赖于**白板设置**，即代理从头开始学习一切，这导致：
+
+1) 样本效率低下
+
+2) 从人类角度看出现意外行为
+
+作为第一次尝试，论文["Grounding Large Language Models with Online Reinforcement Learning"](https://arxiv.org/abs/2302.02662v1)解决了**使用PPO将语言模型适应或对齐到文本环境的问题**。他们表明，语言模型中编码的知识导致了对环境的快速适应（为样本高效的强化学习代理开辟了道路），而且这种知识一旦对齐，还允许语言模型更好地泛化到新任务。
+
+<video src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/papier_v4.mp4" type="video/mp4" controls />
+
+["Guiding Pretraining in Reinforcement Learning with Large Language Models"](https://arxiv.org/abs/2302.06692)研究的另一个方向是保持语言模型冻结，但利用其知识来**指导强化学习代理的探索**。这种方法允许强化学习代理被引导到对人类有意义且可能有用的行为，而无需在训练过程中有人类参与。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit12/language2.png" alt="Language" />
+<figcaption> 来源：<a href="https://ai.googleblog.com/2022/08/towards-helpful-robots-grounding.html"> Towards Helpful Robots: Grounding Language in Robotic Affordances</a>  </figcaption>
+</figure>
+
+几个限制使这些工作仍然非常初步，例如需要将代理的观察转换为文本后再给语言模型，以及与非常大的语言模型交互的计算成本。
+
+## 进一步阅读
+
+欲了解更多信息，我们建议你查看以下资源：
+
+- [Google Research, 2022 & beyond: Robotics](https://ai.googleblog.com/2023/02/google-research-2022-beyond-robotics.html)
+- [Pre-Trained Language Models for Interactive Decision-Making](https://arxiv.org/abs/2202.01771)
+- [Grounding Large Language Models with Online Reinforcement Learning](https://arxiv.org/abs/2302.02662v1)
+- [Guiding Pretraining in Reinforcement Learning with Large Language Models](https://arxiv.org/abs/2302.06692)
+
+## 作者
+
+本节由<a href="https://twitter.com/ClementRomac"> Clément Romac </a>撰写

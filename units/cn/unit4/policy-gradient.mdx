@@ -1,0 +1,122 @@
+# 深入了解策略梯度方法
+
+## 获取全局视角
+
+我们刚刚了解到策略梯度方法旨在找到**最大化期望回报**的参数 \\( \theta \\)。
+
+其思想是我们有一个*参数化的随机策略*。在我们的例子中，神经网络输出动作的概率分布。采取每个动作的概率也被称为*动作偏好*。
+
+如果我们以CartPole-v1为例：
+- 作为输入，我们有一个状态。
+- 作为输出，我们有该状态下动作的概率分布。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_based.png" alt="Policy based" />
+
+我们使用策略梯度的目标是**控制动作的概率分布**，通过调整策略，使**好的动作（最大化回报的动作）在未来被更频繁地采样。**
+每次智能体与环境交互时，我们调整参数，使好的动作在未来更有可能被采样。
+
+但是**我们如何使用期望回报来优化权重**？
+
+思路是我们要**让智能体在一个回合中交互**。如果我们赢得了这个回合，我们认为采取的每个动作都是好的，必须在未来更多地被采样，因为它们导致了胜利。
+
+所以对于每个状态-动作对，我们想要增加 \\(P(a|s)\\)：在该状态下采取该动作的概率。或者如果我们输了，则减少。
+
+策略梯度算法（简化版）看起来像这样：
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/pg_bigpicture.jpg" alt="Policy Gradient Big Picture"/>
+</figure>
+
+现在我们已经了解了全局视角，让我们深入了解策略梯度方法。
+
+## 深入了解策略梯度方法
+
+我们有一个随机策略 \\(\pi\\)，它有一个参数 \\(\theta\\)。这个 \\(\pi\\) 在给定状态的情况下，**输出动作的概率分布**。
+
+<figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/stochastic_policy.png" alt="Policy"/>
+</figure>
+
+其中 \\(\pi_\theta(a_t|s_t)\\) 是智能体在给定我们的策略的情况下，从状态 \\(s_t\\) 选择动作 \\(a_t\\) 的概率。
+
+**但我们如何知道我们的策略是否好？** 我们需要有一种方法来衡量它。为了知道这一点，我们定义了一个分数/目标函数，称为 \\(J(\theta)\\)。
+
+### 目标函数
+
+*目标函数*给出了给定轨迹（不考虑奖励的状态动作序列（与回合相反））的**智能体的性能**，它输出*期望累积奖励*。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/objective.jpg" alt="Return"/>
+
+让我们对这个公式给出更多细节：
+- *期望回报*（也称为期望累积奖励），是所有可能的回报 \\(R(\tau)\\) 值的加权平均（权重由 \\(P(\tau;\theta)\\) 给出）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/expected_reward.png" alt="Return"/>
+
+
+- \\(R(\tau)\\)：任意轨迹的回报。要使用这个量来计算期望回报，我们需要将其乘以每个可能轨迹的概率。
+
+- \\(P(\tau;\theta)\\)：每个可能轨迹 \\(\tau\\) 的概率（该概率取决于 \\(\theta\\)，因为它定义了用于选择轨迹动作的策略，这会影响访问的状态）。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
+- \\(J(\theta)\\)：期望回报，我们通过对所有轨迹求和来计算它，给定 \\(\theta\\) 采取该轨迹的概率乘以该轨迹的回报。
+
+我们的目标是通过找到 \\(\theta\\)，使其输出最佳动作概率分布，从而最大化期望累积奖励：
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/max_objective.png" alt="Max objective"/>
+
+
+## 梯度上升和策略梯度定理
+
+策略梯度是一个优化问题：我们想要找到 \\(\theta\\) 的值，使我们的目标函数 \\(J(\theta)\\) 最大化，所以我们需要使用**梯度上升**。它是*梯度下降*的反向，因为它给出了 \\(J(\theta)\\) 最陡增加的方向。
+
+（如果你需要复习梯度下降和梯度上升之间的区别，[查看这个](https://www.baeldung.com/cs/gradient-descent-vs-ascent)和[这个](https://stats.stackexchange.com/questions/258721/gradient-ascent-vs-gradient-descent-in-logistic-regression)）。
+
+我们的梯度上升更新步骤是：
+
+\\( \theta \leftarrow \theta + \alpha *  \nabla_\theta J(\theta) \\)
+
+我们可以反复应用这个更新，希望 \\(\theta\\) 收敛到使 \\(J(\theta)\\) 最大化的值。
+
+然而，计算 \\(J(\theta)\\) 的导数有两个问题：
+1. 我们无法计算目标函数的真实梯度，因为它需要计算每个可能轨迹的概率，这在计算上非常昂贵。
+所以我们想要**用基于样本的估计（收集一些轨迹）来计算梯度估计**。
+
+2. 我们还有另一个问题，我在下一个可选部分中解释。为了对这个目标函数进行微分，我们需要对状态分布进行微分，称为马尔可夫决策过程动态。这与环境相关。它给出了环境在给定当前状态和智能体采取的动作的情况下，进入下一个状态的概率。问题是我们可能不了解它，所以无法对其进行微分。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/probability.png" alt="Probability"/>
+
+幸运的是，我们将使用一个称为策略梯度定理的解决方案，它将帮助我们将目标函数重新表述为一个可微分的函数，不涉及状态分布的微分。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
+
+如果你想了解我们如何推导这个用于近似梯度的公式，请查看下一个（可选）部分。
+
+## Reinforce算法（蒙特卡洛Reinforce）
+
+Reinforce算法，也称为蒙特卡洛策略梯度，是一种策略梯度算法，**使用整个回合的估计回报来更新策略参数** \\(\theta\\)：
+
+在循环中：
+- 使用策略 \\(\pi_\theta\\) 收集一个回合 \\(\tau\\)
+- 使用该回合来估计梯度 \\(\hat{g} = \nabla_\theta J(\theta)\\)
+
+ <figure class="image table text-center m-0 w-full">
+  <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_one.png" alt="Policy Gradient"/>
+</figure>
+
+- 更新策略的权重：\\(\theta \leftarrow \theta + \alpha \hat{g}\\)
+
+我们可以这样解释这个更新：
+
+- \\(\nabla_\theta log \pi_\theta(a_t|s_t)\\) 是**选择动作 \\(a_t\\) 从状态 \\(s_t\\) 的（对数）概率最陡增加的方向**。
+这告诉我们**如果我们想增加/减少在状态 \\(s_t\\) 选择动作 \\(a_t\\) 的对数概率，我们应该如何改变策略的权重**。
+
+- \\(R(\tau)\\)：是评分函数：
+  - 如果回报高，它将**推高**（状态，动作）组合的概率。
+  - 否则，如果回报低，它将**推低**（状态，动作）组合的概率。
+
+
+我们也可以**收集多个回合（轨迹）**来估计梯度：
+<figure class="image table text-center m-0 w-full">
+ <img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_multiple.png" alt="Policy Gradient"/>
+</figure>

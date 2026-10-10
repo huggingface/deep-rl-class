@@ -1,0 +1,132 @@
+# 测验
+
+学习的最佳方式以及[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法**是测试自己**。这将帮助你找出**需要加强知识的地方**。
+
+### 问题1：以下哪些工具是专门为视频游戏开发设计的？
+
+<Question
+	choices={[
+		{
+			text: "Unity (C#)",
+			explain: "",
+            correct: true,
+		},
+		{
+			text: "Unreal Engine (C++)",
+			explain: "",
+            correct: true,
+		},
+		{
+			text: "Godot (GDScript, C++, C#)",
+			explain: "",
+            correct: true,
+		},
+		{
+			text: "JetBrains' Rider",
+			explain: "虽然对Unity的C#支持很有用，但它不是视频游戏开发IDE",
+            correct: false,
+		},
+		{
+			text: "JetBrains' CLion",
+			explain: "虽然对Unreal Engine的C++支持很有用，但它不是视频游戏开发IDE",
+            correct: false,
+		},
+		{
+			text: "Microsoft Visual Studio和Visual Studio Code",
+			explain: "虽然包含对Unity和Unreal的支持，但它们是通用IDE，而非面向视频游戏的IDE。",
+            correct: false,
+		},
+	]}
+/>
+
+### 问题2：关于Unity ML-Agents，以下哪些陈述是正确的？
+
+<Question
+	choices={[
+		{
+			text: "Unity的'Scene'对象可用于创建学习环境",
+			explain: "",
+            correct: true,
+		},
+		{
+			text: "Unity ML-Agents允许你使用强化学习创建和训练你的智能体",
+			explain: "",
+            correct: true,
+		},
+        {
+			text: "其'Communicator'组件管理Unity的C#环境/智能体与Python后端之间的通信",
+			explain: "",
+            correct: true,
+		},
+        {
+			text: "训练过程使用在Pytorch中实现的强化学习算法",
+			explain: "",
+            correct: true,
+		},
+        {
+			text: "Unity ML-Agents仅支持近端策略优化(PPO)",
+			explain: "不，Unity ML-Agents支持多种算法系列，包括将在下一部分解释的Actor-Critic",
+            correct: false,
+		},
+        {
+			text: "它包含一个Gym包装器和一个称为'PettingZoo'的多智能体版本",
+			explain: "",
+            correct: true,
+		},
+	]}
+/>
+
+### 问题3：填写缺失的字母
+
+- 在Unity ML-Agents中，智能体的策略被称为b \_ \_ \_ n
+- 负责协调智能体的组件被称为\_ c \_ \_ \_ m \_
+
+<details>
+<summary>解决方案</summary>
+<ul>
+	<li>b r a i n</li>
+	<li>a c a d e m y</li>
+</ul>
+</details>
+
+### 问题4：用你自己的话定义什么是`raycast`
+
+<details>
+<summary>解决方案</summary>
+raycast（射线投射）是（大多数情况下）一种线性投射，如同一束"激光"，旨在通过物体检测碰撞。
+</details>
+
+### 问题5：使用`frames`（帧）或`raycasts`（射线投射）捕获环境有什么区别？
+
+<Question
+	choices={[
+    {
+      text: "通过使用`frames`，环境由屏幕的每个像素定义。通过使用`raycasts`，我们只发送这些像素的样本。",
+      explain: "`Raycasts`与像素无关。它们是我们生成的线性投射（激光），用于寻找碰撞。",
+      correct: false,
+    },
+    {
+      text: "通过使用`raycasts`，环境由屏幕的每个像素定义。通过使用`frames`，我们生成（通常是）线来检查它与哪些对象碰撞",
+      explain: "恰恰相反 - `frames`收集像素，`raycasts`检查碰撞。",
+      correct: false,
+    },
+    {
+      text: "通过使用`frames`，我们收集定义环境的所有屏幕像素。通过使用`raycast`，我们不使用像素，而是生成（通常是）线并检查它们的碰撞",
+      explain: "",
+      correct: true,
+    },
+	]}
+/>
+
+
+### 问题6：列举在Snowball或Pyramid环境中用于训练智能体的几个环境和智能体输入变量
+
+<details>
+<summary>解决方案</summary>
+- 从智能体生成的射线投射碰撞，检测方块、（不可见的）墙壁、石头、目标、开关等。
+- 描述智能体特征的传统输入，如其速度
+- 布尔变量，如Pyramids中的开关（开/关）或SnowballTarget中的"我能射击吗？"。
+</details>
+
+
+恭喜你完成这个测验🥳，如果你错过了一些要素，请花时间再次阅读本章以加强（😏）你的知识。

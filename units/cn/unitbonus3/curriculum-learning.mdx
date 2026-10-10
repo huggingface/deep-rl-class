@@ -1,0 +1,53 @@
+# (自动)课程学习在强化学习中的应用
+
+虽然本课程中介绍的大多数强化学习方法在实践中表现良好，但在某些情况下单独使用它们会失败。例如，当：
+
+- 学习任务很困难，需要**渐进式技能获取**（例如，当想要让双足机器人学会穿越困难障碍物时，它必须先学会站立，然后行走，然后可能是跳跃...）
+- 环境中存在变化（影响难度），并且希望智能体对这些变化具有**鲁棒性**
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/bipedal.gif" alt="双足机器人"/>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/movable_creepers.gif" alt="可移动障碍物"/>
+<figcaption> <a href="https://developmentalsystems.org/TeachMyAgent/">TeachMyAgent</a> </figcaption>
+</figure>
+
+在这些情况下，似乎有必要向我们的强化学习智能体提出不同的任务，并组织它们，使智能体能够逐步获取技能。这种方法被称为**课程学习**，通常涉及手动设计的课程（或以特定顺序组织的任务集）。在实践中，例如，可以控制环境的生成、初始状态，或使用自我对弈并控制提供给强化学习智能体的对手水平。
+
+由于设计这样的课程并不总是简单的，**自动课程学习（ACL）领域提出设计能够学习创建任务组织的方法，以最大化强化学习智能体的性能**。Portelas等人提出将ACL定义为：
+
+> ...一系列机制，通过学习调整学习情境的选择以适应强化学习智能体的能力，从而自动调整训练数据的分布。
+>
+
+例如，OpenAI使用**域随机化**（他们对环境应用随机变化）使机器人手能够解决魔方。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/dr.jpg" alt="域随机化"/>
+<figcaption> <a href="https://openai.com/blog/solving-rubiks-cube/">OpenAI - 用机器人手解魔方</a></figcaption>
+</figure>
+
+最后，你可以通过控制环境变化甚至绘制地形来体验在<a href="https://huggingface.co/spaces/flowers-team/Interactive_DeepRL_Demo">TeachMyAgent</a>基准测试中训练的智能体的鲁棒性 👇
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/demo.png" alt="演示"/>
+<figcaption> <a href="https://huggingface.co/spaces/flowers-team/Interactive_DeepRL_Demo">https://huggingface.co/spaces/flowers-team/Interactive_DeepRL_Demo</a></figcaption>
+</figure>
+
+
+## 进一步阅读
+
+如需更多信息，我们建议你查看以下资源：
+
+### 领域概述
+
+- [深度强化学习的自动课程学习：简短综述](https://arxiv.org/pdf/2003.04664.pdf)
+- [强化学习的课程设计](https://lilianweng.github.io/posts/2020-01-29-curriculum-rl/)
+
+### 最新方法
+
+- [基于遗憾的环境设计进化课程](https://arxiv.org/abs/2203.01302)
+- [通过约束最优传输的课程强化学习](https://proceedings.mlr.press/v162/klink22a.html)
+- [优先级别重放](https://arxiv.org/abs/2010.03934)
+
+## 作者
+
+本节由<a href="https://twitter.com/ClementRomac">Clément Romac</a>撰写

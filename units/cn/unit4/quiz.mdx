@@ -1,0 +1,82 @@
+# 测验
+
+学习的最佳方式和[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法**是测试自己。**这将帮助你找出**需要加强知识的地方**。
+
+
+### 问题1：相比于基于价值的方法，策略梯度有哪些优势？（选择所有适用的）
+
+<Question
+	choices={[
+		{
+			text: "策略梯度方法可以学习随机策略",
+			explain: "",
+      			correct: true,
+		},
+		{
+			text: "策略梯度方法在高维动作空间和连续动作空间中更有效",
+			explain: "",
+      			correct: true,
+		},
+    {
+			text: "策略梯度大多数时候收敛于全局最大值。",
+			explain: "不，策略梯度经常收敛于局部最大值而非全局最优。",
+		},
+	]}
+/>
+
+### 问题2：什么是策略梯度定理？
+
+<details>
+<summary>解答</summary>
+
+*策略梯度定理*是一个公式，它将帮助我们将目标函数重新表述为一个可微分的函数，不涉及状态分布的微分。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit6/policy_gradient_theorem.png" alt="Policy Gradient"/>
+
+</details>
+
+
+### 问题3：基于策略的方法和策略梯度方法之间有什么区别？（选择所有适用的）
+
+<Question
+	choices={[
+    {
+      text: "基于策略的方法是策略梯度方法的子集。",
+      explain: "",
+    },
+    {
+      text: "策略梯度方法是基于策略的方法的子集。",
+      explain: "",
+      correct: true,
+    },
+    {
+      text: "在基于策略的方法中，我们可以通过使用诸如爬山、模拟退火或进化策略等技术最大化目标函数的局部近似，**间接**优化参数θ。",
+      explain: "",
+      correct: true,
+    },
+    {
+	text: "在策略梯度方法中，我们通过对目标函数的性能执行梯度上升，**直接**优化参数θ。",
+	explain: "",
+	correct: true,
+	},
+	]}
+/>
+
+
+### 问题4：为什么我们使用梯度上升而不是梯度下降来优化J(θ)？
+
+<Question
+	choices={[
+    {
+      text: "我们想要最小化J(θ)，而梯度上升给出了J(θ)最陡增加的方向",
+      explain: "",
+    },
+		{
+			text: "我们想要最大化J(θ)，而梯度上升给出了J(θ)最陡增加的方向",
+			explain: "",
+      correct: true
+		},
+	]}
+/>
+
+恭喜你完成这个测验 🥳，如果你错过了一些要点，花点时间重新阅读本章以加强（😏）你的知识。

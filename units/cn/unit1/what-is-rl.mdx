@@ -1,0 +1,40 @@
+# 什么是强化学习？ [[what-is-reinforcement-learning]]
+
+要理解强化学习，让我们从大局观开始。
+
+## 大局观 [[the-big-picture]]
+
+强化学习背后的理念是，一个智能体（人工智能）将通过**与环境交互**（通过试错）并**接收奖励**（负面或正面）作为执行动作的反馈来从环境中学习。
+
+从与环境的交互中学习**来源于我们的自然经验。**
+
+例如，想象把你的小弟弟放在一个他从未玩过的视频游戏前，给他一个控制器，然后让他独自一人。
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_1.jpg" alt="Illustration_1" width="100%" />
+
+你的弟弟将通过按下正确的按钮（动作）与环境（视频游戏）交互。他得到了一枚硬币，那是+1奖励。这是正面的，他刚刚明白在这个游戏中**他必须获取硬币。**
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_2.jpg" alt="Illustration_2" width="100%" />
+
+但是，**他再次按下右键**，碰到了一个敌人。他刚刚死了，所以那是-1奖励。
+
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/Illustration_3.jpg" alt="Illustration_3" width="100%" />
+
+通过与环境的试错交互，你的小弟弟明白了**他需要在这个环境中获取硬币但要避开敌人。**
+
+**没有任何监督**，孩子将在玩游戏方面变得越来越好。
+
+这就是人类和动物如何学习，**通过交互。**强化学习只是**从行动中学习的计算方法。**
+
+
+### 正式定义 [[a-formal-definition]]
+
+我们现在可以给出一个正式定义：
+
+<Tip>
+强化学习是一个解决控制任务（也称为决策问题）的框架，通过构建智能体，让它们通过与环境的试错交互学习，并接收奖励（正面或负面）作为唯一的反馈。
+</Tip>
+
+但强化学习是如何工作的呢？

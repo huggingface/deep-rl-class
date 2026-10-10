@@ -1,0 +1,168 @@
+# 测验 [[quiz]]
+
+学习的最佳方式和[避免能力错觉](https://www.coursera.org/lecture/learning-how-to-learn/illusions-of-competence-BuFzf)的方法**是测试自己**。这将帮助你找出**需要加强知识的地方**。
+
+### 问题1：什么是强化学习？
+
+<details>
+<summary>解答</summary>
+
+强化学习是一个**解决控制任务（也称为决策问题）的框架**，通过构建智能体，让它们通过与环境的试错交互学习，并**接收奖励（正面或负面）作为唯一的反馈**。
+
+</details>
+
+
+
+### 问题2：定义强化学习循环
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/rl-loop-ex.jpg" alt="Exercise RL Loop"/>
+
+在每一步：
+- 我们的智能体从环境接收______
+- 基于该______，智能体采取一个______
+- 我们的智能体将向右移动
+- 环境转换到一个______
+- 环境给智能体一个______
+
+
+<Question
+	choices={[
+		{
+			text: "一个动作a0，动作a0，状态s0，状态s1，奖励r1",
+			explain: "在每一步：我们的智能体从环境接收**状态s0**。基于该**状态s0**，智能体采取一个**动作a0**。我们的智能体将向右移动。环境转换到一个**新状态s1**。环境给智能体一个**奖励r1**。"
+		},
+		{
+			text: "状态s0，状态s0，动作a0，新状态s1，奖励r1",
+			explain: "",
+      correct: true
+		},
+		{
+			text: "一个状态s0，状态s0，动作a0，状态s1，动作a1",
+      explain: "在每一步：我们的智能体从环境接收**状态s0**。基于该**状态s0**，智能体采取一个**动作a0**。我们的智能体将向右移动。环境转换到一个**新状态s1**。环境给智能体一个**奖励r1**。"
+		}
+	]}
+/>
+
+### 问题3：状态和观察之间有什么区别？
+
+<Question
+	choices={[
+		{
+			text: "状态是对世界状态的完整描述（没有隐藏信息）",
+			explain: "",
+      correct: true
+		},
+    {
+			text: "状态是对状态的部分描述",
+			explain: ""
+		},
+    {
+      text: "观察是对世界状态的完整描述（没有隐藏信息）",
+      explain: ""
+    },
+    {
+      text: "观察是对状态的部分描述",
+      explain: "",
+      correct: true
+    },
+    {
+      text: "当我们玩国际象棋环境时，我们接收一个状态",
+      explain: "因为我们可以访问整个棋盘信息。",
+      correct: true
+    },
+    {
+      text: "当我们玩国际象棋环境时，我们接收一个观察",
+      explain: "因为我们可以访问整个棋盘信息。"
+    },
+    {
+      text: "当我们玩超级马里奥兄弟时，我们接收一个状态",
+      explain: "我们只能看到靠近玩家的部分关卡，所以我们接收一个观察。"
+    },
+    {
+      text: "当我们玩超级马里奥兄弟时，我们接收一个观察",
+      explain: "我们只能看到靠近玩家的部分关卡。",
+      correct: true
+    }
+	]}
+/>
+
+### 问题4：任务是强化学习问题的一个实例。有哪两种类型的任务？
+
+<Question
+	choices={[
+		{
+			text: "情节性",
+			explain: "在情节性任务中，我们有一个起点和一个终点（一个终止状态）。这创建了一个情节：状态、动作、奖励和新状态的列表。例如，想想超级马里奥兄弟：一个情节从启动新的马里奥关卡开始，到你被杀死或到达关卡末尾结束。",
+      correct: true
+		},
+    {
+			text: "递归性",
+			explain: ""
+		},
+    {
+			text: "对抗性",
+			explain: ""
+		},
+    {
+      text: "持续性",
+      explain: "持续性任务是永远持续的任务（没有终止状态）。在这种情况下，智能体必须学习如何选择最佳动作并同时与环境交互。",
+      correct: true
+    }
+	]}
+/>
+
+### 问题5：什么是探索/利用权衡？
+
+<details>
+<summary>解答</summary>
+
+在强化学习中，我们需要**平衡我们对环境的探索程度和对我们已知环境信息的利用程度**。
+
+- *探索*是通过**尝试随机动作来探索环境，以便找到关于环境的更多信息**。
+
+- *利用*是**利用已知信息来最大化奖励**。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/expexpltradeoff.jpg" alt="Exploration Exploitation Tradeoff" width="100%" />
+
+</details>
+
+
+### 问题6：什么是策略？
+
+<details>
+<summary>解答</summary>
+
+- 策略π**是我们智能体的大脑**。它是一个函数，告诉我们在给定状态下应该采取什么动作。因此，它定义了智能体在给定时间的行为。
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit1/policy_1.jpg" alt="Policy" />
+
+</details>
+
+
+### 问题7：什么是基于价值的方法？
+
+<details>
+<summary>解答</summary>
+
+- 基于价值的方法是解决强化学习问题的主要方法之一。
+- 在基于价值的方法中，我们不是训练一个策略函数，而是**训练一个价值函数，将状态映射到处于该状态的预期价值**。
+
+
+
+</details>
+
+### 问题8：什么是基于策略的方法？
+
+<details>
+<summary>解答</summary>
+
+- 在*基于策略的方法*中，我们**直接学习一个策略函数**。
+- 这个策略函数将**从每个状态映射到该状态下最佳的相应动作**。或者是**在该状态下可能动作集合上的概率分布**。
+
+
+
+
+</details>
+
+
+恭喜你完成这个测验 🥳，如果你错过了一些元素，花时间再次阅读本章以加强（😏）你的知识，但**不要担心**：在课程中我们会再次回顾这些概念，你将**通过实践来加强你的理论知识**。

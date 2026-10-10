@@ -1,0 +1,23 @@
+# 介绍 [[introduction]]
+
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit9/thumbnail.png" alt="Unit 8"/>
+
+在第6单元中，我们学习了优势演员-评论家算法(Advantage Actor Critic, A2C)，这是一种结合了基于价值和基于策略方法的混合架构，通过减少方差来帮助稳定训练：
+
+- *演员(Actor)* 控制**我们的智能体如何行动**（基于策略的方法）。
+- *评论家(Critic)* 衡量**所采取的行动有多好**（基于价值的方法）。
+
+今天我们将学习近端策略优化(Proximal Policy Optimization, PPO)，这是一种**通过避免过大的策略更新来改善智能体训练稳定性的架构**。为此，我们使用一个比率来表示当前策略与旧策略之间的差异，并将这个比率裁剪到特定范围 \\( [1 - \epsilon, 1 + \epsilon] \\) 内。
+
+这样做将确保**我们的策略更新不会过大，使训练更加稳定。**
+
+本单元分为两部分：
+- 在第一部分中，你将学习PPO背后的理论，并使用[CleanRL](https://github.com/vwxyzjn/cleanrl)实现从头开始编写你的PPO智能体。为了测试其稳健性，你将使用LunarLander-v2。LunarLander-v2**是你开始这门课程时使用的第一个环境**。那时，你还不知道PPO是如何工作的，而现在，**你可以从头开始编写它并进行训练。这是多么令人难以置信啊🤩**。
+- 在第二部分中，我们将使用[Sample-Factory](https://samplefactory.dev/)深入研究PPO优化，并训练一个玩vizdoom（毁灭战士的开源版本）的智能体。
+
+<figure>
+<img src="https://huggingface.co/datasets/huggingface-deep-rl-course/course-images/resolve/main/en/unit10/environments.png" alt="Environment"/>
+<figcaption>这些是你将用来训练智能体的环境：VizDoom环境</figcaption>
+</figure>
+
+听起来很刺激吧？让我们开始吧！🚀
