@@ -18,7 +18,7 @@ So, to be able to code it, we're going to use two resources:
 - In addition to the tutorial, to go deeper, you can read the 13 core implementation details: [https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/](https://iclr-blog-track.github.io/2022/03/25/ppo-implementation-details/)
 
 Then, to test its robustness, we're going to train it in:
-- [LunarLander-v2](https://www.gymlibrary.ml/environments/box2d/lunar_lander/)
+- [LunarLander-v3](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 
 <figure class="image table text-center m-0 w-full">
     <video
@@ -32,7 +32,7 @@ Then, to test its robustness, we're going to train it in:
 
 And finally, we will push the trained model to the Hub to evaluate and visualize your agent playing.
 
-LunarLander-v2 is the first environment you used when you started this course. At that time, you didn't know how it worked, and now you can code it from scratch and train it. **How incredible is that 🤩.**
+LunarLander-v3 is the current version of the environment first used in this course. At that time, you didn't know how it worked, and now you can code it from scratch and train it. **How incredible is that 🤩.**
 
 <iframe src="https://giphy.com/embed/pynZagVcYxVUk" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/the-office-michael-heartbreak-pynZagVcYxVUk">via GIPHY</a></p>
 
@@ -51,7 +51,7 @@ In this notebook, you'll learn to **code your PPO agent from scratch with PyTorc
 
 To test its robustness, we're going to train it in:
 
-- [LunarLander-v2 🚀](https://www.gymlibrary.dev/environments/box2d/lunar_lander/)
+- [LunarLander-v3 🚀](https://gymnasium.farama.org/environments/box2d/lunar_lander/)
 
 We're constantly trying to improve our tutorials, so **if you find some issues in this notebook**, please [open an issue on the GitHub Repo](https://github.com/huggingface/deep-rl-class/issues).
 
@@ -1066,7 +1066,7 @@ If you don't want to use Google Colab or a Jupyter Notebook, you need to use thi
 - You should modify more hyperparameters otherwise the training will not be super stable.
 
 ```python
-!python ppo.py --env-id="LunarLander-v2" --repo-id="YOUR_REPO_ID" --total-timesteps=50000
+!python ppo.py --env-id="LunarLander-v3" --repo-id="YOUR_REPO_ID" --total-timesteps=50000
 ```
 
 ## Some additional challenges 🏆
